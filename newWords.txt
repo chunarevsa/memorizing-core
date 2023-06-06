@@ -1,0 +1,223 @@
+considered	считается
+truly	действительно
+mean	означать
+simplify	упрощать
+maintenance 	обслуживание
+behavior	поведение
+can be defined	можно определить
+each	каждый
+necessary	необходимо, необходимый
+acquire	приобретать
+reusability	возможность переиспользовать
+perform	выполнять
+convince	убедить, убеждать
+achieve	добиться, добиваться
+binding (or wrapping) code	связывание (обёртывание) кода
+refer	ссылаться
+arise	возникнуть, возникать
+be aware of each other 	знать друг о друге
+weaker	слабее
+coupling	сокрытие
+cohesion	связанность
+however	однако
+relationship	отношение
+advantage	преимущество
+grow	расти
+whereas	в то время как
+accessed	доступно
+except	кроме
+dispatch	отправка
+suggest	предлагать
+according	согласно
+erroneous	ошибочный
+less	меньше
+spent	тратить
+figure out	выяснять
+appropriate	подходящий
+snippet	фрагмент
+multiple	множество
+avoid	избегать
+digits	цифры
+tangible and intangible	материальный и не материальный
+via	через
+common	общий
+nested	вложенный
+allocate	выделять
+expose	раскрыть, выставить
+approach	подход
+previous	предыдущий
+through	через
+invoke	вызывать
+similar	аналогичный
+available	доступный
+explicitly and implicitly	явный и не явный
+distinct	отдельный
+arrange	организовать
+assigning	назначить, назначение, присвоение
+purpose	цель
+members	члены
+mentioned	упоминание
+belong	принадлежать
+rather	скорее всего, довольно
+restriction	ограничение
+pass	пройти
+distinguish	различать
+statement	заявление
+moreover	более того
+otherwise	иначе
+meaningful	значимый
+ambiguity	двусмысленность
+occur	происходить
+bound 	связанный, связанно
+explanation	пояснение
+thus	таким образом
+hence	следовательно
+actually	на самом деле
+deduce	сделать выводы
+exacerbate	усугублять
+allow	позволять
+suppose	предполагать
+comprises	включает в себя
+diverse	разнообразный
+equipped	оборудован
+stare	уставиться, пялиться
+intently	внимательно
+essential	существенный
+hiring	наём
+article	статья
+encounter	встреча
+commitment	обязательство
+supplement	дополнение
+prospect	перспектива
+complicated	сложный
+proprietary	собственная
+contribute	вносить вклад
+immediately	немедленно
+proficient	опытный
+passionate	страстный, страстно, страсть
+desire	желание
+engaged	задействован, занят, занято
+properly	правильно
+define	определить
+ensure	обеспечить
+oversight	надзор
+reason	причина
+opportunity	возможность
+preparing	подготовка
+opinion	мнение
+predictable	предсказуемый, прогнозируемый
+prepare	подготовить
+provide	предоставлять
+exactly	именно
+additional	дополнительный, дополнительно
+vast	обширный
+fulfill	выполнять, выполнить
+hardware	оборудование
+to quite on me	покинул (сломался, бросил)
+warm up	разминка
+biased data	необъективные данные
+considerations	мнения, соображения
+impacting	влияющие, воздействие
+consequences	последствия
+broader 	масштабные
+crunch a vast amount data	обрабатывать огромное количество данных
+obvious	очевидно
+reveal	раскрыть, раскрывать, показать
+appeal	обращение
+defies	бросает вызов
+either	либо
+belief	убеждение, вера
+improbable	невероятный
+magnificent 	великолепный
+mundane	обыденный
+sense	 смысл, чувство
+particular	конкретный
+emphasize	подчеркнуть
+appreciate
+care	забота, обслуживание
+bandwidth	пропускная способность
+harsh	суровый, жесткий
+performance	производительность, исполнение
+forces	силы
+quantities	количества, объемы, величины
+effort	усилия
+measure	измерять
+determine	определять
+rather	скорее
+flow	поток, течение
+lead	приводит, приводить
+significant	значительный
+predicting	прогноз, предсказание, предсказывание
+rigidity	жесткость, прочность
+eliminate	исключить, устранить
+headed off	отправился, направился
+guess	угадать
+preserve	сохранить, сохранять
+operate	работать
+journey	путешествие, поездка
+observation	наблюдение, обзор
+arrogant	высокомерный
+startling	поразительный
+conclusion	вывод, заключение
+consider	учитывать
+computational	вычислительные (мощности)
+staggering	ошеломляющий
+disappointment	разочарование
+introduction	введение
+appearance 	внешний вид
+curve	кривая
+messy	грязный
+recognize	узнать
+urgent	срочно, срочный
+particularly	особенно
+evaluate	оценить
+duty	обязанность
+occurred	произошло
+drudgery	рутинная работа
+unrestrained	безудержно
+harmful	вредный
+impose	накладывать, вводить
+adopted	принят, одобрен
+assignment	задание, поручение
+intent	намерение, замысел
+align	выровнять
+conferred	представлен, присвоен
+huge	огромный
+fragile	хрупкий
+unreliable	ненадёжный
+seem	казаться, кажется
+investigation 	расследование
+divide	разделять, делить
+further	далее, дальше
+gather	собирать
+compose	сочинять
+redardless	не обращая внимания
+eventually	в конце концов
+retain	удерживать
+therefore	следовательно
+separated	отдельный
+exceede	превысить
+bounds	границы
+solution	решение
+altered	изменено
+accept	принимать
+definition	определение
+shrink	сокращаться
+oppose	выступать против, быть против
+entirely	полностью
+least	наименее
+hindsight	взгляд в прошлое
+formed	сформированный
+advice	совет
+explain	объяснять
+violate	нарушать
+attainable	достижимый
+amplifies	усиливается
+seldom	редко
+within	в пределах
+implied	подразумеваемый
+variety	разнообразный
+involve	включать в себя
+ assemble	собираться
+collocate	располагать
+compatible	совместимый
