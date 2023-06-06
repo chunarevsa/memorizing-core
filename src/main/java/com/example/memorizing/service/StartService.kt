@@ -1,5 +1,7 @@
-package com.example.memorizing
+package com.example.memorizing.service
 
+import com.example.memorizing.entity.EWordStatus
+import com.example.memorizing.entity.Words
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
 import org.springframework.boot.context.event.ApplicationReadyEvent
@@ -13,7 +15,7 @@ class StartService(
     private val logger: Logger = LogManager.getLogger(StartService::class.java)
 
     private var active = true
-    private var random = false
+    private var random = true
 
     @EventListener(ApplicationReadyEvent::class)
     fun start() {
@@ -23,8 +25,12 @@ class StartService(
         while (active) {
             println("Statistics")
             println("Words: ${Words.mapOfWords.size}")
-            println("HardWords: ${HardWords.mapOfWords.size}")
-            println("CompletedWords: ${CompletedWords.mapOfWords.size}")
+            var countCompletedWords = 0
+            Words.mapOfWords.forEach { if (it.value.status == EWordStatus.COMPLETED) countCompletedWords++ }
+            println("Completed words: $countCompletedWords ")
+            var countHardWords = 0
+            Words.mapOfWords.forEach { if (it.value.status == EWordStatus.HARD) countHardWords++ }
+            println("Completed words: $countCompletedWords ")
 
             logger.info("START")
             println("TEST:      1 - all EN/RUS;     2 - only hard EN/RUS;")
@@ -53,38 +59,36 @@ class StartService(
     /** "TEST: 1 - all EN/RUS */
     private fun startTestAllEnRusWords() {
         println("Translate to russian")
-        startTestLoop(Words.mapOfWords)
+        startTestLoop(EWordStatus.NORMAL)
     }
 
     /** "TEST: 2 - only hard EN/RUS */
     private fun startTestHardEnRusWords() {
         println("Translate to russian")
-        startTestLoop(HardWords.mapOfWords)
+        startTestLoop(EWordStatus.HARD)
     }
 
     /** Studying: 3 - EN+RUS */
     private fun startStudyEnPlusRus() {
         println("Lets study")
-        startStudyingLoop(Words.mapOfWords)
+        startStudyingLoop(EWordStatus.NORMAL)
     }
 
     /** Studying: 4 - only hard EN+RUS; */
     private fun startStudyHardEnPlusRus() {
         println("Lets study")
-        startStudyingLoop(HardWords.mapOfWords)
+        startStudyingLoop(EWordStatus.HARD)
     }
 
-    private fun startStudyingLoop(words: MutableMap<String, Word>) {
-        val keys = words.keys.shuffled()
-        keys.forEach {
-            print("${it}:${words[it]!!.translate}")
+    private fun startStudyingLoop(status: EWordStatus) {
+        getKeysByStatus(status).forEach {
+            print("${it}:${Words.mapOfWords[it]!!.translate}")
             readln()
         }
     }
 
-    private fun startTestLoop(words: MutableMap<String, Word>) {
-        val keys = words.keys
-        if (random) keys.shuffled()
+    private fun startTestLoop(status: EWordStatus) {
+        val keys = getKeysByStatus(status)
 
         var countMistake = 0
         var savedWords = 0
@@ -94,52 +98,51 @@ class StartService(
             print("${it}:")
             val input = readln()
             if (input == "0") return
-            val word = words[it]
 
-            if (!word!!.translate.contains(input)) {
-                // add to HardWords
-                HardWords.mapOfWords[word.value] = word
-                fileService.saveWords(HardWords.fileName)
+            val word = Words.mapOfWords[it]
 
-                // reset counter
-                Words.mapOfWords[word.value] = word.apply {
-                    this.counterOfSuccessful = 0
-                }
-                fileService.saveWords(Words.fileName)
-
-                countMistake++
-                println("Упс! Неверно")
-                println("Перевод: ${word.translate}")
-            } else if (HardWords.mapOfWords.containsKey(it)) {
-                // remove this word from HardWords
-                HardWords.mapOfWords.remove(it)
-                fileService.saveWords(HardWords.fileName)
-
+            if (word!!.translate.contains(input)) {
+                // correct answer
+                if (word.status == EWordStatus.HARD) savedWords++
                 if (word.counterOfSuccessful >= 10) {
-                    CompletedWords.mapOfWords[word.value] = word
-                    fileService.saveWords(CompletedWords.fileName)
-
-                    HardWords.mapOfWords.remove(it)
-                    fileService.saveWords(HardWords.fileName)
-
-                    Words.mapOfWords.remove(it)
-                    fileService.saveWords(Words.fileName)
+                    word.status = EWordStatus.COMPLETED
+                    println("You learn this word!")
                     completedWords++
-
                 } else {
-                    // increase counter
-                    Words.mapOfWords[word.value] = word.apply {
-                        this.counterOfSuccessful = this.counterOfSuccessful++
-                    }
-                    fileService.saveWords(Words.fileName)
+                    word.status = EWordStatus.NORMAL
+                    word.counterOfSuccessful = word.counterOfSuccessful + 1
                 }
-                savedWords++
+                fileService.saveWords()
+            } else {
+                // wrong answer
+                word.counterOfSuccessful = 0
+                word.status = EWordStatus.HARD
+                fileService.saveWords()
+                countMistake++
+                println("Opss! Wrong! Correct answer: ${word.value}:${word.translate}")
             }
         }
 
         println("Общее количество слов: ${keys.size}")
         println("Количество ошибок:     $countMistake")
         println("Количество спасенных:  $savedWords")
-        println("Количество спасенных:  $completedWords")
+        println("Количество завершенных:  $completedWords")
+    }
+
+    private fun getKeysByStatus(status: EWordStatus): MutableList<String> {
+        val keys = mutableListOf<String>()
+        when (status) {
+            EWordStatus.HARD -> {
+                Words.mapOfWords.forEach { if (it.value.status == EWordStatus.HARD) keys.add(it.key) }
+            }
+            EWordStatus.NORMAL -> {
+                Words.mapOfWords.forEach {
+                    if (it.value.status == EWordStatus.HARD || it.value.status == EWordStatus.NORMAL) keys.add(it.key)
+                }
+            }
+            else -> {}
+        }
+
+        return if (random) keys.shuffled().toMutableList() else keys
     }
 }

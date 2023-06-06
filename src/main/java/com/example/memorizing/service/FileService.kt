@@ -1,5 +1,7 @@
-package com.example.memorizing
+package com.example.memorizing.service
 
+import com.example.memorizing.entity.Word
+import com.example.memorizing.entity.Words
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.SerializationFeature
 import org.apache.logging.log4j.LogManager
@@ -15,39 +17,30 @@ class FileService {
     private val mapper = ObjectMapper().configure(SerializationFeature.INDENT_OUTPUT, true)
 
     init {
-        loadWords(Words.fileName)
-        loadWords(HardWords.fileName)
-        loadWords(CompletedWords.fileName)
+        loadWords()
         readNewWordsFromFile()
     }
 
-    private fun loadWords(nameFile: String) {
-        val file = File(nameFile)
+    private fun loadWords() {
+        val file = File(Words.fileName)
         if (file.exists()) {
-            when (nameFile) {
-                HardWords.fileName -> mapper.readValue(file, HardWords::class.java)
-                CompletedWords.fileName -> mapper.readValue(file, CompletedWords::class.java)
-                Words.fileName-> mapper.readValue(file, Words::class.java)
-            }
+            mapper.readValue(file, Words::class.java)
         }
-        saveWords(nameFile)
+        saveWords()
     }
 
-    fun saveWords(nameFile: String) {
-        val file = File(nameFile)
+    fun saveWords() {
+        val file = File(Words.fileName)
         file.mkdirs()
         file.delete()
-        when (nameFile) {
-            HardWords.fileName -> mapper.writeValue(file, HardWords)
-            CompletedWords.fileName ->  mapper.writeValue(file, CompletedWords)
-            Words.fileName-> mapper.writeValue(file, Words)
-        }
+        mapper.writeValue(file, Words)
     }
 
     private fun readNewWordsFromFile() {
         val file = File("newWords.txt")
         if (!file.exists()) {
             file.createNewFile()
+            logger.info("Create newWords.txt")
         }
         val newWords = mutableSetOf<String>()
         FileInputStream(file).bufferedReader().forEachLine { newWords.add(it) }
@@ -55,13 +48,14 @@ class FileService {
         val newMapOfWords = mutableMapOf<String, Word>()
         newWords.forEach {
             val split = it.split("\t")
-            newMapOfWords[split[0]] = Word(split[0], split.drop(1).toString(),0)
+            newMapOfWords[split[0]] = Word(split[0], split.drop(1).toString())
         }
 
         if (newMapOfWords.isNotEmpty()) {
-            newMapOfWords.forEach { Words.mapOfWords[it.key] = it.value }
-            saveWords(Words.fileName)
+            newMapOfWords.forEach {
+                if (!Words.mapOfWords.keys.contains(it.key)) Words.mapOfWords[it.key] = it.value
+            }
+            saveWords()
         }
-
     }
 }
