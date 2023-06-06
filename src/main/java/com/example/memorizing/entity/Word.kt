@@ -6,9 +6,9 @@ class Word(
     @get:JsonProperty
     var value: String = "",
     @get:JsonProperty
-    var translate: String = "",
+    var translate: List<String> = listOf(),
     @get:JsonProperty
-    var counterOfSuccessful: Int = 0,
+    var point: Int = 0,
     @get:JsonProperty
     var status: EWordStatus = EWordStatus.NORMAL
 )

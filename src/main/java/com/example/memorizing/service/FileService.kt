@@ -48,7 +48,13 @@ class FileService {
         val newMapOfWords = mutableMapOf<String, Word>()
         newWords.forEach {
             val split = it.split("\t")
-            newMapOfWords[split[0]] = Word(split[0], split.drop(1).toString())
+            val string = split.drop(1)[0]
+            val translates = mutableListOf<String>()
+            if (string.contains(',')) {
+                string.split(',').forEach { tr -> translates.add(tr.trim()) }
+            } else translates.add(string.trim())
+
+            newMapOfWords[split[0].trim()] = Word(split[0].trim(), translates)
         }
 
         if (newMapOfWords.isNotEmpty()) {

@@ -133,7 +133,7 @@ mundane	обыденный
 sense	 смысл, чувство
 particular	конкретный
 emphasize	подчеркнуть
-appreciate
+appreciate	ценить, оценить, оценивать
 care	забота, обслуживание
 bandwidth	пропускная способность
 harsh	суровый, жесткий
@@ -196,7 +196,7 @@ eventually	в конце концов
 retain	удерживать
 therefore	следовательно
 separated	отдельный
-exceede	превысить
+exceed	превысить
 bounds	границы
 solution	решение
 altered	изменено
@@ -218,6 +218,6 @@ within	в пределах
 implied	подразумеваемый
 variety	разнообразный
 involve	включать в себя
- assemble	собираться
+assemble	собираться
 collocate	располагать
 compatible	совместимый

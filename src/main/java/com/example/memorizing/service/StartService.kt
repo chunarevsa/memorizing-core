@@ -28,13 +28,15 @@ class StartService(
             var countCompletedWords = 0
             Words.mapOfWords.forEach { if (it.value.status == EWordStatus.COMPLETED) countCompletedWords++ }
             println("Completed words: $countCompletedWords ")
+
             var countHardWords = 0
             Words.mapOfWords.forEach { if (it.value.status == EWordStatus.HARD) countHardWords++ }
-            println("Completed words: $countCompletedWords ")
+            println("Hard words: $countHardWords ")
 
             logger.info("START")
             println("TEST:      1 - all EN/RUS;     2 - only hard EN/RUS;")
             println("Studying:  3 - EN+RUS;         4 - only hard EN+RUS;")
+            println("Statistics:5 - show words sorted by count")
             println("0 - exit")
             print("Which type do you select:")
 
@@ -43,6 +45,7 @@ class StartService(
                 "2" -> startTestHardEnRusWords()
                 "3" -> startStudyEnPlusRus()
                 "4" -> startStudyHardEnPlusRus()
+                "5" -> printResult()
                 "0" -> {
                     active = false
                     break
@@ -80,6 +83,14 @@ class StartService(
         startStudyingLoop(EWordStatus.HARD)
     }
 
+    /** Statistics: 5 - show words sorted by count; */
+    private fun printResult() {
+        Words.mapOfWords.values.sortedByDescending { it.point }
+            .forEach {
+                println("${it.value}:${it.translate}:${it.point}")
+            }
+    }
+
     private fun startStudyingLoop(status: EWordStatus) {
         getKeysByStatus(status).forEach {
             print("${it}:${Words.mapOfWords[it]!!.translate}")
@@ -104,29 +115,33 @@ class StartService(
             if (word!!.translate.contains(input)) {
                 // correct answer
                 if (word.status == EWordStatus.HARD) savedWords++
-                if (word.counterOfSuccessful >= 10) {
+                if (word.point >= 10) {
                     word.status = EWordStatus.COMPLETED
                     println("You learn this word!")
                     completedWords++
                 } else {
                     word.status = EWordStatus.NORMAL
-                    word.counterOfSuccessful = word.counterOfSuccessful + 1
+                    word.point = word.point + 1
                 }
                 fileService.saveWords()
             } else {
                 // wrong answer
-                word.counterOfSuccessful = 0
+                if (word.status == EWordStatus.HARD) {
+                    word.point = word.point - 1
+                } else word.point = 0
+
                 word.status = EWordStatus.HARD
                 fileService.saveWords()
                 countMistake++
-                println("Opss! Wrong! Correct answer: ${word.value}:${word.translate}")
+                println("Opss! Wrong!")
+                println("Correct answer: ${word.value}:${word.translate}:${word.point}")
             }
         }
 
-        println("Общее количество слов: ${keys.size}")
-        println("Количество ошибок:     $countMistake")
-        println("Количество спасенных:  $savedWords")
-        println("Количество завершенных:  $completedWords")
+        println("Общее количество слов:     ${keys.size}")
+        println("Количество ошибок:         $countMistake")
+        println("Количество спасенных:      $savedWords")
+        println("Количество завершенных:    $completedWords")
     }
 
     private fun getKeysByStatus(status: EWordStatus): MutableList<String> {
