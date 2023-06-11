@@ -6,7 +6,7 @@ class Word(
     @get:JsonProperty
     var value: String = "",
     @get:JsonProperty
-    var translate: List<String> = listOf(),
+    var translate: String = "",
     @get:JsonProperty
     var point: Int = 0,
     @get:JsonProperty
