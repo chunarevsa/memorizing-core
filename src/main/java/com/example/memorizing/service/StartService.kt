@@ -114,13 +114,16 @@ class StartService(
 
             if (word!!.translate.contains(input)) {
                 // correct answer
-                if (word.status == EWordStatus.HARD) savedWords++
+                if (word.status == EWordStatus.HARD) {
+                    word.status = EWordStatus.NORMAL
+                    word.point = 0
+                    savedWords++
+                }
                 if (word.point >= 10) {
                     word.status = EWordStatus.COMPLETED
                     println("You learn this word!")
                     completedWords++
                 } else {
-                    word.status = EWordStatus.NORMAL
                     word.point = word.point + 1
                 }
                 fileService.saveWords()
