@@ -23,6 +23,7 @@ class StartService(
             throw Exception("Пустой лист со словами, добавь слова в файл ${"newWords.txt"}")
 
         while (active) {
+            logger.info("START")
             println("Statistics")
             println("Words: ${Words.mapOfWords.size}")
             var countCompletedWords = 0
@@ -33,7 +34,6 @@ class StartService(
             Words.mapOfWords.forEach { if (it.value.status == EWordStatus.HARD) countHardWords++ }
             println("Hard words: $countHardWords ")
 
-            logger.info("START")
             println("TEST:      1 - all EN/RUS;     2 - only hard EN/RUS;")
             println("Studying:  3 - EN+RUS;         4 - only hard EN+RUS;")
             println("Statistics:5 - show words sorted by count")
@@ -131,13 +131,13 @@ class StartService(
                 // wrong answer
                 if (word.status == EWordStatus.HARD) {
                     word.point = word.point - 1
-                } else word.point = 0
+                } else word.point = -1
 
                 word.status = EWordStatus.HARD
                 fileService.saveWords()
                 countMistake++
                 println("Opss! Wrong!")
-                println("Correct answer: ${word.value}:${word.translate}:${word.point}")
+                println("${word.value}:${word.translate}:${word.point}")
             }
         }
 
