@@ -1,21 +1,2 @@
-such	такие
-desirable	желательный
-indeed	действительно
-putting	толкание
-assume	предполагать
-derive	получать, происходить, извлекать
-infer	делать выводы
-notoriously	общеизвестно
-useless	бесполезный
-inhabit	обитать
-leftover	оставшийся
-neither	ни один
-conformance	соответствие
-merely	просто
-against	против
-aspiring	стремящийся
-toward	к
-division	разделение
-perhaps	возможно
-impede	препятствовать
-efficient	эффективный
+influence	оказывать влияние
+clarify	уточнять, уточнить

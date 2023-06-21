@@ -125,6 +125,8 @@ class StartService(
                     completedWords++
                 } else {
                     word.point = word.point + 1
+                    print(":${word.point}")
+                    println()
                 }
                 fileService.saveWords()
             } else {
