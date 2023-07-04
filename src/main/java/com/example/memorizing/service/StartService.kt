@@ -4,13 +4,16 @@ import com.example.memorizing.entity.EWordStatus
 import com.example.memorizing.entity.Words
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.context.event.ApplicationReadyEvent
 import org.springframework.context.event.EventListener
 import org.springframework.stereotype.Service
 
 @Service
 class StartService(
-    private var fileService: FileService
+    private val fileService: FileService,
+    @Value("\${completed.maxPoint}")
+    private val maxPoint: Int
 ) {
     private val logger: Logger = LogManager.getLogger(StartService::class.java)
 
@@ -119,7 +122,7 @@ class StartService(
                     word.point = 0
                     savedWords++
                 }
-                if (word.point >= 10) {
+                if (word.point >= maxPoint) {
                     word.status = EWordStatus.COMPLETED
                     println("You learn this word!")
                     completedWords++

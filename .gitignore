@@ -37,6 +37,4 @@ out/
 .vscode/
 
 ### Custom ###
-words.json
-newWords.txt
 src/main/resources/notion.txt
