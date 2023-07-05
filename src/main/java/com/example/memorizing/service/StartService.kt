@@ -90,7 +90,7 @@ class StartService(
     private fun printResult() {
         Words.mapOfWords.values.sortedByDescending { it.point }
             .forEach {
-                println("${it.value}:${it.translate}:${it.point}")
+                println("${it.value}:${it.translate}:${it.point}:${it.status}")
             }
     }
 

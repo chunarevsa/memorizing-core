@@ -791,7 +791,7 @@
       "value" : "mundane",
       "translate" : "[обыденный]",
       "point" : 5,
-      "status" : "COMPLETED"
+      "status" : "NORMAL"
     },
     "sense" : {
       "value" : "sense",
