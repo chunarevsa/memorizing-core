@@ -16,7 +16,7 @@
     "mean" : {
       "value" : "mean",
       "translate" : "[означать]",
-      "point" : 4,
+      "point" : 5,
       "status" : "NORMAL"
     },
     "simplify" : {
@@ -28,7 +28,7 @@
     "maintenance " : {
       "value" : "maintenance ",
       "translate" : "[обслуживание]",
-      "point" : 2,
+      "point" : 3,
       "status" : "NORMAL"
     },
     "behavior" : {
@@ -40,7 +40,7 @@
     "can be defined" : {
       "value" : "can be defined",
       "translate" : "[можно определить]",
-      "point" : 4,
+      "point" : 5,
       "status" : "NORMAL"
     },
     "each" : {
@@ -58,7 +58,7 @@
     "acquire" : {
       "value" : "acquire",
       "translate" : "[приобретать]",
-      "point" : 2,
+      "point" : 3,
       "status" : "NORMAL"
     },
     "reusability" : {
@@ -76,8 +76,8 @@
     "convince" : {
       "value" : "convince",
       "translate" : "[убедить, убеждать]",
-      "point" : 3,
-      "status" : "NORMAL"
+      "point" : -1,
+      "status" : "HARD"
     },
     "achieve" : {
       "value" : "achieve",
@@ -88,7 +88,7 @@
     "binding (or wrapping) code" : {
       "value" : "binding (or wrapping) code",
       "translate" : "[связывание (обёртывание) кода]",
-      "point" : 3,
+      "point" : 4,
       "status" : "NORMAL"
     },
     "refer" : {
@@ -100,13 +100,13 @@
     "arise" : {
       "value" : "arise",
       "translate" : "[возникнуть, возникать]",
-      "point" : 4,
+      "point" : 5,
       "status" : "NORMAL"
     },
     "be aware of each other " : {
       "value" : "be aware of each other ",
       "translate" : "[знать друг о друге]",
-      "point" : 4,
+      "point" : 5,
       "status" : "NORMAL"
     },
     "weaker" : {
@@ -118,13 +118,13 @@
     "coupling" : {
       "value" : "coupling",
       "translate" : "[сокрытие]",
-      "point" : 3,
+      "point" : 4,
       "status" : "NORMAL"
     },
     "cohesion" : {
       "value" : "cohesion",
       "translate" : "[связанность]",
-      "point" : 4,
+      "point" : 5,
       "status" : "NORMAL"
     },
     "however" : {
@@ -142,62 +142,62 @@
     "advantage" : {
       "value" : "advantage",
       "translate" : "[преимущество]",
-      "point" : 4,
+      "point" : 5,
       "status" : "NORMAL"
     },
     "grow" : {
       "value" : "grow",
       "translate" : "[расти]",
-      "point" : 3,
+      "point" : 4,
       "status" : "NORMAL"
     },
     "whereas" : {
       "value" : "whereas",
       "translate" : "[в то время как]",
-      "point" : 3,
+      "point" : 4,
       "status" : "NORMAL"
     },
     "accessed" : {
       "value" : "accessed",
       "translate" : "[доступно]",
-      "point" : 1,
-      "status" : "NORMAL"
+      "point" : -1,
+      "status" : "HARD"
     },
     "except" : {
       "value" : "except",
       "translate" : "[кроме]",
-      "point" : 3,
+      "point" : 4,
       "status" : "NORMAL"
     },
     "dispatch" : {
       "value" : "dispatch",
       "translate" : "[отправка]",
-      "point" : 3,
+      "point" : 4,
       "status" : "NORMAL"
     },
     "suggest" : {
       "value" : "suggest",
       "translate" : "[предлагать]",
-      "point" : 2,
+      "point" : 3,
       "status" : "NORMAL"
     },
     "according" : {
       "value" : "according",
       "translate" : "[согласно]",
-      "point" : 3,
+      "point" : 4,
       "status" : "NORMAL"
     },
     "erroneous" : {
       "value" : "erroneous",
       "translate" : "[ошибочный]",
-      "point" : 4,
+      "point" : 5,
       "status" : "NORMAL"
     },
     "less" : {
       "value" : "less",
       "translate" : "[меньше]",
-      "point" : 3,
-      "status" : "NORMAL"
+      "point" : -1,
+      "status" : "HARD"
     },
     "spent" : {
       "value" : "spent",
@@ -208,14 +208,14 @@
     "figure out" : {
       "value" : "figure out",
       "translate" : "[выяснять]",
-      "point" : 4,
+      "point" : 5,
       "status" : "NORMAL"
     },
     "appropriate" : {
       "value" : "appropriate",
       "translate" : "[подходящий]",
-      "point" : 2,
-      "status" : "NORMAL"
+      "point" : -1,
+      "status" : "HARD"
     },
     "snippet" : {
       "value" : "snippet",
@@ -227,12 +227,12 @@
       "value" : "multiple",
       "translate" : "[множество]",
       "point" : 5,
-      "status" : "NORMAL"
+      "status" : "COMPLETED"
     },
     "avoid" : {
       "value" : "avoid",
       "translate" : "[избегать]",
-      "point" : 3,
+      "point" : 4,
       "status" : "NORMAL"
     },
     "digits" : {
@@ -244,13 +244,13 @@
     "tangible and intangible" : {
       "value" : "tangible and intangible",
       "translate" : "[материальный и не материальный]",
-      "point" : 3,
+      "point" : 4,
       "status" : "NORMAL"
     },
     "via" : {
       "value" : "via",
       "translate" : "[через]",
-      "point" : 3,
+      "point" : 4,
       "status" : "NORMAL"
     },
     "common" : {
@@ -268,79 +268,79 @@
     "allocate" : {
       "value" : "allocate",
       "translate" : "[выделять]",
-      "point" : 3,
+      "point" : 4,
       "status" : "NORMAL"
     },
     "expose" : {
       "value" : "expose",
       "translate" : "[раскрыть, выставить]",
-      "point" : 1,
-      "status" : "NORMAL"
+      "point" : -1,
+      "status" : "HARD"
     },
     "approach" : {
       "value" : "approach",
       "translate" : "[подход]",
-      "point" : 3,
+      "point" : 4,
       "status" : "NORMAL"
     },
     "previous" : {
       "value" : "previous",
       "translate" : "[предыдущий]",
-      "point" : 4,
+      "point" : 5,
       "status" : "NORMAL"
     },
     "through" : {
       "value" : "through",
       "translate" : "[через]",
-      "point" : 4,
+      "point" : 5,
       "status" : "NORMAL"
     },
     "invoke" : {
       "value" : "invoke",
       "translate" : "[вызывать]",
-      "point" : 3,
+      "point" : 4,
       "status" : "NORMAL"
     },
     "similar" : {
       "value" : "similar",
       "translate" : "[аналогичный]",
-      "point" : 4,
+      "point" : 5,
       "status" : "NORMAL"
     },
     "available" : {
       "value" : "available",
       "translate" : "[доступный]",
-      "point" : 4,
+      "point" : 5,
       "status" : "NORMAL"
     },
     "explicitly and implicitly" : {
       "value" : "explicitly and implicitly",
       "translate" : "[явный и не явный]",
-      "point" : 4,
+      "point" : 5,
       "status" : "NORMAL"
     },
     "distinct" : {
       "value" : "distinct",
       "translate" : "[отдельный]",
-      "point" : 1,
+      "point" : 2,
       "status" : "NORMAL"
     },
     "arrange" : {
       "value" : "arrange",
       "translate" : "[организовать]",
-      "point" : 2,
+      "point" : 3,
       "status" : "NORMAL"
     },
     "assigning" : {
       "value" : "assigning",
       "translate" : "[назначить, назначение, присвоение]",
-      "point" : 1,
-      "status" : "NORMAL"
+      "point" : -1,
+      "status" : "HARD"
     },
     "purpose" : {
       "value" : "purpose",
       "translate" : "[цель]",
-      "point" : 3,
+      "point" : 4,
       "status" : "NORMAL"
     },
     "members" : {
@@ -352,7 +352,7 @@
     "mentioned" : {
       "value" : "mentioned",
       "translate" : "[упоминание]",
-      "point" : 2,
+      "point" : 3,
       "status" : "NORMAL"
     },
     "belong" : {
@@ -364,151 +364,151 @@
     "rather" : {
       "value" : "rather",
       "translate" : "[скорее]",
-      "point" : 2,
-      "status" : "NORMAL"
+      "point" : -1,
+      "status" : "HARD"
     },
     "restriction" : {
       "value" : "restriction",
       "translate" : "[ограничение]",
-      "point" : 4,
+      "point" : 5,
       "status" : "NORMAL"
     },
     "pass" : {
       "value" : "pass",
       "translate" : "[пройти]",
-      "point" : 4,
+      "point" : 5,
       "status" : "NORMAL"
     },
     "distinguish" : {
       "value" : "distinguish",
       "translate" : "[различать]",
-      "point" : 2,
+      "point" : 3,
       "status" : "NORMAL"
     },
     "statement" : {
       "value" : "statement",
       "translate" : "[заявление]",
-      "point" : 2,
+      "point" : 3,
       "status" : "NORMAL"
     },
     "moreover" : {
       "value" : "moreover",
       "translate" : "[более того]",
-      "point" : 4,
+      "point" : 5,
       "status" : "NORMAL"
     },
     "otherwise" : {
       "value" : "otherwise",
       "translate" : "[иначе]",
-      "point" : 4,
-      "status" : "NORMAL"
+      "point" : -1,
+      "status" : "HARD"
     },
     "meaningful" : {
       "value" : "meaningful",
       "translate" : "[значимый]",
-      "point" : 3,
+      "point" : 4,
       "status" : "NORMAL"
     },
     "ambiguity" : {
       "value" : "ambiguity",
       "translate" : "[двусмысленность]",
-      "point" : 3,
+      "point" : 4,
       "status" : "NORMAL"
     },
     "occur" : {
       "value" : "occur",
       "translate" : "[происходить]",
-      "point" : 1,
+      "point" : 2,
       "status" : "NORMAL"
     },
     "bound " : {
       "value" : "bound ",
       "translate" : "[связанный, связанно]",
-      "point" : 4,
+      "point" : 5,
       "status" : "NORMAL"
     },
     "explanation" : {
       "value" : "explanation",
       "translate" : "[пояснение]",
-      "point" : 2,
+      "point" : 3,
       "status" : "NORMAL"
     },
     "thus" : {
       "value" : "thus",
       "translate" : "[таким образом]",
-      "point" : 2,
+      "point" : 3,
       "status" : "NORMAL"
     },
     "hence" : {
       "value" : "hence",
       "translate" : "[следовательно]",
-      "point" : 1,
-      "status" : "NORMAL"
+      "point" : -1,
+      "status" : "HARD"
     },
     "actually" : {
       "value" : "actually",
       "translate" : "[на самом деле]",
-      "point" : 4,
+      "point" : 5,
       "status" : "NORMAL"
     },
     "deduce" : {
       "value" : "deduce",
       "translate" : "[сделать выводы]",
-      "point" : 3,
+      "point" : 4,
       "status" : "NORMAL"
     },
     "exacerbate" : {
       "value" : "exacerbate",
       "translate" : "[усугублять]",
-      "point" : 4,
+      "point" : 5,
       "status" : "NORMAL"
     },
     "allow" : {
       "value" : "allow",
       "translate" : "[позволять]",
-      "point" : 2,
-      "status" : "NORMAL"
+      "point" : -1,
+      "status" : "HARD"
     },
     "suppose" : {
       "value" : "suppose",
       "translate" : "[предполагать]",
-      "point" : 2,
+      "point" : 3,
       "status" : "NORMAL"
     },
     "comprises" : {
       "value" : "comprises",
       "translate" : "[включает в себя]",
-      "point" : 2,
+      "point" : 3,
       "status" : "NORMAL"
     },
     "diverse" : {
       "value" : "diverse",
       "translate" : "[разнообразный]",
-      "point" : 1,
+      "point" : 2,
       "status" : "NORMAL"
     },
     "equipped" : {
       "value" : "equipped",
       "translate" : "[оборудован]",
-      "point" : 4,
+      "point" : 5,
       "status" : "NORMAL"
     },
     "stare" : {
       "value" : "stare",
       "translate" : "[уставиться, пялиться]",
-      "point" : 4,
+      "point" : 5,
       "status" : "NORMAL"
     },
     "intently" : {
       "value" : "intently",
       "translate" : "[внимательно]",
-      "point" : 3,
+      "point" : 4,
       "status" : "NORMAL"
     },
     "essential" : {
       "value" : "essential",
       "translate" : "[существенный]",
-      "point" : 4,
+      "point" : 5,
       "status" : "NORMAL"
     },
     "hiring" : {
@@ -520,25 +520,25 @@
     "article" : {
       "value" : "article",
       "translate" : "[статья]",
-      "point" : 4,
+      "point" : 5,
       "status" : "NORMAL"
     },
     "encounter" : {
       "value" : "encounter",
       "translate" : "[встреча]",
-      "point" : 4,
+      "point" : 5,
       "status" : "NORMAL"
     },
     "commitment" : {
       "value" : "commitment",
       "translate" : "[обязательство]",
-      "point" : 2,
+      "point" : 3,
       "status" : "NORMAL"
     },
     "supplement" : {
       "value" : "supplement",
       "translate" : "[дополнение]",
-      "point" : 3,
+      "point" : 4,
       "status" : "NORMAL"
     },
     "prospect" : {
@@ -550,14 +550,14 @@
     "complicated" : {
       "value" : "complicated",
       "translate" : "[сложный]",
-      "point" : 3,
+      "point" : 4,
       "status" : "NORMAL"
     },
     "proprietary" : {
       "value" : "proprietary",
       "translate" : "[собственная]",
-      "point" : 4,
-      "status" : "NORMAL"
+      "point" : -1,
+      "status" : "HARD"
     },
     "contribute" : {
       "value" : "contribute",
@@ -568,7 +568,7 @@
     "immediately" : {
       "value" : "immediately",
       "translate" : "[немедленно]",
-      "point" : 3,
+      "point" : 4,
       "status" : "NORMAL"
     },
     "proficient" : {
@@ -580,25 +580,25 @@
     "passionate" : {
       "value" : "passionate",
       "translate" : "[страстный, страстно, страсть]",
-      "point" : 2,
+      "point" : 3,
       "status" : "NORMAL"
     },
     "desire" : {
       "value" : "desire",
       "translate" : "[желание]",
-      "point" : 4,
+      "point" : 5,
       "status" : "NORMAL"
     },
     "engaged" : {
       "value" : "engaged",
       "translate" : "[задействован, занят, занято]",
-      "point" : 4,
+      "point" : 5,
       "status" : "NORMAL"
     },
     "properly" : {
       "value" : "properly",
       "translate" : "[правильно]",
-      "point" : 4,
+      "point" : 5,
       "status" : "NORMAL"
     },
     "define" : {
@@ -610,13 +610,13 @@
     "ensure" : {
       "value" : "ensure",
       "translate" : "[обеспечить]",
-      "point" : 2,
+      "point" : 3,
       "status" : "NORMAL"
     },
     "oversight" : {
       "value" : "oversight",
       "translate" : "[надзор]",
-      "point" : 4,
+      "point" : 5,
       "status" : "NORMAL"
     },
     "reason" : {
@@ -640,43 +640,43 @@
     "opinion" : {
       "value" : "opinion",
       "translate" : "[мнение]",
-      "point" : 3,
+      "point" : 4,
       "status" : "NORMAL"
     },
     "predictable" : {
       "value" : "predictable",
       "translate" : "[предсказуемый, прогнозируемый]",
-      "point" : 4,
+      "point" : 5,
       "status" : "NORMAL"
     },
     "prepare" : {
       "value" : "prepare",
       "translate" : "[подготовить]",
-      "point" : 1,
+      "point" : 2,
       "status" : "NORMAL"
     },
     "provide" : {
       "value" : "provide",
       "translate" : "[предоставлять]",
-      "point" : 3,
-      "status" : "NORMAL"
+      "point" : -1,
+      "status" : "HARD"
     },
     "exactly" : {
       "value" : "exactly",
       "translate" : "[именно]",
-      "point" : 3,
+      "point" : 4,
       "status" : "NORMAL"
     },
     "additional" : {
       "value" : "additional",
       "translate" : "[дополнительный, дополнительно]",
-      "point" : 1,
+      "point" : 2,
       "status" : "NORMAL"
     },
     "vast" : {
       "value" : "vast",
       "translate" : "[обширный]",
-      "point" : 2,
+      "point" : 3,
       "status" : "NORMAL"
     },
     "fulfill" : {
@@ -688,13 +688,13 @@
     "hardware" : {
       "value" : "hardware",
       "translate" : "[оборудование]",
-      "point" : 3,
+      "point" : 4,
       "status" : "NORMAL"
     },
     "to quite on me" : {
       "value" : "to quite on me",
       "translate" : "[покинул (сломался, бросил)]",
-      "point" : 4,
+      "point" : 5,
       "status" : "NORMAL"
     },
     "warm up" : {
@@ -706,37 +706,37 @@
     "biased data" : {
       "value" : "biased data",
       "translate" : "[необъективные данные]",
-      "point" : 3,
+      "point" : 4,
       "status" : "NORMAL"
     },
     "considerations" : {
       "value" : "considerations",
       "translate" : "[мнения, соображения]",
-      "point" : 4,
+      "point" : 5,
       "status" : "NORMAL"
     },
     "impacting" : {
       "value" : "impacting",
       "translate" : "[влияющие, воздействие]",
-      "point" : 2,
+      "point" : 3,
       "status" : "NORMAL"
     },
     "consequences" : {
       "value" : "consequences",
       "translate" : "[последствия]",
-      "point" : 4,
+      "point" : 5,
       "status" : "NORMAL"
     },
     "broader " : {
       "value" : "broader ",
       "translate" : "[масштабные]",
-      "point" : 4,
+      "point" : 5,
       "status" : "NORMAL"
     },
     "crunch a vast amount data" : {
       "value" : "crunch a vast amount data",
       "translate" : "[обрабатывать огромное количество данных]",
-      "point" : 4,
+      "point" : 5,
       "status" : "NORMAL"
     },
     "obvious" : {
@@ -748,73 +748,73 @@
     "reveal" : {
       "value" : "reveal",
       "translate" : "[раскрыть, раскрывать, показать]",
-      "point" : 1,
+      "point" : 2,
       "status" : "NORMAL"
     },
     "appeal" : {
       "value" : "appeal",
       "translate" : "[обращение]",
-      "point" : 2,
+      "point" : 3,
       "status" : "NORMAL"
     },
     "defies" : {
       "value" : "defies",
       "translate" : "[бросает вызов]",
-      "point" : 1,
+      "point" : 2,
       "status" : "NORMAL"
     },
     "either" : {
       "value" : "either",
       "translate" : "[либо]",
-      "point" : 4,
+      "point" : 5,
       "status" : "NORMAL"
     },
     "belief" : {
       "value" : "belief",
       "translate" : "[убеждение, вера]",
-      "point" : 4,
+      "point" : 5,
       "status" : "NORMAL"
     },
     "improbable" : {
       "value" : "improbable",
       "translate" : "[невероятный]",
-      "point" : 2,
+      "point" : 3,
       "status" : "NORMAL"
     },
     "magnificent " : {
       "value" : "magnificent ",
       "translate" : "[великолепный]",
-      "point" : 2,
+      "point" : 3,
       "status" : "NORMAL"
     },
     "mundane" : {
       "value" : "mundane",
       "translate" : "[обыденный]",
       "point" : 5,
-      "status" : "NORMAL"
+      "status" : "COMPLETED"
     },
     "sense" : {
       "value" : "sense",
       "translate" : "[ смысл, чувство]",
-      "point" : 3,
+      "point" : 4,
       "status" : "NORMAL"
     },
     "particular" : {
       "value" : "particular",
       "translate" : "[конкретный]",
-      "point" : 1,
+      "point" : 2,
       "status" : "NORMAL"
     },
     "emphasize" : {
       "value" : "emphasize",
       "translate" : "[подчеркнуть]",
-      "point" : 4,
+      "point" : 5,
       "status" : "NORMAL"
     },
     "appreciate" : {
       "value" : "appreciate",
       "translate" : "[ценить, оценить, оценивать]",
-      "point" : 1,
+      "point" : 2,
       "status" : "NORMAL"
     },
     "care" : {
@@ -826,19 +826,19 @@
     "bandwidth" : {
       "value" : "bandwidth",
       "translate" : "[пропускная способность]",
-      "point" : 3,
+      "point" : 4,
       "status" : "NORMAL"
     },
     "harsh" : {
       "value" : "harsh",
       "translate" : "[суровый, жесткий]",
-      "point" : 2,
+      "point" : 3,
       "status" : "NORMAL"
     },
     "performance" : {
       "value" : "performance",
       "translate" : "[производительность, исполнение]",
-      "point" : 3,
+      "point" : 4,
       "status" : "NORMAL"
     },
     "forces" : {
@@ -850,7 +850,7 @@
     "quantities" : {
       "value" : "quantities",
       "translate" : "[количества, объемы, величины]",
-      "point" : 3,
+      "point" : 4,
       "status" : "NORMAL"
     },
     "effort" : {
@@ -862,13 +862,13 @@
     "measure" : {
       "value" : "measure",
       "translate" : "[измерять]",
-      "point" : 4,
+      "point" : 5,
       "status" : "NORMAL"
     },
     "determine" : {
       "value" : "determine",
       "translate" : "[определять]",
-      "point" : 4,
+      "point" : 5,
       "status" : "NORMAL"
     },
     "flow" : {
@@ -880,43 +880,43 @@
     "lead" : {
       "value" : "lead",
       "translate" : "[приводит, приводить]",
-      "point" : 4,
+      "point" : 5,
       "status" : "NORMAL"
     },
     "significant" : {
       "value" : "significant",
       "translate" : "[значительный]",
-      "point" : 3,
+      "point" : 4,
       "status" : "NORMAL"
     },
     "predicting" : {
       "value" : "predicting",
       "translate" : "[прогноз, предсказание, предсказывание]",
-      "point" : 3,
+      "point" : 4,
       "status" : "NORMAL"
     },
     "rigidity" : {
       "value" : "rigidity",
       "translate" : "[жесткость, прочность]",
-      "point" : 4,
+      "point" : 5,
       "status" : "NORMAL"
     },
     "eliminate" : {
       "value" : "eliminate",
       "translate" : "[исключить, устранить]",
-      "point" : 4,
+      "point" : 5,
       "status" : "NORMAL"
     },
     "headed off" : {
       "value" : "headed off",
       "translate" : "[отправился, направился]",
-      "point" : 3,
+      "point" : 4,
       "status" : "NORMAL"
     },
     "guess" : {
       "value" : "guess",
       "translate" : "[угадать]",
-      "point" : 4,
+      "point" : 5,
       "status" : "NORMAL"
     },
     "preserve" : {
@@ -928,7 +928,7 @@
     "operate" : {
       "value" : "operate",
       "translate" : "[работать]",
-      "point" : 2,
+      "point" : 3,
       "status" : "NORMAL"
     },
     "journey" : {
@@ -940,55 +940,55 @@
     "observation" : {
       "value" : "observation",
       "translate" : "[наблюдение, обзор]",
-      "point" : 4,
+      "point" : 5,
       "status" : "NORMAL"
     },
     "arrogant" : {
       "value" : "arrogant",
       "translate" : "[высокомерный]",
-      "point" : 3,
+      "point" : 4,
       "status" : "NORMAL"
     },
     "startling" : {
       "value" : "startling",
       "translate" : "[поразительный]",
-      "point" : 3,
+      "point" : 4,
       "status" : "NORMAL"
     },
     "conclusion" : {
       "value" : "conclusion",
       "translate" : "[вывод, заключение]",
-      "point" : 3,
+      "point" : 4,
       "status" : "NORMAL"
     },
     "consider" : {
       "value" : "consider",
       "translate" : "[учитывать]",
-      "point" : 2,
+      "point" : 3,
       "status" : "NORMAL"
     },
     "computational" : {
       "value" : "computational",
       "translate" : "[вычислительные (мощности)]",
-      "point" : 4,
+      "point" : 5,
       "status" : "NORMAL"
     },
     "staggering" : {
       "value" : "staggering",
       "translate" : "[ошеломляющий]",
-      "point" : 3,
+      "point" : 4,
       "status" : "NORMAL"
     },
     "disappointment" : {
       "value" : "disappointment",
       "translate" : "[разочарование]",
-      "point" : 4,
+      "point" : 5,
       "status" : "NORMAL"
     },
     "introduction" : {
       "value" : "introduction",
       "translate" : "[введение]",
-      "point" : 4,
+      "point" : 5,
       "status" : "NORMAL"
     },
     "appearance " : {
@@ -1000,476 +1000,692 @@
     "curve" : {
       "value" : "curve",
       "translate" : "[кривая]",
-      "point" : 4,
+      "point" : 5,
       "status" : "NORMAL"
     },
     "messy" : {
       "value" : "messy",
       "translate" : "[грязный]",
-      "point" : 2,
+      "point" : 3,
       "status" : "NORMAL"
     },
     "recognize" : {
       "value" : "recognize",
       "translate" : "[узнать]",
-      "point" : 3,
+      "point" : 4,
       "status" : "NORMAL"
     },
     "urgent" : {
       "value" : "urgent",
       "translate" : "[срочно, срочный]",
-      "point" : 4,
+      "point" : 5,
       "status" : "NORMAL"
     },
     "particularly" : {
       "value" : "particularly",
       "translate" : "[особенно]",
-      "point" : 2,
+      "point" : 3,
       "status" : "NORMAL"
     },
     "evaluate" : {
       "value" : "evaluate",
       "translate" : "[оценить]",
-      "point" : 4,
+      "point" : 5,
       "status" : "NORMAL"
     },
     "duty" : {
       "value" : "duty",
       "translate" : "[обязанность]",
-      "point" : 4,
+      "point" : 5,
       "status" : "NORMAL"
     },
     "occurred" : {
       "value" : "occurred",
       "translate" : "[произошло]",
-      "point" : 1,
+      "point" : 2,
       "status" : "NORMAL"
     },
     "drudgery" : {
       "value" : "drudgery",
       "translate" : "[рутинная работа]",
-      "point" : 3,
+      "point" : 4,
       "status" : "NORMAL"
     },
     "unrestrained" : {
       "value" : "unrestrained",
       "translate" : "[безудержно]",
-      "point" : 3,
+      "point" : 4,
       "status" : "NORMAL"
     },
     "harmful" : {
       "value" : "harmful",
       "translate" : "[вредный]",
-      "point" : 2,
+      "point" : 3,
       "status" : "NORMAL"
     },
     "impose" : {
       "value" : "impose",
       "translate" : "[накладывать, вводить]",
-      "point" : 4,
+      "point" : 5,
       "status" : "NORMAL"
     },
     "adopted" : {
       "value" : "adopted",
       "translate" : "[принят, одобрен]",
-      "point" : 4,
+      "point" : 5,
       "status" : "NORMAL"
     },
     "assignment" : {
       "value" : "assignment",
       "translate" : "[задание, поручение]",
-      "point" : 2,
-      "status" : "NORMAL"
+      "point" : -1,
+      "status" : "HARD"
     },
     "intent" : {
       "value" : "intent",
       "translate" : "[намерение, замысел]",
-      "point" : 3,
+      "point" : 4,
       "status" : "NORMAL"
     },
     "align" : {
       "value" : "align",
       "translate" : "[выровнять]",
-      "point" : 2,
+      "point" : 3,
       "status" : "NORMAL"
     },
     "conferred" : {
       "value" : "conferred",
       "translate" : "[представлен, присвоен]",
-      "point" : 2,
+      "point" : 3,
       "status" : "NORMAL"
     },
     "huge" : {
       "value" : "huge",
       "translate" : "[огромный]",
-      "point" : 1,
+      "point" : 2,
       "status" : "NORMAL"
     },
     "fragile" : {
       "value" : "fragile",
       "translate" : "[хрупкий]",
-      "point" : 4,
+      "point" : 5,
       "status" : "NORMAL"
     },
     "unreliable" : {
       "value" : "unreliable",
       "translate" : "[ненадёжный]",
-      "point" : 1,
+      "point" : 2,
       "status" : "NORMAL"
     },
     "seem" : {
       "value" : "seem",
       "translate" : "[казаться, кажется]",
-      "point" : 3,
+      "point" : 4,
       "status" : "NORMAL"
     },
     "investigation " : {
       "value" : "investigation ",
       "translate" : "[расследование]",
-      "point" : 4,
+      "point" : 5,
       "status" : "NORMAL"
     },
     "divide" : {
       "value" : "divide",
       "translate" : "[разделять, делить]",
-      "point" : 4,
+      "point" : 5,
       "status" : "NORMAL"
     },
     "further" : {
       "value" : "further",
       "translate" : "[далее, дальше]",
-      "point" : 3,
+      "point" : 4,
       "status" : "NORMAL"
     },
     "gather" : {
       "value" : "gather",
       "translate" : "[собирать]",
-      "point" : 3,
+      "point" : 4,
       "status" : "NORMAL"
     },
     "compose" : {
       "value" : "compose",
       "translate" : "[сочинять]",
-      "point" : 4,
+      "point" : 5,
       "status" : "NORMAL"
     },
     "regardless" : {
       "value" : "regardless",
       "translate" : "[не обращая внимания]",
-      "point" : 2,
-      "status" : "NORMAL"
+      "point" : -1,
+      "status" : "HARD"
     },
     "eventually" : {
       "value" : "eventually",
       "translate" : "[в конце концов]",
-      "point" : 2,
+      "point" : 3,
       "status" : "NORMAL"
     },
     "retain" : {
       "value" : "retain",
       "translate" : "[удерживать]",
-      "point" : 4,
+      "point" : 5,
       "status" : "NORMAL"
     },
     "therefore" : {
       "value" : "therefore",
       "translate" : "[следовательно]",
-      "point" : 2,
+      "point" : 3,
       "status" : "NORMAL"
     },
     "separated" : {
       "value" : "separated",
       "translate" : "[отдельный]",
-      "point" : 2,
+      "point" : 3,
       "status" : "NORMAL"
     },
     "exceed" : {
       "value" : "exceed",
       "translate" : "[превысить]",
-      "point" : 2,
+      "point" : 3,
       "status" : "NORMAL"
     },
     "bounds" : {
       "value" : "bounds",
       "translate" : "[границы]",
-      "point" : 2,
+      "point" : 3,
       "status" : "NORMAL"
     },
     "solution" : {
       "value" : "solution",
       "translate" : "[решение]",
-      "point" : 4,
+      "point" : 5,
       "status" : "NORMAL"
     },
     "altered" : {
       "value" : "altered",
       "translate" : "[изменено]",
-      "point" : 4,
+      "point" : 5,
       "status" : "NORMAL"
     },
     "accept" : {
       "value" : "accept",
       "translate" : "[принимать]",
-      "point" : 4,
-      "status" : "NORMAL"
+      "point" : -1,
+      "status" : "HARD"
     },
     "definition" : {
       "value" : "definition",
       "translate" : "[определение]",
-      "point" : 4,
+      "point" : 5,
       "status" : "NORMAL"
     },
     "shrink" : {
       "value" : "shrink",
       "translate" : "[сокращаться]",
-      "point" : 3,
+      "point" : 4,
       "status" : "NORMAL"
     },
     "oppose" : {
       "value" : "oppose",
       "translate" : "[выступать против, быть против]",
-      "point" : 4,
+      "point" : 5,
       "status" : "NORMAL"
     },
     "entirely" : {
       "value" : "entirely",
       "translate" : "[полностью]",
-      "point" : 1,
+      "point" : 2,
       "status" : "NORMAL"
     },
     "least" : {
       "value" : "least",
       "translate" : "[наименее]",
-      "point" : 4,
-      "status" : "NORMAL"
+      "point" : -1,
+      "status" : "HARD"
     },
     "hindsight" : {
       "value" : "hindsight",
       "translate" : "[взгляд в прошлое]",
-      "point" : 4,
-      "status" : "NORMAL"
+      "point" : -1,
+      "status" : "HARD"
     },
     "formed" : {
       "value" : "formed",
       "translate" : "[сформированный]",
-      "point" : 3,
+      "point" : 4,
       "status" : "NORMAL"
     },
     "advice" : {
       "value" : "advice",
       "translate" : "[совет]",
-      "point" : 4,
+      "point" : 5,
       "status" : "NORMAL"
     },
     "explain" : {
       "value" : "explain",
       "translate" : "[объяснять]",
-      "point" : 4,
+      "point" : 5,
       "status" : "NORMAL"
     },
     "violate" : {
       "value" : "violate",
       "translate" : "[нарушать]",
-      "point" : 3,
+      "point" : 4,
       "status" : "NORMAL"
     },
     "attainable" : {
       "value" : "attainable",
       "translate" : "[достижимый]",
-      "point" : 2,
+      "point" : 3,
       "status" : "NORMAL"
     },
     "amplifies" : {
       "value" : "amplifies",
       "translate" : "[усиливается]",
-      "point" : 3,
+      "point" : 4,
       "status" : "NORMAL"
     },
     "seldom" : {
       "value" : "seldom",
       "translate" : "[редко]",
-      "point" : 2,
+      "point" : 3,
       "status" : "NORMAL"
     },
     "within" : {
       "value" : "within",
       "translate" : "[в пределах]",
-      "point" : 4,
+      "point" : 5,
       "status" : "NORMAL"
     },
     "implied" : {
       "value" : "implied",
       "translate" : "[подразумеваемый]",
-      "point" : 1,
+      "point" : 2,
       "status" : "NORMAL"
     },
     "variety" : {
       "value" : "variety",
       "translate" : "[разнообразный]",
-      "point" : 4,
+      "point" : 5,
       "status" : "NORMAL"
     },
     "involve" : {
       "value" : "involve",
       "translate" : "[включать в себя]",
-      "point" : 1,
-      "status" : "NORMAL"
+      "point" : -1,
+      "status" : "HARD"
     },
     "assemble" : {
       "value" : "assemble",
       "translate" : "[собираться]",
-      "point" : 4,
+      "point" : 5,
       "status" : "NORMAL"
     },
     "collocate" : {
       "value" : "collocate",
       "translate" : "[располагать]",
-      "point" : 2,
+      "point" : 3,
       "status" : "NORMAL"
     },
     "compatible" : {
       "value" : "compatible",
       "translate" : "[совместимый]",
-      "point" : 1,
-      "status" : "NORMAL"
+      "point" : -1,
+      "status" : "HARD"
     },
     "such" : {
       "value" : "such",
       "translate" : "[такие]",
-      "point" : 1,
+      "point" : 2,
       "status" : "NORMAL"
     },
     "desirable" : {
       "value" : "desirable",
       "translate" : "[желательный]",
-      "point" : 2,
-      "status" : "NORMAL"
+      "point" : -1,
+      "status" : "HARD"
     },
     "indeed" : {
       "value" : "indeed",
       "translate" : "[действительно]",
-      "point" : 1,
+      "point" : 2,
       "status" : "NORMAL"
     },
     "putting" : {
       "value" : "putting",
       "translate" : "[толкание]",
-      "point" : 4,
+      "point" : 5,
       "status" : "NORMAL"
     },
     "assume" : {
       "value" : "assume",
       "translate" : "[предполагать]",
-      "point" : 4,
+      "point" : 5,
       "status" : "NORMAL"
     },
     "derive" : {
       "value" : "derive",
       "translate" : "[получать, происходить, извлекать]",
-      "point" : 2,
+      "point" : 3,
       "status" : "NORMAL"
     },
     "infer" : {
       "value" : "infer",
       "translate" : "[делать выводы]",
-      "point" : 2,
-      "status" : "NORMAL"
+      "point" : -1,
+      "status" : "HARD"
     },
     "notoriously" : {
       "value" : "notoriously",
       "translate" : "[общеизвестно]",
-      "point" : 4,
+      "point" : 5,
       "status" : "NORMAL"
     },
     "useless" : {
       "value" : "useless",
       "translate" : "[бесполезный]",
-      "point" : 4,
+      "point" : 5,
       "status" : "NORMAL"
     },
     "inhabit" : {
       "value" : "inhabit",
       "translate" : "[обитать]",
-      "point" : 3,
+      "point" : 4,
       "status" : "NORMAL"
     },
     "leftover" : {
       "value" : "leftover",
       "translate" : "[оставшийся]",
-      "point" : 2,
+      "point" : 3,
       "status" : "NORMAL"
     },
     "neither" : {
       "value" : "neither",
       "translate" : "[ни один]",
-      "point" : 2,
+      "point" : 3,
       "status" : "NORMAL"
     },
     "conformance" : {
       "value" : "conformance",
       "translate" : "[соответствие]",
-      "point" : 2,
+      "point" : 3,
       "status" : "NORMAL"
     },
     "merely" : {
       "value" : "merely",
       "translate" : "[просто]",
-      "point" : 3,
+      "point" : 4,
       "status" : "NORMAL"
     },
     "against" : {
       "value" : "against",
       "translate" : "[против]",
-      "point" : 3,
+      "point" : 4,
       "status" : "NORMAL"
     },
     "aspiring" : {
       "value" : "aspiring",
       "translate" : "[стремящийся]",
-      "point" : 4,
+      "point" : 5,
       "status" : "NORMAL"
     },
     "toward" : {
       "value" : "toward",
       "translate" : "[к]",
-      "point" : 4,
+      "point" : 5,
       "status" : "NORMAL"
     },
     "division" : {
       "value" : "division",
       "translate" : "[разделение]",
-      "point" : 3,
+      "point" : 4,
       "status" : "NORMAL"
     },
     "perhaps" : {
       "value" : "perhaps",
       "translate" : "[возможно]",
-      "point" : 3,
+      "point" : 4,
       "status" : "NORMAL"
     },
     "impede" : {
       "value" : "impede",
       "translate" : "[препятствовать]",
-      "point" : 2,
-      "status" : "NORMAL"
+      "point" : -1,
+      "status" : "HARD"
     },
     "efficient" : {
       "value" : "efficient",
       "translate" : "[эффективный]",
-      "point" : 4,
+      "point" : 5,
       "status" : "NORMAL"
     },
     "influence" : {
       "value" : "influence",
       "translate" : "[оказывать влияние]",
-      "point" : 2,
+      "point" : 3,
       "status" : "NORMAL"
     },
     "clarify" : {
       "value" : "clarify",
       "translate" : "[уточнять, уточнить]",
+      "point" : 2,
+      "status" : "NORMAL"
+    },
+    "claim" : {
+      "value" : "claim",
+      "translate" : "[предъявлять претензии, утверждать]",
+      "point" : -1,
+      "status" : "HARD"
+    },
+    "establish" : {
+      "value" : "establish",
+      "translate" : "[устанавливать]",
+      "point" : -1,
+      "status" : "HARD"
+    },
+    "apply" : {
+      "value" : "apply",
+      "translate" : "[применять, подавать заявление]",
+      "point" : -1,
+      "status" : "HARD"
+    },
+    "improve" : {
+      "value" : "improve",
+      "translate" : "[улучшать]",
       "point" : 1,
       "status" : "NORMAL"
+    },
+    "prevent" : {
+      "value" : "prevent",
+      "translate" : "[предотвращать]",
+      "point" : -1,
+      "status" : "HARD"
+    },
+    "conduct" : {
+      "value" : "conduct",
+      "translate" : "[проводить]",
+      "point" : -1,
+      "status" : "HARD"
+    },
+    "handle" : {
+      "value" : "handle",
+      "translate" : "[обращаться, справляться]",
+      "point" : 1,
+      "status" : "NORMAL"
+    },
+    "order" : {
+      "value" : "order",
+      "translate" : "[приказывать, заказ]",
+      "point" : 1,
+      "status" : "NORMAL"
+    },
+    "engage" : {
+      "value" : "engage",
+      "translate" : "[входить в контакт, заниматься]",
+      "point" : -1,
+      "status" : "HARD"
+    },
+    "solve" : {
+      "value" : "solve",
+      "translate" : "[решать проблему или задачу]",
+      "point" : -1,
+      "status" : "HARD"
+    },
+    "seek" : {
+      "value" : "seek",
+      "translate" : "[искать]",
+      "point" : -1,
+      "status" : "HARD"
+    },
+    "attempt" : {
+      "value" : "attempt",
+      "translate" : "[пытаться]",
+      "point" : -1,
+      "status" : "HARD"
+    },
+    "launch" : {
+      "value" : "launch",
+      "translate" : "[запускать]",
+      "point" : 1,
+      "status" : "NORMAL"
+    },
+    "adjust" : {
+      "value" : "adjust",
+      "translate" : "[настраивать]",
+      "point" : -1,
+      "status" : "HARD"
+    },
+    "succeed" : {
+      "value" : "succeed",
+      "translate" : "[достигать цели]",
+      "point" : -1,
+      "status" : "HARD"
+    },
+    "benefit" : {
+      "value" : "benefit",
+      "translate" : "[получать выгоду]",
+      "point" : 1,
+      "status" : "NORMAL"
+    },
+    "supply" : {
+      "value" : "supply",
+      "translate" : "[обеспечивать]",
+      "point" : -1,
+      "status" : "HARD"
+    },
+    "assist" : {
+      "value" : "assist",
+      "translate" : "[помогать]",
+      "point" : 1,
+      "status" : "NORMAL"
+    },
+    "enhance" : {
+      "value" : "enhance",
+      "translate" : "[улучшать]",
+      "point" : -1,
+      "status" : "HARD"
+    },
+    "implement" : {
+      "value" : "implement",
+      "translate" : "[выполнять, применять]",
+      "point" : 1,
+      "status" : "NORMAL"
+    },
+    "deserve" : {
+      "value" : "deserve",
+      "translate" : "[заслуживать]",
+      "point" : -1,
+      "status" : "HARD"
+    },
+    "participant" : {
+      "value" : "participant",
+      "translate" : "[участник]",
+      "point" : 1,
+      "status" : "NORMAL"
+    },
+    "competition" : {
+      "value" : "competition",
+      "translate" : "[конкуренция]",
+      "point" : -1,
+      "status" : "HARD"
+    },
+    "trouble" : {
+      "value" : "trouble",
+      "translate" : "[беда]",
+      "point" : -1,
+      "status" : "HARD"
+    },
+    "participation" : {
+      "value" : "participation",
+      "translate" : "[участие]",
+      "point" : 1,
+      "status" : "NORMAL"
+    },
+    "complaint" : {
+      "value" : "complaint",
+      "translate" : "[жалоба]",
+      "point" : 1,
+      "status" : "NORMAL"
+    },
+    "lack" : {
+      "value" : "lack",
+      "translate" : "[нехватка]",
+      "point" : -1,
+      "status" : "HARD"
+    },
+    "outcome" : {
+      "value" : "outcome",
+      "translate" : "[итог]",
+      "point" : 1,
+      "status" : "NORMAL"
+    },
+    "requirement" : {
+      "value" : "requirement",
+      "translate" : "[требование]",
+      "point" : 1,
+      "status" : "NORMAL"
+    },
+    "entry" : {
+      "value" : "entry",
+      "translate" : "[запись в журнале]",
+      "point" : -1,
+      "status" : "HARD"
+    },
+    "disorder" : {
+      "value" : "disorder",
+      "translate" : "[беспорядок]",
+      "point" : 1,
+      "status" : "NORMAL"
+    },
+    "distribution" : {
+      "value" : "distribution",
+      "translate" : "[распределение, распространение]",
+      "point" : 1,
+      "status" : "NORMAL"
+    },
+    "salary" : {
+      "value" : "salary",
+      "translate" : "[зарплата]",
+      "point" : 1,
+      "status" : "NORMAL"
+    },
+    "wage" : {
+      "value" : "wage",
+      "translate" : "[зарплата]",
+      "point" : 1,
+      "status" : "NORMAL"
+    },
+    "pay" : {
+      "value" : "pay",
+      "translate" : "[оплата]",
+      "point" : 1,
+      "status" : "NORMAL"
+    },
+    "deputy" : {
+      "value" : "deputy",
+      "translate" : "[заместитель]",
+      "point" : -1,
+      "status" : "HARD"
     }
   }
 }
