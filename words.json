@@ -227,7 +227,7 @@
       "value" : "multiple",
       "translate" : "[множество]",
       "point" : 5,
-      "status" : "COMPLETED"
+      "status" : "NORMAL"
     },
     "avoid" : {
       "value" : "avoid",
