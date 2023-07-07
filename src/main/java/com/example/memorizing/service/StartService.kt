@@ -123,6 +123,7 @@ class StartService(
                     savedWords++
                 }
                 if (word.point >= maxPoint) {
+                    word.point = word.point + 1
                     word.status = EWordStatus.COMPLETED
                     println("You learn this word!")
                     completedWords++
