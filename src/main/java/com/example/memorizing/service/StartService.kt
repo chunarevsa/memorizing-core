@@ -12,18 +12,19 @@ import org.springframework.stereotype.Service
 
 @Service
 class StartService(
-    private val fileService: FileService, @Value("\${completed.maxPoint}") private val maxPoint: Int
+    private val fileService: FileService,
+    @Value("\${completed.maxPoint}")
+    private val maxPoint: Int
 ) {
     private val logger: Logger = LogManager.getLogger(StartService::class.java)
 
-    private var active = true
     private var random = true
 
     @EventListener(ApplicationReadyEvent::class)
     fun start() {
         logger.info("START")
 
-        while (active) {
+        while (true) {
             println("What do you want to learn?")
             println("   1 - Words;  2 - Phrase;   0 - exit")
             val type: ECardType = when (readLine()) {
