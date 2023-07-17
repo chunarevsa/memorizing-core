@@ -29,7 +29,7 @@ class FileService(
 
     init {
         loadCards()
-        validateCards()
+        validateCardsStatusByPoint()
         readCardsFromFile(FILE_NAME_FOR_NEW_WORDS)
         readCardsFromFile(FILE_NAME_FOR_NEW_PHRASES)
     }
@@ -54,31 +54,41 @@ class FileService(
         if (!file.exists()) {
             file.createNewFile()
             logger.info("Create $fileName")
+            return
         }
 
         val newCards = mutableSetOf<String>()
         FileInputStream(file).bufferedReader().forEachLine { newCards.add(it) }
 
         val newMapOfCards = mutableMapOf<String, Card>()
+        val cardType: ECardType = when (fileName) {
+            FILE_NAME_FOR_NEW_WORDS -> ECardType.WORD
+            FILE_NAME_FOR_NEW_PHRASES -> ECardType.PHRASE
+            else -> return
+        }
+
         newCards.forEach {
             val split = it.split("\t")
-            val cardType: ECardType = when (fileName) {
-                FILE_NAME_FOR_NEW_WORDS -> ECardType.WORD
-                FILE_NAME_FOR_NEW_PHRASES -> ECardType.PHRASE
-                else -> { throw Exception("Неверное имя файла")}
-            }
             newMapOfCards[split[0]] = Card(split[0], split.drop(1).toString(), cardType)
         }
 
         if (newMapOfCards.isNotEmpty()) {
+            var amountOfAddingCard = 0
             newMapOfCards.forEach {
-                if (!Cards.mapOfCards.keys.contains(it.key)) Cards.mapOfCards[it.key] = it.value
+                if (!Cards.mapOfCards.keys.contains(it.key)) {
+                    Cards.mapOfCards[it.key] = it.value
+                    amountOfAddingCard++
+                }
             }
+
+            logger.info("Added $amountOfAddingCard new ${cardType.typeName}")
             saveCards()
+            file.delete()
+            file.createNewFile()
         }
     }
 
-    private fun validateCards() {
+    private fun validateCardsStatusByPoint() {
         Cards.mapOfCards.forEach {
             val card = it.value
             if (card.point < 0 && card.status != ECardStatus.HARD) it.value.status = ECardStatus.HARD

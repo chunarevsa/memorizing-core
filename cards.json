@@ -2163,6 +2163,139 @@
       "type" : "WORD",
       "point" : 0,
       "status" : "NORMAL"
+    },
+    "insurance" : {
+      "value" : "insurance",
+      "translate" : "[страхование]",
+      "type" : "WORD",
+      "point" : 0,
+      "status" : "NORMAL"
+    },
+    "hurry" : {
+      "value" : "hurry",
+      "translate" : "[торопиться]",
+      "type" : "WORD",
+      "point" : 0,
+      "status" : "NORMAL"
+    },
+    "unfortunate" : {
+      "value" : "unfortunate",
+      "translate" : "[несчастный]",
+      "type" : "WORD",
+      "point" : 0,
+      "status" : "NORMAL"
+    },
+    "accommodation" : {
+      "value" : "accommodation",
+      "translate" : "[размещение]",
+      "type" : "WORD",
+      "point" : 0,
+      "status" : "NORMAL"
+    },
+    "stuff" : {
+      "value" : "stuff",
+      "translate" : "[штука]",
+      "type" : "WORD",
+      "point" : 0,
+      "status" : "NORMAL"
+    },
+    "enjoy" : {
+      "value" : "enjoy",
+      "translate" : "[наслаждаться]",
+      "type" : "WORD",
+      "point" : 0,
+      "status" : "NORMAL"
+    },
+    "adore" : {
+      "value" : "adore",
+      "translate" : "[обожать]",
+      "type" : "WORD",
+      "point" : 0,
+      "status" : "NORMAL"
+    },
+    "I can be wrong but" : {
+      "value" : "I can be wrong but",
+      "translate" : "[я могу ошибаться, но]",
+      "type" : "PHRASE",
+      "point" : 0,
+      "status" : "NORMAL"
+    },
+    "I tend to think" : {
+      "value" : "I tend to think",
+      "translate" : "[я склонен думать]",
+      "type" : "PHRASE",
+      "point" : 0,
+      "status" : "NORMAL"
+    },
+    "I feel doubtful but " : {
+      "value" : "I feel doubtful but ",
+      "translate" : "[я сомневаюсь, но]",
+      "type" : "PHRASE",
+      "point" : 0,
+      "status" : "NORMAL"
+    },
+    "As far as I know" : {
+      "value" : "As far as I know",
+      "translate" : "[на сколько я знаю]",
+      "type" : "PHRASE",
+      "point" : 0,
+      "status" : "NORMAL"
+    },
+    "I'm quite sure" : {
+      "value" : "I'm quite sure",
+      "translate" : "[я совершенно уверен]",
+      "type" : "PHRASE",
+      "point" : 0,
+      "status" : "NORMAL"
+    },
+    "I'm certain" : {
+      "value" : "I'm certain",
+      "translate" : "[я уверен]",
+      "type" : "PHRASE",
+      "point" : 0,
+      "status" : "NORMAL"
+    },
+    "I cant stand" : {
+      "value" : "I cant stand",
+      "translate" : "[я терпеть не могу]",
+      "type" : "PHRASE",
+      "point" : 0,
+      "status" : "NORMAL"
+    },
+    "I don’t feel like doing it" : {
+      "value" : "I don’t feel like doing it",
+      "translate" : "[мне не хочется делать это]",
+      "type" : "PHRASE",
+      "point" : 0,
+      "status" : "NORMAL"
+    },
+    "I am not in the mood of doing it" : {
+      "value" : "I am not in the mood of doing it",
+      "translate" : "[мне не нравится делать это]",
+      "type" : "PHRASE",
+      "point" : 0,
+      "status" : "NORMAL"
+    },
+    "I don’t mind doing it" : {
+      "value" : "I don’t mind doing it",
+      "translate" : "[мне всё равно]",
+      "type" : "PHRASE",
+      "point" : 0,
+      "status" : "NORMAL"
+    },
+    "I am bot against" : {
+      "value" : "I am bot against",
+      "translate" : "[я не против делать что-то]",
+      "type" : "PHRASE",
+      "point" : 0,
+      "status" : "NORMAL"
+    },
+    "I quite like" : {
+      "value" : "I quite like",
+      "translate" : "[мне  нравится  (немного)]",
+      "type" : "PHRASE",
+      "point" : 0,
+      "status" : "NORMAL"
     }
   }
 }
