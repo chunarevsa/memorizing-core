@@ -1,6 +1,6 @@
 package com.example.memorizing.entity
 
-enum class EWordStatus  {
+enum class ECardStatus  {
     NORMAL,
     HARD,
     COMPLETED

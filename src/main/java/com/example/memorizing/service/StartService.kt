@@ -1,7 +1,8 @@
 package com.example.memorizing.service
 
-import com.example.memorizing.entity.EWordStatus
-import com.example.memorizing.entity.Words
+import com.example.memorizing.entity.Cards
+import com.example.memorizing.entity.ECardStatus
+import com.example.memorizing.entity.ECardType
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
 import org.springframework.beans.factory.annotation.Value
@@ -11,9 +12,7 @@ import org.springframework.stereotype.Service
 
 @Service
 class StartService(
-    private val fileService: FileService,
-    @Value("\${completed.maxPoint}")
-    private val maxPoint: Int
+    private val fileService: FileService, @Value("\${completed.maxPoint}") private val maxPoint: Int
 ) {
     private val logger: Logger = LogManager.getLogger(StartService::class.java)
 
@@ -22,146 +21,155 @@ class StartService(
 
     @EventListener(ApplicationReadyEvent::class)
     fun start() {
-        if (Words.mapOfWords.isEmpty())
-            throw Exception("Пустой лист со словами, добавь слова в файл ${"newWords.txt"}")
+        logger.info("START")
 
         while (active) {
-            logger.info("START")
-            println("Statistics")
-            println("Words: ${Words.mapOfWords.size}")
-            var countCompletedWords = 0
-            Words.mapOfWords.forEach { if (it.value.status == EWordStatus.COMPLETED) countCompletedWords++ }
-            println("Completed words: $countCompletedWords ")
+            println("What do you want to learn?")
+            println("   1 - Words;  2 - Phrase;   0 - exit")
+            val type: ECardType = when (readLine()) {
+                "0" -> break
+                "1" -> ECardType.WORD
+                "2" -> ECardType.PHRASE
+                else -> {
+                    logger.info("I don't understand you")
+                    continue
+                }
+            }
+            val typeName = type.typeName
 
-            var countHardWords = 0
-            Words.mapOfWords.forEach { if (it.value.status == EWordStatus.HARD) countHardWords++ }
-            println("Hard words: $countHardWords ")
+            println("--- Statistics ---")
+            println("${typeName}s: ${Cards.mapOfCards.count { it.value.type == type }}")
+            var countCompleted = 0
+            Cards.mapOfCards.forEach { if (it.value.status == ECardStatus.COMPLETED && it.value.type == type) countCompleted++ }
+            println("Completed ${typeName}s: $countCompleted ")
+
+            var countHard = 0
+            Cards.mapOfCards.forEach { if (it.value.status == ECardStatus.HARD && it.value.type == type) countHard++ }
+            println("Hard ${typeName}s: $countHard ")
 
             println("TEST:      1 - all EN/RUS;     2 - only hard EN/RUS;")
             println("Studying:  3 - EN+RUS;         4 - only hard EN+RUS;")
-            println("Statistics:5 - show words sorted by count")
+            println("Statistics:5 - show ${typeName}s sorted by count")
             println("0 - exit")
             print("Which type do you select:")
 
             when (readLine()) {
-                "1" -> startTestAllEnRusWords()
-                "2" -> startTestHardEnRusWords()
-                "3" -> startStudyEnPlusRus()
-                "4" -> startStudyHardEnPlusRus()
-                "5" -> printResult()
-                "0" -> {
-                    active = false
-                    break
-                }
+                "1" -> startTestAllEnRus(type)
+                "2" -> startTestHardEnRus(type)
+                "3" -> startStudyEnPlusRus(type)
+                "4" -> startStudyHardEnPlusRus(type)
+                "5" -> printResult(type)
+                "0" -> {}
                 else -> {
-                    logger.info("Нет такого. Попробуй ещё раз")
-                    start()
+                    logger.info("I don't understand you")
+                    continue
                 }
             }
         }
+
         logger.error("END")
     }
 
     /** "TEST: 1 - all EN/RUS */
-    private fun startTestAllEnRusWords() {
+    private fun startTestAllEnRus(type: ECardType) {
         println("Translate to russian")
-        startTestLoop(EWordStatus.NORMAL)
+        startTestLoop(ECardStatus.NORMAL, type)
     }
 
     /** "TEST: 2 - only hard EN/RUS */
-    private fun startTestHardEnRusWords() {
+    private fun startTestHardEnRus(type: ECardType) {
         println("Translate to russian")
-        startTestLoop(EWordStatus.HARD)
+        startTestLoop(ECardStatus.HARD, type)
     }
 
     /** Studying: 3 - EN+RUS */
-    private fun startStudyEnPlusRus() {
+    private fun startStudyEnPlusRus(type: ECardType) {
         println("Lets study")
-        startStudyingLoop(EWordStatus.NORMAL)
+        startStudyingLoop(ECardStatus.NORMAL, type)
     }
 
     /** Studying: 4 - only hard EN+RUS; */
-    private fun startStudyHardEnPlusRus() {
+    private fun startStudyHardEnPlusRus(type: ECardType) {
         println("Lets study")
-        startStudyingLoop(EWordStatus.HARD)
+        startStudyingLoop(ECardStatus.HARD, type)
     }
 
-    /** Statistics: 5 - show words sorted by count; */
-    private fun printResult() {
-        Words.mapOfWords.values.sortedByDescending { it.point }
-            .forEach {
-                println("${it.value}:${it.translate}:${it.point}:${it.status}")
+    /** Statistics: 5 - show cards sorted by count; */
+    private fun printResult(type: ECardType) {
+        Cards.mapOfCards.values.sortedByDescending { it.point }.forEach {
+                if (it.type == type) println("${it.value}:${it.translate}:${it.point}:${it.status}")
             }
     }
 
-    private fun startStudyingLoop(status: EWordStatus) {
-        getKeysByStatus(status).forEach {
-            print("${it}:${Words.mapOfWords[it]!!.translate}")
+    private fun startStudyingLoop(status: ECardStatus, type: ECardType) {
+        getKeysByStatusAndType(status, type).forEach {
+            print("${it}:${Cards.mapOfCards[it]!!.translate}")
             readln()
         }
     }
 
-    private fun startTestLoop(status: EWordStatus) {
-        val keys = getKeysByStatus(status)
+    private fun startTestLoop(status: ECardStatus, type: ECardType) {
+        val keys = getKeysByStatusAndType(status, type)
 
         var countMistake = 0
-        var savedWords = 0
-        var completedWords = 0
+        var savedCards = 0
+        var completedCards = 0
 
         keys.forEach {
             print("${it}:")
             val input = readln()
             if (input == "0") return
 
-            val word = Words.mapOfWords[it]
+            val card = Cards.mapOfCards[it]
 
-            if (word!!.translate.contains(input)) {
+            if (card!!.translate.contains(input)) {
                 // correct answer
-                if (word.status == EWordStatus.HARD) {
-                    word.status = EWordStatus.NORMAL
-                    word.point = 0
-                    savedWords++
+                if (card.status == ECardStatus.HARD) {
+                    card.status = ECardStatus.NORMAL
+                    card.point = 0
+                    savedCards++
                 }
-                if (word.point >= maxPoint) {
-                    word.point = word.point + 1
-                    word.status = EWordStatus.COMPLETED
-                    println("You learn this word!")
-                    completedWords++
+                if (card.point >= maxPoint) {
+                    card.point = card.point + 1
+                    card.status = ECardStatus.COMPLETED
+                    println("You learn this ${card.type.name}!")
+                    completedCards++
                 } else {
-                    word.point = word.point + 1
-                    print("${word.translate}:${word.point}")
+                    card.point = card.point + 1
+                    print("${card.translate}:${card.point}")
                     println()
                 }
-                fileService.saveWords()
+                fileService.saveCards()
             } else {
                 // wrong answer
-                if (word.status == EWordStatus.HARD) {
-                    word.point = word.point - 1
-                } else word.point = -1
+                if (card.status == ECardStatus.HARD) {
+                    card.point = card.point - 1
+                } else card.point = -1
 
-                word.status = EWordStatus.HARD
-                fileService.saveWords()
+                card.status = ECardStatus.HARD
+                fileService.saveCards()
                 countMistake++
                 println("Opss! Wrong!")
-                println("${word.value}:${word.translate}:${word.point}")
+                println("${card.value}:${card.translate}:${card.point}")
             }
         }
 
-        println("Общее количество слов:     ${keys.size}")
-        println("Количество ошибок:         $countMistake")
-        println("Количество спасенных:      $savedWords")
-        println("Количество завершенных:    $completedWords")
+        println("Common count:          ${keys.size}")
+        println("Amount of mistakes:    $countMistake")
+        println("Amount of saved:       $savedCards")
+        println("Amount of completed:   $completedCards")
     }
 
-    private fun getKeysByStatus(status: EWordStatus): MutableList<String> {
+    private fun getKeysByStatusAndType(status: ECardStatus, type: ECardType): MutableList<String> {
         val keys = mutableListOf<String>()
         when (status) {
-            EWordStatus.HARD -> {
-                Words.mapOfWords.forEach { if (it.value.status == EWordStatus.HARD) keys.add(it.key) }
+            ECardStatus.HARD -> {
+                Cards.mapOfCards.forEach { if (it.value.status == ECardStatus.HARD && it.value.type == type) keys.add(it.key) }
             }
-            EWordStatus.NORMAL -> {
-                Words.mapOfWords.forEach {
-                    if (it.value.status == EWordStatus.HARD || it.value.status == EWordStatus.NORMAL) keys.add(it.key)
+            ECardStatus.NORMAL -> {
+                Cards.mapOfCards.forEach {
+                    if ((it.value.status == ECardStatus.HARD || it.value.status == ECardStatus.NORMAL)
+                        && it.value.type == type) keys.add(it.key)
                 }
             }
             else -> {}

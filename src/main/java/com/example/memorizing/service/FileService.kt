@@ -1,9 +1,9 @@
 package com.example.memorizing.service
 
-import com.example.memorizing.entity.EObjectType
-import com.example.memorizing.entity.EWordStatus
-import com.example.memorizing.entity.Word
-import com.example.memorizing.entity.Words
+import com.example.memorizing.entity.ECardType
+import com.example.memorizing.entity.ECardStatus
+import com.example.memorizing.entity.Card
+import com.example.memorizing.entity.Cards
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.SerializationFeature
 import org.apache.logging.log4j.LogManager
@@ -28,62 +28,63 @@ class FileService(
     private val mapper = ObjectMapper().configure(SerializationFeature.INDENT_OUTPUT, true)
 
     init {
-        loadWords()
-        validateWords()
-        readObjectsFromFile(FILE_NAME_FOR_NEW_WORDS)
-        readObjectsFromFile(FILE_NAME_FOR_NEW_PHRASES)
+        loadCards()
+        validateCards()
+        readCardsFromFile(FILE_NAME_FOR_NEW_WORDS)
+        readCardsFromFile(FILE_NAME_FOR_NEW_PHRASES)
     }
 
-    fun saveWords() {
-        val file = File(Words.fileName)
+    fun saveCards() {
+        val file = File(Cards.fileName)
         file.mkdirs()
         file.delete()
-        mapper.writeValue(file, Words)
+        mapper.writeValue(file, Cards)
     }
 
-    private fun loadWords() {
-        val file = File(Words.fileName)
+    private fun loadCards() {
+        val file = File(Cards.fileName)
         if (file.exists()) {
-            mapper.readValue(file, Words::class.java)
+            mapper.readValue(file, Cards::class.java)
         }
-        saveWords()
+        saveCards()
     }
 
-    private fun readObjectsFromFile(fileName: String) {
+    private fun readCardsFromFile(fileName: String) {
         val file = File(fileName)
         if (!file.exists()) {
             file.createNewFile()
             logger.info("Create $fileName")
         }
-        val newWords = mutableSetOf<String>()
-        FileInputStream(file).bufferedReader().forEachLine { newWords.add(it) }
 
-        val newMapOfWords = mutableMapOf<String, Word>()
-        newWords.forEach {
+        val newCards = mutableSetOf<String>()
+        FileInputStream(file).bufferedReader().forEachLine { newCards.add(it) }
+
+        val newMapOfCards = mutableMapOf<String, Card>()
+        newCards.forEach {
             val split = it.split("\t")
-            val objectType: EObjectType = when (fileName) {
-                FILE_NAME_FOR_NEW_WORDS -> EObjectType.WORD
-                FILE_NAME_FOR_NEW_PHRASES -> EObjectType.PHRASE
+            val cardType: ECardType = when (fileName) {
+                FILE_NAME_FOR_NEW_WORDS -> ECardType.WORD
+                FILE_NAME_FOR_NEW_PHRASES -> ECardType.PHRASE
                 else -> { throw Exception("Неверное имя файла")}
             }
-            newMapOfWords[split[0]] = Word(split[0], split.drop(1).toString(), objectType)
+            newMapOfCards[split[0]] = Card(split[0], split.drop(1).toString(), cardType)
         }
 
-        if (newMapOfWords.isNotEmpty()) {
-            newMapOfWords.forEach {
-                if (!Words.mapOfWords.keys.contains(it.key)) Words.mapOfWords[it.key] = it.value
+        if (newMapOfCards.isNotEmpty()) {
+            newMapOfCards.forEach {
+                if (!Cards.mapOfCards.keys.contains(it.key)) Cards.mapOfCards[it.key] = it.value
             }
-            saveWords()
+            saveCards()
         }
     }
 
-    private fun validateWords() {
-        Words.mapOfWords.forEach {
-            val word = it.value
-            if (word.point < 0 && word.status != EWordStatus.HARD) it.value.status = EWordStatus.HARD
-            if (word.point in 0 .. maxPoint && word.status != EWordStatus.NORMAL) it.value.status = EWordStatus.NORMAL
-            if (word.point > maxPoint && word.status != EWordStatus.COMPLETED) it.value.status = EWordStatus.COMPLETED
+    private fun validateCards() {
+        Cards.mapOfCards.forEach {
+            val card = it.value
+            if (card.point < 0 && card.status != ECardStatus.HARD) it.value.status = ECardStatus.HARD
+            if (card.point in 0 .. maxPoint && card.status != ECardStatus.NORMAL) it.value.status = ECardStatus.NORMAL
+            if (card.point > maxPoint && card.status != ECardStatus.COMPLETED) it.value.status = ECardStatus.COMPLETED
         }
-        saveWords()
+        saveCards()
     }
 }

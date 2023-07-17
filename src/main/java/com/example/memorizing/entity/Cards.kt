@@ -4,14 +4,14 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonProperty
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-object Words {
+object Cards {
     @get:JsonProperty
-    val mapOfWords = mutableMapOf<String, Word>()
+    val mapOfCards = mutableMapOf<String, Card>()
 
     @get:JsonProperty
-    val fileName = "words.json"
+    val fileName = "cards.json"
 
     override fun toString(): String {
-        return "Words(mapOfWords=$mapOfWords)"
+        return "Cards(mapOfCards=$mapOfCards)"
     }
 }

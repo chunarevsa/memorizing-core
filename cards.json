@@ -1,6 +1,6 @@
 {
-  "fileName" : "words.json",
-  "mapOfWords" : {
+  "fileName" : "cards.json",
+  "mapOfCards" : {
     "considered" : {
       "value" : "considered",
       "translate" : "[считается]",
@@ -46,7 +46,7 @@
     "can be defined" : {
       "value" : "can be defined",
       "translate" : "[можно определить]",
-      "type" : "WORD",
+      "type" : "PHRASE",
       "point" : 6,
       "status" : "COMPLETED"
     },
@@ -123,7 +123,7 @@
     "be aware of each other " : {
       "value" : "be aware of each other ",
       "translate" : "[знать друг о друге]",
-      "type" : "WORD",
+      "type" : "PHRASE",
       "point" : 6,
       "status" : "COMPLETED"
     },
@@ -242,7 +242,7 @@
     "figure out" : {
       "value" : "figure out",
       "translate" : "[выяснять]",
-      "type" : "WORD",
+      "type" : "PHRASE",
       "point" : 6,
       "status" : "COMPLETED"
     },
@@ -809,7 +809,7 @@
     "to quite on me" : {
       "value" : "to quite on me",
       "translate" : "[покинул (сломался, бросил)]",
-      "type" : "WORD",
+      "type" : "PHRASE",
       "point" : 6,
       "status" : "COMPLETED"
     },
@@ -858,7 +858,7 @@
     "crunch a vast amount data" : {
       "value" : "crunch a vast amount data",
       "translate" : "[обрабатывать огромное количество данных]",
-      "type" : "WORD",
+      "type" : "PHRASE",
       "point" : 6,
       "status" : "COMPLETED"
     },
@@ -1061,7 +1061,7 @@
     "headed off" : {
       "value" : "headed off",
       "translate" : "[отправился, направился]",
-      "type" : "WORD",
+      "type" : "PHRASE",
       "point" : 5,
       "status" : "NORMAL"
     },
@@ -2062,42 +2062,42 @@
     "apart from" : {
       "value" : "apart from",
       "translate" : "[помимо]",
-      "type" : "WORD",
+      "type" : "PHRASE",
       "point" : 0,
       "status" : "NORMAL"
     },
     "in addition to" : {
       "value" : "in addition to",
       "translate" : "[в дополнение к]",
-      "type" : "WORD",
+      "type" : "PHRASE",
       "point" : 0,
       "status" : "NORMAL"
     },
     "in short" : {
       "value" : "in short",
       "translate" : "[вкратце]",
-      "type" : "WORD",
+      "type" : "PHRASE",
       "point" : 0,
       "status" : "NORMAL"
     },
     "in summary" : {
       "value" : "in summary",
       "translate" : "[в целом]",
-      "type" : "WORD",
+      "type" : "PHRASE",
       "point" : -1,
       "status" : "HARD"
     },
     "in a nutshell" : {
       "value" : "in a nutshell",
       "translate" : "[в двух словах]",
-      "type" : "WORD",
+      "type" : "PHRASE",
       "point" : 0,
       "status" : "NORMAL"
     },
     "in conclusion" : {
       "value" : "in conclusion",
       "translate" : "[в заключении]",
-      "type" : "WORD",
+      "type" : "PHRASE",
       "point" : 0,
       "status" : "NORMAL"
     },
@@ -2111,14 +2111,14 @@
     "due to" : {
       "value" : "due to",
       "translate" : "[в связи с]",
-      "type" : "WORD",
+      "type" : "PHRASE",
       "point" : 0,
       "status" : "NORMAL"
     },
     "owning to" : {
       "value" : "owning to",
       "translate" : "[благодаря]",
-      "type" : "WORD",
+      "type" : "PHRASE",
       "point" : 0,
       "status" : "NORMAL"
     },
@@ -2132,7 +2132,7 @@
     "as a result" : {
       "value" : "as a result",
       "translate" : "[в результате]",
-      "type" : "WORD",
+      "type" : "PHRASE",
       "point" : 0,
       "status" : "NORMAL"
     },
