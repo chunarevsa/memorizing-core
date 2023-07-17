@@ -1,5 +1,6 @@
 package com.example.memorizing.service
 
+import com.example.memorizing.entity.EObjectType
 import com.example.memorizing.entity.EWordStatus
 import com.example.memorizing.entity.Word
 import com.example.memorizing.entity.Words
@@ -17,6 +18,11 @@ class FileService(
     @Value("\${completed.maxPoint}")
     private val maxPoint: Int
 ) {
+    companion object {
+        const val FILE_NAME_FOR_NEW_WORDS = "newWords.txt"
+        const val FILE_NAME_FOR_NEW_PHRASES = "newPhrases.txt"
+    }
+
     private val logger: Logger = LogManager.getLogger(FileService::class.java)
 
     private val mapper = ObjectMapper().configure(SerializationFeature.INDENT_OUTPUT, true)
@@ -24,7 +30,8 @@ class FileService(
     init {
         loadWords()
         validateWords()
-        readNewWordsFromFile()
+        readObjectsFromFile(FILE_NAME_FOR_NEW_WORDS)
+        readObjectsFromFile(FILE_NAME_FOR_NEW_PHRASES)
     }
 
     fun saveWords() {
@@ -42,11 +49,11 @@ class FileService(
         saveWords()
     }
 
-    private fun readNewWordsFromFile() {
-        val file = File("newWords.txt")
+    private fun readObjectsFromFile(fileName: String) {
+        val file = File(fileName)
         if (!file.exists()) {
             file.createNewFile()
-            logger.info("Create newWords.txt")
+            logger.info("Create $fileName")
         }
         val newWords = mutableSetOf<String>()
         FileInputStream(file).bufferedReader().forEachLine { newWords.add(it) }
@@ -54,7 +61,12 @@ class FileService(
         val newMapOfWords = mutableMapOf<String, Word>()
         newWords.forEach {
             val split = it.split("\t")
-            newMapOfWords[split[0]] = Word(split[0], split.drop(1).toString())
+            val objectType: EObjectType = when (fileName) {
+                FILE_NAME_FOR_NEW_WORDS -> EObjectType.WORD
+                FILE_NAME_FOR_NEW_PHRASES -> EObjectType.PHRASE
+                else -> { throw Exception("Неверное имя файла")}
+            }
+            newMapOfWords[split[0]] = Word(split[0], split.drop(1).toString(), objectType)
         }
 
         if (newMapOfWords.isNotEmpty()) {
