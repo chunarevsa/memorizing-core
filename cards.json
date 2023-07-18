@@ -1062,8 +1062,8 @@
       "value" : "headed off",
       "translate" : "[отправился, направился]",
       "type" : "PHRASE",
-      "point" : 5,
-      "status" : "NORMAL"
+      "point" : 6,
+      "status" : "COMPLETED"
     },
     "guess" : {
       "value" : "guess",
@@ -2063,42 +2063,42 @@
       "value" : "apart from",
       "translate" : "[помимо]",
       "type" : "PHRASE",
-      "point" : 0,
+      "point" : 1,
       "status" : "NORMAL"
     },
     "in addition to" : {
       "value" : "in addition to",
       "translate" : "[в дополнение к]",
       "type" : "PHRASE",
-      "point" : 0,
+      "point" : 1,
       "status" : "NORMAL"
     },
     "in short" : {
       "value" : "in short",
       "translate" : "[вкратце]",
       "type" : "PHRASE",
-      "point" : 0,
+      "point" : 1,
       "status" : "NORMAL"
     },
     "in summary" : {
       "value" : "in summary",
       "translate" : "[в целом]",
       "type" : "PHRASE",
-      "point" : -1,
+      "point" : -2,
       "status" : "HARD"
     },
     "in a nutshell" : {
       "value" : "in a nutshell",
       "translate" : "[в двух словах]",
       "type" : "PHRASE",
-      "point" : 0,
-      "status" : "NORMAL"
+      "point" : -1,
+      "status" : "HARD"
     },
     "in conclusion" : {
       "value" : "in conclusion",
       "translate" : "[в заключении]",
       "type" : "PHRASE",
-      "point" : 0,
+      "point" : 1,
       "status" : "NORMAL"
     },
     "lastly" : {
@@ -2112,14 +2112,14 @@
       "value" : "due to",
       "translate" : "[в связи с]",
       "type" : "PHRASE",
-      "point" : 0,
-      "status" : "NORMAL"
+      "point" : -1,
+      "status" : "HARD"
     },
     "owning to" : {
       "value" : "owning to",
       "translate" : "[благодаря]",
       "type" : "PHRASE",
-      "point" : 0,
+      "point" : 1,
       "status" : "NORMAL"
     },
     "consequently" : {
@@ -2133,7 +2133,7 @@
       "value" : "as a result",
       "translate" : "[в результате]",
       "type" : "PHRASE",
-      "point" : 0,
+      "point" : 1,
       "status" : "NORMAL"
     },
     "although" : {
@@ -2217,85 +2217,113 @@
       "value" : "I can be wrong but",
       "translate" : "[я могу ошибаться, но]",
       "type" : "PHRASE",
-      "point" : 0,
+      "point" : 1,
       "status" : "NORMAL"
     },
     "I tend to think" : {
       "value" : "I tend to think",
       "translate" : "[я склонен думать]",
       "type" : "PHRASE",
-      "point" : 0,
-      "status" : "NORMAL"
+      "point" : -1,
+      "status" : "HARD"
     },
     "I feel doubtful but " : {
       "value" : "I feel doubtful but ",
       "translate" : "[я сомневаюсь, но]",
       "type" : "PHRASE",
-      "point" : 0,
-      "status" : "NORMAL"
+      "point" : -1,
+      "status" : "HARD"
     },
     "As far as I know" : {
       "value" : "As far as I know",
       "translate" : "[на сколько я знаю]",
       "type" : "PHRASE",
-      "point" : 0,
+      "point" : 1,
       "status" : "NORMAL"
     },
     "I'm quite sure" : {
       "value" : "I'm quite sure",
       "translate" : "[я совершенно уверен]",
       "type" : "PHRASE",
-      "point" : 0,
-      "status" : "NORMAL"
+      "point" : -1,
+      "status" : "HARD"
     },
     "I'm certain" : {
       "value" : "I'm certain",
       "translate" : "[я уверен]",
       "type" : "PHRASE",
-      "point" : 0,
+      "point" : 1,
       "status" : "NORMAL"
     },
     "I cant stand" : {
       "value" : "I cant stand",
       "translate" : "[я терпеть не могу]",
       "type" : "PHRASE",
-      "point" : 0,
+      "point" : 1,
       "status" : "NORMAL"
     },
     "I don’t feel like doing it" : {
       "value" : "I don’t feel like doing it",
       "translate" : "[мне не хочется делать это]",
       "type" : "PHRASE",
-      "point" : 0,
-      "status" : "NORMAL"
+      "point" : -1,
+      "status" : "HARD"
     },
     "I am not in the mood of doing it" : {
       "value" : "I am not in the mood of doing it",
       "translate" : "[мне не нравится делать это]",
       "type" : "PHRASE",
-      "point" : 0,
-      "status" : "NORMAL"
+      "point" : -1,
+      "status" : "HARD"
     },
     "I don’t mind doing it" : {
       "value" : "I don’t mind doing it",
       "translate" : "[мне всё равно]",
       "type" : "PHRASE",
-      "point" : 0,
-      "status" : "NORMAL"
+      "point" : -1,
+      "status" : "HARD"
     },
     "I am bot against" : {
-      "value" : "I am bot against",
+      "value" : "I am not against",
       "translate" : "[я не против делать что-то]",
       "type" : "PHRASE",
-      "point" : 0,
+      "point" : 1,
       "status" : "NORMAL"
     },
     "I quite like" : {
       "value" : "I quite like",
       "translate" : "[мне  нравится  (немного)]",
       "type" : "PHRASE",
+      "point" : 1,
+      "status" : "NORMAL"
+    },
+    "sedentary lifestyle" : {
+      "value" : "sedentary lifestyle",
+      "translate" : "[сидячий образ жизни]",
+      "type" : "WORD",
       "point" : 0,
       "status" : "NORMAL"
+    },
+    "it's not my cup of tea" : {
+      "value" : "it's not my cup of tea",
+      "translate" : "[это не мое, это не для меня]",
+      "type" : "PHRASE",
+      "point" : -1,
+      "status" : "HARD"
+    },
+    "to stick to a routine" : {
+      "value" : "to stick to a routine",
+      "translate" : "[придерживаться рутины, распорядка дня]",
+      "type" : "PHRASE",
+      "point" : -1,
+      "status" : "HARD"
+    },
+    "follow a routine" : {
+      "value" : "follow a routine",
+      "translate" : "[придерживаться рутины, распорядка дня]",
+      "type" : "PHRASE",
+      "point" : -1,
+      "status" : "HARD"
     }
   }
 }
