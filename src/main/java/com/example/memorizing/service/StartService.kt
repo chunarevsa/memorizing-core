@@ -3,6 +3,7 @@ package com.example.memorizing.service
 import com.example.memorizing.entity.Cards
 import com.example.memorizing.entity.ECardStatus
 import com.example.memorizing.entity.ECardType
+import com.example.memorizing.entity.ELanguageType
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
 import org.springframework.beans.factory.annotation.Value
@@ -27,7 +28,7 @@ class StartService(
         while (true) {
             println("What do you want to learn?")
             println("   1 - Words;  2 - Phrase;   0 - exit")
-            val type: ECardType = when (readLine()) {
+            val cardType: ECardType = when (readLine()) {
                 "0" -> break
                 "1" -> ECardType.WORD
                 "2" -> ECardType.PHRASE
@@ -36,30 +37,43 @@ class StartService(
                     continue
                 }
             }
-            val typeName = type.typeName
+            val cardTypeName = cardType.typeName
 
             println("--- Statistics ---")
-            println("${typeName}s: ${Cards.mapOfCards.count { it.value.type == type }}")
+            println("${cardTypeName}s: ${Cards.mapOfCards.count { it.value.type == cardType }}")
             var countCompleted = 0
-            Cards.mapOfCards.forEach { if (it.value.status == ECardStatus.COMPLETED && it.value.type == type) countCompleted++ }
-            println("Completed ${typeName}s: $countCompleted ")
+            Cards.mapOfCards.forEach { if (it.value.status == ECardStatus.COMPLETED && it.value.type == cardType) countCompleted++ }
+            println("Completed ${cardTypeName}s: $countCompleted ")
 
             var countHard = 0
-            Cards.mapOfCards.forEach { if (it.value.status == ECardStatus.HARD && it.value.type == type) countHard++ }
-            println("Hard ${typeName}s: $countHard ")
+            Cards.mapOfCards.forEach { if (it.value.status == ECardStatus.HARD && it.value.type == cardType) countHard++ }
+            println("Hard ${cardTypeName}s: $countHard ")
 
-            println("TEST:      1 - all EN/RUS;     2 - only hard EN/RUS;")
-            println("Studying:  3 - EN+RUS;         4 - only hard EN+RUS;")
-            println("Statistics:5 - show ${typeName}s sorted by count")
+            println("TEST:      1 - all EN/RUS;         3 - all RUS/EN  ")
+            println("TEST:      2 - only hard EN/RUS;   4 - only hard RUS/EN;")
+            
+            println("Studying:  5 - all;                6 - only hard;")
+            
+            println("Statistics:7 - show ${cardTypeName}s sorted by count")
+            
             println("0 - exit")
-            print("Which type do you select:")
+            print("Which type do you select?:")
 
             when (readLine()) {
-                "1" -> startTestAllEnRus(type)
-                "2" -> startTestHardEnRus(type)
-                "3" -> startStudyEnPlusRus(type)
-                "4" -> startStudyHardEnPlusRus(type)
-                "5" -> printResult(type)
+                "1" -> startTestLoop(ECardStatus.NORMAL, cardType, ELanguageType.EN_RUS)
+                "2" -> startTestLoop(ECardStatus.NORMAL, cardType, ELanguageType.RUS_EN)
+
+                "3" -> startTestLoop(ECardStatus.HARD, cardType, ELanguageType.EN_RUS)
+                "4" -> startTestLoop(ECardStatus.HARD, cardType, ELanguageType.RUS_EN)
+                
+                "5" -> startStudyingLoop(ECardStatus.NORMAL, cardType)
+                "6" -> startStudyingLoop(ECardStatus.HARD, cardType)
+                
+                "7" -> {
+                    Cards.mapOfCards.values.sortedByDescending { it.point }.forEach {
+                        if (it.type == cardType) println("${it.value}:${it.translate}:${it.point}:${it.status}")
+                    }
+                }
                 "0" -> {}
                 else -> {
                     logger.info("I don't understand you")
@@ -71,50 +85,23 @@ class StartService(
         logger.error("END")
     }
 
-    /** "TEST: 1 - all EN/RUS */
-    private fun startTestAllEnRus(type: ECardType) {
-        println("Translate to russian")
-        startTestLoop(ECardStatus.NORMAL, type)
-    }
-
-    /** "TEST: 2 - only hard EN/RUS */
-    private fun startTestHardEnRus(type: ECardType) {
-        println("Translate to russian")
-        startTestLoop(ECardStatus.HARD, type)
-    }
-
-    /** Studying: 3 - EN+RUS */
-    private fun startStudyEnPlusRus(type: ECardType) {
-        println("Lets study")
-        startStudyingLoop(ECardStatus.NORMAL, type)
-    }
-
-    /** Studying: 4 - only hard EN+RUS; */
-    private fun startStudyHardEnPlusRus(type: ECardType) {
-        println("Lets study")
-        startStudyingLoop(ECardStatus.HARD, type)
-    }
-
-    /** Statistics: 5 - show cards sorted by count; */
-    private fun printResult(type: ECardType) {
-        Cards.mapOfCards.values.sortedByDescending { it.point }.forEach {
-                if (it.type == type) println("${it.value}:${it.translate}:${it.point}:${it.status}")
-            }
-    }
-
-    private fun startStudyingLoop(status: ECardStatus, type: ECardType) {
-        getKeysByStatusAndType(status, type).forEach {
+    private fun startStudyingLoop(status: ECardStatus, cardType: ECardType) {
+        getKeysByStatusAndCardType(status, cardType).forEach {
             print("${it}:${Cards.mapOfCards[it]!!.translate}")
             readln()
         }
     }
 
-    private fun startTestLoop(status: ECardStatus, type: ECardType) {
-        val keys = getKeysByStatusAndType(status, type)
+    private fun startTestLoop(status: ECardStatus, cardType: ECardType, languageType: ELanguageType) {
+        val keys = getKeysByStatusAndCardType(status, cardType)
 
         var countMistake = 0
         var savedCards = 0
         var completedCards = 0
+
+        // Сделать через HashMap (какой язык такой и ключ)
+        //
+        // Поиск и изменение сделать зависимым от типа языка
 
         keys.forEach {
             print("${it}:")
@@ -161,16 +148,16 @@ class StartService(
         println("Amount of completed:   $completedCards")
     }
 
-    private fun getKeysByStatusAndType(status: ECardStatus, type: ECardType): MutableList<String> {
+    private fun getKeysByStatusAndCardType(status: ECardStatus, cardType: ECardType): MutableList<String> {
         val keys = mutableListOf<String>()
         when (status) {
             ECardStatus.HARD -> {
-                Cards.mapOfCards.forEach { if (it.value.status == ECardStatus.HARD && it.value.type == type) keys.add(it.key) }
+                Cards.mapOfCards.forEach { if (it.value.status == ECardStatus.HARD && it.value.type == cardType) keys.add(it.key) }
             }
             ECardStatus.NORMAL -> {
                 Cards.mapOfCards.forEach {
                     if ((it.value.status == ECardStatus.HARD || it.value.status == ECardStatus.NORMAL)
-                        && it.value.type == type) keys.add(it.key)
+                        && it.value.type == cardType) keys.add(it.key)
                 }
             }
             else -> {}

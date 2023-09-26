@@ -14,4 +14,5 @@ class Card(
     @get:JsonProperty
     var status: ECardStatus = ECardStatus.NORMAL
 )
+//[решать (решить) проблему или задачу] [самодостаточный]
 
