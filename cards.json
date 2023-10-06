@@ -5,2702 +5,3088 @@
       "value" : "considered",
       "translate" : "[считается]",
       "type" : "WORD",
-      "point" : 8,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 8,
       "status" : "COMPLETED"
     },
     "truly" : {
       "value" : "truly",
       "translate" : "[действительно]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "mean" : {
       "value" : "mean",
       "translate" : "[означать]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "simplify" : {
       "value" : "simplify",
       "translate" : "[упрощать]",
       "type" : "WORD",
-      "point" : 10,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 10,
       "status" : "COMPLETED"
     },
     "maintenance " : {
       "value" : "maintenance ",
       "translate" : "[обслуживание]",
       "type" : "WORD",
-      "point" : -1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -1,
       "status" : "HARD"
     },
     "behavior" : {
       "value" : "behavior",
       "translate" : "[поведение]",
       "type" : "WORD",
-      "point" : 10,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 10,
       "status" : "COMPLETED"
     },
     "can be defined" : {
       "value" : "can be defined",
       "translate" : "[можно определить]",
       "type" : "PHRASE",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "each" : {
       "value" : "each",
       "translate" : "[каждый]",
       "type" : "WORD",
-      "point" : 10,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 10,
       "status" : "COMPLETED"
     },
     "necessary" : {
       "value" : "necessary",
       "translate" : "[необходимо, необходимый]",
       "type" : "WORD",
-      "point" : 10,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 10,
       "status" : "COMPLETED"
     },
     "acquire" : {
       "value" : "acquire",
       "translate" : "[приобретать]",
       "type" : "WORD",
-      "point" : -2,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -2,
       "status" : "HARD"
     },
     "reusability" : {
       "value" : "reusability",
       "translate" : "[возможность переиспользовать]",
       "type" : "WORD",
-      "point" : 10,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 10,
       "status" : "COMPLETED"
     },
     "perform" : {
       "value" : "perform",
       "translate" : "[выполнять]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "convince" : {
       "value" : "convince",
       "translate" : "[убедить, убеждать]",
       "type" : "WORD",
-      "point" : 4,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 4,
       "status" : "NORMAL"
     },
     "achieve" : {
       "value" : "achieve",
       "translate" : "[добиться, добиваться]",
       "type" : "WORD",
-      "point" : 7,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 7,
       "status" : "COMPLETED"
     },
     "binding (or wrapping) code" : {
       "value" : "binding (or wrapping) code",
       "translate" : "[связывание (обёртывание) кода]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "refer" : {
       "value" : "refer",
       "translate" : "[ссылаться]",
       "type" : "WORD",
-      "point" : 9,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 9,
       "status" : "COMPLETED"
     },
     "arise" : {
       "value" : "arise",
       "translate" : "[возникнуть, возникать]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "be aware of each other " : {
       "value" : "be aware of each other ",
       "translate" : "[знать друг о друге]",
       "type" : "PHRASE",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "weaker" : {
       "value" : "weaker",
       "translate" : "[слабее]",
       "type" : "WORD",
-      "point" : 9,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 9,
       "status" : "COMPLETED"
     },
     "coupling" : {
       "value" : "coupling",
       "translate" : "[сокрытие]",
       "type" : "WORD",
-      "point" : 1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 1,
       "status" : "NORMAL"
     },
     "cohesion" : {
       "value" : "cohesion",
       "translate" : "[связанность]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "however" : {
       "value" : "however",
       "translate" : "[однако]",
       "type" : "WORD",
-      "point" : 10,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 10,
       "status" : "COMPLETED"
     },
     "relationship" : {
       "value" : "relationship",
       "translate" : "[отношение]",
       "type" : "WORD",
-      "point" : 10,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 10,
       "status" : "COMPLETED"
     },
     "advantage" : {
       "value" : "advantage",
       "translate" : "[преимущество]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "grow" : {
       "value" : "grow",
       "translate" : "[расти]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "whereas" : {
       "value" : "whereas",
       "translate" : "[в то время как]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "accessed" : {
       "value" : "accessed",
       "translate" : "[доступно]",
       "type" : "WORD",
-      "point" : -2,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -2,
       "status" : "HARD"
     },
     "except" : {
       "value" : "except",
       "translate" : "[кроме]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "dispatch" : {
       "value" : "dispatch",
       "translate" : "[отправка]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "suggest" : {
       "value" : "suggest",
       "translate" : "[предлагать]",
       "type" : "WORD",
-      "point" : 5,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 5,
       "status" : "NORMAL"
     },
     "according" : {
       "value" : "according",
       "translate" : "[согласно]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "erroneous" : {
       "value" : "erroneous",
       "translate" : "[ошибочный]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "less" : {
       "value" : "less",
       "translate" : "[меньше]",
       "type" : "WORD",
-      "point" : 3,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 3,
       "status" : "NORMAL"
     },
     "spent" : {
       "value" : "spent",
       "translate" : "[тратить]",
       "type" : "WORD",
-      "point" : 10,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 10,
       "status" : "COMPLETED"
     },
     "figure out" : {
       "value" : "figure out",
       "translate" : "[выяснять]",
       "type" : "PHRASE",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "appropriate" : {
       "value" : "appropriate",
       "translate" : "[подходящий]",
       "type" : "WORD",
-      "point" : -1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -1,
       "status" : "HARD"
     },
     "snippet" : {
       "value" : "snippet",
       "translate" : "[фрагмент]",
       "type" : "WORD",
-      "point" : 10,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 10,
       "status" : "COMPLETED"
     },
     "multiple" : {
       "value" : "multiple",
       "translate" : "[множество]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "avoid" : {
       "value" : "avoid",
       "translate" : "[избегать]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "digits" : {
       "value" : "digits",
       "translate" : "[цифры]",
       "type" : "WORD",
-      "point" : 10,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 10,
       "status" : "COMPLETED"
     },
     "tangible and intangible" : {
       "value" : "tangible and intangible",
       "translate" : "[материальный и не материальный]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "via" : {
       "value" : "via",
       "translate" : "[через]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "common" : {
       "value" : "common",
       "translate" : "[общий]",
       "type" : "WORD",
-      "point" : 9,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 9,
       "status" : "COMPLETED"
     },
     "nested" : {
       "value" : "nested",
       "translate" : "[вложенный]",
       "type" : "WORD",
-      "point" : 10,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 10,
       "status" : "COMPLETED"
     },
     "allocate" : {
       "value" : "allocate",
       "translate" : "[выделять]",
       "type" : "WORD",
-      "point" : -1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -1,
       "status" : "HARD"
     },
     "expose" : {
       "value" : "expose",
       "translate" : "[раскрыть, выставить]",
       "type" : "WORD",
-      "point" : -1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -1,
       "status" : "HARD"
     },
     "approach" : {
       "value" : "approach",
       "translate" : "[подход]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "previous" : {
       "value" : "previous",
       "translate" : "[предыдущий]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "through" : {
       "value" : "through",
       "translate" : "[через]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "invoke" : {
       "value" : "invoke",
       "translate" : "[вызывать]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "similar" : {
       "value" : "similar",
       "translate" : "[аналогичный]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "available" : {
       "value" : "available",
       "translate" : "[доступный]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "explicitly and implicitly" : {
       "value" : "explicitly and implicitly",
       "translate" : "[явный и не явный]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "distinct" : {
       "value" : "distinct",
       "translate" : "[отдельный]",
       "type" : "WORD",
-      "point" : 2,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 2,
       "status" : "NORMAL"
     },
     "arrange" : {
       "value" : "arrange",
       "translate" : "[организовать]",
       "type" : "WORD",
-      "point" : 5,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 5,
       "status" : "NORMAL"
     },
     "assigning" : {
       "value" : "assigning",
       "translate" : "[назначить, назначение, присвоение]",
       "type" : "WORD",
-      "point" : -2,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -2,
       "status" : "HARD"
     },
     "purpose" : {
       "value" : "purpose",
       "translate" : "[цель]",
       "type" : "WORD",
-      "point" : 1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 1,
       "status" : "NORMAL"
     },
     "members" : {
       "value" : "members",
       "translate" : "[члены]",
       "type" : "WORD",
-      "point" : 8,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 8,
       "status" : "COMPLETED"
     },
     "mentioned" : {
       "value" : "mentioned",
       "translate" : "[упоминание]",
       "type" : "WORD",
-      "point" : 5,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 5,
       "status" : "NORMAL"
     },
     "belong" : {
       "value" : "belong",
       "translate" : "[принадлежать]",
       "type" : "WORD",
-      "point" : 10,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 10,
       "status" : "COMPLETED"
     },
     "rather" : {
       "value" : "rather",
       "translate" : "[скорее]",
       "type" : "WORD",
-      "point" : 1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 1,
       "status" : "NORMAL"
     },
     "restriction" : {
       "value" : "restriction",
       "translate" : "[ограничение]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "pass" : {
       "value" : "pass",
       "translate" : "[пройти]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "distinguish" : {
       "value" : "distinguish",
       "translate" : "[различать]",
       "type" : "WORD",
-      "point" : -2,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -2,
       "status" : "HARD"
     },
     "statement" : {
       "value" : "statement",
       "translate" : "[заявление]",
       "type" : "WORD",
-      "point" : 5,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 5,
       "status" : "NORMAL"
     },
     "moreover" : {
       "value" : "moreover",
       "translate" : "[более того]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "otherwise" : {
       "value" : "otherwise",
       "translate" : "[иначе]",
       "type" : "WORD",
-      "point" : -1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -1,
       "status" : "HARD"
     },
     "meaningful" : {
       "value" : "meaningful",
       "translate" : "[значимый]",
       "type" : "WORD",
-      "point" : -2,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -2,
       "status" : "HARD"
     },
     "ambiguity" : {
       "value" : "ambiguity",
       "translate" : "[двусмысленность]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "occur" : {
       "value" : "occur",
       "translate" : "[происходить]",
       "type" : "WORD",
-      "point" : 4,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 4,
       "status" : "NORMAL"
     },
     "bound " : {
       "value" : "bound ",
       "translate" : "[связанный, связанно]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "explanation" : {
       "value" : "explanation",
       "translate" : "[пояснение]",
       "type" : "WORD",
-      "point" : -1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -1,
       "status" : "HARD"
     },
     "thus" : {
       "value" : "thus",
       "translate" : "[таким образом]",
       "type" : "WORD",
-      "point" : -2,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -2,
       "status" : "HARD"
     },
     "hence" : {
       "value" : "hence",
       "translate" : "[следовательно]",
       "type" : "WORD",
-      "point" : -2,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -2,
       "status" : "HARD"
     },
     "actually" : {
       "value" : "actually",
       "translate" : "[на самом деле]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "deduce" : {
       "value" : "deduce",
       "translate" : "[сделать выводы]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "exacerbate" : {
       "value" : "exacerbate",
       "translate" : "[усугублять]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "allow" : {
       "value" : "allow",
       "translate" : "[позволять]",
       "type" : "WORD",
-      "point" : 4,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 4,
       "status" : "NORMAL"
     },
     "suppose" : {
       "value" : "suppose",
       "translate" : "[предполагать]",
       "type" : "WORD",
-      "point" : 5,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 5,
       "status" : "NORMAL"
     },
     "comprises" : {
       "value" : "comprises",
       "translate" : "[включает в себя]",
       "type" : "WORD",
-      "point" : -1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -1,
       "status" : "HARD"
     },
     "diverse" : {
       "value" : "diverse",
       "translate" : "[разнообразный]",
       "type" : "WORD",
-      "point" : -1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -1,
       "status" : "HARD"
     },
     "equipped" : {
       "value" : "equipped",
       "translate" : "[оборудован]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "stare" : {
       "value" : "stare",
       "translate" : "[уставиться, пялиться]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "intently" : {
       "value" : "intently",
       "translate" : "[внимательно]",
       "type" : "WORD",
-      "point" : 1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 1,
       "status" : "NORMAL"
     },
     "essential" : {
       "value" : "essential",
       "translate" : "[существенный]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "hiring" : {
       "value" : "hiring",
       "translate" : "[наём]",
       "type" : "WORD",
-      "point" : 10,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 10,
       "status" : "COMPLETED"
     },
     "article" : {
       "value" : "article",
       "translate" : "[статья]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "encounter" : {
       "value" : "encounter",
       "translate" : "[встреча]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "commitment" : {
       "value" : "commitment",
       "translate" : "[обязательство]",
       "type" : "WORD",
-      "point" : 1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 1,
       "status" : "NORMAL"
     },
     "supplement" : {
       "value" : "supplement",
       "translate" : "[дополнение]",
       "type" : "WORD",
-      "point" : -1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -1,
       "status" : "HARD"
     },
     "prospect" : {
       "value" : "prospect",
       "translate" : "[перспектива]",
       "type" : "WORD",
-      "point" : 10,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 10,
       "status" : "COMPLETED"
     },
     "complicated" : {
       "value" : "complicated",
       "translate" : "[сложный]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "proprietary" : {
       "value" : "proprietary",
       "translate" : "[собственная]",
       "type" : "WORD",
-      "point" : 1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 1,
       "status" : "NORMAL"
     },
     "contribute" : {
       "value" : "contribute",
       "translate" : "[вносить вклад]",
       "type" : "WORD",
-      "point" : 10,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 10,
       "status" : "COMPLETED"
     },
     "immediately" : {
       "value" : "immediately",
       "translate" : "[немедленно]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "proficient" : {
       "value" : "proficient",
       "translate" : "[опытный]",
       "type" : "WORD",
-      "point" : 9,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 9,
       "status" : "COMPLETED"
     },
     "passionate" : {
       "value" : "passionate",
       "translate" : "[страстный, страстно, страсть]",
       "type" : "WORD",
-      "point" : 1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 1,
       "status" : "NORMAL"
     },
     "desire" : {
       "value" : "desire",
       "translate" : "[желание]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "engaged" : {
       "value" : "engaged",
       "translate" : "[задействован, занят, занято]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "properly" : {
       "value" : "properly",
       "translate" : "[правильно]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "define" : {
       "value" : "define",
       "translate" : "[определить]",
       "type" : "WORD",
-      "point" : 9,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 9,
       "status" : "COMPLETED"
     },
     "ensure" : {
       "value" : "ensure",
       "translate" : "[обеспечить]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "oversight" : {
       "value" : "oversight",
       "translate" : "[надзор]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "reason" : {
       "value" : "reason",
       "translate" : "[причина]",
       "type" : "WORD",
-      "point" : 10,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 10,
       "status" : "COMPLETED"
     },
     "opportunity" : {
       "value" : "opportunity",
       "translate" : "[возможность]",
       "type" : "WORD",
-      "point" : 9,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 9,
       "status" : "COMPLETED"
     },
     "preparing" : {
       "value" : "preparing",
       "translate" : "[подготовка]",
       "type" : "WORD",
-      "point" : 9,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 9,
       "status" : "COMPLETED"
     },
     "opinion" : {
       "value" : "opinion",
       "translate" : "[мнение]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "predictable" : {
       "value" : "predictable",
       "translate" : "[предсказуемый, прогнозируемый]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "prepare" : {
       "value" : "prepare",
       "translate" : "[подготовить]",
       "type" : "WORD",
-      "point" : 5,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 5,
       "status" : "NORMAL"
     },
     "provide" : {
       "value" : "provide",
       "translate" : "[предоставлять]",
       "type" : "WORD",
-      "point" : 5,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 5,
       "status" : "NORMAL"
     },
     "exactly" : {
       "value" : "exactly",
       "translate" : "[именно]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "additional" : {
       "value" : "additional",
       "translate" : "[дополнительный, дополнительно]",
       "type" : "WORD",
-      "point" : 4,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 4,
       "status" : "NORMAL"
     },
     "vast" : {
       "value" : "vast",
       "translate" : "[обширный]",
       "type" : "WORD",
-      "point" : 5,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 5,
       "status" : "NORMAL"
     },
     "fulfill" : {
       "value" : "fulfill",
       "translate" : "[выполнять, выполнить]",
       "type" : "WORD",
-      "point" : 10,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 10,
       "status" : "COMPLETED"
     },
     "hardware" : {
       "value" : "hardware",
       "translate" : "[оборудование]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "to quite on me" : {
       "value" : "to quite on me",
       "translate" : "[покинул (сломался, бросил)]",
       "type" : "PHRASE",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "warm up" : {
       "value" : "warm up",
       "translate" : "[разминка]",
       "type" : "WORD",
-      "point" : 8,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 8,
       "status" : "COMPLETED"
     },
     "biased data" : {
       "value" : "biased data",
       "translate" : "[необъективные данные]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "considerations" : {
       "value" : "considerations",
       "translate" : "[мнения, соображения]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "impacting" : {
       "value" : "impacting",
       "translate" : "[влияющие, воздействие]",
       "type" : "WORD",
-      "point" : -2,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -2,
       "status" : "HARD"
     },
     "consequences" : {
       "value" : "consequences",
       "translate" : "[последствия]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "broader " : {
       "value" : "broader ",
       "translate" : "[масштабные]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "crunch a vast amount data" : {
       "value" : "crunch a vast amount data",
       "translate" : "[обрабатывать огромное количество данных]",
       "type" : "PHRASE",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "obvious" : {
       "value" : "obvious",
       "translate" : "[очевидно]",
       "type" : "WORD",
-      "point" : 7,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 7,
       "status" : "COMPLETED"
     },
     "reveal" : {
       "value" : "reveal",
       "translate" : "[раскрыть, раскрывать, показать]",
       "type" : "WORD",
-      "point" : -2,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -2,
       "status" : "HARD"
     },
     "appeal" : {
       "value" : "appeal",
       "translate" : "[обращение]",
       "type" : "WORD",
-      "point" : 1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 1,
       "status" : "NORMAL"
     },
     "defies" : {
       "value" : "defies",
       "translate" : "[бросает вызов]",
       "type" : "WORD",
-      "point" : -1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -1,
       "status" : "HARD"
     },
     "either" : {
       "value" : "either",
       "translate" : "[либо]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "belief" : {
       "value" : "belief",
       "translate" : "[убеждение, вера]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "improbable" : {
       "value" : "improbable",
       "translate" : "[невероятный]",
       "type" : "WORD",
-      "point" : -1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -1,
       "status" : "HARD"
     },
     "magnificent " : {
       "value" : "magnificent ",
       "translate" : "[великолепный]",
       "type" : "WORD",
-      "point" : 1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 1,
       "status" : "NORMAL"
     },
     "mundane" : {
       "value" : "mundane",
       "translate" : "[обыденный]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "sense" : {
       "value" : "sense",
       "translate" : "[ смысл, чувство]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "particular" : {
       "value" : "particular",
       "translate" : "[конкретный]",
       "type" : "WORD",
-      "point" : 1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 1,
       "status" : "NORMAL"
     },
     "emphasize" : {
       "value" : "emphasize",
       "translate" : "[подчеркнуть]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "appreciate" : {
       "value" : "appreciate",
       "translate" : "[ценить, оценить, оценивать]",
       "type" : "WORD",
-      "point" : -2,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -2,
       "status" : "HARD"
     },
     "care" : {
       "value" : "care",
       "translate" : "[забота, обслуживание]",
       "type" : "WORD",
-      "point" : 10,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 10,
       "status" : "COMPLETED"
     },
     "bandwidth" : {
       "value" : "bandwidth",
       "translate" : "[пропускная способность]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "harsh" : {
       "value" : "harsh",
       "translate" : "[суровый, жесткий]",
       "type" : "WORD",
-      "point" : 1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 1,
       "status" : "NORMAL"
     },
     "performance" : {
       "value" : "performance",
       "translate" : "[производительность, исполнение]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "forces" : {
       "value" : "forces",
       "translate" : "[силы]",
       "type" : "WORD",
-      "point" : 10,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 10,
       "status" : "COMPLETED"
     },
     "quantities" : {
       "value" : "quantities",
       "translate" : "[количества, объемы, величины]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "effort" : {
       "value" : "effort",
       "translate" : "[усилия]",
       "type" : "WORD",
-      "point" : 9,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 9,
       "status" : "COMPLETED"
     },
     "measure" : {
       "value" : "measure",
       "translate" : "[измерять]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "determine" : {
       "value" : "determine",
       "translate" : "[определять]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "flow" : {
       "value" : "flow",
       "translate" : "[поток, течение]",
       "type" : "WORD",
-      "point" : 10,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 10,
       "status" : "COMPLETED"
     },
     "lead" : {
       "value" : "lead",
       "translate" : "[приводит, приводить]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "significant" : {
       "value" : "significant",
       "translate" : "[значительный]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "predicting" : {
       "value" : "predicting",
       "translate" : "[прогноз, предсказание, предсказывание]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "rigidity" : {
       "value" : "rigidity",
       "translate" : "[жесткость, прочность]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "eliminate" : {
       "value" : "eliminate",
       "translate" : "[исключить, устранить]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "headed off" : {
       "value" : "headed off",
       "translate" : "[отправился, направился]",
       "type" : "PHRASE",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "guess" : {
       "value" : "guess",
       "translate" : "[угадать]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "preserve" : {
       "value" : "preserve",
       "translate" : "[сохранить, сохранять]",
       "type" : "WORD",
-      "point" : 9,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 9,
       "status" : "COMPLETED"
     },
     "operate" : {
       "value" : "operate",
       "translate" : "[работать]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "journey" : {
       "value" : "journey",
       "translate" : "[путешествие, поездка]",
       "type" : "WORD",
-      "point" : 8,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 8,
       "status" : "COMPLETED"
     },
     "observation" : {
       "value" : "observation",
       "translate" : "[наблюдение, обзор]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "arrogant" : {
       "value" : "arrogant",
       "translate" : "[высокомерный]",
       "type" : "WORD",
-      "point" : -1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -1,
       "status" : "HARD"
     },
     "startling" : {
       "value" : "startling",
       "translate" : "[поразительный]",
       "type" : "WORD",
-      "point" : 1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 1,
       "status" : "NORMAL"
     },
     "conclusion" : {
       "value" : "conclusion",
       "translate" : "[вывод, заключение]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "consider" : {
       "value" : "consider",
       "translate" : "[учитывать]",
       "type" : "WORD",
-      "point" : -1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -1,
       "status" : "HARD"
     },
     "computational" : {
       "value" : "computational",
       "translate" : "[вычислительные (мощности)]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "staggering" : {
       "value" : "staggering",
       "translate" : "[ошеломляющий]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
-    "disappointment" : {
-      "value" : "disappointment",
+    "disappointSecondToFirstment" : {
+      "value" : "disappointSecondToFirstment",
       "translate" : "[разочарование]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "introduction" : {
       "value" : "introduction",
       "translate" : "[введение]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "appearance " : {
       "value" : "appearance ",
       "translate" : "[внешний вид]",
       "type" : "WORD",
-      "point" : 8,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 8,
       "status" : "COMPLETED"
     },
     "curve" : {
       "value" : "curve",
       "translate" : "[кривая]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "messy" : {
       "value" : "messy",
       "translate" : "[грязный]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "recognize" : {
       "value" : "recognize",
       "translate" : "[узнать]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "urgent" : {
       "value" : "urgent",
       "translate" : "[срочно, срочный]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "particularly" : {
       "value" : "particularly",
       "translate" : "[особенно]",
       "type" : "WORD",
-      "point" : -2,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -2,
       "status" : "HARD"
     },
     "evaluate" : {
       "value" : "evaluate",
       "translate" : "[оценить]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "duty" : {
       "value" : "duty",
       "translate" : "[обязанность]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "occurred" : {
       "value" : "occurred",
       "translate" : "[произошло]",
       "type" : "WORD",
-      "point" : 5,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 5,
       "status" : "NORMAL"
     },
     "drudgery" : {
       "value" : "drudgery",
       "translate" : "[рутинная работа]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "unrestrained" : {
       "value" : "unrestrained",
       "translate" : "[безудержно]",
       "type" : "WORD",
-      "point" : -2,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -2,
       "status" : "HARD"
     },
     "harmful" : {
       "value" : "harmful",
       "translate" : "[вредный]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "impose" : {
       "value" : "impose",
       "translate" : "[накладывать, вводить]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "adopted" : {
       "value" : "adopted",
       "translate" : "[принят, одобрен]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "assignment" : {
       "value" : "assignment",
       "translate" : "[задание, поручение]",
       "type" : "WORD",
-      "point" : 3,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 3,
       "status" : "NORMAL"
     },
     "intent" : {
       "value" : "intent",
       "translate" : "[намерение, замысел]",
       "type" : "WORD",
-      "point" : 1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 1,
       "status" : "NORMAL"
     },
     "align" : {
       "value" : "align",
       "translate" : "[выровнять]",
       "type" : "WORD",
-      "point" : -1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -1,
       "status" : "HARD"
     },
     "conferred" : {
       "value" : "conferred",
       "translate" : "[представлен, присвоен]",
       "type" : "WORD",
-      "point" : -1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -1,
       "status" : "HARD"
     },
     "huge" : {
       "value" : "huge",
       "translate" : "[огромный]",
       "type" : "WORD",
-      "point" : -2,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -2,
       "status" : "HARD"
     },
     "fragile" : {
       "value" : "fragile",
       "translate" : "[хрупкий]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "unreliable" : {
       "value" : "unreliable",
       "translate" : "[ненадёжный]",
       "type" : "WORD",
-      "point" : -1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -1,
       "status" : "HARD"
     },
     "seem" : {
       "value" : "seem",
       "translate" : "[казаться, кажется]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "investigation " : {
       "value" : "investigation ",
       "translate" : "[расследование]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "divide" : {
       "value" : "divide",
       "translate" : "[разделять, делить]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "further" : {
       "value" : "further",
       "translate" : "[далее, дальше]",
       "type" : "WORD",
-      "point" : -1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -1,
       "status" : "HARD"
     },
     "gather" : {
       "value" : "gather",
       "translate" : "[собирать]",
       "type" : "WORD",
-      "point" : -1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -1,
       "status" : "HARD"
     },
     "compose" : {
       "value" : "compose",
       "translate" : "[сочинять]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "regardless" : {
       "value" : "regardless",
       "translate" : "[не обращая внимания]",
       "type" : "WORD",
-      "point" : -2,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -2,
       "status" : "HARD"
     },
     "eventually" : {
       "value" : "eventually",
       "translate" : "[в конце концов]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "retain" : {
       "value" : "retain",
       "translate" : "[удерживать]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "therefore" : {
       "value" : "therefore",
       "translate" : "[следовательно]",
       "type" : "WORD",
-      "point" : 5,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 5,
       "status" : "NORMAL"
     },
     "separated" : {
       "value" : "separated",
       "translate" : "[отдельный]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "exceed" : {
       "value" : "exceed",
       "translate" : "[превысить]",
       "type" : "WORD",
-      "point" : -1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -1,
       "status" : "HARD"
     },
     "bounds" : {
       "value" : "bounds",
       "translate" : "[границы]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "solution" : {
       "value" : "solution",
       "translate" : "[решение]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "altered" : {
       "value" : "altered",
       "translate" : "[изменено]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "accept" : {
       "value" : "accept",
       "translate" : "[принимать]",
       "type" : "WORD",
-      "point" : 4,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 4,
       "status" : "NORMAL"
     },
     "definition" : {
       "value" : "definition",
       "translate" : "[определение]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "shrink" : {
       "value" : "shrink",
       "translate" : "[сокращаться]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "oppose" : {
       "value" : "oppose",
       "translate" : "[выступать против, быть против]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "entirely" : {
       "value" : "entirely",
       "translate" : "[полностью]",
       "type" : "WORD",
-      "point" : 1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 1,
       "status" : "NORMAL"
     },
     "least" : {
       "value" : "least",
       "translate" : "[наименее]",
       "type" : "WORD",
-      "point" : 1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 1,
       "status" : "NORMAL"
     },
     "hindsight" : {
       "value" : "hindsight",
       "translate" : "[взгляд в прошлое]",
       "type" : "WORD",
-      "point" : -1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -1,
       "status" : "HARD"
     },
     "formed" : {
       "value" : "formed",
       "translate" : "[сформированный]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "advice" : {
       "value" : "advice",
       "translate" : "[совет]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "explain" : {
       "value" : "explain",
       "translate" : "[объяснять]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "violate" : {
       "value" : "violate",
       "translate" : "[нарушать]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "attainable" : {
       "value" : "attainable",
       "translate" : "[достижимый]",
       "type" : "WORD",
-      "point" : -1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -1,
       "status" : "HARD"
     },
     "amplifies" : {
       "value" : "amplifies",
       "translate" : "[усиливается]",
       "type" : "WORD",
-      "point" : 1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 1,
       "status" : "NORMAL"
     },
     "seldom" : {
       "value" : "seldom",
       "translate" : "[редко]",
       "type" : "WORD",
-      "point" : -1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -1,
       "status" : "HARD"
     },
     "within" : {
       "value" : "within",
       "translate" : "[в пределах]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "implied" : {
       "value" : "implied",
       "translate" : "[подразумеваемый]",
       "type" : "WORD",
-      "point" : -2,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -2,
       "status" : "HARD"
     },
     "variety" : {
       "value" : "variety",
       "translate" : "[разнообразный]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "involve" : {
       "value" : "involve",
       "translate" : "[включать в себя]",
       "type" : "WORD",
-      "point" : -2,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -2,
       "status" : "HARD"
     },
     "assemble" : {
       "value" : "assemble",
       "translate" : "[собираться]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "collocate" : {
       "value" : "collocate",
       "translate" : "[располагать]",
       "type" : "WORD",
-      "point" : 1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 1,
       "status" : "NORMAL"
     },
     "compatible" : {
       "value" : "compatible",
       "translate" : "[совместимый]",
       "type" : "WORD",
-      "point" : 1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 1,
       "status" : "NORMAL"
     },
     "such" : {
       "value" : "such",
       "translate" : "[такие]",
       "type" : "WORD",
-      "point" : 4,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 4,
       "status" : "NORMAL"
     },
     "desirable" : {
       "value" : "desirable",
       "translate" : "[желательный]",
       "type" : "WORD",
-      "point" : -3,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -3,
       "status" : "HARD"
     },
     "indeed" : {
       "value" : "indeed",
       "translate" : "[действительно]",
       "type" : "WORD",
-      "point" : -2,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -2,
       "status" : "HARD"
     },
     "putting" : {
       "value" : "putting",
       "translate" : "[толкание]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "assume" : {
       "value" : "assume",
       "translate" : "[предполагать]",
       "type" : "WORD",
-      "point" : -3,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -3,
       "status" : "HARD"
     },
     "derive" : {
       "value" : "derive",
       "translate" : "[получать, происходить, извлекать]",
       "type" : "WORD",
-      "point" : -2,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -2,
       "status" : "HARD"
     },
     "infer" : {
       "value" : "infer",
       "translate" : "[делать выводы]",
       "type" : "WORD",
-      "point" : -2,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -2,
       "status" : "HARD"
     },
     "notoriously" : {
       "value" : "notoriously",
       "translate" : "[общеизвестно]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "useless" : {
       "value" : "useless",
       "translate" : "[бесполезный]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "inhabit" : {
       "value" : "inhabit",
       "translate" : "[обитать]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "leftover" : {
       "value" : "leftover",
       "translate" : "[оставшийся]",
       "type" : "WORD",
-      "point" : -2,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -2,
       "status" : "HARD"
     },
     "neither" : {
       "value" : "neither",
       "translate" : "[ни один]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "conformance" : {
       "value" : "conformance",
       "translate" : "[соответствие]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "merely" : {
       "value" : "merely",
       "translate" : "[просто]",
       "type" : "WORD",
-      "point" : -1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -1,
       "status" : "HARD"
     },
     "against" : {
       "value" : "against",
       "translate" : "[против]",
       "type" : "WORD",
-      "point" : 1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 1,
       "status" : "NORMAL"
     },
     "aspiring" : {
       "value" : "aspiring",
       "translate" : "[стремящийся]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "toward" : {
       "value" : "toward",
       "translate" : "[к]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "division" : {
       "value" : "division",
       "translate" : "[разделение]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "perhaps" : {
       "value" : "perhaps",
       "translate" : "[возможно]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "impede" : {
       "value" : "impede",
       "translate" : "[препятствовать]",
       "type" : "WORD",
-      "point" : -5,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -5,
       "status" : "HARD"
     },
     "efficient" : {
       "value" : "efficient",
       "translate" : "[эффективный]",
       "type" : "WORD",
-      "point" : 6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 6,
       "status" : "COMPLETED"
     },
     "influence" : {
       "value" : "influence",
       "translate" : "[оказывать влияние]",
       "type" : "WORD",
-      "point" : 1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 1,
       "status" : "NORMAL"
     },
     "clarify" : {
       "value" : "clarify",
       "translate" : "[уточнять, уточнить]",
       "type" : "WORD",
-      "point" : 1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 1,
       "status" : "NORMAL"
     },
     "claim" : {
       "value" : "claim",
       "translate" : "[предъявлять претензии, утверждать]",
       "type" : "WORD",
-      "point" : -2,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -2,
       "status" : "HARD"
     },
     "establish" : {
       "value" : "establish",
       "translate" : "[устанавливать]",
       "type" : "WORD",
-      "point" : -6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -6,
       "status" : "HARD"
     },
     "apply" : {
       "value" : "apply",
       "translate" : "[применять, подавать заявление]",
       "type" : "WORD",
-      "point" : -4,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -4,
       "status" : "HARD"
     },
     "improve" : {
       "value" : "improve",
       "translate" : "[улучшать]",
       "type" : "WORD",
-      "point" : -1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -1,
       "status" : "HARD"
     },
     "prevent" : {
       "value" : "prevent",
       "translate" : "[предотвращать]",
       "type" : "WORD",
-      "point" : -1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -1,
       "status" : "HARD"
     },
     "conduct" : {
       "value" : "conduct",
       "translate" : "[проводить]",
       "type" : "WORD",
-      "point" : -5,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -5,
       "status" : "HARD"
     },
     "handle" : {
       "value" : "handle",
       "translate" : "[обращаться, справляться]",
       "type" : "WORD",
-      "point" : -2,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -2,
       "status" : "HARD"
     },
     "order" : {
       "value" : "order",
       "translate" : "[приказывать, заказ]",
       "type" : "WORD",
-      "point" : -1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -1,
       "status" : "HARD"
     },
     "engage" : {
       "value" : "engage",
       "translate" : "[входить в контакт, заниматься]",
       "type" : "WORD",
-      "point" : -4,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -4,
       "status" : "HARD"
     },
     "solve" : {
       "value" : "solve",
       "translate" : "[решать (решить) проблему или задачу]",
       "type" : "WORD",
-      "point" : 4,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 4,
       "status" : "NORMAL"
     },
     "seek" : {
       "value" : "seek",
       "translate" : "[искать]",
       "type" : "WORD",
-      "point" : 2,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 2,
       "status" : "NORMAL"
     },
     "attempt" : {
       "value" : "attempt",
       "translate" : "[пытаться]",
       "type" : "WORD",
-      "point" : -2,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -2,
       "status" : "HARD"
     },
     "launch" : {
       "value" : "launch",
       "translate" : "[запускать]",
       "type" : "WORD",
-      "point" : 3,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 3,
       "status" : "NORMAL"
     },
     "adjust" : {
       "value" : "adjust",
       "translate" : "[настраивать]",
       "type" : "WORD",
-      "point" : -2,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -2,
       "status" : "HARD"
     },
     "succeed" : {
       "value" : "succeed",
       "translate" : "[достигать цели]",
       "type" : "WORD",
-      "point" : -2,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -2,
       "status" : "HARD"
     },
     "benefit" : {
       "value" : "benefit",
       "translate" : "[получать выгоду]",
       "type" : "WORD",
-      "point" : 4,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 4,
       "status" : "NORMAL"
     },
     "supply" : {
       "value" : "supply",
       "translate" : "[обеспечивать]",
       "type" : "WORD",
-      "point" : -6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -6,
       "status" : "HARD"
     },
     "assist" : {
       "value" : "assist",
       "translate" : "[помогать]",
       "type" : "WORD",
-      "point" : 3,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 3,
       "status" : "NORMAL"
     },
     "enhance" : {
       "value" : "enhance",
       "translate" : "[улучшать]",
       "type" : "WORD",
-      "point" : -5,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -5,
       "status" : "HARD"
     },
     "implement" : {
       "value" : "implement",
       "translate" : "[выполнять, применять]",
       "type" : "WORD",
-      "point" : -3,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -3,
       "status" : "HARD"
     },
     "deserve" : {
       "value" : "deserve",
       "translate" : "[заслуживать]",
       "type" : "WORD",
-      "point" : -6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -6,
       "status" : "HARD"
     },
     "participant" : {
       "value" : "participant",
       "translate" : "[участник]",
       "type" : "WORD",
-      "point" : 4,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 4,
       "status" : "NORMAL"
     },
     "competition" : {
       "value" : "competition",
       "translate" : "[конкуренция]",
       "type" : "WORD",
-      "point" : -1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -1,
       "status" : "HARD"
     },
     "trouble" : {
       "value" : "trouble",
       "translate" : "[беда]",
       "type" : "WORD",
-      "point" : 1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 1,
       "status" : "NORMAL"
     },
     "participation" : {
       "value" : "participation",
       "translate" : "[участие]",
       "type" : "WORD",
-      "point" : 4,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 4,
       "status" : "NORMAL"
     },
     "complaint" : {
       "value" : "complaint",
       "translate" : "[жалоба]",
       "type" : "WORD",
-      "point" : -1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -1,
       "status" : "HARD"
     },
     "lack" : {
       "value" : "lack",
       "translate" : "[нехватка]",
       "type" : "WORD",
-      "point" : -6,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -6,
       "status" : "HARD"
     },
     "outcome" : {
       "value" : "outcome",
       "translate" : "[итог]",
       "type" : "WORD",
-      "point" : -3,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -3,
       "status" : "HARD"
     },
     "requirement" : {
       "value" : "requirement",
       "translate" : "[требование]",
       "type" : "WORD",
-      "point" : 4,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 4,
       "status" : "NORMAL"
     },
     "entry" : {
       "value" : "entry",
       "translate" : "[запись в журнале]",
       "type" : "WORD",
-      "point" : -5,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -5,
       "status" : "HARD"
     },
     "disorder" : {
       "value" : "disorder",
       "translate" : "[беспорядок]",
       "type" : "WORD",
-      "point" : 1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 1,
       "status" : "NORMAL"
     },
     "distribution" : {
       "value" : "distribution",
       "translate" : "[распределение, распространение]",
       "type" : "WORD",
-      "point" : -1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -1,
       "status" : "HARD"
     },
     "salary" : {
       "value" : "salary",
       "translate" : "[зарплата]",
       "type" : "WORD",
-      "point" : 4,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 4,
       "status" : "NORMAL"
     },
     "wage" : {
       "value" : "wage",
       "translate" : "[зарплата]",
       "type" : "WORD",
-      "point" : 3,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 3,
       "status" : "NORMAL"
     },
     "pay" : {
       "value" : "pay",
       "translate" : "[оплата]",
       "type" : "WORD",
-      "point" : 3,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 3,
       "status" : "NORMAL"
     },
     "deputy" : {
       "value" : "deputy",
       "translate" : "[заместитель]",
       "type" : "WORD",
-      "point" : -2,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -2,
       "status" : "HARD"
     },
     "indirectly" : {
       "value" : "indirectly",
       "translate" : "[косвенно]",
       "type" : "WORD",
-      "point" : -3,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -3,
       "status" : "HARD"
     },
     "matter" : {
       "value" : "matter",
       "translate" : "[иметь значение, материя]",
       "type" : "WORD",
-      "point" : -3,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -3,
       "status" : "HARD"
     },
     "plenty" : {
       "value" : "plenty",
       "translate" : "[множество, достаточно]",
       "type" : "WORD",
-      "point" : -3,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -3,
       "status" : "HARD"
     },
     "emit" : {
       "value" : "emit",
       "translate" : "[испускать, отправлять]",
       "type" : "WORD",
-      "point" : -1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -1,
       "status" : "HARD"
     },
     "supplier" : {
       "value" : "supplier",
       "translate" : "[поставщик]",
       "type" : "WORD",
-      "point" : 2,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 2,
       "status" : "NORMAL"
     },
     "consumer" : {
       "value" : "consumer",
       "translate" : "[потребитель]",
       "type" : "WORD",
-      "point" : -1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -1,
       "status" : "HARD"
     },
     "sufficient" : {
       "value" : "sufficient",
       "translate" : "[достаточный]",
       "type" : "WORD",
-      "point" : -2,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -2,
       "status" : "HARD"
     },
     "steadily" : {
       "value" : "steadily",
       "translate" : "[стабильно]",
       "type" : "WORD",
-      "point" : 1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 1,
       "status" : "NORMAL"
     },
     "dive" : {
       "value" : "dive",
       "translate" : "[погружаться, погружение]",
       "type" : "WORD",
-      "point" : 2,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 2,
       "status" : "NORMAL"
     },
     "endure" : {
       "value" : "endure",
       "translate" : "[терпеть, выдержать,]",
       "type" : "WORD",
-      "point" : -2,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -2,
       "status" : "HARD"
     },
     "unbearable" : {
       "value" : "unbearable",
       "translate" : "[невыносимый]",
       "type" : "WORD",
-      "point" : -2,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -2,
       "status" : "HARD"
     },
     "furthermore" : {
       "value" : "furthermore",
       "translate" : "[кроме того]",
       "type" : "WORD",
-      "point" : -2,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -2,
       "status" : "HARD"
     },
     "besides" : {
       "value" : "besides",
       "translate" : "[кроме того]",
       "type" : "WORD",
-      "point" : -3,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -3,
       "status" : "HARD"
     },
     "apart from" : {
       "value" : "apart from",
       "translate" : "[помимо]",
       "type" : "PHRASE",
-      "point" : 1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 1,
       "status" : "NORMAL"
     },
     "in addition to" : {
       "value" : "in addition to",
       "translate" : "[в дополнение к]",
       "type" : "PHRASE",
-      "point" : 1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 1,
       "status" : "NORMAL"
     },
     "in short" : {
       "value" : "in short",
       "translate" : "[вкратце]",
       "type" : "PHRASE",
-      "point" : 1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 1,
       "status" : "NORMAL"
     },
     "in summary" : {
       "value" : "in summary",
       "translate" : "[в целом]",
       "type" : "PHRASE",
-      "point" : -2,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -2,
       "status" : "HARD"
     },
     "in a nutshell" : {
       "value" : "in a nutshell",
       "translate" : "[в двух словах]",
       "type" : "PHRASE",
-      "point" : -1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -1,
       "status" : "HARD"
     },
     "in conclusion" : {
       "value" : "in conclusion",
       "translate" : "[в заключении]",
       "type" : "PHRASE",
-      "point" : 1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 1,
       "status" : "NORMAL"
     },
     "lastly" : {
       "value" : "lastly",
       "translate" : "[наконец]",
       "type" : "WORD",
-      "point" : -2,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -2,
       "status" : "HARD"
     },
     "due to" : {
       "value" : "due to",
       "translate" : "[в связи с]",
       "type" : "PHRASE",
-      "point" : -1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -1,
       "status" : "HARD"
     },
     "owning to" : {
       "value" : "owning to",
       "translate" : "[благодаря]",
       "type" : "PHRASE",
-      "point" : 1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 1,
       "status" : "NORMAL"
     },
     "consequently" : {
       "value" : "consequently",
       "translate" : "[следовательно]",
       "type" : "WORD",
-      "point" : -2,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -2,
       "status" : "HARD"
     },
     "as a result" : {
       "value" : "as a result",
       "translate" : "[в результате]",
       "type" : "PHRASE",
-      "point" : 1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 1,
       "status" : "NORMAL"
     },
     "although" : {
       "value" : "although",
       "translate" : "[хотя]",
       "type" : "WORD",
-      "point" : -2,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -2,
       "status" : "HARD"
     },
     "nevertheless" : {
       "value" : "nevertheless",
       "translate" : "[тем не менее]",
       "type" : "WORD",
-      "point" : -1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -1,
       "status" : "HARD"
     },
     "while" : {
       "value" : "while",
       "translate" : "[в то время как]",
       "type" : "WORD",
-      "point" : -1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -1,
       "status" : "HARD"
     },
     "unlike" : {
       "value" : "unlike",
       "translate" : "[в отличие от]",
       "type" : "WORD",
-      "point" : -2,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -2,
       "status" : "HARD"
     },
     "insurance" : {
       "value" : "insurance",
       "translate" : "[страхование]",
       "type" : "WORD",
-      "point" : -2,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -2,
       "status" : "HARD"
     },
     "hurry" : {
       "value" : "hurry",
       "translate" : "[торопиться]",
       "type" : "WORD",
-      "point" : 1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 1,
       "status" : "NORMAL"
     },
     "unfortunate" : {
       "value" : "unfortunate",
       "translate" : "[несчастный]",
       "type" : "WORD",
-      "point" : -2,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -2,
       "status" : "HARD"
     },
     "accommodation" : {
       "value" : "accommodation",
       "translate" : "[размещение]",
       "type" : "WORD",
-      "point" : -1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -1,
       "status" : "HARD"
     },
     "stuff" : {
       "value" : "stuff",
       "translate" : "[штука]",
       "type" : "WORD",
-      "point" : 1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 1,
       "status" : "NORMAL"
     },
     "enjoy" : {
       "value" : "enjoy",
       "translate" : "[наслаждаться]",
       "type" : "WORD",
-      "point" : 1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 1,
       "status" : "NORMAL"
     },
     "adore" : {
       "value" : "adore",
       "translate" : "[обожать]",
       "type" : "WORD",
-      "point" : -2,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -2,
       "status" : "HARD"
     },
     "I can be wrong but" : {
       "value" : "I can be wrong but",
       "translate" : "[я могу ошибаться, но]",
       "type" : "PHRASE",
-      "point" : 1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 1,
       "status" : "NORMAL"
     },
     "I tend to think" : {
       "value" : "I tend to think",
       "translate" : "[я склонен думать]",
       "type" : "PHRASE",
-      "point" : -1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -1,
       "status" : "HARD"
     },
     "I feel doubtful but " : {
       "value" : "I feel doubtful but ",
       "translate" : "[я сомневаюсь, но]",
       "type" : "PHRASE",
-      "point" : -1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -1,
       "status" : "HARD"
     },
     "As far as I know" : {
       "value" : "As far as I know",
       "translate" : "[на сколько я знаю]",
       "type" : "PHRASE",
-      "point" : 1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 1,
       "status" : "NORMAL"
     },
     "I'm quite sure" : {
       "value" : "I'm quite sure",
       "translate" : "[я совершенно уверен]",
       "type" : "PHRASE",
-      "point" : -1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -1,
       "status" : "HARD"
     },
     "I'm certain" : {
       "value" : "I'm certain",
       "translate" : "[я уверен]",
       "type" : "PHRASE",
-      "point" : 1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 1,
       "status" : "NORMAL"
     },
     "I cant stand" : {
       "value" : "I cant stand",
       "translate" : "[я терпеть не могу]",
       "type" : "PHRASE",
-      "point" : 1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 1,
       "status" : "NORMAL"
     },
     "I don’t feel like doing it" : {
       "value" : "I don’t feel like doing it",
       "translate" : "[мне не хочется делать это]",
       "type" : "PHRASE",
-      "point" : -1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -1,
       "status" : "HARD"
     },
     "I am not in the mood of doing it" : {
       "value" : "I am not in the mood of doing it",
       "translate" : "[мне не нравится делать это]",
       "type" : "PHRASE",
-      "point" : -1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -1,
       "status" : "HARD"
     },
     "I don’t mind doing it" : {
       "value" : "I don’t mind doing it",
       "translate" : "[мне всё равно]",
       "type" : "PHRASE",
-      "point" : -1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -1,
       "status" : "HARD"
     },
     "I am bot against" : {
       "value" : "I am not against",
       "translate" : "[я не против делать что-то]",
       "type" : "PHRASE",
-      "point" : 1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 1,
       "status" : "NORMAL"
     },
     "I quite like" : {
       "value" : "I quite like",
       "translate" : "[мне  нравится  (немного)]",
       "type" : "PHRASE",
-      "point" : 1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 1,
       "status" : "NORMAL"
     },
     "sedentary lifestyle" : {
       "value" : "sedentary lifestyle",
       "translate" : "[сидячий образ жизни]",
       "type" : "WORD",
-      "point" : 1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 1,
       "status" : "NORMAL"
     },
     "it's not my cup of tea" : {
       "value" : "it's not my cup of tea",
       "translate" : "[это не мое, это не для меня]",
       "type" : "PHRASE",
-      "point" : -1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -1,
       "status" : "HARD"
     },
     "to stick to a routine" : {
       "value" : "to stick to a routine",
       "translate" : "[придерживаться рутины, распорядка дня]",
       "type" : "PHRASE",
-      "point" : -1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -1,
       "status" : "HARD"
     },
     "follow a routine" : {
       "value" : "follow a routine",
       "translate" : "[придерживаться рутины, распорядка дня]",
       "type" : "PHRASE",
-      "point" : -1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -1,
       "status" : "HARD"
     },
     "constantly" : {
       "value" : "constantly",
       "translate" : "[постоянно]",
       "type" : "WORD",
-      "point" : 1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 1,
       "status" : "NORMAL"
     },
     "wide" : {
       "value" : "wide",
       "translate" : "[широкий]",
       "type" : "WORD",
-      "point" : -1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -1,
       "status" : "HARD"
     },
     "troubleshoot" : {
       "value" : "troubleshoot",
       "translate" : "[устранять неисправности]",
       "type" : "WORD",
-      "point" : -1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -1,
       "status" : "HARD"
     },
     "notion" : {
       "value" : "notion",
       "translate" : "[понятие, представление]",
       "type" : "WORD",
-      "point" : -2,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -2,
       "status" : "HARD"
     },
     "pros and cons" : {
       "value" : "pros and cons",
       "translate" : "[достоинства и недостатки]",
       "type" : "WORD",
-      "point" : -1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -1,
       "status" : "HARD"
     },
     "benefits and drawbacks" : {
       "value" : "benefits and drawbacks",
       "translate" : "[преимущества и недостатки]",
       "type" : "WORD",
-      "point" : 1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 1,
       "status" : "NORMAL"
     },
     "whilst" : {
       "value" : "whilst",
       "translate" : "[в то время как]",
       "type" : "WORD",
-      "point" : 1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 1,
       "status" : "NORMAL"
     },
     "approve" : {
       "value" : "approve",
       "translate" : "[утвердить, одобрить]",
       "type" : "WORD",
-      "point" : -2,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -2,
       "status" : "HARD"
     },
     "promise" : {
       "value" : "promise",
       "translate" : "[обещать]",
       "type" : "WORD",
-      "point" : 2,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 2,
       "status" : "NORMAL"
     },
     "self-reliant " : {
       "value" : "self-reliant ",
       "translate" : "[самодостаточный]",
       "type" : "WORD",
-      "point" : -1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -1,
       "status" : "HARD"
     },
     "curious" : {
       "value" : "curious",
       "translate" : "[любопытный]",
       "type" : "WORD",
-      "point" : 2,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 2,
       "status" : "NORMAL"
     },
     "mates" : {
       "value" : "mates",
       "translate" : "[товарищи]",
       "type" : "WORD",
-      "point" : 1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 1,
       "status" : "NORMAL"
     },
     "range" : {
       "value" : "range",
       "translate" : "[диапазон]",
       "type" : "WORD",
-      "point" : 1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 1,
       "status" : "NORMAL"
     },
     "summary" : {
       "value" : "summary",
       "translate" : "[сводка]",
       "type" : "WORD",
-      "point" : 2,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 2,
       "status" : "NORMAL"
     },
     "forbid" : {
       "value" : "forbid",
       "translate" : "[запрещать]",
       "type" : "WORD",
-      "point" : -2,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -2,
       "status" : "HARD"
     },
     "honest" : {
       "value" : "honest",
       "translate" : "[честный]",
       "type" : "WORD",
-      "point" : 2,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 2,
       "status" : "NORMAL"
     },
     "persistent" : {
       "value" : "persistent",
       "translate" : "[постоянный, устойчивый]",
       "type" : "WORD",
-      "point" : 2,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 2,
       "status" : "NORMAL"
     },
     "humble" : {
       "value" : "humble",
       "translate" : "[скромный]",
       "type" : "WORD",
-      "point" : -2,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -2,
       "status" : "HARD"
     },
     "conscientious" : {
       "value" : "conscientious",
       "translate" : "[сознательный, осознанный]",
       "type" : "WORD",
-      "point" : 1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 1,
       "status" : "NORMAL"
     },
     "set" : {
       "value" : "set",
       "translate" : "[установить]",
       "type" : "WORD",
-      "point" : 2,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 2,
       "status" : "NORMAL"
     },
     "surrounds" : {
       "value" : "surrounds",
       "translate" : "[окружение]",
       "type" : "WORD",
-      "point" : 1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 1,
       "status" : "NORMAL"
     },
     "evaluation" : {
       "value" : "evaluation",
       "translate" : "[оценка]",
       "type" : "WORD",
-      "point" : -1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -1,
       "status" : "HARD"
     },
     "comply" : {
       "value" : "comply",
       "translate" : "[соблюдать, соответствовать]",
       "type" : "WORD",
-      "point" : -2,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -2,
       "status" : "HARD"
     },
     "persist" : {
       "value" : "persist",
       "translate" : "[сохранять]",
       "type" : "WORD",
-      "point" : 1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 1,
       "status" : "NORMAL"
     },
     "precise" : {
       "value" : "precise",
       "translate" : "[точный]",
       "type" : "WORD",
-      "point" : -2,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -2,
       "status" : "HARD"
     },
     "elaborate" : {
       "value" : "elaborate",
       "translate" : "[проработанный]",
       "type" : "WORD",
-      "point" : -2,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -2,
       "status" : "HARD"
     },
     "capability" : {
       "value" : "capability",
       "translate" : "[возможность]",
       "type" : "WORD",
-      "point" : -2,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -2,
       "status" : "HARD"
     },
     "insist" : {
       "value" : "insist",
       "translate" : "[настаивать]",
       "type" : "WORD",
-      "point" : -2,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -2,
       "status" : "HARD"
     },
     "brackets" : {
       "value" : "brackets",
       "translate" : "[скобки]",
       "type" : "WORD",
-      "point" : 1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 1,
       "status" : "NORMAL"
     },
     "bold" : {
       "value" : "bold",
       "translate" : "[смелый]",
       "type" : "WORD",
-      "point" : -2,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -2,
       "status" : "HARD"
     },
     "choice" : {
       "value" : "choice",
       "translate" : "[выбор]",
       "type" : "WORD",
-      "point" : 2,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 2,
       "status" : "NORMAL"
     },
     "afford" : {
       "value" : "afford",
       "translate" : "[предоставлять]",
       "type" : "WORD",
-      "point" : -2,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -2,
       "status" : "HARD"
     },
     "activity" : {
       "value" : "activity",
       "translate" : "[деятельность]",
       "type" : "WORD",
-      "point" : 1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 1,
       "status" : "NORMAL"
     },
     "appear" : {
       "value" : "appear",
       "translate" : "[появляться]",
       "type" : "WORD",
-      "point" : -1,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : -1,
       "status" : "HARD"
     },
     "call it off" : {
       "value" : "call it off",
       "translate" : "[отменить]",
       "type" : "PHRASE",
-      "point" : 0,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 0,
       "status" : "NORMAL"
     },
     "speaking about" : {
       "value" : "speaking about",
       "translate" : "[говоря об]",
       "type" : "PHRASE",
-      "point" : 0,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 0,
       "status" : "NORMAL"
     },
     "in the long run" : {
       "value" : "in the long run",
       "translate" : "[в долгосрочной перспективе]",
       "type" : "PHRASE",
-      "point" : 0,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 0,
       "status" : "NORMAL"
     },
     "thanks to it" : {
       "value" : "thanks to it",
       "translate" : "[благодаря этому]",
       "type" : "PHRASE",
-      "point" : 0,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 0,
       "status" : "NORMAL"
     },
     "rate of" : {
       "value" : "rate of",
       "translate" : "[уровень, показатель]",
       "type" : "PHRASE",
-      "point" : 0,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 0,
       "status" : "NORMAL"
     },
     "to start with" : {
       "value" : "to start with",
       "translate" : "[Начну с]",
       "type" : "PHRASE",
-      "point" : 0,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 0,
       "status" : "NORMAL"
     },
     "completion rate of" : {
       "value" : "completion rate of",
       "translate" : "[проце]",
       "type" : "PHRASE",
-      "point" : 0,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 0,
       "status" : "NORMAL"
     },
     "leave on good terms" : {
       "value" : "leave on good terms",
       "translate" : "[уходить на хороших условиях]",
       "type" : "PHRASE",
-      "point" : 0,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 0,
       "status" : "NORMAL"
     },
     "In the beginning" : {
       "value" : "In the beginning",
       "translate" : "[в начале]",
       "type" : "PHRASE",
-      "point" : 0,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 0,
       "status" : "NORMAL"
     },
     "first of all" : {
       "value" : "first of all",
       "translate" : "[прежде всего]",
       "type" : "PHRASE",
-      "point" : 0,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 0,
       "status" : "NORMAL"
     },
     "check out" : {
       "value" : "check out",
       "translate" : "[проверить, проверять]",
       "type" : "PHRASE",
-      "point" : 0,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 0,
       "status" : "NORMAL"
     },
     "dive into" : {
       "value" : "dive into",
       "translate" : "[погружаться]",
       "type" : "PHRASE",
-      "point" : 0,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 0,
       "status" : "NORMAL"
     },
     "take advantage of something" : {
       "value" : "take advantage of something",
       "translate" : "[извлекать выгоду]",
       "type" : "PHRASE",
-      "point" : 0,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 0,
       "status" : "NORMAL"
     },
     "I am up for it" : {
       "value" : "I am up for it",
       "translate" : "[я готов к этому]",
       "type" : "PHRASE",
-      "point" : 0,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 0,
       "status" : "NORMAL"
     },
     "sort of" : {
       "value" : "sort of",
       "translate" : "[вроде]",
       "type" : "PHRASE",
-      "point" : 0,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 0,
       "status" : "NORMAL"
     },
     "assumes that" : {
       "value" : "assumes that",
       "translate" : "[предполагается что]",
       "type" : "PHRASE",
-      "point" : 0,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 0,
       "status" : "NORMAL"
     },
     "It depends on" : {
       "value" : "It depends on",
       "translate" : "[в зависимости от]",
       "type" : "PHRASE",
-      "point" : 0,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 0,
       "status" : "NORMAL"
     },
     "To save from" : {
       "value" : "To save from",
       "translate" : "[обезопасить]",
       "type" : "PHRASE",
-      "point" : 0,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 0,
       "status" : "NORMAL"
     },
     "it is obligatory to do smth" : {
       "value" : "it is obligatory to do smth",
       "translate" : "[обязательно делать что-либо]",
       "type" : "PHRASE",
-      "point" : 0,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 0,
       "status" : "NORMAL"
     },
     "ask for advice from someone" : {
       "value" : "ask for advice from someone",
       "translate" : "[попросить совета у кого-то]",
       "type" : "PHRASE",
-      "point" : 0,
+      "pointFirstToSecond": 0,
+      "pointSecondToFirst" : 0,
       "status" : "NORMAL"
     }
   }

@@ -1,37 +1,55 @@
 package com.example.memorizing.service
 
-import com.example.memorizing.entity.ECardType
-import com.example.memorizing.entity.ECardStatus
-import com.example.memorizing.entity.Card
-import com.example.memorizing.entity.Cards
+import com.example.memorizing.entity.*
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.SerializationFeature
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
-import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
 import java.io.File
 import java.io.FileInputStream
 
 @Service
-class FileService(
-    @Value("\${completed.maxPoint}")
-    private val maxPoint: Int
-) {
+class FileService {
     companion object {
-        const val FILE_NAME_FOR_NEW_WORDS = "newWords.txt"
-        const val FILE_NAME_FOR_NEW_PHRASES = "newPhrases.txt"
+        const val PREF_NEW_WORDS_FILE = "newWords"
+        const val PREF_NEW_PHRASES_FILE = "newPhrases"
+
+        const val FILE_PATH = "src/main/resources/data"
+        const val FILE_NAME_TO_SET_OF_CARDS = "setOfCards.json"
     }
 
     private val logger: Logger = LogManager.getLogger(FileService::class.java)
 
     private val mapper = ObjectMapper().configure(SerializationFeature.INDENT_OUTPUT, true)
 
+    fun getUserByUsername(username: String) {
+        loadUser(username)
+    }
+
+    private fun loadUser(username: String): User {
+        val file = File( FILE_PATH + FILE_NAME_TO_USER)
+
+        val userContainer: UserContainer
+        if (file.exists()) {
+            userContainer = mapper.readValue(file, UserContainer::class.java)
+            userContainer.users.find { it.username == username }
+        }
+
+    }
+
     init {
         loadCards()
         validateCardsStatusByPoint()
-        readCardsFromFile(FILE_NAME_FOR_NEW_WORDS)
-        readCardsFromFile(FILE_NAME_FOR_NEW_PHRASES)
+        val listOfSecondLanguages = ELanguage.getPairsOfLanguage().map {
+            if (secondLanguage != it.first) it.first else it.second
+        }
+
+        listOfSecondLanguages.forEach {
+            readCardsFromFile(PREF_NEW_WORDS_FILE, it)
+            readCardsFromFile(PREF_NEW_PHRASES_FILE, it)
+        }
+        
     }
 
     fun saveCards() {
@@ -49,11 +67,13 @@ class FileService(
         saveCards()
     }
 
-    private fun readCardsFromFile(fileName: String) {
+    private fun readCardsFromFile(pref: String, firstLanguage: ELanguage) {
+        val fileName = pref + "${firstLanguage.name}_${secondLanguage.name}"
+
         val file = File(fileName)
         if (!file.exists()) {
             file.createNewFile()
-            logger.info("Create $fileName")
+            logger.info("Create ${file.name}")
             return
         }
 
@@ -61,9 +81,9 @@ class FileService(
         FileInputStream(file).bufferedReader().forEachLine { newCards.add(it) }
 
         val newMapOfCards = mutableMapOf<String, Card>()
-        val cardType: ECardType = when (fileName) {
-            FILE_NAME_FOR_NEW_WORDS -> ECardType.WORD
-            FILE_NAME_FOR_NEW_PHRASES -> ECardType.PHRASE
+        val cardType: ECardType = when (pref) {
+            PREF_NEW_WORDS_FILE -> ECardType.WORD
+            PREF_NEW_PHRASES_FILE -> ECardType.PHRASE
             else -> return
         }
 
@@ -75,8 +95,9 @@ class FileService(
         if (newMapOfCards.isNotEmpty()) {
             var amountOfAddingCard = 0
             newMapOfCards.forEach {
-                if (!Cards.mapOfCards.keys.contains(it.key)) {
-                    Cards.mapOfCards[it.key] = it.value
+                val cards = getCardsByFirstLanguage(firstLanguage)
+                if (!cards.keys.contains(it.key)) {
+                    cards[it.key] = it.value
                     amountOfAddingCard++
                 }
             }
@@ -89,12 +110,24 @@ class FileService(
     }
 
     private fun validateCardsStatusByPoint() {
-        Cards.mapOfCards.forEach {
-            val card = it.value
-            if (card.point < 0 && card.status != ECardStatus.HARD) it.value.status = ECardStatus.HARD
-            if (card.point in 0 .. maxPoint && card.status != ECardStatus.NORMAL) it.value.status = ECardStatus.NORMAL
-            if (card.point > maxPoint && card.status != ECardStatus.COMPLETED) it.value.status = ECardStatus.COMPLETED
+        Cards.listOfCardsByELanguageType.forEach {
+            it.mapOfCards.forEach {card ->
+                if (card.point < 0 && card.status != ECardStatus.HARD) it.value.status = ECardStatus.HARD
+                if (card.point in 0 .. maxPoint && card.status != ECardStatus.NORMAL) it.value.status = ECardStatus.NORMAL
+                if (card.point > maxPoint && card.status != ECardStatus.COMPLETED) it.value.status = ECardStatus.COMPLETED
+            }
         }
+
         saveCards()
     }
+
+    fun getCardsByFirstLanguage(firstLanguage: ELanguage): MutableMap<String, Card> {
+        val languageCards =
+            Cards.listOfCardsByELanguageType.find { it.languageType.first == firstLanguage } ?: throw Exception("d")
+
+        return languageCards.mapOfCards
+    }
+
+
+
 }

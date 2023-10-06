@@ -1,18 +1,10 @@
 package com.example.memorizing.entity
 
-import com.fasterxml.jackson.annotation.JsonProperty
-
-class Card(
-    @get:JsonProperty
+data class Card(
     var value: String = "",
-    @get:JsonProperty
     var translate: String = "",
-    @get:JsonProperty
     var type: ECardType = ECardType.UNKNOWN,
-    @get:JsonProperty
-    var point: Int = 0,
-    @get:JsonProperty
+    var pointToNative: Int = 0,
+    var pointFromNative: Int = 0,
     var status: ECardStatus = ECardStatus.NORMAL
 )
-//[решать (решить) проблему или задачу] [самодостаточный]
-

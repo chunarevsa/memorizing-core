@@ -5,13 +5,9 @@ import com.fasterxml.jackson.annotation.JsonProperty
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 object Cards {
-    @get:JsonProperty
-    val mapOfCards = mutableMapOf<String, Card>()
+
+    val listOfCardsByELanguageType = mutableListOf<LanguageCards>()
 
     @get:JsonProperty
     val fileName = "cards.json"
-
-    override fun toString(): String {
-        return "Cards(mapOfCards=$mapOfCards)"
-    }
 }
