@@ -191,6 +191,9 @@ class LocalController(
                 in 1..setOfPairLanguage.size  -> setOfPairLanguage.elementAt(input!!.minus(1))
                 else -> {
                     println("I don't understand you")
+                    println("Choose languages")
+                    setOfPairLanguage.forEachIndexed { index, pair -> print("${index + 1} - ${pair.first}_${pair.second}; ") }
+                    println("0 - exit;")
                     continue
                 }
             }
@@ -209,6 +212,9 @@ class LocalController(
                 in 1..ECardType.values().size + 1 -> ECardType.values().elementAt(input!!.minus(1))
                 else -> {
                     logger.info("I don't understand you")
+                    println("What do you want to learn?")
+                    ECardType.values().forEachIndexed { index, cardType -> print("${index + 1} - ${cardType.name}; ") }
+                    println("0 - exit;")
                     continue
                 }
             }
