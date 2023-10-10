@@ -1,0 +1,358 @@
+substitutable	заменяемый
+agenda	повестка дня
+embrace	охватить, принять
+matter	иметь значение
+enhance	увеличить, повысить
+encourage	поощрять
+implications	последствия
+engagement	вовлеченность
+regardless	независимо от
+extension	расширение
+rapid	быстрый
+term	термин, понятие, срок, период
+bottleneck	узкое места
+comprehensive	комплексный, всеобъемлющий
+explore	изучить
+facilitate	облегчить, содействовать
+workshop	семинар, мастер-класс
+disrupting	нарушая
+misconception	заблуждение
+concerned	озабоченный, обеспокоенный
+constantly	постоянно
+wide	широкий
+troubleshoot	устранять неисправности
+notion	понятие, представление
+pros and cons	достоинства и недостатки
+benefits and drawbacks	преимущества и недостатки
+whilst	в то время как
+approve	утвердить, одобрить
+promise	обещать
+self-reliant 	самодостаточный
+curious	любопытный
+mates	товарищи
+range	диапазон
+summary	сводка
+forbid	запрещать
+honest	честный
+persistent	постоянный, устойчивый
+humble	скромный
+conscientious	сознательный, осознанный
+set	установить
+surrounds	окружение
+evaluation	оценка
+launch	запустить
+handle	управлять, справляться
+comply	соблюдать, соответствовать
+persist	сохранять
+precise	точный
+elaborate	проработанный
+capability	возможность
+insist	настаивать
+brackets	скобки
+bold	смелый
+choice	выбор
+afford	предоставлять
+activity	деятельность
+appear	появляться
+sedentary lifestyle	сидячий образ жизни
+enjoy	наслаждаться
+adore	обожать
+insurance	страхование
+hurry	торопиться
+unfortunate	несчастный
+accommodation	размещение
+stuff	штука
+emit	испускать, отправлять
+supplier	поставщик
+consumer	потребитель
+sufficient	достаточный
+steadily	стабильно
+dive	погружаться, погружение
+endure	терпеть, выдержать,
+unbearable	невыносимый
+furthermore	кроме того
+besides	кроме того
+lastly	наконец
+consequently	следовательно
+although	хотя
+nevertheless	тем не менее
+while	в то время как
+unlike	в отличие от
+considered	считается
+truly	действительно
+mean	означать
+simplify	упрощать
+maintenance 	обслуживание
+behavior	поведение
+each	каждый
+necessary	необходимо, необходимый
+acquire	приобретать
+reusability	возможность переиспользовать
+perform	выполнять
+convince	убедить, убеждать
+achieve	добиться, добиваться
+binding (or wrapping) code	связывание (обёртывание) кода
+refer	ссылаться
+arise	возникнуть, возникать
+weaker	слабее
+coupling	сокрытие
+cohesion	связанность
+however	однако
+relationship	отношение
+advantage	преимущество
+grow	расти
+whereas	в то время как
+accessed	доступно
+except	кроме
+dispatch	отправка
+suggest	предлагать
+according	согласно
+erroneous	ошибочный
+less	меньше
+spent	тратить
+appropriate	подходящий
+snippet	фрагмент
+multiple	множество
+avoid	избегать
+digits	цифры
+tangible and intangible	материальный и не материальный
+via	через
+common	общий
+nested	вложенный
+allocate	выделять
+expose	раскрыть, выставить
+approach	подход
+previous	предыдущий
+through	через
+invoke	вызывать
+similar	аналогичный
+available	доступный
+explicitly and implicitly	явный и не явный
+distinct	отдельный
+arrange	организовать
+assigning	назначить, назначение, присвоение
+purpose	цель
+members	члены
+mentioned	упоминание
+belong	принадлежать
+rather	скорее всего, довольно
+restriction	ограничение
+pass	пройти
+distinguish	различать
+statement	заявление
+moreover	более того
+otherwise	иначе
+meaningful	значимый
+ambiguity	двусмысленность
+occur	происходить
+bound 	связанный, связанно
+explanation	пояснение
+thus	таким образом
+hence	следовательно
+actually	на самом деле
+deduce	сделать выводы
+exacerbate	усугублять
+allow	позволять
+suppose	предполагать
+comprises	включает в себя
+diverse	разнообразный
+equipped	оборудован
+stare	уставиться, пялиться
+intently	внимательно
+essential	существенный
+hiring	наём
+article	статья
+encounter	встреча
+commitment	обязательство
+supplement	дополнение
+prospect	перспектива
+complicated	сложный
+proprietary	собственная
+contribute	вносить вклад
+immediately	немедленно
+proficient	опытный
+passionate	страстный, страстно, страсть
+desire	желание
+engaged	задействован, занят, занято
+properly	правильно
+define	определить
+ensure	обеспечить
+oversight	надзор
+reason	причина
+opportunity	возможность
+preparing	подготовка
+opinion	мнение
+predictable	предсказуемый, прогнозируемый
+prepare	подготовить
+provide	предоставлять, обеспечивать
+exactly	именно
+additional	дополнительный, дополнительно
+vast	обширный
+fulfill	выполнять, выполнить
+hardware	оборудование
+warm up	разминка
+biased data	необъективные данные
+considerations	мнения, соображения
+impacting	влияющие, воздействие
+consequences	последствия
+broader 	масштабные
+obvious	очевидно
+reveal	раскрыть, раскрывать, показать
+appeal	обращение
+defies	бросает вызов
+either	либо
+belief	убеждение, вера
+improbable	невероятный
+magnificent 	великолепный
+mundane	обыденный
+sense	 смысл, чувство
+particular	конкретный
+emphasize	подчеркнуть
+appreciate	ценить, оценить, оценивать
+care	забота, обслуживание
+bandwidth	пропускная способность
+harsh	суровый, жесткий
+performance	производительность, исполнение
+forces	силы
+quantities	количества, объемы, величины
+effort	усилия
+measure	измерять
+determine	определять
+rather	скорее
+flow	поток, течение
+lead	приводит, приводить
+significant	значительный
+predicting	прогноз, предсказание, предсказывание
+rigidity	жесткость, прочность
+eliminate	исключить, устранить
+guess	угадать
+preserve	сохранить, сохранять
+operate	управлять
+journey	путешествие, поездка
+observation	наблюдение, обзор
+arrogant	высокомерный
+startling	поразительный
+conclusion	вывод, заключение
+consider	учитывать
+computational	вычислительные (мощности)
+staggering	ошеломляющий
+disappointment	разочарование
+introduction	введение
+appearance 	внешний вид
+curve	кривая
+messy	грязный
+recognize	узнать
+urgent	срочно, срочный
+particularly	особенно
+evaluate	оценить
+duty	обязанность
+occurred	произошло
+drudgery	рутинная работа
+unrestrained	безудержно
+harmful	вредный
+impose	накладывать, вводить
+adopted	принят, одобрен
+assignment	задание, поручение
+intent	намерение, замысел
+align	выровнять
+conferred	представлен, присвоен
+huge	огромный
+fragile	хрупкий
+unreliable	ненадёжный
+seem	казаться, кажется
+investigation 	расследование
+divide	разделять, делить
+further	далее, дальше
+gather	собирать
+compose	сочинять
+eventually	в конце концов
+retain	удерживать
+therefore	следовательно
+separated	отдельный
+exceed	превысить
+bounds	границы
+solution	решение
+altered	изменено
+accept	принимать
+definition	определение
+shrink	сокращаться
+oppose	выступать против, быть против
+entirely	полностью
+least	наименее
+hindsight	взгляд в прошлое
+formed	сформированный
+advice	совет
+explain	объяснять
+violate	нарушать
+attainable	достижимый
+amplifies	усиливается
+seldom	редко
+within	в пределах
+implied	подразумеваемый
+variety	разнообразный
+involve	включать в себя
+ assemble	собираться
+collocate	располагать
+compatible	совместимый
+such	такие
+desirable	желательный
+indeed	действительно
+putting	толкание
+assume	предполагать
+derive	получать, происходить, извлекать
+infer	делать выводы
+notoriously	общеизвестно
+useless	бесполезный
+inhabit	обитать
+leftover	оставшийся
+neither	ни один
+conformance	соответствие
+merely	просто
+against	против
+aspiring	стремящийся
+toward	к
+division	разделение
+perhaps	возможно
+impede	препятствовать
+efficient	эффективный
+influence	оказывать влияние
+clarify	уточнять, уточнить
+claim	предъявлять претензии, утверждать
+establish	устанавливать
+apply	применять, подавать заявление
+improve	улучшать
+prevent	предотвращать
+conduct	проводить
+handle	обращаться, справляться
+order	приказывать, заказ
+engage	входить в контакт, заниматься
+solve	решать (решить) проблему или задачу
+seek	искать
+attempt	пытаться
+launch	запускать
+adjust	настраивать
+succeed	достигать цели
+benefit	получать выгоду
+supply	обеспечивать
+assist	помогать
+enhance	улучшать
+implement	выполнять, применять
+deserve	заслуживать
+participant	участник
+competition	конкуренция
+trouble	беда
+participation	участие
+complaint	жалоба
+lack	нехватка
+outcome	итог
+requirement	требование
+entry	запись в журнале
+disorder	беспорядок
+distribution	распределение, распространение
+salary	зарплата
+wage	зарплата
+pay	оплата
+deputy	заместитель
+indirectly	косвенно
+matter	иметь значение, материя
+plenty	множество, достаточно
