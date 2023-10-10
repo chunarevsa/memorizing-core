@@ -2,9 +2,8 @@ package com.example.memorizing.repository
 
 import com.example.memorizing.entity.User
 
-
 interface UserRepository {
-
-    fun getUserByUsername(username: String): User
-
+    fun findUserByUsername(username: String): User?
+    fun addUser(user: User)
+    fun saveUser(user: User)
 }

@@ -1,4 +1,4 @@
-package com.example.memorizing.service
+package com.example.memorizing.controller
 
 import com.example.memorizing.entity.Card
 

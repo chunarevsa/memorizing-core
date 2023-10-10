@@ -1,8 +1,16 @@
 package com.example.memorizing.entity
 
+import com.fasterxml.jackson.annotation.JsonProperty
+
 data class User(
-    val username: String,
+    @JsonProperty
+    val username: String? = null,
     // settings
-    val nativeLanguage: ELanguage,
+    @JsonProperty
+    val nativeLanguage: ELanguage? = null,
+    @JsonProperty
     var maxPoint: Int = 5
-)
+) {
+    @JsonProperty
+    val rootOfSetIds = mutableSetOf<String>()
+}

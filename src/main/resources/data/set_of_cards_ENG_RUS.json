@@ -1,0 +1,33 @@
+{
+  "pair" : [ "ENG", "RUS" ],
+  "id" : "687cde99-7c71-40e8-9690-8cd43db58955",
+  "mapOfCards" : {
+    "substitutable" : {
+      "value" : "substitutable",
+      "translate" : "[заменяемый]",
+      "type" : "WORD",
+      "pointToNative" : -2,
+      "pointFromNative" : -2,
+      "statusToNative" : "HARD",
+      "statusFromNative" : "HARD"
+    },
+    "agenda" : {
+      "value" : "agenda",
+      "translate" : "[повестка дня]",
+      "type" : "WORD",
+      "pointToNative" : 2,
+      "pointFromNative" : -1,
+      "statusToNative" : "NORMAL",
+      "statusFromNative" : "HARD"
+    },
+    "embrace" : {
+      "value" : "embrace",
+      "translate" : "[охватить, принять]",
+      "type" : "WORD",
+      "pointToNative" : -2,
+      "pointFromNative" : -2,
+      "statusToNative" : "HARD",
+      "statusFromNative" : "HARD"
+    }
+  }
+}

@@ -1,18 +1,15 @@
 package com.example.memorizing.controller
 
-import com.example.memorizing.entity.Card
-import com.example.memorizing.entity.ECardStatus
-import com.example.memorizing.entity.ECardType
-import com.example.memorizing.entity.ELanguage
+import com.example.memorizing.entity.*
 import com.example.memorizing.repository.UserRepository
 import com.example.memorizing.service.CardService
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
 import org.springframework.boot.context.event.ApplicationReadyEvent
 import org.springframework.context.event.EventListener
-import org.springframework.stereotype.Controller
+import org.springframework.stereotype.Service
 
-@Controller
+@Service
 class LocalController(
     private val userRepository: UserRepository,
     private val cardService: CardService,
@@ -22,13 +19,30 @@ class LocalController(
 
     @EventListener(ApplicationReadyEvent::class)
     fun startLoopAfterStarting() {
+        val user: User = userRepository.findUserByUsername("Sergei") ?: run {
+            userRepository.addUser(User("Sergei", ELanguage.RUS))
+            userRepository.findUserByUsername("Sergei")!!
+        }
+
+        val rootOfSets: RootOfSets = if (user.rootOfSetIds.isNotEmpty()) {
+            cardService.getRootOfSets(user.rootOfSetIds.first())!!
+        } else {
+            val rootOfSetsId = cardService.createRootOfSet(user.username!!)
+            user.rootOfSetIds.add(rootOfSetsId)
+            userRepository.saveUser(user)
+            cardService.getRootOfSets(rootOfSetsId)!!
+        }
+
+        if (rootOfSets.setOfCardsIds.isEmpty()) {
+            rootOfSets.setOfCardsIds.add(cardService.createSetOfCards(ELanguage.ENG, user.nativeLanguage!!))
+            rootOfSets.setOfCardsIds.add(cardService.createSetOfCards(ELanguage.DEU, user.nativeLanguage))
+            cardService.saveRootOfSets(rootOfSets)
+        }
+
+        val listOfSetOfCards: List<SetOfCards> = cardService.getListOfSetOfCards(user.rootOfSetIds)
+        val setOfPairLanguage: Set<Pair<ELanguage, ELanguage>> = listOfSetOfCards.map { it.pair!! }.toSet()
+
         logger.info("START")
-
-        val username = "Sergey"
-        val user = userRepository.getUserByUsername(username)
-        val listOfSetOfCards = cardService.getSetOfCardsByUsername(user.username)
-        val setOfPairLanguage: Set<Pair<ELanguage, ELanguage>> = listOfSetOfCards.map { it.pair }.toSet()
-
         while (true) {
             val pairOfLanguage: Pair<ELanguage, ELanguage> = choosePairOfLanguage(setOfPairLanguage) ?: break
             if (pairOfLanguage.second != user.nativeLanguage) throw Exception("wrong pair of languages in setOfPairLanguage")
@@ -37,7 +51,7 @@ class LocalController(
             val setOfCards = listOfSetOfCards.find { it.pair == pairOfLanguage } ?: throw Exception("not found")
 
             val mapOfCards = setOfCards.mapOfCards.filter { it.value.type == cardType }.toMutableMap()
-            showStatistic(mapOfCards, cardType.typeName)
+            showStatistic(mapOfCards, cardType.name)
 
             val chooseMode = chooseMode(pairOfLanguage, cardType) ?: continue
 
@@ -45,7 +59,6 @@ class LocalController(
                 chooseMode.first != null && chooseMode.second != null -> startTestLoop(
                     mapOfCards,
                     chooseMode.first!!,
-                    chooseMode.second!!,
                     setOfCards.id,
                     user.maxPoint
                 )
@@ -55,7 +68,6 @@ class LocalController(
                 )
                 chooseMode.first == null && chooseMode.second == null -> showObjectsStatistic(mapOfCards, cardType)
             }
-
         }
 
         logger.error("END")
@@ -64,12 +76,11 @@ class LocalController(
     private fun startTestLoop(
         mapOfCards: MutableMap<String, Card>,
         translateToNative: Boolean,
-        cardStatus: ECardStatus,
-        setOfCardsId: Int,
+        setOfCardsId: String,
         userMaxPoint: Int
     ) {
         var countMistake = 0
-        var savedCards = 0
+        var correctAnswer = 0
         var completedCards = 0
 
         val listOfPairs = mapOfCards.map { (key, value) ->
@@ -77,67 +88,34 @@ class LocalController(
         }
 
         listOfPairs.forEach {
-            println("${it.first}:")
+            print("${it.first}:")
             val input = readln()
             if (input == "0") return
 
             val card =
                 if (translateToNative) mapOfCards[it.first] else mapOfCards[it.second] ?: throw Exception("not found")
 
-            val isCorrectUserValue = cardService.checkCard(card!!, setOfCardsId, input, translateToNative, userMaxPoint)
+            val isCorrect = cardService.checkCard(card!!, setOfCardsId, input, translateToNative, userMaxPoint)
+            if (isCorrect) {
+                val point = if (translateToNative) card.pointToNative else card.pointFromNative
 
-
-        }
-
-        val keys = mapOfCards.keys
-
-        // Сделать через HashMap (какой язык такой и ключ)
-        //
-        // Поиск и изменение сделать зависимым от типа языка
-
-        keys.forEach {
-            print("${it}:")
-
-            val input = readln()
-            if (input == "0") return
-
-            val card = getCardsByLanguageType(languageType)[it]
-
-            if (card!!.translate.contains(input)) {
-                // correct answer
-                if (card.status == ECardStatus.HARD) {
-                    card.status = ECardStatus.NORMAL
-                    card.pointFromNative = 0
-                    savedCards++
-                }
-                if (card.pointFromNative >= maxPoint) {
-                    card.pointFromNative = card.pointFromNative + 1
-                    card.status = ECardStatus.COMPLETED
+                if (point >= userMaxPoint - 1) {
                     println("You learn this ${card.type.name}!")
                     completedCards++
-                } else {
-                    card.pointFromNative = card.pointFromNative + 1
-                    print("${card.translate}:${card.pointFromNative}")
-                    println()
                 }
-                fileService.saveCards()
-            } else {
-                // wrong answer
-                if (card.status == ECardStatus.HARD) {
-                    card.pointFromNative = card.pointFromNative - 1
-                } else card.pointFromNative = -1
+                correctAnswer++
 
-                card.status = ECardStatus.HARD
-                fileService.saveCards()
+            } else {
+                print("${it.first}:${it.second}")
+                println()
                 countMistake++
-                println("Opss! Wrong!")
-                println("${card.value}:${card.translate}:${card.pointFromNative}")
             }
+
         }
 
-        println("Common count:          ${keys.size}")
+        println("Common count:          ${listOfPairs.size}")
         println("Amount of mistakes:    $countMistake")
-        println("Amount of saved:       $savedCards")
+        println("Amount of correct:     $correctAnswer")
         println("Amount of completed:   $completedCards")
     }
 
@@ -157,11 +135,13 @@ class LocalController(
         // If choose NORMAL, we return HARD + NORMAL
         when (status) {
             ECardStatus.HARD -> {
-                mapOfCards.forEach { if (it.value.status == ECardStatus.HARD) keys.add(it.key) }
+                mapOfCards.forEach { if (it.value.statusFromNative == ECardStatus.HARD) keys.add(it.key) }
             }
             ECardStatus.NORMAL -> {
                 mapOfCards.forEach {
-                    if (it.value.status == ECardStatus.HARD || it.value.status == ECardStatus.NORMAL) keys.add(it.key)
+                    if (it.value.statusFromNative == ECardStatus.HARD || it.value.statusFromNative == ECardStatus.NORMAL) keys.add(
+                        it.key
+                    )
                 }
             }
             else -> {}
@@ -176,7 +156,7 @@ class LocalController(
 
         println("Studying:  5 - all;                6 - only hard;")
 
-        println("Statistics:7 - show ${cardType.typeName}s sorted by count")
+        println("Statistics:7 - show ${cardType.name}s sorted by count")
 
         println("0 - exit")
         print("Which type do you select?:")
@@ -201,16 +181,16 @@ class LocalController(
     }
 
     private fun choosePairOfLanguage(setOfPairLanguage: Set<Pair<ELanguage, ELanguage>>): Pair<ELanguage, ELanguage>? {
-        println("Choose languages?")
-        setOfPairLanguage.forEachIndexed { index, pair -> println("${index + 1} - ${pair.first}_${pair.second}; ") }
-        print("0 - exit;")
+        println("Choose languages")
+        setOfPairLanguage.forEachIndexed { index, pair -> print("${index + 1} - ${pair.first}_${pair.second}; ") }
+        println("0 - exit;")
 
         do {
             return when (val input = readLine()?.toInt()) {
                 0 -> null
-                in setOfPairLanguage.indices + 1 -> setOfPairLanguage.elementAt(input!!.minus(1))
+                in 1..setOfPairLanguage.size  -> setOfPairLanguage.elementAt(input!!.minus(1))
                 else -> {
-                    logger.info("I don't understand you")
+                    println("I don't understand you")
                     continue
                 }
             }
@@ -220,13 +200,13 @@ class LocalController(
 
     private fun chooseCardTypeOrSetLanguageOrContinue(): ECardType? {
         println("What do you want to learn?")
-        ECardType.values().forEachIndexed { index, cardType -> println("${index + 1} - ${cardType.typeName}; ") }
-        print("0 - exit;")
+        ECardType.values().forEachIndexed { index, cardType -> print("${index + 1} - ${cardType.name}; ") }
+        println("0 - exit;")
 
         do {
             return when (val input = readLine()?.toInt()) {
                 0 -> null
-                in ECardType.values().indices + 1 -> ECardType.values().elementAt(input!!.minus(1))
+                in 1..ECardType.values().size + 1 -> ECardType.values().elementAt(input!!.minus(1))
                 else -> {
                     logger.info("I don't understand you")
                     continue
@@ -239,17 +219,17 @@ class LocalController(
         println("--- Statistics ---")
         println("${cardTypeName}s: ${mapOfCards.size}")
         var countCompleted = 0
-        mapOfCards.forEach { if (it.value.status == ECardStatus.COMPLETED) countCompleted++ }
+        mapOfCards.forEach { if (it.value.statusFromNative == ECardStatus.COMPLETED) countCompleted++ }
         println("Completed ${cardTypeName}s: $countCompleted ")
 
         var countHard = 0
-        mapOfCards.forEach { if (it.value.status == ECardStatus.HARD) countHard++ }
+        mapOfCards.forEach { if (it.value.statusFromNative == ECardStatus.HARD) countHard++ }
         println("Hard ${cardTypeName}s: $countHard ")
     }
 
     private fun showObjectsStatistic(mapOfCards: MutableMap<String, Card>, cardType: ECardType) {
         mapOfCards.values.sortedByDescending { it.pointFromNative }.forEach {
-            if (it.type == cardType) println("${it.value}:${it.translate}:${it.pointFromNative}:${it.status}")
+            if (it.type == cardType) println("${it.value}:${it.translate}:${it.pointFromNative}:${it.statusFromNative}")
         }
     }
 }
