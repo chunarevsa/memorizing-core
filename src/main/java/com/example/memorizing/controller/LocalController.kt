@@ -44,48 +44,64 @@ class LocalController(
 
         logger.info("START")
         while (true) {
+            println()
             val pairOfLanguage: Pair<ELanguage, ELanguage> = choosePairOfLanguage(setOfPairLanguage) ?: break
             if (pairOfLanguage.second != user.nativeLanguage) throw Exception("wrong pair of languages in setOfPairLanguage")
 
             val cardType: ECardType = chooseCardTypeOrSetLanguageOrContinue() ?: continue
             val setOfCards = listOfSetOfCards.find { it.pair == pairOfLanguage } ?: throw Exception("not found")
 
-            val mapOfCards = setOfCards.mapOfCards.filter { it.value.type == cardType }.toMutableMap()
-            showStatistic(mapOfCards, cardType.name)
+            var mapOfCards = setOfCards.mapOfCards.filter { it.value.type == cardType }.toMutableMap()
+            showShortStatisticByCardType(mapOfCards, cardType.name)
 
-            val chooseMode = chooseMode(pairOfLanguage, cardType) ?: continue
+            val chosenMode = chooseMode(pairOfLanguage, cardType.name) ?: continue
+            mapOfCards = filterMapOfCardsByMode(mapOfCards, chosenMode)
 
-            when {
-                chooseMode.first != null && chooseMode.second != null -> startTestLoop(
-                    mapOfCards,
-                    chooseMode.first!!,
-                    setOfCards.id,
-                    user.maxPoint
+            when (chosenMode.modeType) {
+                EModeType.TESTING -> startTestLoop(
+                    mapOfCards, chosenMode.translateToNative!!, setOfCards.id, user.maxPoint
                 )
-                chooseMode.first == null && chooseMode.second != null -> startStudyingLoop(
-                    mapOfCards,
-                    chooseMode.second!!
-                )
-                chooseMode.first == null && chooseMode.second == null -> showObjectsStatistic(mapOfCards, cardType)
+                EModeType.STUDYING -> startStudyingLoop(mapOfCards, chosenMode.translateToNative!!)
+                EModeType.SHOW_STATISTICS -> showObjectsStatistic(mapOfCards)
             }
+            println()
         }
 
         logger.error("END")
     }
 
+    private fun filterMapOfCardsByMode(
+        mapOfCards: MutableMap<String, Card>, chosenMode: Mode
+    ): MutableMap<String, Card> {
+        return when (chosenMode.modeType) {
+            EModeType.TESTING -> {
+                if (chosenMode.translateToNative!!) {
+                    mapOfCards.filter { chosenMode.listOfCardStatus.contains(it.value.statusToNative) }.toMutableMap()
+                } else mapOfCards.filter { chosenMode.listOfCardStatus.contains(it.value.statusFromNative) }
+                    .toMutableMap()
+            }
+            EModeType.STUDYING -> {
+                if (chosenMode.translateToNative == null) mapOfCards else {
+                    if (chosenMode.translateToNative) {
+                        mapOfCards.filter { chosenMode.listOfCardStatus.contains(it.value.statusToNative) }
+                            .toMutableMap()
+                    } else mapOfCards.filter { chosenMode.listOfCardStatus.contains(it.value.statusFromNative) }
+                        .toMutableMap()
+                }
+            }
+            EModeType.SHOW_STATISTICS -> mapOfCards
+        }
+
+    }
+
     private fun startTestLoop(
-        mapOfCards: MutableMap<String, Card>,
-        translateToNative: Boolean,
-        setOfCardsId: String,
-        userMaxPoint: Int
+        mapOfCards: MutableMap<String, Card>, translateToNative: Boolean, setOfCardsId: String, userMaxPoint: Int
     ) {
         var countMistake = 0
         var correctAnswer = 0
         var completedCards = 0
 
-        val listOfPairs = mapOfCards.map { (key, value) ->
-            if (translateToNative) key to value.translate else value.translate to key
-        }
+        val listOfPairs = getKeysListOfPairsWithKeyAndValue(mapOfCards, translateToNative)
 
         listOfPairs.forEach {
             print("${it.first}:")
@@ -119,61 +135,46 @@ class LocalController(
         println("Amount of completed:   $completedCards")
     }
 
-    private fun startStudyingLoop(mapOfCards: MutableMap<String, Card>, status: ECardStatus) {
-        getKeysByStatusAndCardType(mapOfCards, status).forEach {
-            print("${it}:${mapOfCards[it]!!.translate}")
-            readln()
+    private fun startStudyingLoop(mapOfCards: MutableMap<String, Card>, translateToNative: Boolean) {
+        getKeysListOfPairsWithKeyAndValue(mapOfCards, translateToNative).forEach {
+            print("${it.first}:${it.second}")
+            val input = readln()
+            if (input == "0") return
         }
     }
 
-    private fun getKeysByStatusAndCardType(
+    private fun getKeysListOfPairsWithKeyAndValue(
         mapOfCards: MutableMap<String, Card>,
-        status: ECardStatus
-    ): MutableList<String> {
-        val keys = mutableListOf<String>()
+        translateToNative: Boolean
+    ): List<Pair<String, String>> = mapOfCards.map { (key, value) ->
+        if (translateToNative) key to value.translate else value.translate to key
+    }.run { if (random) this.shuffled() else this }
 
-        // If choose NORMAL, we return HARD + NORMAL
-        when (status) {
-            ECardStatus.HARD -> {
-                mapOfCards.forEach { if (it.value.statusFromNative == ECardStatus.HARD) keys.add(it.key) }
-            }
-            ECardStatus.NORMAL -> {
-                mapOfCards.forEach {
-                    if (it.value.statusFromNative == ECardStatus.HARD || it.value.statusFromNative == ECardStatus.NORMAL) keys.add(
-                        it.key
-                    )
-                }
-            }
-            else -> {}
-        }
 
-        return if (random) keys.shuffled().toMutableList() else keys
-    }
+    private fun chooseMode(languages: Pair<ELanguage, ELanguage>, cardTypeName: String): Mode? {
+        val to = "${languages.first}/${languages.second}"
+        val from = "${languages.second}/${languages.first}"
 
-    private fun chooseMode(languages: Pair<ELanguage, ELanguage>, cardType: ECardType): Pair<Boolean?, ECardStatus?>? {
-        println("TEST:      1 - all ${languages.second}/${languages.first};         3 - all ${languages.first}/${languages.second}  ")
-        println("TEST:      2 - only hard ${languages.second}/${languages.first};   4 - only hard ${languages.first}/${languages.second};")
-
-        println("Studying:  5 - all;                6 - only hard;")
-
-        println("Statistics:7 - show ${cardType.name}s sorted by count")
-
-        println("0 - exit")
-        print("Which type do you select?:")
-
-        // TODO: Второй всегда native
         do {
+            println("Which mode do you want?:")
+            println("TEST:      1 - all $from;         3 - all $to;")
+            println("TEST:      2 - only hard $from;   4 - only hard $to;")
+            println("Studying:  5 - all;  6 - only hard $from; 7 - only hard $to;")
+            println("Statistics:8 - show ${cardTypeName.lowercase()}s sorted by count")
+            println("0 - exit")
+
             return when (readLine()?.toInt()) {
                 0 -> null
-                1 -> Pair(false, ECardStatus.NORMAL)
-                2 -> Pair(false, ECardStatus.HARD)
-                3 -> Pair(true, ECardStatus.NORMAL)
-                4 -> Pair(true, ECardStatus.HARD)
-                5 -> Pair(null, ECardStatus.NORMAL)
-                6 -> Pair(null, ECardStatus.HARD)
-                7 -> Pair(null, null)
+                1 -> Mode(false, EModeType.TESTING, arrayListOf(ECardStatus.NORMAL, ECardStatus.HARD))
+                2 -> Mode(false, EModeType.TESTING, arrayListOf(ECardStatus.HARD))
+                3 -> Mode(true, EModeType.TESTING, arrayListOf(ECardStatus.NORMAL, ECardStatus.HARD))
+                4 -> Mode(true, EModeType.TESTING, arrayListOf(ECardStatus.HARD))
+                5 -> Mode(null, EModeType.STUDYING, arrayListOf(ECardStatus.NORMAL, ECardStatus.HARD))
+                6 -> Mode(false, EModeType.STUDYING, arrayListOf(ECardStatus.HARD))
+                7 -> Mode(true, EModeType.STUDYING, arrayListOf(ECardStatus.HARD))
+                8 -> Mode(null, EModeType.SHOW_STATISTICS, arrayListOf())
                 else -> {
-                    logger.info("I don't understand you")
+                    println("I don't understand you")
                     continue
                 }
             }
@@ -181,19 +182,16 @@ class LocalController(
     }
 
     private fun choosePairOfLanguage(setOfPairLanguage: Set<Pair<ELanguage, ELanguage>>): Pair<ELanguage, ELanguage>? {
-        println("Choose languages")
-        setOfPairLanguage.forEachIndexed { index, pair -> print("${index + 1} - ${pair.first}_${pair.second}; ") }
-        println("0 - exit;")
-
         do {
-            return when (val input = readLine()?.toInt()) {
+            println("Choose languages")
+            setOfPairLanguage.forEachIndexed { index, pair -> print("${index + 1} - ${pair.first}_${pair.second}; ") }
+            println("0 - exit;")
+
+            return when (val input = readLine().runCatching { this?.toInt() }.getOrElse { -1 }) {
                 0 -> null
-                in 1..setOfPairLanguage.size  -> setOfPairLanguage.elementAt(input!!.minus(1))
+                in 1..setOfPairLanguage.size -> setOfPairLanguage.elementAt(input!!.minus(1))
                 else -> {
                     println("I don't understand you")
-                    println("Choose languages")
-                    setOfPairLanguage.forEachIndexed { index, pair -> print("${index + 1} - ${pair.first}_${pair.second}; ") }
-                    println("0 - exit;")
                     continue
                 }
             }
@@ -202,40 +200,51 @@ class LocalController(
     }
 
     private fun chooseCardTypeOrSetLanguageOrContinue(): ECardType? {
-        println("What do you want to learn?")
-        ECardType.values().forEachIndexed { index, cardType -> print("${index + 1} - ${cardType.name}; ") }
-        println("0 - exit;")
+        val types = ECardType.values().filter { it != ECardType.UNKNOWN }
 
         do {
-            return when (val input = readLine()?.toInt()) {
+            println("What do you want to learn?")
+            types.forEachIndexed { index, cardType -> print("${index + 1} - ${cardType.name}; ") }
+            println("0 - exit;")
+
+            return when (val input = readLine().runCatching { this?.toInt() }.getOrElse { -1 }) {
                 0 -> null
                 in 1..ECardType.values().size + 1 -> ECardType.values().elementAt(input!!.minus(1))
                 else -> {
-                    logger.info("I don't understand you")
-                    println("What do you want to learn?")
-                    ECardType.values().forEachIndexed { index, cardType -> print("${index + 1} - ${cardType.name}; ") }
-                    println("0 - exit;")
+                    println("I don't understand you")
                     continue
                 }
             }
         } while (true)
     }
 
-    private fun showStatistic(mapOfCards: MutableMap<String, Card>, cardTypeName: String) {
+    private fun showShortStatisticByCardType(mapOfCards: MutableMap<String, Card>, cardTypeName: String) {
         println("--- Statistics ---")
-        println("${cardTypeName}s: ${mapOfCards.size}")
+        println("${cardTypeName.lowercase()}s: ${mapOfCards.size}")
         var countCompleted = 0
-        mapOfCards.forEach { if (it.value.statusFromNative == ECardStatus.COMPLETED) countCompleted++ }
-        println("Completed ${cardTypeName}s: $countCompleted ")
+        mapOfCards.forEach {
+            if (it.value.statusFromNative == ECardStatus.COMPLETED && it.value.statusToNative == ECardStatus.COMPLETED) countCompleted++
+        }
+        println("Completed ${cardTypeName.lowercase()}s: $countCompleted ")
+        // hindsight, staggering, unfortunate, spent, unbearable, harsh, putting, magnificent, sedentary lifestyle, journey, inhabit:обита, nrestrained:неогр
+        // biased data: -> biased
+        // binding (or wrapping) code -> binding
+
+
+        // explanation:объяс explanation:[пояснение], attempt:попыт attempt:[пытаться], involve:вовлекать involve:[включать в себя]
+//        coupling: сцепление ...cohesion: comprises:включасть + содержать
+        //
+
 
         var countHard = 0
-        mapOfCards.forEach { if (it.value.statusFromNative == ECardStatus.HARD) countHard++ }
-        println("Hard ${cardTypeName}s: $countHard ")
+        mapOfCards.forEach { if (it.value.statusFromNative == ECardStatus.HARD || it.value.statusToNative == ECardStatus.HARD) countHard++ }
+        println("Hard ${cardTypeName.lowercase()}s: $countHard ")
+        println()
     }
 
-    private fun showObjectsStatistic(mapOfCards: MutableMap<String, Card>, cardType: ECardType) {
-        mapOfCards.values.sortedByDescending { it.pointFromNative }.forEach {
-            if (it.type == cardType) println("${it.value}:${it.translate}:${it.pointFromNative}:${it.statusFromNative}")
+    private fun showObjectsStatistic(mapOfCards: MutableMap<String, Card>) {
+        mapOfCards.values.sortedByDescending { it.pointFromNative + it.pointToNative }.forEach {
+            println("${it.value}:${it.translate} | from:${it.statusFromNative}(${it.pointFromNative}); to:${it.statusToNative}(${it.pointToNative});")
         }
     }
 }
