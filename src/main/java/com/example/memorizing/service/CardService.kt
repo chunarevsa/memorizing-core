@@ -23,7 +23,9 @@ class CardService(
     ): Boolean {
         val isCorrect: Boolean =
             if (translateToNative) card.translate.contains(userValue) else card.value.contains(userValue)
-        if (isCorrect) card.increasePoint(translateToNative, userMaxPoint) else card.decreasePoint(translateToNative)
+        if (userValue.isNotBlank() && isCorrect) {
+            card.increasePoint(translateToNative, userMaxPoint)
+        } else card.decreasePoint(translateToNative)
         cardRepository.saveCard(setOfCardsById, card)
 
         return isCorrect
