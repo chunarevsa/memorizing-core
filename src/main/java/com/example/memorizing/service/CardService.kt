@@ -14,6 +14,42 @@ class CardService(
     private val rootOfSetsRepository: RootOfSetsRepository,
 ) {
 
+    fun checkCard2(
+        setOfCardsId: String,
+        wordKey: String,
+        userValue: String,
+        translateToNative: Boolean,
+    ): Boolean {
+        val setOfCard = getSetOfCardsById(setOfCardsId)
+        val userMaxPoint: Int = 5 // TODO setOfCard.maxPoint
+
+        var card = setOfCard.mapOfCards[wordKey] ?: throw Exception("not found")
+        val isCorrect: Boolean = if (translateToNative) {
+            card.translate.contains(userValue)
+        } else {
+            // card.value = "supply"
+            // userValue = "prov"
+            card.value.contains(userValue) // false
+            val listTranslatesByCard = card.translate.split(',').map { it.trim() }
+
+            // список всех ключей map которые содержать в себе prov
+            val map = setOfCard.mapOfCards.keys.filter { it.contains(userValue) }
+            val newKeyOfCard = map.find { key ->
+                // key = "prov"
+                val card1 = setOfCard.mapOfCards[key]
+                // если несколько транслетов, то нам нужно для каждого проверить
+                val listTranslatesByUserValue = card1?.translate!!.split(',')
+                listTranslatesByCard.containsAll(listTranslatesByUserValue)
+            } ?: false
+            card = setOfCard.mapOfCards[newKeyOfCard]!!
+            true
+        }
+
+        cardRepository.saveCard(setOfCardsId, card)
+        return isCorrect
+
+    }
+
     fun checkCard(
         card: Card,
         setOfCardsById: String,
@@ -49,7 +85,7 @@ class CardService(
         return rootOfSetsRepository.findRootOfSets(rootId)
     }
 
-    fun createSetOfCards(language: ELanguage, nativeLanguage: ELanguage): String {
+    fun createSetOfCards(language: ELanguage, nativeLanguage: ELanguage, maxPoint: Int): String {
         val setOfCards = SetOfCards(Pair(language, nativeLanguage))
         cardRepository.saveSetOfCards(setOfCards)
         cardRepository.createNewFilesForSet(setOfCards.pair!!)

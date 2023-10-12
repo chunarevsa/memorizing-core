@@ -34,8 +34,8 @@ class LocalController(
         }
 
         if (rootOfSets.setOfCardsIds.isEmpty()) {
-            rootOfSets.setOfCardsIds.add(cardService.createSetOfCards(ELanguage.ENG, user.nativeLanguage!!))
-            rootOfSets.setOfCardsIds.add(cardService.createSetOfCards(ELanguage.DEU, user.nativeLanguage))
+            rootOfSets.setOfCardsIds.add(cardService.createSetOfCards(ELanguage.ENG, user.nativeLanguage!!, user.maxPoint))
+            rootOfSets.setOfCardsIds.add(cardService.createSetOfCards(ELanguage.DEU, user.nativeLanguage, user.maxPoint))
             cardService.saveRootOfSets(rootOfSets)
         }
 
@@ -51,18 +51,28 @@ class LocalController(
             val cardType: ECardType = chooseCardTypeOrSetLanguageOrContinue() ?: continue
             val setOfCards = listOfSetOfCards.find { it.pair == pairOfLanguage } ?: throw Exception("not found")
 
-            var mapOfCards = setOfCards.mapOfCards.filter { it.value.type == cardType }.toMutableMap()
-            showShortStatisticByCardType(mapOfCards, cardType.name)
+            val mapOfCards = setOfCards.mapOfCards
+            showShortStatisticByCardType(setOfCards.mapOfCards, cardType)
 
             val chosenMode = chooseMode(pairOfLanguage, cardType.name) ?: continue
-            mapOfCards = filterMapOfCardsByMode(mapOfCards, chosenMode)
 
             when (chosenMode.modeType) {
                 EModeType.TESTING -> startTestLoop(
                     mapOfCards, chosenMode.translateToNative!!, setOfCards.id, user.maxPoint
                 )
-                EModeType.STUDYING -> startStudyingLoop(mapOfCards, chosenMode.translateToNative!!)
-                EModeType.SHOW_STATISTICS -> showObjectsStatistic(mapOfCards)
+                EModeType.STUDYING -> {
+                    startStudyingLoop(
+                        filterMapOfCardsByMode(mapOfCards, chosenMode, cardType),
+                        chosenMode.translateToNative!!
+                    )
+                }
+                EModeType.SHOW_STATISTICS -> showObjectsStatistic(
+                    filterMapOfCardsByMode(
+                        mapOfCards,
+                        chosenMode,
+                        cardType
+                    )
+                )
             }
             println()
         }
@@ -107,18 +117,21 @@ class LocalController(
         } while (true)
     }
 
-    private fun showShortStatisticByCardType(mapOfCards: MutableMap<String, Card>, cardTypeName: String) {
+    private fun showShortStatisticByCardType(map: MutableMap<String, Card>, cardType: ECardType) {
+        val mapOfCards = map.filter { it.value.type == cardType }.toMutableMap()
+        val cardTypeName = cardType.name.lowercase()
+
         println("--- Statistics ---")
-        println("${cardTypeName.lowercase()}s: ${mapOfCards.size}")
+        println("${cardTypeName}s: ${mapOfCards.size}")
         var countCompleted = 0
         mapOfCards.forEach {
             if (it.value.statusFromNative == ECardStatus.COMPLETED && it.value.statusToNative == ECardStatus.COMPLETED) countCompleted++
         }
-        println("Completed ${cardTypeName.lowercase()}s: $countCompleted ")
+        println("Completed ${cardTypeName}s: $countCompleted ")
 
         var countHard = 0
         mapOfCards.forEach { if (it.value.statusFromNative == ECardStatus.HARD || it.value.statusToNative == ECardStatus.HARD) countHard++ }
-        println("Hard ${cardTypeName.lowercase()}s: $countHard ")
+        println("Hard ${cardTypeName}s: $countHard ")
         println()
     }
 
@@ -153,8 +166,12 @@ class LocalController(
     }
 
     private fun filterMapOfCardsByMode(
-        mapOfCards: MutableMap<String, Card>, chosenMode: Mode
+        map: MutableMap<String, Card>,
+        chosenMode: Mode,
+        cardType: ECardType
     ): MutableMap<String, Card> {
+        val mapOfCards = map.filter { it.value.type == cardType }.toMutableMap()
+
         return when (chosenMode.modeType) {
             EModeType.TESTING -> {
                 if (chosenMode.translateToNative!!) {
@@ -190,10 +207,23 @@ class LocalController(
             val input = readln()
             if (input == "0") return
 
+            // "[поставлять, снабжать, обеспечивать]    "supply""
+            // "[предоставлять, обеспечивать]"          "provide"
+            // Что будет если карточка "supply", а ответил я "provide"
+
+            // it.first = "[поставлять, снабжать, обеспечивать]
+            // it.second = "supply
+            // input = "prov"
+
             val card =
                 if (translateToNative) mapOfCards[it.first] else mapOfCards[it.second] ?: throw Exception("not found")
+            // card = Card(value = "supply", translate = "[поставлять, снабжать, обеспечивать]" ...)
 
-            val isCorrect = cardService.checkCard(card!!, setOfCardsId, input, translateToNative, userMaxPoint)
+//            val isCorrect = cardService.checkCard(card!!, setOfCardsId, input, translateToNative, userMaxPoint)
+            val isCorrect = cardService.checkCard2(setOfCardsId, card!!.value, input, translateToNative)
+            // Надо убедиться что нет обратной истории
+            // Что нет карточки с ключом содержащим input, и если есть, то найти эту карточку и проверить есть ли в ней одно из значений it.first
+
             if (isCorrect) {
                 print(it.second)
                 val point = if (translateToNative) card.pointToNative else card.pointFromNative
