@@ -110,7 +110,7 @@
       "statusToNative" : "NORMAL",
       "statusFromNative" : "NORMAL"
     },
-    "In the beginning" : {
+    "in the beginning" : {
       "value" : "In the beginning",
       "translate" : "[в начале]",
       "type" : "PHRASE",
@@ -155,7 +155,7 @@
       "statusToNative" : "NORMAL",
       "statusFromNative" : "NORMAL"
     },
-    "I am up for it" : {
+    "i am up for it" : {
       "value" : "I am up for it",
       "translate" : "[я готов к этому]",
       "type" : "PHRASE",
@@ -182,7 +182,7 @@
       "statusToNative" : "NORMAL",
       "statusFromNative" : "NORMAL"
     },
-    "It depends on" : {
+    "it depends on" : {
       "value" : "It depends on",
       "translate" : "[в зависимости от]",
       "type" : "PHRASE",
@@ -191,7 +191,7 @@
       "statusToNative" : "NORMAL",
       "statusFromNative" : "NORMAL"
     },
-    "To save from" : {
+    "to save from" : {
       "value" : "To save from",
       "translate" : "[обезопасить]",
       "type" : "PHRASE",
@@ -524,15 +524,6 @@
       "statusToNative" : "HARD",
       "statusFromNative" : "HARD"
     },
-    "encourage" : {
-      "value" : "encourage",
-      "translate" : "[поощрять]",
-      "type" : "WORD",
-      "pointToNative" : -1,
-      "pointFromNative" : -1,
-      "statusToNative" : "HARD",
-      "statusFromNative" : "HARD"
-    },
     "implications" : {
       "value" : "implications",
       "translate" : "[последствия]",
@@ -632,9 +623,9 @@
       "statusToNative" : "NORMAL",
       "statusFromNative" : "NORMAL"
     },
-    "disrupting" : {
-      "value" : "disrupting",
-      "translate" : "[нарушая]",
+    "disrupt" : {
+      "value" : "disrupt",
+      "translate" : "[нарушать, нарушить]",
       "type" : "WORD",
       "pointToNative" : 1,
       "pointFromNative" : -1,
@@ -644,15 +635,6 @@
     "misconception" : {
       "value" : "misconception",
       "translate" : "[заблуждение]",
-      "type" : "WORD",
-      "pointToNative" : -1,
-      "pointFromNative" : -1,
-      "statusToNative" : "HARD",
-      "statusFromNative" : "HARD"
-    },
-    "concerned" : {
-      "value" : "concerned",
-      "translate" : "[озабоченный, обеспокоенный]",
       "type" : "WORD",
       "pointToNative" : -1,
       "pointFromNative" : -1,
@@ -697,7 +679,7 @@
     },
     "pros and cons" : {
       "value" : "pros and cons",
-      "translate" : "[достоинства и недостатки]",
+      "translate" : "[плюсы и минусы]",
       "type" : "WORD",
       "pointToNative" : -1,
       "pointFromNative" : -1,
@@ -787,7 +769,7 @@
     },
     "forbid" : {
       "value" : "forbid",
-      "translate" : "[запрещать]",
+      "translate" : "[запретить, запрещать]",
       "type" : "WORD",
       "pointToNative" : -1,
       "pointFromNative" : -1,
@@ -806,15 +788,6 @@
     "persistent" : {
       "value" : "persistent",
       "translate" : "[постоянный, устойчивый]",
-      "type" : "WORD",
-      "pointToNative" : -1,
-      "pointFromNative" : -1,
-      "statusToNative" : "HARD",
-      "statusFromNative" : "HARD"
-    },
-    "humble" : {
-      "value" : "humble",
-      "translate" : "[скромный]",
       "type" : "WORD",
       "pointToNative" : -1,
       "pointFromNative" : -1,
@@ -868,7 +841,7 @@
     },
     "handle" : {
       "value" : "handle",
-      "translate" : "[обращаться, справляться]",
+      "translate" : "[управлять, справляться]",
       "type" : "WORD",
       "pointToNative" : -1,
       "pointFromNative" : -1,
@@ -877,7 +850,7 @@
     },
     "comply" : {
       "value" : "comply",
-      "translate" : "[соблюдать, соответствовать]",
+      "translate" : "[соблюдать]",
       "type" : "WORD",
       "pointToNative" : -1,
       "pointFromNative" : -1,
@@ -956,15 +929,6 @@
       "statusToNative" : "NORMAL",
       "statusFromNative" : "NORMAL"
     },
-    "afford" : {
-      "value" : "afford",
-      "translate" : "[предоставлять]",
-      "type" : "WORD",
-      "pointToNative" : -1,
-      "pointFromNative" : -1,
-      "statusToNative" : "HARD",
-      "statusFromNative" : "HARD"
-    },
     "activity" : {
       "value" : "activity",
       "translate" : "[деятельность]",
@@ -973,15 +937,6 @@
       "pointFromNative" : 1,
       "statusToNative" : "NORMAL",
       "statusFromNative" : "NORMAL"
-    },
-    "appear" : {
-      "value" : "appear",
-      "translate" : "[появляться]",
-      "type" : "WORD",
-      "pointToNative" : -1,
-      "pointFromNative" : -1,
-      "statusToNative" : "HARD",
-      "statusFromNative" : "HARD"
     },
     "enjoy" : {
       "value" : "enjoy",
@@ -1001,15 +956,6 @@
       "statusToNative" : "HARD",
       "statusFromNative" : "HARD"
     },
-    "insurance" : {
-      "value" : "insurance",
-      "translate" : "[страхование]",
-      "type" : "WORD",
-      "pointToNative" : -1,
-      "pointFromNative" : -1,
-      "statusToNative" : "HARD",
-      "statusFromNative" : "HARD"
-    },
     "hurry" : {
       "value" : "hurry",
       "translate" : "[торопиться]",
@@ -1017,15 +963,6 @@
       "pointToNative" : 1,
       "pointFromNative" : -1,
       "statusToNative" : "NORMAL",
-      "statusFromNative" : "HARD"
-    },
-    "accommodation" : {
-      "value" : "accommodation",
-      "translate" : "[размещение]",
-      "type" : "WORD",
-      "pointToNative" : -1,
-      "pointFromNative" : -1,
-      "statusToNative" : "HARD",
       "statusFromNative" : "HARD"
     },
     "stuff" : {
@@ -1036,15 +973,6 @@
       "pointFromNative" : 1,
       "statusToNative" : "NORMAL",
       "statusFromNative" : "NORMAL"
-    },
-    "emit" : {
-      "value" : "emit",
-      "translate" : "[испускать, отправлять]",
-      "type" : "WORD",
-      "pointToNative" : -1,
-      "pointFromNative" : -1,
-      "statusToNative" : "HARD",
-      "statusFromNative" : "HARD"
     },
     "supplier" : {
       "value" : "supplier",
@@ -1093,7 +1021,7 @@
     },
     "endure" : {
       "value" : "endure",
-      "translate" : "[терпеть, выдержать,]",
+      "translate" : "[терпеть, выдержать]",
       "type" : "WORD",
       "pointToNative" : -1,
       "pointFromNative" : -1,
@@ -1130,15 +1058,6 @@
     "consequently" : {
       "value" : "consequently",
       "translate" : "[следовательно]",
-      "type" : "WORD",
-      "pointToNative" : -1,
-      "pointFromNative" : -1,
-      "statusToNative" : "HARD",
-      "statusFromNative" : "HARD"
-    },
-    "although" : {
-      "value" : "although",
-      "translate" : "[хотя]",
       "type" : "WORD",
       "pointToNative" : -1,
       "pointFromNative" : -1,
@@ -1388,9 +1307,9 @@
       "statusToNative" : "NORMAL",
       "statusFromNative" : "HARD"
     },
-    "accessed" : {
-      "value" : "accessed",
-      "translate" : "[доступно]",
+    "access" : {
+      "value" : "access",
+      "translate" : "[доступ]",
       "type" : "WORD",
       "pointToNative" : -1,
       "pointFromNative" : -1,
@@ -1399,7 +1318,7 @@
     },
     "except" : {
       "value" : "except",
-      "translate" : "[кроме]",
+      "translate" : "[за исключением]",
       "type" : "WORD",
       "pointToNative" : -1,
       "pointFromNative" : -1,
@@ -1453,7 +1372,7 @@
     },
     "appropriate" : {
       "value" : "appropriate",
-      "translate" : "[подходящий]",
+      "translate" : "[соответствующий]",
       "type" : "WORD",
       "pointToNative" : -1,
       "pointFromNative" : -1,
@@ -1640,15 +1559,6 @@
       "statusToNative" : "HARD",
       "statusFromNative" : "NORMAL"
     },
-    "purpose" : {
-      "value" : "purpose",
-      "translate" : "[цель]",
-      "type" : "WORD",
-      "pointToNative" : 1,
-      "pointFromNative" : -1,
-      "statusToNative" : "NORMAL",
-      "statusFromNative" : "HARD"
-    },
     "members" : {
       "value" : "members",
       "translate" : "[члены]",
@@ -1658,9 +1568,9 @@
       "statusToNative" : "NORMAL",
       "statusFromNative" : "HARD"
     },
-    "mentioned" : {
-      "value" : "mentioned",
-      "translate" : "[упоминание]",
+    "mention" : {
+      "value" : "mention",
+      "translate" : "[упоминать]",
       "type" : "WORD",
       "pointToNative" : 1,
       "pointFromNative" : -1,
@@ -2216,9 +2126,9 @@
       "statusToNative" : "NORMAL",
       "statusFromNative" : "NORMAL"
     },
-    "broader " : {
-      "value" : "broader ",
-      "translate" : "[масштабные]",
+    "broad " : {
+      "value" : "broad ",
+      "translate" : "[широкий]",
       "type" : "WORD",
       "pointToNative" : 1,
       "pointFromNative" : -1,
@@ -2299,7 +2209,7 @@
     },
     "sense" : {
       "value" : "sense",
-      "translate" : "[ смысл, чувство]",
+      "translate" : "[смысл, чувство]",
       "type" : "WORD",
       "pointToNative" : 1,
       "pointFromNative" : -1,
@@ -2495,15 +2405,6 @@
       "statusToNative" : "NORMAL",
       "statusFromNative" : "NORMAL"
     },
-    "arrogant" : {
-      "value" : "arrogant",
-      "translate" : "[высокомерный]",
-      "type" : "WORD",
-      "pointToNative" : 1,
-      "pointFromNative" : -1,
-      "statusToNative" : "NORMAL",
-      "statusFromNative" : "HARD"
-    },
     "startling" : {
       "value" : "startling",
       "translate" : "[поразительный]",
@@ -2603,15 +2504,6 @@
       "statusToNative" : "NORMAL",
       "statusFromNative" : "NORMAL"
     },
-    "particularly" : {
-      "value" : "particularly",
-      "translate" : "[особенно]",
-      "type" : "WORD",
-      "pointToNative" : 1,
-      "pointFromNative" : -1,
-      "statusToNative" : "NORMAL",
-      "statusFromNative" : "HARD"
-    },
     "evaluate" : {
       "value" : "evaluate",
       "translate" : "[оценить]",
@@ -2701,15 +2593,6 @@
       "pointFromNative" : 1,
       "statusToNative" : "HARD",
       "statusFromNative" : "NORMAL"
-    },
-    "conferred" : {
-      "value" : "conferred",
-      "translate" : "[представлен, присвоен]",
-      "type" : "WORD",
-      "pointToNative" : -1,
-      "pointFromNative" : -1,
-      "statusToNative" : "HARD",
-      "statusFromNative" : "HARD"
     },
     "huge" : {
       "value" : "huge",
@@ -2866,7 +2749,7 @@
     },
     "accept" : {
       "value" : "accept",
-      "translate" : "[принимать]",
+      "translate" : "[принять, принимать]",
       "type" : "WORD",
       "pointToNative" : 1,
       "pointFromNative" : -1,
@@ -2954,9 +2837,9 @@
       "statusToNative" : "HARD",
       "statusFromNative" : "HARD"
     },
-    "attainable" : {
-      "value" : "attainable",
-      "translate" : "[достижимый]",
+    "attain" : {
+      "value" : "attain",
+      "translate" : "[достичь]",
       "type" : "WORD",
       "pointToNative" : -1,
       "pointFromNative" : -1,
@@ -3019,7 +2902,7 @@
     },
     " assemble" : {
       "value" : " assemble",
-      "translate" : "[собираться]",
+      "translate" : "[собрать]",
       "type" : "WORD",
       "pointToNative" : 1,
       "pointFromNative" : -1,
@@ -3098,15 +2981,6 @@
       "statusToNative" : "HARD",
       "statusFromNative" : "HARD"
     },
-    "notoriously" : {
-      "value" : "notoriously",
-      "translate" : "[общеизвестно]",
-      "type" : "WORD",
-      "pointToNative" : 1,
-      "pointFromNative" : -1,
-      "statusToNative" : "NORMAL",
-      "statusFromNative" : "HARD"
-    },
     "useless" : {
       "value" : "useless",
       "translate" : "[бесполезный]",
@@ -3115,15 +2989,6 @@
       "pointFromNative" : 1,
       "statusToNative" : "NORMAL",
       "statusFromNative" : "NORMAL"
-    },
-    "leftover" : {
-      "value" : "leftover",
-      "translate" : "[оставшийся]",
-      "type" : "WORD",
-      "pointToNative" : 1,
-      "pointFromNative" : -1,
-      "statusToNative" : "NORMAL",
-      "statusFromNative" : "HARD"
     },
     "neither" : {
       "value" : "neither",
@@ -3160,15 +3025,6 @@
       "pointFromNative" : 1,
       "statusToNative" : "NORMAL",
       "statusFromNative" : "NORMAL"
-    },
-    "aspiring" : {
-      "value" : "aspiring",
-      "translate" : "[стремящийся]",
-      "type" : "WORD",
-      "pointToNative" : -1,
-      "pointFromNative" : -1,
-      "statusToNative" : "HARD",
-      "statusFromNative" : "HARD"
     },
     "toward" : {
       "value" : "toward",
@@ -3235,7 +3091,7 @@
     },
     "claim" : {
       "value" : "claim",
-      "translate" : "[предъявлять претензии, утверждать]",
+      "translate" : "[претензия, утверждать]",
       "type" : "WORD",
       "pointToNative" : 1,
       "pointFromNative" : -1,
@@ -3244,7 +3100,7 @@
     },
     "establish" : {
       "value" : "establish",
-      "translate" : "[устанавливать]",
+      "translate" : "[установить, создать, основать, учредить]",
       "type" : "WORD",
       "pointToNative" : -1,
       "pointFromNative" : -1,
@@ -3298,7 +3154,7 @@
     },
     "engage" : {
       "value" : "engage",
-      "translate" : "[входить в контакт, заниматься]",
+      "translate" : "[привлекать, заниматься]",
       "type" : "WORD",
       "pointToNative" : -1,
       "pointFromNative" : -1,
@@ -3361,7 +3217,7 @@
     },
     "supply" : {
       "value" : "supply",
-      "translate" : "[обеспечивать]",
+      "translate" : "[поставлять, снабжать, обеспечивать]",
       "type" : "WORD",
       "pointToNative" : -1,
       "pointFromNative" : -1,
@@ -3379,7 +3235,7 @@
     },
     "implement" : {
       "value" : "implement",
-      "translate" : "[выполнять, применять]",
+      "translate" : "[внедрять, реализовать]",
       "type" : "WORD",
       "pointToNative" : -1,
       "pointFromNative" : -1,
@@ -3451,7 +3307,7 @@
     },
     "outcome" : {
       "value" : "outcome",
-      "translate" : "[итог]",
+      "translate" : "[итог, результат, исход]",
       "type" : "WORD",
       "pointToNative" : -1,
       "pointFromNative" : -1,
@@ -3524,15 +3380,6 @@
     "deputy" : {
       "value" : "deputy",
       "translate" : "[заместитель]",
-      "type" : "WORD",
-      "pointToNative" : -1,
-      "pointFromNative" : -1,
-      "statusToNative" : "HARD",
-      "statusFromNative" : "HARD"
-    },
-    "indirectly" : {
-      "value" : "indirectly",
-      "translate" : "[косвенно]",
       "type" : "WORD",
       "pointToNative" : -1,
       "pointFromNative" : -1,
