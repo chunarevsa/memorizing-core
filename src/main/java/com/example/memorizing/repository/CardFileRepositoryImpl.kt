@@ -76,9 +76,9 @@ class CardFileRepositoryImpl : AFileRepository(), CardRepository {
             var amountOfAddingCard = 0
             strings.forEach { str ->
                 val split2 = str.split("\t")
-                setOfCards.mapOfCards[split2[0]] = Card().apply {
-                    this.value = split2[0]
-                    this.translate = split2.drop(1).toString()
+                setOfCards.mapOfCards[split2[0].lowercase()] = Card().apply {
+                    this.value = split2[0].lowercase()
+                    this.translate = split2.drop(1).toString().lowercase()
                     this.type = cardType
                 }
                 amountOfAddingCard++
