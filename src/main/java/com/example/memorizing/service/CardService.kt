@@ -1,12 +1,12 @@
 package com.example.memorizing.service
 
-import com.example.memorizing.entity.Card
 import com.example.memorizing.entity.ELanguage
 import com.example.memorizing.entity.RootOfSets
 import com.example.memorizing.entity.SetOfCards
 import com.example.memorizing.repository.CardRepository
 import com.example.memorizing.repository.RootOfSetsRepository
 import org.springframework.stereotype.Service
+import java.util.*
 
 @Service
 class CardService(
@@ -14,57 +14,42 @@ class CardService(
     private val rootOfSetsRepository: RootOfSetsRepository,
 ) {
 
-    fun checkCard2(
+    fun checkCard(
         setOfCardsId: String,
         wordKey: String,
         userValue: String,
         translateToNative: Boolean,
     ): Boolean {
         val setOfCard = getSetOfCardsById(setOfCardsId)
-        val userMaxPoint: Int = 5 // TODO setOfCard.maxPoint
 
         var card = setOfCard.mapOfCards[wordKey] ?: throw Exception("not found")
+
+        if (userValue.isBlank()) return false
         val isCorrect: Boolean = if (translateToNative) {
             card.translate.contains(userValue)
         } else {
-            // card.value = "supply"
-            // userValue = "prov"
-            card.value.contains(userValue) // false
-            val listTranslatesByCard = card.translate.split(',').map { it.trim() }
+            if (card.value.contains(userValue)) true else {
+                // We need check out in the other cards
+                val listTranslatesByCard = card.translate.split(',').map { it.trim() }
+                val map = setOfCard.mapOfCards.keys.filter { it.contains(userValue) }
+                val newKeyOfCard: String? = map.find { key ->
+                    val card1 = setOfCard.mapOfCards[key]
+                    val listTranslatesByUserValue = card1?.translate!!.split(',')
+                    Collections.disjoint(listTranslatesByCard, listTranslatesByUserValue)
+                }
 
-            // список всех ключей map которые содержать в себе prov
-            val map = setOfCard.mapOfCards.keys.filter { it.contains(userValue) }
-            val newKeyOfCard = map.find { key ->
-                // key = "prov"
-                val card1 = setOfCard.mapOfCards[key]
-                // если несколько транслетов, то нам нужно для каждого проверить
-                val listTranslatesByUserValue = card1?.translate!!.split(',')
-                listTranslatesByCard.containsAll(listTranslatesByUserValue)
-            } ?: false
-            card = setOfCard.mapOfCards[newKeyOfCard]!!
-            true
+                if (newKeyOfCard != null) {
+                    card = setOfCard.mapOfCards[newKeyOfCard]!!
+                    true
+                } else false
+            }
         }
 
+        if (isCorrect) card.increasePoint(translateToNative, setOfCard.maxPoint) else card.decreasePoint(translateToNative)
         cardRepository.saveCard(setOfCardsId, card)
-        return isCorrect
-
-    }
-
-    fun checkCard(
-        card: Card,
-        setOfCardsById: String,
-        userValue: String,
-        translateToNative: Boolean,
-        userMaxPoint: Int
-    ): Boolean {
-        val isCorrect: Boolean =
-            if (translateToNative) card.translate.contains(userValue) else card.value.contains(userValue)
-        if (userValue.isNotBlank() && isCorrect) {
-            card.increasePoint(translateToNative, userMaxPoint)
-        } else card.decreasePoint(translateToNative)
-        cardRepository.saveCard(setOfCardsById, card)
 
         return isCorrect
+
     }
 
     fun getCardBySetOfCardsIdAndCardKey(setOfCardsId: String, cardKey: String) =

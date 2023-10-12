@@ -9,11 +9,10 @@ class CardController(
 ) {
 
     fun checkCard(req: CheckCardRequest): CheckCardResponse {
-
-        val card = cardService.getCardBySetOfCardsIdAndCardKey(req.setOfCardsId, req.cardKey)
         val isCorrect =
-            cardService.checkCard(card, req.setOfCardsId, req.userValue, req.translateToNative, req.userMaxPoint)
-        return CheckCardResponse(isCorrect, card)
+            cardService.checkCard(req.setOfCardsId, req.cardKey, req.userValue, req.translateToNative)
+
+        return CheckCardResponse(isCorrect)
 
     }
 }

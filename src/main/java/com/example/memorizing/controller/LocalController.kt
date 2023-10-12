@@ -207,25 +207,12 @@ class LocalController(
             val input = readln()
             if (input == "0") return
 
-            // "[поставлять, снабжать, обеспечивать]    "supply""
-            // "[предоставлять, обеспечивать]"          "provide"
-            // Что будет если карточка "supply", а ответил я "provide"
-
-            // it.first = "[поставлять, снабжать, обеспечивать]
-            // it.second = "supply
-            // input = "prov"
-
             val card =
                 if (translateToNative) mapOfCards[it.first] else mapOfCards[it.second] ?: throw Exception("not found")
-            // card = Card(value = "supply", translate = "[поставлять, снабжать, обеспечивать]" ...)
 
-//            val isCorrect = cardService.checkCard(card!!, setOfCardsId, input, translateToNative, userMaxPoint)
-            val isCorrect = cardService.checkCard2(setOfCardsId, card!!.value, input, translateToNative)
-            // Надо убедиться что нет обратной истории
-            // Что нет карточки с ключом содержащим input, и если есть, то найти эту карточку и проверить есть ли в ней одно из значений it.first
-
+            val isCorrect = cardService.checkCard(setOfCardsId, card!!.value, input, translateToNative)
             if (isCorrect) {
-                print(it.second)
+                println(it.second)
                 val point = if (translateToNative) card.pointToNative else card.pointFromNative
 
                 if (point >= userMaxPoint - 1) {
