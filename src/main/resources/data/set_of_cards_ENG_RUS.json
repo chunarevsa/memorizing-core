@@ -1,6 +1,7 @@
 {
   "pair" : [ "ENG", "RUS" ],
   "id" : "687cde99-7c71-40e8-9690-8cd43db58955",
+  "maxPoint" : 5,
   "mapOfCards" : {
     "by doing so" : {
       "value" : "by doing so",

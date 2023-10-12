@@ -9,7 +9,6 @@ data class SetOfCards(
 ) {
     val id: String = UUID.randomUUID().toString()
     val mapOfCards: MutableMap<String, Card> = mutableMapOf()
-
-
+    var maxPoint: Int = 5
 }
 
