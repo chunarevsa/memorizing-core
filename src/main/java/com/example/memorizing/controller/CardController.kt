@@ -1,9 +1,11 @@
 package com.example.memorizing.controller
 
 import com.example.memorizing.service.CardService
+import org.springframework.http.ResponseEntity
+import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RestController
 
-@RestController
+@RestController("/card")
 class CardController(
     private val cardService: CardService
 ) {
@@ -15,4 +17,8 @@ class CardController(
         return CheckCardResponse(isCorrect)
 
     }
+
+    @GetMapping("/test")
+    fun test():ResponseEntity<*> = ResponseEntity.ok("Successfully")
+
 }
