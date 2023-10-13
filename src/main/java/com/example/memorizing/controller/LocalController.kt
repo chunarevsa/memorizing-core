@@ -51,29 +51,19 @@ class LocalController(
             val cardType: ECardType = chooseCardTypeOrSetLanguageOrContinue() ?: continue
             val setOfCards = listOfSetOfCards.find { it.pair == pairOfLanguage } ?: throw Exception("not found")
 
-            val mapOfCards = setOfCards.mapOfCards
             showShortStatisticByCardType(setOfCards.mapOfCards, cardType)
 
-            val chosenMode = chooseMode(pairOfLanguage, cardType.name) ?: continue
+            val chosenMode = chooseMode(pairOfLanguage, cardType) ?: continue
+            val mapOfCards = filterMapOfCardsByMode(setOfCards.mapOfCards, chosenMode)
 
             when (chosenMode.modeType) {
-                EModeType.TESTING -> startTestLoop(
-                    mapOfCards, chosenMode.translateToNative!!, setOfCards.id, user.maxPoint
-                )
-                EModeType.STUDYING -> {
-                    startStudyingLoop(
-                        filterMapOfCardsByMode(mapOfCards, chosenMode, cardType),
-                        chosenMode.translateToNative!!
-                    )
-                }
-                EModeType.SHOW_STATISTICS -> showObjectsStatistic(
-                    filterMapOfCardsByMode(
-                        mapOfCards,
-                        chosenMode,
-                        cardType
-                    )
-                )
+                EModeType.TESTING -> startTestLoop(mapOfCards, chosenMode.translateToNative!!, setOfCards.id, user.maxPoint)
+                EModeType.STUDYING -> startStudyingLoop(mapOfCards, chosenMode.translateToNative!!)
+                EModeType.SHOW_STATISTICS -> showObjectsStatistic(mapOfCards)
             }
+            // self-reliant add самостоятельный
+            // recognize add узнавать
+            // benefit убрать или заменить
             println()
         }
 
@@ -135,7 +125,7 @@ class LocalController(
         println()
     }
 
-    private fun chooseMode(languages: Pair<ELanguage, ELanguage>, cardTypeName: String): Mode? {
+    private fun chooseMode(languages: Pair<ELanguage, ELanguage>, cardType: ECardType): Mode? {
         val to = "${languages.first}/${languages.second}"
         val from = "${languages.second}/${languages.first}"
 
@@ -144,19 +134,19 @@ class LocalController(
             println("TEST:      1 - all $from;         3 - all $to;")
             println("TEST:      2 - only hard $from;   4 - only hard $to;")
             println("Studying:  5 - all;  6 - only hard $from; 7 - only hard $to;")
-            println("Statistics:8 - show ${cardTypeName.lowercase()}s sorted by count")
+            println("Statistics:8 - show ${cardType.name.lowercase()}s sorted by count")
             println("0 - exit")
 
             return when (readLine()?.toInt()) {
                 0 -> null
-                1 -> Mode(false, EModeType.TESTING, arrayListOf(ECardStatus.NORMAL, ECardStatus.HARD))
-                2 -> Mode(false, EModeType.TESTING, arrayListOf(ECardStatus.HARD))
-                3 -> Mode(true, EModeType.TESTING, arrayListOf(ECardStatus.NORMAL, ECardStatus.HARD))
-                4 -> Mode(true, EModeType.TESTING, arrayListOf(ECardStatus.HARD))
-                5 -> Mode(null, EModeType.STUDYING, arrayListOf(ECardStatus.NORMAL, ECardStatus.HARD))
-                6 -> Mode(false, EModeType.STUDYING, arrayListOf(ECardStatus.HARD))
-                7 -> Mode(true, EModeType.STUDYING, arrayListOf(ECardStatus.HARD))
-                8 -> Mode(null, EModeType.SHOW_STATISTICS, arrayListOf())
+                1 -> Mode(false, EModeType.TESTING, arrayListOf(ECardStatus.NORMAL, ECardStatus.HARD),cardType)
+                2 -> Mode(false, EModeType.TESTING, arrayListOf(ECardStatus.HARD),cardType)
+                3 -> Mode(true, EModeType.TESTING, arrayListOf(ECardStatus.NORMAL, ECardStatus.HARD),cardType)
+                4 -> Mode(true, EModeType.TESTING, arrayListOf(ECardStatus.HARD),cardType)
+                5 -> Mode(null, EModeType.STUDYING, arrayListOf(ECardStatus.NORMAL, ECardStatus.HARD),cardType)
+                6 -> Mode(false, EModeType.STUDYING, arrayListOf(ECardStatus.HARD),cardType)
+                7 -> Mode(true, EModeType.STUDYING, arrayListOf(ECardStatus.HARD),cardType)
+                8 -> Mode(null, EModeType.SHOW_STATISTICS, arrayListOf(),cardType)
                 else -> {
                     println("I don't understand you")
                     continue
@@ -167,10 +157,9 @@ class LocalController(
 
     private fun filterMapOfCardsByMode(
         map: MutableMap<String, Card>,
-        chosenMode: Mode,
-        cardType: ECardType
+        chosenMode: Mode
     ): MutableMap<String, Card> {
-        val mapOfCards = map.filter { it.value.type == cardType }.toMutableMap()
+        val mapOfCards = map.filter { it.value.type == chosenMode.cardType }.toMutableMap()
 
         return when (chosenMode.modeType) {
             EModeType.TESTING -> {
@@ -222,13 +211,13 @@ class LocalController(
                 correctAnswer++
 
             } else {
-                println("${it.first}:${it.second}")
-                println()
+                println("Correct answer:${it.first}:${it.second}")
                 countMistake++
-            }
+            } // in conclusion in WORD
 
         }
 
+        println()
         println("Common count:          ${listOfPairs.size}")
         println("Amount of mistakes:    $countMistake")
         println("Amount of correct:     $correctAnswer")
@@ -244,8 +233,13 @@ class LocalController(
     }
 
     private fun showObjectsStatistic(mapOfCards: MutableMap<String, Card>) {
+        val line = "_________________________________________________________________________"
+        println(line)
         mapOfCards.values.sortedByDescending { it.pointFromNative + it.pointToNative }.forEach {
-            println("${it.value}:${it.translate} | from:${it.statusFromNative}(${it.pointFromNative}); to:${it.statusToNative}(${it.pointToNative});")
+            System.out.printf("%-40s", "| ${it.value}:${it.translate}")
+            System.out.printf("%-10s", "| from:${it.statusFromNative}(${it.pointFromNative})")
+            System.out.printf("%-10s", "| to:${it.statusToNative}(${it.pointToNative})\n")
+            println(line)
         }
     }
 

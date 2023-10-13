@@ -3,6 +3,9 @@ package com.example.memorizing.entity
 enum class ECardType {
     WORD,
     PHRASE,
-    UNKNOWN,
+    QUESTION_HR,
+    QUESTION_DEV,
+    QUESTION_NETWORKING,
 
+    UNKNOWN
 }
