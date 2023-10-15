@@ -1,8 +1,17 @@
 package com.example.memorizing.entity
 
+import org.springframework.data.annotation.Id
+import org.springframework.data.relational.core.mapping.Column
+
 data class Card(
-    var value: String = "",
-    var translate: String = "",
+    @Id
+    var id: Int? = null,
+
+    @Column("set_of_card_id")
+    var setOfCardId: Int? = null,
+
+    var value: String? = null,
+    var translate: String? = null,
     var type: ECardType = ECardType.UNKNOWN,
     var pointToNative: Int = 0,
     var pointFromNative: Int = 0,

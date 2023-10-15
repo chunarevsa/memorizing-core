@@ -2,7 +2,7 @@ package com.example.memorizing.controller
 
 import com.example.memorizing.entity.*
 import com.example.memorizing.repository.UserRepository
-import com.example.memorizing.service.CardService
+import com.example.memorizing.service.StudyingService
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
 import org.springframework.boot.context.event.ApplicationReadyEvent
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service
 @Service
 class LocalController(
     private val userRepository: UserRepository,
-    private val cardService: CardService,
+    private val studyingService: StudyingService,
 ) {
     private val logger: Logger = LogManager.getLogger(LocalController::class.java)
     private var random = true
@@ -24,22 +24,22 @@ class LocalController(
             userRepository.findUserByUsername("Sergei")!!
         }
 
-        val rootOfSets: RootOfSets = if (user.rootOfSetIds.isNotEmpty()) {
-            cardService.getRootOfSets(user.rootOfSetIds.first())!!
+        val rootOfSet: RootOfSet = if (user.rootOfSetIds.isNotEmpty()) {
+            studyingService.getRootOfSets(user.rootOfSetIds.first())!!
         } else {
-            val rootOfSetsId = cardService.createRootOfSet(user.username!!)
+            val rootOfSetsId = studyingService.createRootOfSet(user.username!!)
             user.rootOfSetIds.add(rootOfSetsId)
             userRepository.saveUser(user)
-            cardService.getRootOfSets(rootOfSetsId)!!
+            studyingService.getRootOfSets(rootOfSetsId)!!
         }
 
-        if (rootOfSets.setOfCardsIds.isEmpty()) {
-            rootOfSets.setOfCardsIds.add(cardService.createSetOfCards(ELanguage.ENG, user.nativeLanguage!!, user.maxPoint))
-            rootOfSets.setOfCardsIds.add(cardService.createSetOfCards(ELanguage.DEU, user.nativeLanguage, user.maxPoint))
-            cardService.saveRootOfSets(rootOfSets)
+        if (rootOfSet.setOfCardsIds.isEmpty()) {
+            rootOfSet.setOfCardsIds.add(studyingService.createSetOfCards(ELanguage.ENG, user.nativeLanguage!!, user.maxPoint))
+            rootOfSet.setOfCardsIds.add(studyingService.createSetOfCards(ELanguage.DEU, user.nativeLanguage, user.maxPoint))
+            studyingService.saveRootOfSets(rootOfSet)
         }
 
-        val listOfSetOfCards: List<SetOfCards> = cardService.getListOfSetOfCards(user.rootOfSetIds)
+        val listOfSetOfCards: List<SetOfCard> = studyingService.getListOfSetOfCards(user.rootOfSetIds)
         val setOfPairLanguage: Set<Pair<ELanguage, ELanguage>> = listOfSetOfCards.map { it.pair!! }.toSet()
 
         logger.info("START")
@@ -51,10 +51,10 @@ class LocalController(
             val cardType: ECardType = chooseCardTypeOrSetLanguageOrContinue() ?: continue
             val setOfCards = listOfSetOfCards.find { it.pair == pairOfLanguage } ?: throw Exception("not found")
 
-            showShortStatisticByCardType(setOfCards.mapOfCards, cardType)
+            showShortStatisticByCardType(setOfCards.listOfCards, cardType)
 
             val chosenMode = chooseMode(pairOfLanguage, cardType) ?: continue
-            val mapOfCards = filterMapOfCardsByMode(setOfCards.mapOfCards, chosenMode)
+            val mapOfCards = filterMapOfCardsByMode(setOfCards.listOfCards, chosenMode)
 
             when (chosenMode.modeType) {
                 EModeType.TESTING -> startTestLoop(mapOfCards, chosenMode.translateToNative!!, setOfCards.id, user.maxPoint)
@@ -199,7 +199,7 @@ class LocalController(
             val card =
                 if (translateToNative) mapOfCards[it.first] else mapOfCards[it.second] ?: throw Exception("not found")
 
-            val isCorrect = cardService.checkCard(setOfCardsId, card!!.value, input, translateToNative)
+            val isCorrect = studyingService.checkCard(setOfCardsId, card!!.value, input, translateToNative)
             if (isCorrect) {
                 println(it.second)
                 val point = if (translateToNative) card.pointToNative else card.pointFromNative
@@ -213,7 +213,7 @@ class LocalController(
             } else {
                 println("Correct answer:${it.first}:${it.second}")
                 countMistake++
-            } // in conclusion in WORD
+            }
 
         }
 

@@ -1,12 +1,9 @@
 package com.example.memorizing.repository
 
 import com.example.memorizing.entity.Card
-import com.example.memorizing.entity.ELanguage
-import com.example.memorizing.entity.SetOfCards
+import org.springframework.data.repository.Repository
 
-interface CardRepository {
-    fun createNewFilesForSet(pair: Pair<ELanguage, ELanguage>)
-    fun findSetOfCardsById(id: String): SetOfCards
-    fun saveSetOfCards(setOfCards: SetOfCards)
-    fun saveCard(setOfCardsId: String, card: Card)
+interface CardRepository : Repository<Card, Int> {
+    fun findBySetOfCardId(ofCardId: Int): Card
+
 }

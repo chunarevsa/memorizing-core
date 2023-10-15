@@ -1,4 +1,4 @@
-package com.example.memorizing.repository
+package com.example.memorizing.repository.file
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.SerializationFeature

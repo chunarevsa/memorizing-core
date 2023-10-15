@@ -7,7 +7,6 @@ plugins {
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11'
 ext.notionSdkVersion = "1.8.0"
 
 repositories {
@@ -15,15 +14,22 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter'
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
     implementation 'org.apache.logging.log4j:log4j-api:2.20.0'
     implementation 'org.apache.logging.log4j:log4j-core:2.20.0'
+
+    implementation 'org.mapstruct:mapstruct:1.5.3.Final'
+
+    // Kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
     implementation 'com.fasterxml.jackson.module:jackson-module-kotlin:2.14.2'
-    //implementation 'org.jsoup:jsoup:1.16.1'
-    //implementation("com.github.seratch:notion-sdk-jvm-core:${notionSdkVersion}")
+
+    // DB
+    implementation 'org.postgresql:postgresql:42.5.4'
 }
 
 tasks.named('test') {

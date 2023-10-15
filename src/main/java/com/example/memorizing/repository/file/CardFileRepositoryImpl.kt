@@ -1,9 +1,9 @@
-package com.example.memorizing.repository
+package com.example.memorizing.repository.file
 
 import com.example.memorizing.entity.Card
 import com.example.memorizing.entity.ECardType
 import com.example.memorizing.entity.ELanguage
-import com.example.memorizing.entity.SetOfCards
+import com.example.memorizing.entity.SetOfCard
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
 import org.springframework.stereotype.Repository
@@ -11,11 +11,11 @@ import java.io.File
 import java.io.FileInputStream
 
 @Repository
-class CardFileRepositoryImpl : AFileRepository(), CardRepository {
+class CardFileRepositoryImpl : AFileRepository() {
     private val logger: Logger = LogManager.getLogger(CardFileRepositoryImpl::class.java)
 
     override val pref: String = "set_of_cards"
-    override val entity: Class<*> = SetOfCards::class.java
+    override val entity: Class<*> = SetOfCard::class.java
 
     private val prefForNewObjectsFile: String = "new_"
 
@@ -24,19 +24,19 @@ class CardFileRepositoryImpl : AFileRepository(), CardRepository {
         // validateCardsStatusByMaxPoint
     }
 
-    override fun findSetOfCardsById(id: String): SetOfCards {
+    override fun findSetOfCardsById(id: String): SetOfCard {
         val files = findFilesByPref(pref)
-        val setOfCards = files?.map { load(it.nameWithoutExtension.substring(pref.length)) as SetOfCards }
+        val setOfCards = files?.map { load(it.nameWithoutExtension.substring(pref.length)) as SetOfCard }
         return setOfCards?.find { it.id == id } ?: throw Exception("not found")
     }
 
-    override fun saveSetOfCards(setOfCards: SetOfCards) {
-        save(setOfCards, "_${setOfCards.pair!!.first}_${setOfCards.pair.second}")
+    override fun saveSetOfCards(setOfCard: SetOfCard) {
+        save(setOfCard, "_${setOfCard.pair!!.first}_${setOfCard.pair.second}")
     }
 
     override fun saveCard(setOfCardsId: String, card: Card) {
         val setOfCards = findSetOfCardsById(setOfCardsId)
-        setOfCards.mapOfCards.replace(card.value, card)
+        setOfCards.listOfCards.replace(card.value, card)
         saveSetOfCards(setOfCards)
     }
 
@@ -66,7 +66,7 @@ class CardFileRepositoryImpl : AFileRepository(), CardRepository {
 
             // set_of_cards_ENG_RUS
             val postFix = "_${firstLanguage}_${nativeLanguage}"
-            val setOfCards = load(dynamicPartOfName = postFix) as SetOfCards
+            val setOfCard = load(dynamicPartOfName = postFix) as SetOfCard
 
             val fileForNewObject = File("$FILE_PATH$prefForNewObjectsFile$cardType$postFix.txt")
 
@@ -76,7 +76,7 @@ class CardFileRepositoryImpl : AFileRepository(), CardRepository {
             var amountOfAddingCard = 0
             strings.forEach { str ->
                 val split2 = str.split("\t")
-                setOfCards.mapOfCards[split2[0].lowercase()] = Card().apply {
+                setOfCard.listOfCards[split2[0].lowercase()] = Card().apply {
                     this.value = split2[0].lowercase()
                     this.translate = split2.drop(1).toString().lowercase()
                     this.type = cardType
@@ -84,7 +84,7 @@ class CardFileRepositoryImpl : AFileRepository(), CardRepository {
                 amountOfAddingCard++
             }
 
-            saveSetOfCards(setOfCards)
+            saveSetOfCards(setOfCard)
             fileForNewObject.delete()
             fileForNewObject.createNewFile()
 
