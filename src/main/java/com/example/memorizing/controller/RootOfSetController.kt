@@ -20,6 +20,7 @@ class RootOfSetController(
     private val cardServiceImpl: CardServiceImpl,
 ) : RootOfSetApi {
 
+
     companion object {
         const val ENTITY_NAME = "rootOfSet"
     }

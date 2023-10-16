@@ -14,6 +14,11 @@ class SetOfCardController(
     @Value("\${spring.application.name}")
     private val applicationName: String
 ) {
+
+    // TODO: Добавить в сущность флаг testMode = true.
+    // TODO: Добавить флаг обратного "перевода" onlyForward = true. Проставлять UNKNOWN в статусе from
+    // TODO: Переименовать значения value в key и translate в value
+
     companion object {
         const val ENTITY_NAME = "setOfCard"
     }
