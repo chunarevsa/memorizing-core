@@ -7,7 +7,6 @@ class CardServiceImpl (
     private val cards: CardRepository
 ) : CardService {
 
-    fun findBySetOfCardId(setOfCardId: Int) = cards.findBySetOfCardId(setOfCardId)
-
+    override fun findListBySetOfCardId(setOfCardId: Int) = cards.findAllBySetOfCardId(setOfCardId)
 
 }

@@ -1,5 +1,7 @@
 package com.example.memorizing.rootOfSet
 
+import com.example.memorizing.setOfCard.SetOfCardDto
+import com.example.memorizing.setOfCard.SetOfCardFieldsDto
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
@@ -16,7 +18,7 @@ interface RootOfSetApi {
         produces = ["application/json"],
         consumes = ["application/json"]
     )
-    fun findRootOfSetByUserId(@RequestBody req: RootOfSetDto): ResponseEntity<RootOfSetDto>
+    fun findRootOfSetByUserId(@RequestBody rootOfSetDto: RootOfSetDto): ResponseEntity<RootOfSetDto>
 
     @RequestMapping(
         method = [RequestMethod.POST],
@@ -24,7 +26,7 @@ interface RootOfSetApi {
         produces = ["application/json"],
         consumes = ["application/json"]
     )
-    fun createRootOfSet(@RequestBody req: RootOfSetDto): ResponseEntity<RootOfSetDto>
+    fun createRootOfSet(@RequestBody rootOfSetFieldsDto: RootOfSetFieldsDto): ResponseEntity<RootOfSetDto>
 
     @RequestMapping(
         method = [RequestMethod.POST],
@@ -33,7 +35,8 @@ interface RootOfSetApi {
         consumes = ["application/json"]
     )
     fun updateRootOfSet(
-        @PathVariable("rootOfSetId") rootOfSetId: Int, @RequestBody req: RootOfSetDto
+        @PathVariable("rootOfSetId") rootOfSetId: Int,
+        @RequestBody rootOfSetFieldsDto: RootOfSetFieldsDto
     ): ResponseEntity<RootOfSetDto>
 
     @RequestMapping(
@@ -44,4 +47,17 @@ interface RootOfSetApi {
     fun deleteRootOfSet(
         @PathVariable("rootOfSetId") rootOfSetId: Int
     ): ResponseEntity<Void>
+
+
+    @RequestMapping(
+        method = [RequestMethod.POST],
+        value = ["/rootOfSet/{rootOfSetId}/setOfCard"],
+        produces = ["application/json"],
+        consumes = ["application/json"]
+    )
+//    fun addSetOfCardToRootOfSet(
+//        @PathVariable("rootOfSetId") rootOfSetId: Int,
+//        @RequestBody setOfCardFieldsDto: SetOfCardFieldsDto
+//    ): ResponseEntity<SetOfCardDto>
+
 }

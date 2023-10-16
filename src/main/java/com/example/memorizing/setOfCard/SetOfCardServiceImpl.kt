@@ -1,45 +1,21 @@
 package com.example.memorizing.setOfCard
 
-import com.example.memorizing.entity.ELanguage
 import org.springframework.stereotype.Service
-import java.util.*
 
 @Service
-class SetOfCardServiceImpl (
+class SetOfCardServiceImpl(
     private val setOfCards: SetOfCardRepository
 ) : SetOfCardService {
 
-    override fun findByRootOfSetId(rootOfSetId: Int): List<SetOfCard> = setOfCards.findByRootOfSetId(rootOfSetId)
+    override fun findSetOfCardById(setOfCardId: Int): SetOfCard? = setOfCards.findById(setOfCardId)
+    override fun findListSetOfCardByRootOfSetId(rootOfSetId: Int) = setOfCards.findAllByRootOfSetId(rootOfSetId)
 
-
-    fun getSetOfCardById(setOfCardId: String): SetOfCard {
-        return setOfCardRepository.findById(setOfCardId).orElseThrow { throw Exception("not found") }
+    override fun create(rootOfSetId: Int): SetOfCard? {
+        if (setOfCards.existsByRootOfSetId(rootOfSetId)) return null
+        return setOfCards.saveSetOfCard(SetOfCard(rootOfSetId))
     }
 
-    fun create(pair: Pair<ELanguage, ELanguage>?, maxPoint: Int): SetOfCard {
-        return save(SetOfCard(pair, maxPoint))
-    }
-
-    fun update(rootOfSet: SetOfCard) {
-        setOfCardRepository.exist(rootOfSet.id) ?: throw Exception("not found")
-        setOfCardRepository.update(rootOfSet)
-    }
-
-    fun delete(rootId: String) {
-        setOfCardRepository.exist(rootOfSet.id) ?: throw Exception("not found")
-        return setOfCardRepository.delete(rootId)
-    }
-
-    fun addSetOfCardId(rootId: String, setOfCardId: String) {
-        val rootOfSet = setOfCardRepository.findRootOfSet(rootId) ?: throw Exception("not found")
-        rootOfSet.setOfCardsIds.add(setOfCardId)
-        save(rootOfSet)
-    }
-
-    private fun save(setOfCard: SetOfCard): SetOfCard {
-        if (setOfCardRepository.exist(rootOfSet.id)) throw Exception("not found")
-        return setOfCardRepository.saveRootOfSet(rootOfSet)
-    }
-
+    override fun saveSetOfCard(setOfCard: SetOfCard) = setOfCards.saveSetOfCard(setOfCard)
+    override fun deleteSetOfCard(setOfCard: SetOfCard) = setOfCards.delete(setOfCard)
 
 }
