@@ -1,21 +1,23 @@
 package com.example.memorizing.rootOfSet
 
+import org.springframework.data.jdbc.repository.query.Query
 import org.springframework.data.repository.Repository
+import org.springframework.data.repository.query.Param
 import org.springframework.transaction.annotation.Transactional
 
 interface RootOfSetRepository : Repository<RootOfSet, Int> {
 
     @Transactional(readOnly = true)
-    fun findById(id: Int): RootOfSet
+    fun findById(id: Int): RootOfSet?
 
-//    fun findAllById(ids: MutableList<Long>): MutableIterable<RootOfSet>
+    @Transactional(readOnly = true)
+    @Query("select * from root_of_set where user_id = :userId")
+    fun findByUserId(@Param("userId") userId: Int): RootOfSet?
 
-    fun save(rootOfSet: RootOfSet): RootOfSet
+    fun saveRootOfSet(rootOfSet: RootOfSet): RootOfSet
 
-    fun saveAndReturnId(rootOfSet: RootOfSet): Int
+    fun existsByUserId(userId: Int): Boolean
+    fun delete(rootOfSet: RootOfSet)
 
-    fun update(rootOfSet: RootOfSet)
-
-    fun delete(id: Int)
 
 }

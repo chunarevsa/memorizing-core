@@ -43,7 +43,7 @@ class SetOfCardController(
         setOfCardService.delete(id)
         return ResponseEntity.noContent()
             .headers(
-                HeaderUtil.createEntityDeactivationAlert(
+                HeaderUtil.createEntityDeleteAlert(
                     applicationName, false, ENTITY_NAME, id
                 )
             ).build()
@@ -54,7 +54,7 @@ class SetOfCardController(
         setOfCardService.addSetOfCardId(rootId, setOfCardId)
         return ResponseEntity.noContent()
             .headers(
-                HeaderUtil.createEntityDeactivationAlert(
+                HeaderUtil.createEntityDeleteAlert(
                     applicationName, false, RootOfSetController.ENTITY_NAME, rootId
                 )
             ).build()

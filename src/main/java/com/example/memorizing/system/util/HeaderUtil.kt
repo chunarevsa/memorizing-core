@@ -39,11 +39,11 @@ object HeaderUtil {
         return createAlert(applicationName, message, param)
     }
 
-    fun createEntityDeactivationAlert(
+    fun createEntityDeleteAlert(
         applicationName: String, enableTranslation: Boolean, entityName: String, param: String
     ): HttpHeaders {
         val message =
-            if (enableTranslation) "$applicationName.$entityName.deactivated" else "A $entityName is deactivated with identifier $param"
+            if (enableTranslation) "$applicationName.$entityName.delete" else "A $entityName is delete with identifier $param"
         return createAlert(applicationName, message, param)
     }
 
