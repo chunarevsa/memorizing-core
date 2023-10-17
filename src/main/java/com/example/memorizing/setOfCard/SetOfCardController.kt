@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*
 import org.springframework.web.util.UriComponentsBuilder
 
 @RestController
-@RequestMapping("/rootOfSet/{rootOfSetId}/")
+@RequestMapping("/rootOfSet/{rootOfSetId}")
 class SetOfCardController(
     @Value("\${spring.application.name}")
     private val applicationName: String,
@@ -43,7 +43,7 @@ class SetOfCardController(
         setOfCardFieldsDto: SetOfCardFieldsDto
     ): ResponseEntity<SetOfCardDto> {
         rootOfSetService.findRootOfSetById(rootOfSetId) ?: return ResponseEntity(HttpStatus.NOT_FOUND)
-        val setOfCard = setOfCardService.createSetOfCard(rootOfSetId, setOfCardFieldsDto)
+        val setOfCard = setOfCardService.addSetOfCardToRootOfSet(rootOfSetId, setOfCardFieldsDto)
 
         val result = SetOfCardDto().apply {
             this.id = setOfCard.id
@@ -58,7 +58,7 @@ class SetOfCardController(
             )
         )
         headers.location =
-            UriComponentsBuilder.newInstance().path("/api/setOfCard/{id}").buildAndExpand(setOfCard.id).toUri()
+            UriComponentsBuilder.newInstance().path("/rootOfSet/{$rootOfSetId}/setOfCard/{id}").buildAndExpand(setOfCard.id).toUri()
 
         return ResponseEntity(result, headers, HttpStatus.CREATED)
     }

@@ -19,7 +19,7 @@ interface SetOfCardApi {
 
     @RequestMapping(
         method = [RequestMethod.POST],
-        value = ["/rootOfSet/{rootOfSetId}/setOfCard/new"],
+        value = ["/rootOfSet/{rootOfSetId}/setOfCard"],
         produces = ["application/json"],
         consumes = ["application/json"]
     )

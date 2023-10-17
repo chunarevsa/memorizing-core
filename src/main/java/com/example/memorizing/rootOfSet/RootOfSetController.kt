@@ -1,7 +1,5 @@
 package com.example.memorizing.rootOfSet
 
-import com.example.memorizing.card.CardService
-import com.example.memorizing.setOfCard.SetOfCardService
 import com.example.memorizing.system.util.HeaderUtil
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.HttpHeaders
@@ -11,7 +9,7 @@ import org.springframework.web.bind.annotation.*
 import org.springframework.web.util.UriComponentsBuilder
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping
 class RootOfSetController(
     @Value("\${spring.application.name}")
     private val applicationName: String,

@@ -10,7 +10,7 @@ class SetOfCardServiceImpl(
     override fun findSetOfCardById(setOfCardId: Int): SetOfCard? = setOfCards.findById(setOfCardId)
     override fun findListSetOfCardByRootOfSetId(rootOfSetId: Int) = setOfCards.findAllByRootOfSetId(rootOfSetId)
 
-    override fun createSetOfCard(rootOfSetId: Int, setOfCardFieldsDto: SetOfCardFieldsDto): SetOfCard {
+    override fun addSetOfCardToRootOfSet(rootOfSetId: Int, setOfCardFieldsDto: SetOfCardFieldsDto): SetOfCard {
         return setOfCards.saveSetOfCard(SetOfCard().apply {
             this.rootOfSetId = rootOfSetId
             this.pair = setOfCardFieldsDto.pair
@@ -19,6 +19,6 @@ class SetOfCardServiceImpl(
     }
 
     override fun saveSetOfCard(setOfCard: SetOfCard) = setOfCards.saveSetOfCard(setOfCard)
-    override fun deleteSetOfCard(setOfCard: SetOfCard) = setOfCards.delete(setOfCard)
+    override fun deleteSetOfCard(setOfCard: SetOfCard) = setOfCards.deleteSetOfCard(setOfCard)
 
 }

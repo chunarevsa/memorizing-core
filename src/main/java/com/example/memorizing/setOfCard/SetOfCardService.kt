@@ -10,7 +10,7 @@ interface SetOfCardService {
     fun findListSetOfCardByRootOfSetId(rootOfSetId: Int): MutableList<SetOfCard>
 
     @Transactional
-    fun createSetOfCard(rootOfSetId: Int, setOfCardFieldsDto: SetOfCardFieldsDto): SetOfCard
+    fun addSetOfCardToRootOfSet(rootOfSetId: Int, setOfCardFieldsDto: SetOfCardFieldsDto): SetOfCard
 
     @Transactional
     fun saveSetOfCard(setOfCard: SetOfCard): SetOfCard

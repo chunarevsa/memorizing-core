@@ -1,7 +1,5 @@
 package com.example.memorizing.rootOfSet
 
-import com.example.memorizing.setOfCard.SetOfCardDto
-import com.example.memorizing.setOfCard.SetOfCardFieldsDto
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
@@ -22,7 +20,7 @@ interface RootOfSetApi {
 
     @RequestMapping(
         method = [RequestMethod.POST],
-        value = ["/rootOfSet/new"],
+        value = ["/rootOfSet"],
         produces = ["application/json"],
         consumes = ["application/json"]
     )

@@ -14,8 +14,8 @@ interface SetOfCardRepository : Repository<SetOfCard, Int> {
     @Query("select * from set_of_card where root_of_set_id = :rootOfSetId")
     fun findAllByRootOfSetId (@Param("rootOfSetId") rootOfSetId: Int): MutableList<SetOfCard>
 
+    @Transactional
     fun saveSetOfCard(setOfCard: SetOfCard): SetOfCard
-
-    fun existsByRootOfSetId(rootOfSetId: Int): Boolean
-    fun delete(setOfCard: SetOfCard)
+    @Transactional
+    fun deleteSetOfCard(setOfCard: SetOfCard)
 }
