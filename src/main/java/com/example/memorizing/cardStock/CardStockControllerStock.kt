@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*
 import org.springframework.web.util.UriComponentsBuilder
 
 @RestController
-@RequestMapping("/cardStock/{cardStockId}")
+@RequestMapping("/storage/{storageId}")
 class CardStockControllerStock(
     @Value("\${spring.application.name}")
     private val applicationName: String,
@@ -18,9 +18,6 @@ class CardStockControllerStock(
     private val cardStockService: CardStockService,
 ) : CardStockApi {
 
-    // TODO: Добавить в сущность флаг testMode = true.
-    // TODO: Добавить флаг обратного "перевода" onlyForward = true. Проставлять UNKNOWN в статусе from
-    // TODO: Переименовать значения value в key и translate в value
     companion object {
         const val ENTITY_NAME = "cardStock"
     }
@@ -30,11 +27,17 @@ class CardStockControllerStock(
         val cardStock = cardStockService.findCardStockById(cardStockId) ?: return ResponseEntity(HttpStatus.NOT_FOUND)
         if (cardStock.storageId != storage.id) return ResponseEntity(HttpStatus.BAD_REQUEST)
 
-        val result = CardStockDto().apply {
-            this.id = cardStock.id
-            this.maxPoint = cardStock.maxPoint
-            this.cards = cardStock.cards
-        }
+        val result = CardStockDto(
+            id = cardStock.id,
+            name = cardStock.name,
+            discription = cardStock.discription,
+            keyType = cardStock.keyType,
+            valueType = cardStock.valueType,
+            maxPoint = cardStock.maxPoint,
+            testModeIsAvailable = cardStock.testModeIsAvailable,
+            onlyForward = cardStock.onlyForward,
+            cards = cardStock.cards
+        )
         return ResponseEntity(result, HttpStatus.OK)
     }
 
@@ -45,12 +48,17 @@ class CardStockControllerStock(
         storageService.findStorageById(storageId) ?: return ResponseEntity(HttpStatus.NOT_FOUND)
         val cardStock = cardStockService.addCardStockToStorage(storageId, cardStockFieldsDto)
 
-        val result = CardStockDto().apply {
-            this.id = cardStock.id
-            this.storageId = cardStock.storageId
-            this.maxPoint = cardStock.maxPoint
-            this.cards = cardStock.cards
-        }
+        val result = CardStockDto(
+            id = cardStock.id,
+            name = cardStock.name,
+            discription = cardStock.discription,
+            keyType = cardStock.keyType,
+            valueType = cardStock.valueType,
+            maxPoint = cardStock.maxPoint,
+            testModeIsAvailable = cardStock.testModeIsAvailable,
+            onlyForward = cardStock.onlyForward,
+            cards = cardStock.cards
+        )
 
         val headers = HttpHeaders(
             HeaderUtil.createEntityDeleteAlert(
@@ -72,17 +80,26 @@ class CardStockControllerStock(
         val cardStock = cardStockService.findCardStockById(cardStockId) ?: return ResponseEntity(HttpStatus.NOT_FOUND)
 
         cardStockService.saveCardStock(cardStock.apply {
-            this.pair = cardStockFieldsDto.pair
+            this.name = cardStockFieldsDto.name
+            this.discription = cardStockFieldsDto.discription
+            this.keyType = cardStockFieldsDto.keyType
+            this.valueType = cardStockFieldsDto.valueType
             this.maxPoint = cardStockFieldsDto.maxPoint
+            this.testModeIsAvailable = cardStockFieldsDto.testModeIsAvailable
+            this.onlyForward = cardStockFieldsDto.onlyForward
         })
 
-        val result = CardStockDto().apply {
-            this.id = cardStock.id
-            this.storageId = cardStock.storageId
-            this.pair = cardStock.pair
-            this.maxPoint = cardStock.maxPoint
-            this.cards = cardStock.cards
-        }
+        val result = CardStockDto(
+            id = cardStock.id,
+            name = cardStock.name,
+            discription = cardStock.discription,
+            keyType = cardStock.keyType,
+            valueType = cardStock.valueType,
+            maxPoint = cardStock.maxPoint,
+            testModeIsAvailable = cardStock.testModeIsAvailable,
+            onlyForward = cardStock.onlyForward,
+            cards = cardStock.cards
+        )
 
         val headers = HttpHeaders(
             HeaderUtil.createEntityUpdateAlert(

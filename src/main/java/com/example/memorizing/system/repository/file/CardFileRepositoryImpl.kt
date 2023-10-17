@@ -1,8 +1,6 @@
 package com.example.memorizing.system.repository.file
 
 import com.example.memorizing.card.Card
-import com.example.memorizing.entity.ECardType
-import com.example.memorizing.entity.ELanguage
 import com.example.memorizing.cardStock.CardStock
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
@@ -36,7 +34,7 @@ class CardFileRepositoryImpl : AFileRepository() {
 
     override fun saveCard(setOfCardsId: String, card: Card) {
         val setOfCards = findSetOfCardsById(setOfCardsId)
-        setOfCards.cards.replace(card.value, card)
+        setOfCards.cards.replace(card.key9, card)
         saveSetOfCards(setOfCards)
     }
 
@@ -77,8 +75,8 @@ class CardFileRepositoryImpl : AFileRepository() {
             strings.forEach { str ->
                 val split2 = str.split("\t")
                 cardStock.cards[split2[0].lowercase()] = Card().apply {
-                    this.value = split2[0].lowercase()
-                    this.translate = split2.drop(1).toString().lowercase()
+                    this.key9 = split2[0].lowercase()
+                    this.value9 = split2.drop(1).toString().lowercase()
                     this.type = cardType
                 }
                 amountOfAddingCard++

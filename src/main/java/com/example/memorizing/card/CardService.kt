@@ -5,11 +5,11 @@ import org.springframework.transaction.annotation.Transactional
 interface CardService {
 
     @Transactional(readOnly = true)
-    fun findListBySetOfCardId(setOfCardId: Int): MutableList<Card>
+    fun findListByCardStockId(cardStockId: Int): MutableList<Card>
     @Transactional(readOnly = true)
     fun findCardById(cardId: Int): Card?
     @Transactional
-    fun addCardToSetOfCard(setOfCardId: Int, cardFieldsDto: CardFieldsDto): Card
+    fun addCardToCardStock(cardStockId: Int, cardFieldsDto: CardFieldsDto): Card
     @Transactional
     fun saveCard(card: Card): Card
     @Transactional

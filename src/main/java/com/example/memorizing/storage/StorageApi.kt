@@ -6,9 +6,12 @@ import org.springframework.web.bind.annotation.*
 interface StorageApi {
 
     @RequestMapping(
-        method = [RequestMethod.GET], value = ["/storage/{storageId}"], produces = ["application/json"]
+        method = [RequestMethod.GET],
+        value = ["/storage/{storageId}"],
+        produces = ["application/json"]
     )
     fun getStorageById(@PathVariable("storageId") storageId: Int): ResponseEntity<StorageDto>
+
 
     @RequestMapping(
         method = [RequestMethod.POST],
@@ -16,7 +19,10 @@ interface StorageApi {
         produces = ["application/json"],
         consumes = ["application/json"]
     )
-    fun getStorageByUserId(@RequestBody storageDto: StorageDto): ResponseEntity<StorageDto>
+    fun getStorageByUserId(
+        @RequestBody storageDto: StorageDto
+    ): ResponseEntity<StorageDto>
+
 
     @RequestMapping(
         method = [RequestMethod.POST],
@@ -24,7 +30,10 @@ interface StorageApi {
         produces = ["application/json"],
         consumes = ["application/json"]
     )
-    fun createStorage(@RequestBody storageFieldsDto: StorageFieldsDto): ResponseEntity<StorageDto>
+    fun createStorage(
+        @RequestBody storageFieldsDto: StorageFieldsDto
+    ): ResponseEntity<StorageDto>
+
 
     @RequestMapping(
         method = [RequestMethod.POST],
@@ -36,6 +45,7 @@ interface StorageApi {
         @PathVariable("storageId") storageId: Int,
         @RequestBody storageFieldsDto: StorageFieldsDto
     ): ResponseEntity<StorageDto>
+
 
     @RequestMapping(
         method = [RequestMethod.DELETE],

@@ -10,7 +10,6 @@ open class StorageServiceImpl(
 
     override fun findStorageByUserId(userId: Int): Storage? = storages.findByUserId(userId)
 
-
     override fun create(userId: Int): Storage? {
         if (storages.existsByUserId(userId)) return null
         return storages.saveStorage(Storage(userId))

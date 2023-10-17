@@ -1,28 +1,26 @@
 package com.example.memorizing.card
 
-import com.example.memorizing.entity.ECardStatus
-import com.example.memorizing.entity.ECardType
+import com.example.memorizing.system.entity.ECardStatus
 import org.springframework.data.annotation.Id
 import org.springframework.data.relational.core.mapping.Column
 
 data class Card(
-    @Id
-    var id: Int? = null,
-
     @Column("card_stock_id")
     var cardStockId: Int? = null,
-
-    var value: String? = null,
-    var translate: String? = null,
-    var type: ECardType = ECardType.UNKNOWN,
-    var pointToNative: Int = 0,
-    var pointFromNative: Int = 0,
-    var statusToNative: ECardStatus = ECardStatus.NORMAL,
-    var statusFromNative: ECardStatus = ECardStatus.NORMAL,
+    var key9: String? = null,
+    var value9: String? = null,
 ) {
+    @Id
+    var id: Int? = null
+    var pointFromKey: Int = 0
+    var pointToKey: Int = 0
+    var statusFromKey: ECardStatus = ECardStatus.NORMAL
+    var statusToKey: ECardStatus = ECardStatus.NORMAL
+
+
     fun increasePoint(toNative: Boolean, userMaxPoint: Int) {
-        var status: ECardStatus = if (toNative) statusToNative else statusFromNative
-        var point: Int = if (toNative) pointToNative else pointFromNative
+        var status: ECardStatus = if (toNative) statusFromKey else statusToKey
+        var point: Int = if (toNative) pointFromKey else pointToKey
 
         if (status == ECardStatus.HARD) {
             status = ECardStatus.NORMAL
@@ -36,28 +34,28 @@ data class Card(
 
 
         if (toNative) {
-            statusToNative = status
-            pointToNative = point
+            statusFromKey = status
+            pointFromKey = point
         } else {
-            statusFromNative = status
-            pointFromNative = point
+            statusToKey = status
+            pointToKey = point
         }
 
     }
 
     fun decreasePoint(toNative: Boolean) {
-        var status: ECardStatus = if (toNative) statusToNative else statusFromNative
-        var point: Int = if (toNative) pointToNative else pointFromNative
+        var status: ECardStatus = if (toNative) statusFromKey else statusToKey
+        var point: Int = if (toNative) pointFromKey else pointToKey
 
         if (status == ECardStatus.HARD) point -= 1 else point = -1
         status = ECardStatus.HARD
 
         if (toNative) {
-            statusToNative = status
-            pointToNative = point
+            statusFromKey = status
+            pointFromKey = point
         } else {
-            statusFromNative = status
-            pointFromNative = point
+            statusToKey = status
+            pointToKey = point
         }
     }
 

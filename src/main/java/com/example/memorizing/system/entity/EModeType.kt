@@ -1,4 +1,4 @@
-package com.example.memorizing.entity
+package com.example.memorizing.system.entity
 
 enum class EModeType {
     TESTING,

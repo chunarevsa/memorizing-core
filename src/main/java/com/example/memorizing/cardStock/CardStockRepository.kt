@@ -11,7 +11,7 @@ interface CardStockRepository : Repository<CardStock, Int> {
     fun findById(id: Int): CardStock?
 
     @Transactional(readOnly = true)
-    @Query("select * from set_of_card where root_of_set_id = :storageId")
+    @Query("select * from card_stock where storage_id = :storageId")
     fun findAllByStorageId (@Param("storageId") storageId: Int): MutableList<CardStock>
 
     @Transactional

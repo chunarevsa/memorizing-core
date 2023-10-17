@@ -1,14 +1,10 @@
 package com.example.memorizing.card
 
-import com.example.memorizing.entity.ECardStatus
-import com.example.memorizing.entity.ECardType
+import com.example.memorizing.system.entity.ECardStatus
 
 data class CardFieldsDto(
+    var key: String? = null,
     var value: String? = null,
-    var translate: String? = null,
-    var type: ECardType = ECardType.UNKNOWN,
-    var pointToNative: Int = 0,
-    var pointFromNative: Int = 0,
-    var statusToNative: ECardStatus = ECardStatus.NORMAL,
-    var statusFromNative: ECardStatus = ECardStatus.NORMAL,
+    var statusFromKey: ECardStatus? = null,
+    var statusToKey: ECardStatus? = null,
 )

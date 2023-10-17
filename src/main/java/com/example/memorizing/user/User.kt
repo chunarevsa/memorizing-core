@@ -1,6 +1,5 @@
 package com.example.memorizing.user
 
-import com.example.memorizing.entity.ELanguage
 import com.fasterxml.jackson.annotation.JsonProperty
 
 data class User(

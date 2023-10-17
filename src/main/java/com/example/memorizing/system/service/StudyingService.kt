@@ -1,6 +1,5 @@
 package com.example.memorizing.system.service
 
-import com.example.memorizing.entity.ELanguage
 import com.example.memorizing.cardStock.CardStock
 import com.example.memorizing.card.CardRepository
 import org.springframework.stereotype.Service
@@ -23,15 +22,15 @@ class StudyingService(
 
         if (userValue.isBlank()) return false
         val isCorrect: Boolean = if (translateToNative) {
-            card.translate.contains(userValue)
+            card.value9.contains(userValue)
         } else {
-            if (card.value.contains(userValue)) true else {
+            if (card.key9.contains(userValue)) true else {
                 // We need check out in the other cards
-                val listTranslatesByCard = card.translate.split(',').map { it.trim() }
+                val listTranslatesByCard = card.value9.split(',').map { it.trim() }
                 val map = setOfCard.cards.keys.filter { it.contains(userValue) }
                 val newKeyOfCard: String? = map.find { key ->
                     val card1 = setOfCard.cards[key]
-                    val listTranslatesByUserValue = card1?.translate!!.split(',')
+                    val listTranslatesByUserValue = card1?.value9!!.split(',')
                     Collections.disjoint(listTranslatesByCard, listTranslatesByUserValue)
                 }
 

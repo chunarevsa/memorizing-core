@@ -8,8 +8,8 @@ interface CardRepository : Repository<Card, Int> {
     @Transactional(readOnly = true)
     fun findCardById(cardId: Int): Card?
     @Transactional(readOnly = true)
-    @Query("select * from card where set_of_card_id = :setOfCardId")
-    fun findAllBySetOfCardId(setOfCardId: Int): MutableList<Card>
+    @Query("select * from card where card_stock_id = :cardStockId")
+    fun findAllByCardStockId(cardStockId: Int): MutableList<Card>
     @Transactional
     fun saveCard(card: Card): Card
     @Transactional

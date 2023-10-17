@@ -9,48 +9,48 @@ import org.springframework.web.bind.annotation.RequestMethod
 interface CardApi {
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = ["/rootOfSet/{rootOfSetId}/setOfCard/{setOfCardId}/card/{cardId}"],
+        value = ["/storage/{storageId}/cardStock/{cardStockId}/card/{cardId}"],
         produces = ["application/json"]
     )
     fun getCardById(
-        @PathVariable("rootOfSetId") rootOfSetId: Int,
-        @PathVariable("setOfCardId") setOfCardId: Int,
+        @PathVariable("storageId") storageId: Int,
+        @PathVariable("cardStockId") cardStockId: Int,
         @PathVariable("cardId") cardId: Int
     ): ResponseEntity<CardDto>
 
     @RequestMapping(
         method = [RequestMethod.POST],
-        value = ["/rootOfSet/{rootOfSetId}/setOfCard/{setOfCardId}"],
+        value = ["/storage/{storageId}/cardStock/{cardStockId}"],
         produces = ["application/json"],
         consumes = ["application/json"]
     )
-    fun addCardToSetOfCard(
-        @PathVariable("rootOfSetId") rootOfSetId: Int,
-        @PathVariable("setOfCardId") setOfCardId: Int,
+    fun addCardToCardStock(
+        @PathVariable("storageId") storageId: Int,
+        @PathVariable("cardStockId") cardStockId: Int,
         @RequestBody cardFieldsDto: CardFieldsDto
     ): ResponseEntity<CardDto>
 
     @RequestMapping(
         method = [RequestMethod.POST],
-        value = ["/rootOfSet/{rootOfSetId}/setOfCard/{setOfCardId}/card/{cardId}"],
+        value = ["/storage/{storageId}/cardStock/{cardStockId}/card/{cardId}"],
         produces = ["application/json"],
         consumes = ["application/json"]
     )
     fun updateCard(
-        @PathVariable("rootOfSetId") rootOfSetId: Int,
-        @PathVariable("setOfCardId") setOfCardId: Int,
+        @PathVariable("storageId") storageId: Int,
+        @PathVariable("cardStockId") cardStockId: Int,
         @PathVariable("cardId") cardId: Int,
         @RequestBody cardFieldsDto: CardFieldsDto
     ): ResponseEntity<CardDto>
 
     @RequestMapping(
         method = [RequestMethod.DELETE],
-        value = ["/rootOfSet/{rootOfSetId}/setOfCard/{setOfCardId}/card/{cardId}"],
+        value = ["/storage/{storageId}/cardStock/{cardStockId}/card/{cardId}"],
         produces = ["application/json"]
     )
     fun deleteCard(
-        @PathVariable("rootOfSetId") rootOfSetId: Int,
-        @PathVariable("setOfCardId") setOfCardId: Int,
+        @PathVariable("storageId") storageId: Int,
+        @PathVariable("cardStockId") cardStockId: Int,
         @PathVariable("cardId") cardId: Int,
     ): ResponseEntity<Void>
 }

@@ -11,7 +11,7 @@ interface StorageRepository : Repository<Storage, Int> {
     fun findById(id: Int): Storage?
 
     @Transactional(readOnly = true)
-    @Query("select * from root_of_set where user_id = :userId")
+    @Query("select * from storage where user_id = :userId")
     fun findByUserId(@Param("userId") userId: Int): Storage?
 
     fun saveStorage(storage: Storage): Storage

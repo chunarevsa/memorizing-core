@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController
 import org.springframework.web.util.UriComponentsBuilder
 
 @RestController
-@RequestMapping("/rootOfSet/{rootOfSetId}/setOfCard/{setOfCardId}")
+@RequestMapping("/storage/{storageId}/cardStock/{cardStockId}")
 class CardController(
     @Value("\${spring.application.name}")
     private val applicationName: String,
@@ -26,100 +26,92 @@ class CardController(
     }
 
     override fun getCardById(
-        rootOfSetId: Int,
-        setOfCardId: Int,
+        storageId: Int,
+        cardStockId: Int,
         cardId: Int
     ): ResponseEntity<CardDto> {
-        val rootOfSet = storageService.findRootOfSetById(rootOfSetId) ?: return ResponseEntity(HttpStatus.NOT_FOUND)
-        val setOfCard = cardStockService.findSetOfCardById(setOfCardId) ?: return ResponseEntity(HttpStatus.NOT_FOUND)
-        if (setOfCard.storageId != rootOfSet.id) return ResponseEntity(HttpStatus.BAD_REQUEST)
+        val storage = storageService.findStorageById(storageId) ?: return ResponseEntity(HttpStatus.NOT_FOUND)
+        val cardStock = cardStockService.findCardStockById(cardStockId) ?: return ResponseEntity(HttpStatus.NOT_FOUND)
+        if (cardStock.storageId != storage.id) return ResponseEntity(HttpStatus.BAD_REQUEST)
 
         val card = cardService.findCardById(cardId) ?: return ResponseEntity(HttpStatus.NOT_FOUND)
-        if (!setOfCard.cards.contains(card)) return ResponseEntity(HttpStatus.BAD_REQUEST)
+        if (!cardStock.cards.contains(card)) return ResponseEntity(HttpStatus.BAD_REQUEST)
 
-        val result = CardDto().apply {
-            this.id = card.id
-            this.setOfCardId = card.cardStockId
-            this.value = card.value
-            this.translate = card.translate
-            this.type = card.type
-            this.pointToNative = card.pointToNative
-            this.pointFromNative = card.pointFromNative
-            this.statusToNative = card.statusToNative
-            this.statusFromNative = card.statusFromNative
-        }
+        val result = CardDto(
+            id = card.id,
+            key = card.key9,
+            value = card.value9,
+            pointFromKey = card.pointFromKey,
+            pointToKey = card.pointToKey,
+            statusFromKey = card.statusFromKey,
+            statusToKey = card.statusToKey
+        )
+
         return ResponseEntity(result, HttpStatus.OK)
     }
 
-    override fun addCardToSetOfCard(
-        rootOfSetId: Int,
-        setOfCardId: Int,
+    override fun addCardToCardStock(
+        storageId: Int,
+        cardStockId: Int,
         cardFieldsDto: CardFieldsDto
     ): ResponseEntity<CardDto> {
-        storageService.findRootOfSetById(rootOfSetId) ?: return ResponseEntity(HttpStatus.NOT_FOUND)
-        val setOfCard = cardStockService.findSetOfCardById(setOfCardId) ?: return ResponseEntity(HttpStatus.NOT_FOUND)
-        val card = cardService.addCardToSetOfCard(setOfCardId, cardFieldsDto)
+        storageService.findStorageById(storageId) ?: return ResponseEntity(HttpStatus.NOT_FOUND)
+        val cardStock = cardStockService.findCardStockById(cardStockId) ?: return ResponseEntity(HttpStatus.NOT_FOUND)
+        val card = cardService.addCardToCardStock(cardStockId, cardFieldsDto)
 
-        setOfCard.cards.add(card)
-        cardStockService.saveSetOfCard(setOfCard)
+        cardStock.cards.add(card)
+        cardStockService.saveCardStock(cardStock)
 
-        val result = CardDto().apply {
-            this.id = card.id
-            this.setOfCardId = card.cardStockId
-            this.value = card.value
-            this.translate = card.translate
-            this.type = card.type
-            this.pointToNative = card.pointToNative
-            this.pointFromNative = card.pointFromNative
-            this.statusToNative = card.statusToNative
-            this.statusFromNative = card.statusFromNative
-        }
+        val result = CardDto(
+            id = card.id,
+            key = card.key9,
+            value = card.value9,
+            pointFromKey = card.pointFromKey,
+            pointToKey = card.pointToKey,
+            statusFromKey = card.statusFromKey,
+            statusToKey = card.statusToKey
+        )
+
         val headers = HttpHeaders(
             HeaderUtil.createEntityDeleteAlert(
                 applicationName, false, ENTITY_NAME, card.id.toString()
             )
         )
         headers.location =
-            UriComponentsBuilder.newInstance().path("/rootOfSet/{$rootOfSetId}/setOfCard/{$setOfCardId}/card/{id}")
+            UriComponentsBuilder.newInstance().path("/storage/{$storageId}/cardStock/{$cardStockId}/card/{id}")
                 .buildAndExpand(card.id).toUri()
 
         return ResponseEntity(result, headers, HttpStatus.CREATED)
     }
 
     override fun updateCard(
-        rootOfSetId: Int,
-        setOfCardId: Int,
+        storageId: Int,
+        cardStockId: Int,
         cardId: Int,
         cardFieldsDto: CardFieldsDto
     ): ResponseEntity<CardDto> {
-        val rootOfSet = storageService.findRootOfSetById(rootOfSetId) ?: return ResponseEntity(HttpStatus.NOT_FOUND)
-        val setOfCard = cardStockService.findSetOfCardById(setOfCardId) ?: return ResponseEntity(HttpStatus.NOT_FOUND)
-        if (setOfCard.storageId != rootOfSet.id) return ResponseEntity(HttpStatus.BAD_REQUEST)
+        val storage = storageService.findStorageById(storageId) ?: return ResponseEntity(HttpStatus.NOT_FOUND)
+        val cardStock = cardStockService.findCardStockById(cardStockId) ?: return ResponseEntity(HttpStatus.NOT_FOUND)
+        if (cardStock.storageId != storage.id) return ResponseEntity(HttpStatus.BAD_REQUEST)
 
         val card = cardService.findCardById(cardId) ?: return ResponseEntity(HttpStatus.NOT_FOUND)
-        if (!setOfCard.cards.contains(card)) return ResponseEntity(HttpStatus.BAD_REQUEST)
+        if (!cardStock.cards.contains(card)) return ResponseEntity(HttpStatus.BAD_REQUEST)
 
         cardService.saveCard(card.apply {
-            this.value = cardFieldsDto.value
-            this.translate = cardFieldsDto.translate
-            this.type = cardFieldsDto.type
-            this.pointToNative = cardFieldsDto.pointToNative
-            this.pointFromNative = cardFieldsDto.pointFromNative
-            this.statusToNative = cardFieldsDto.statusToNative
-            this.statusFromNative = cardFieldsDto.statusFromNative
+            this.cardStockId = cardStockId
+            this.key9 = cardFieldsDto.key
+            this.value9 = cardFieldsDto.value
         })
 
-        val result = CardDto().apply {
-            this.id = card.id
-            this.setOfCardId = card.cardStockId
-            this.value = card.value
-            this.translate = card.translate
-            this.type = card.type
-            this.pointToNative = card.pointToNative
-            this.pointFromNative = card.pointFromNative
-            this.statusToNative = card.statusToNative
-            this.statusFromNative = card.statusFromNative
-        }
+        val result = CardDto(
+            id = card.id,
+            key = card.key9,
+            value = card.value9,
+            pointFromKey = card.pointFromKey,
+            pointToKey = card.pointToKey,
+            statusFromKey = card.statusFromKey,
+            statusToKey = card.statusToKey
+        )
 
         val headers = HttpHeaders(
             HeaderUtil.createEntityUpdateAlert(
@@ -130,16 +122,16 @@ class CardController(
     }
 
     override fun deleteCard(
-        rootOfSetId: Int,
-        setOfCardId: Int,
+        storageId: Int,
+        cardStockId: Int,
         cardId: Int
     ): ResponseEntity<Void> {
-        val rootOfSet = storageService.findRootOfSetById(rootOfSetId) ?: return ResponseEntity(HttpStatus.NOT_FOUND)
-        val setOfCard = cardStockService.findSetOfCardById(setOfCardId) ?: return ResponseEntity(HttpStatus.NOT_FOUND)
-        if (setOfCard.storageId != rootOfSet.id) return ResponseEntity(HttpStatus.BAD_REQUEST)
+        val storage = storageService.findStorageById(storageId) ?: return ResponseEntity(HttpStatus.NOT_FOUND)
+        val cardStock = cardStockService.findCardStockById(cardStockId) ?: return ResponseEntity(HttpStatus.NOT_FOUND)
+        if (cardStock.storageId != storage.id) return ResponseEntity(HttpStatus.BAD_REQUEST)
 
         val card = cardService.findCardById(cardId) ?: return ResponseEntity(HttpStatus.NOT_FOUND)
-        if (!setOfCard.cards.contains(card)) return ResponseEntity(HttpStatus.BAD_REQUEST)
+        if (!cardStock.cards.contains(card)) return ResponseEntity(HttpStatus.BAD_REQUEST)
 
         cardService.deleteCard(card)
         val headers = HttpHeaders(
