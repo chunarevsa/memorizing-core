@@ -1,5 +1,6 @@
 package com.example.memorizing.setOfCard
 
+import com.example.memorizing.rootOfSet.RootOfSetService
 import com.example.memorizing.system.util.HeaderUtil
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.HttpHeaders
@@ -9,11 +10,12 @@ import org.springframework.web.bind.annotation.*
 import org.springframework.web.util.UriComponentsBuilder
 
 @RestController
-@RequestMapping("/setOfCard")
+@RequestMapping("/rootOfSet/{rootOfSetId}/")
 class SetOfCardController(
-    private val setOfCardService: SetOfCardService,
     @Value("\${spring.application.name}")
-    private val applicationName: String
+    private val applicationName: String,
+    private val rootOfSetService: RootOfSetService,
+    private val setOfCardService: SetOfCardService,
 ) : SetOfCardApi {
 
     // TODO: Добавить в сущность флаг testMode = true.
@@ -23,57 +25,31 @@ class SetOfCardController(
         const val ENTITY_NAME = "setOfCard"
     }
 
-    override fun findSetOfCardById(setOfCardId: Int): ResponseEntity<SetOfCardDto> {
+    override fun getSetOfCardById(rootOfSetId: Int, setOfCardId: Int): ResponseEntity<SetOfCardDto> {
+        val rootOfSet = rootOfSetService.findRootOfSetById(rootOfSetId) ?: return ResponseEntity(HttpStatus.NOT_FOUND)
         val setOfCard = setOfCardService.findSetOfCardById(setOfCardId) ?: return ResponseEntity(HttpStatus.NOT_FOUND)
-        setOfCard.listSetOfCard = setOfCardService.findBySetOfCardId(setOfCardId).toMutableList()
-        setOfCard.listSetOfCard.forEach { setOfCard ->
-            setOfCard.listOfCards.add(
-                cardServiceImpl.findBySetOfCardId(
-                    setOfCard.id!!
-                )
-            )
-        }
+        if (setOfCard.rootOfSetId != rootOfSet.id) return ResponseEntity(HttpStatus.BAD_REQUEST)
+
         val result = SetOfCardDto().apply {
             this.id = setOfCard.id
-            this.userId = setOfCard.userId
-            this.listSetOfCard = setOfCard.listSetOfCard
+            this.maxPoint = setOfCard.maxPoint
+            this.listOfCards = setOfCard.listOfCards
         }
-
         return ResponseEntity(result, HttpStatus.OK)
     }
 
-    override fun findSetOfCardByUserId(setOfCardDto: SetOfCardDto): ResponseEntity<SetOfCardDto> {
-        setOfCardDto.userId ?: return ResponseEntity(HttpStatus.BAD_REQUEST)
-
-        val setOfCard =
-            setOfCardService.findSetOfCardByUserId(setOfCardDto.userId!!) ?: return ResponseEntity(HttpStatus.NOT_FOUND)
-        setOfCard.listSetOfCard = setOfCardService.findBySetOfCardId(setOfCard.id!!).toMutableList()
-        setOfCard.listSetOfCard.forEach { setOfCard ->
-            setOfCard.listOfCards.add(
-                cardServiceImpl.findBySetOfCardId(
-                    setOfCard.id!!
-                )
-            )
-        }
-        val result = SetOfCardDto().apply {
-            this.id = setOfCard.id
-            this.userId = setOfCard.userId
-            this.listSetOfCard = setOfCard.listSetOfCard
-        }
-
-        return ResponseEntity(result, HttpStatus.OK)
-    }
-
-    override fun createSetOfCard(setOfCardFieldsDto: SetOfCardFieldsDto): ResponseEntity<SetOfCardDto> {
-        setOfCardFieldsDto.userId ?: return ResponseEntity(HttpStatus.BAD_REQUEST)
-
-        val setOfCard =
-            setOfCardService.create(setOfCardFieldsDto.userId!!) ?: return ResponseEntity(HttpStatus.NOT_FOUND)
+    override fun addSetOfCardToRootOfSet(
+        rootOfSetId: Int,
+        setOfCardFieldsDto: SetOfCardFieldsDto
+    ): ResponseEntity<SetOfCardDto> {
+        rootOfSetService.findRootOfSetById(rootOfSetId) ?: return ResponseEntity(HttpStatus.NOT_FOUND)
+        val setOfCard = setOfCardService.createSetOfCard(rootOfSetId, setOfCardFieldsDto)
 
         val result = SetOfCardDto().apply {
             this.id = setOfCard.id
-            this.userId = setOfCard.userId
-            this.listSetOfCard = setOfCard.listSetOfCard
+            this.rootOfSetId = setOfCard.rootOfSetId
+            this.maxPoint = setOfCard.maxPoint
+            this.listOfCards = setOfCard.listOfCards
         }
 
         val headers = HttpHeaders(
@@ -81,30 +57,31 @@ class SetOfCardController(
                 applicationName, false, ENTITY_NAME, setOfCard.id.toString()
             )
         )
-
-        headers.location = UriComponentsBuilder.newInstance()
-            .path("/api/setOfCard/{id}").buildAndExpand(setOfCard.id).toUri()
+        headers.location =
+            UriComponentsBuilder.newInstance().path("/api/setOfCard/{id}").buildAndExpand(setOfCard.id).toUri()
 
         return ResponseEntity(result, headers, HttpStatus.CREATED)
     }
 
     override fun updateSetOfCard(
+        rootOfSetId: Int,
         setOfCardId: Int,
         setOfCardFieldsDto: SetOfCardFieldsDto
     ): ResponseEntity<SetOfCardDto> {
-        setOfCardFieldsDto.listSetOfCard ?: return ResponseEntity(HttpStatus.BAD_REQUEST)
-
+        rootOfSetService.findRootOfSetById(rootOfSetId) ?: return ResponseEntity(HttpStatus.NOT_FOUND)
         val setOfCard = setOfCardService.findSetOfCardById(setOfCardId) ?: return ResponseEntity(HttpStatus.NOT_FOUND)
-        setOfCard.apply {
-            this.listSetOfCard = setOfCardFieldsDto.listSetOfCard!!
-        }
 
-        val newSetOfCard = setOfCardService.saveSetOfCard(setOfCard)
+        setOfCardService.saveSetOfCard(setOfCard.apply {
+            this.pair = setOfCardFieldsDto.pair
+            this.maxPoint = setOfCardFieldsDto.maxPoint
+        })
 
         val result = SetOfCardDto().apply {
-            this.id = newSetOfCard.id
-            this.userId = newSetOfCard.userId
-            this.listSetOfCard = newSetOfCard.listSetOfCard
+            this.id = setOfCard.id
+            this.rootOfSetId = setOfCard.rootOfSetId
+            this.pair = setOfCard.pair
+            this.maxPoint = setOfCard.maxPoint
+            this.listOfCards = setOfCard.listOfCards
         }
 
         val headers = HttpHeaders(
@@ -112,13 +89,15 @@ class SetOfCardController(
                 applicationName, false, ENTITY_NAME, setOfCard.id.toString()
             )
         )
-
         return ResponseEntity(result, headers, HttpStatus.NO_CONTENT)
     }
 
-    override fun deleteSetOfCard(setOfCardId: Int): ResponseEntity<Void> {
-        val setOfCard =
-            setOfCardService.findSetOfCardById(setOfCardId) ?: return ResponseEntity(HttpStatus.NOT_FOUND)
+    override fun deleteSetOfCard(
+        rootOfSetId: Int,
+        setOfCardId: Int
+    ): ResponseEntity<Void> {
+        rootOfSetService.findRootOfSetById(rootOfSetId) ?: return ResponseEntity(HttpStatus.NOT_FOUND)
+        val setOfCard = setOfCardService.findSetOfCardById(setOfCardId) ?: return ResponseEntity(HttpStatus.NOT_FOUND)
 
         setOfCardService.deleteSetOfCard(setOfCard)
         val headers = HttpHeaders(
@@ -126,23 +105,7 @@ class SetOfCardController(
                 applicationName, false, ENTITY_NAME, setOfCard.id.toString()
             )
         )
-
         return ResponseEntity(headers, HttpStatus.NO_CONTENT)
     }
-
-    override fun addSetOfCardToSetOfCard(
-        setOfCardId: Int,
-        setOfCardFieldsDto: SetOfCardFieldsDto
-    ): ResponseEntity<SetOfCardDto> {
-
-        setOfCardServiceImpl.addSetOfCardId(rootId, setOfCardId)
-        return ResponseEntity.noContent()
-            .headers(
-                HeaderUtil.createEntityDeleteAlert(
-                    applicationName, false, ENTITY_NAME, rootId
-                )
-            ).build()
-    }
-
 
 }
