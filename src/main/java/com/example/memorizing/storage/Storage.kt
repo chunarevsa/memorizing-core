@@ -1,11 +1,11 @@
-package com.example.memorizing.rootOfSet
+package com.example.memorizing.storage
 
-import com.example.memorizing.setOfCard.SetOfCard
+import com.example.memorizing.cardStock.CardStock
 import org.springframework.data.annotation.Id
 import org.springframework.data.relational.core.mapping.MappedCollection
 import javax.validation.constraints.NotEmpty
 
-data class RootOfSet(
+data class Storage(
     @Id
     var id: Int? = null,
 
@@ -13,5 +13,6 @@ data class RootOfSet(
     val userId: Int? = null,
 
     @MappedCollection(idColumn = "id", keyColumn = "id")
-    var listSetOfCard: MutableList<SetOfCard> = mutableListOf()
+    var cardStocks: MutableList<CardStock> = mutableListOf()
+
 )

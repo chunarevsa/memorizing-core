@@ -1,4 +1,4 @@
-package com.example.memorizing.setOfCard
+package com.example.memorizing.cardStock
 
 import com.example.memorizing.card.Card
 import com.example.memorizing.entity.ELanguage
@@ -8,7 +8,7 @@ import org.springframework.data.relational.core.mapping.Column
 import org.springframework.data.relational.core.mapping.MappedCollection
 import java.util.*
 
-data class SetOfCard(
+data class CardStock(
     @Id
     var id: Int? = null,
 
@@ -16,10 +16,10 @@ data class SetOfCard(
     var pair: Pair<ELanguage, ELanguage>? = null,
     var maxPoint: Int = 5,
 
-    @Column("root_of_set_id")
-    var rootOfSetId: Int? = null,
+    @Column("storage_id")
+    var storageId: Int? = null,
 
     @MappedCollection(idColumn = "id", keyColumn = "id")
-    val listOfCards: MutableList<Card> = mutableListOf()
+    val cards: MutableList<Card> = mutableListOf()
 )
 

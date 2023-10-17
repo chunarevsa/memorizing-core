@@ -9,8 +9,8 @@ data class Card(
     @Id
     var id: Int? = null,
 
-    @Column("set_of_card_id")
-    var setOfCardId: Int? = null,
+    @Column("card_stock_id")
+    var cardStockId: Int? = null,
 
     var value: String? = null,
     var translate: String? = null,

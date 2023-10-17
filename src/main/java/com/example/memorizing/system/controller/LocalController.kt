@@ -3,9 +3,9 @@ package com.example.memorizing.system.controller
 import com.example.memorizing.card.Card
 import com.example.memorizing.entity.*
 import com.example.memorizing.repository.UserRepository
-import com.example.memorizing.rootOfSet.RootOfSet
+import com.example.memorizing.storage.Storage
 import com.example.memorizing.system.service.StudyingService
-import com.example.memorizing.setOfCard.SetOfCard
+import com.example.memorizing.cardStock.CardStock
 import com.example.memorizing.user.User
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
@@ -28,7 +28,7 @@ class LocalController(
             userRepository.findUserByUsername("Sergei")!!
         }
 
-        val rootOfSet: RootOfSet = if (user.rootOfSetIds.isNotEmpty()) {
+        val storage: Storage = if (user.rootOfSetIds.isNotEmpty()) {
             studyingService.getRootOfSets(user.rootOfSetIds.first())!!
         } else {
             val rootOfSetsId = studyingService.createRootOfSet(user.username!!)
@@ -37,14 +37,14 @@ class LocalController(
             studyingService.getRootOfSets(rootOfSetsId)!!
         }
 
-        if (rootOfSet.setOfCardsIds.isEmpty()) {
-            rootOfSet.setOfCardsIds.add(studyingService.createSetOfCards(ELanguage.ENG, user.nativeLanguage!!, user.maxPoint))
-            rootOfSet.setOfCardsIds.add(studyingService.createSetOfCards(ELanguage.DEU, user.nativeLanguage, user.maxPoint))
-            studyingService.saveRootOfSets(rootOfSet)
+        if (storage.setOfCardsIds.isEmpty()) {
+            storage.setOfCardsIds.add(studyingService.createSetOfCards(ELanguage.ENG, user.nativeLanguage!!, user.maxPoint))
+            storage.setOfCardsIds.add(studyingService.createSetOfCards(ELanguage.DEU, user.nativeLanguage, user.maxPoint))
+            studyingService.saveRootOfSets(storage)
         }
 
-        val listOfSetOfCards: List<SetOfCard> = studyingService.getListOfSetOfCards(user.rootOfSetIds)
-        val setOfPairLanguage: Set<Pair<ELanguage, ELanguage>> = listOfSetOfCards.map { it.pair!! }.toSet()
+        val listOfCardStocks: List<CardStock> = studyingService.getListOfSetOfCards(user.rootOfSetIds)
+        val setOfPairLanguage: Set<Pair<ELanguage, ELanguage>> = listOfCardStocks.map { it.pair!! }.toSet()
 
         logger.info("START")
         while (true) {
@@ -53,12 +53,12 @@ class LocalController(
             if (pairOfLanguage.second != user.nativeLanguage) throw Exception("wrong pair of languages in setOfPairLanguage")
 
             val cardType: ECardType = chooseCardTypeOrSetLanguageOrContinue() ?: continue
-            val setOfCards = listOfSetOfCards.find { it.pair == pairOfLanguage } ?: throw Exception("not found")
+            val setOfCards = listOfCardStocks.find { it.pair == pairOfLanguage } ?: throw Exception("not found")
 
-            showShortStatisticByCardType(setOfCards.listOfCards, cardType)
+            showShortStatisticByCardType(setOfCards.cards, cardType)
 
             val chosenMode = chooseMode(pairOfLanguage, cardType) ?: continue
-            val mapOfCards = filterMapOfCardsByMode(setOfCards.listOfCards, chosenMode)
+            val mapOfCards = filterMapOfCardsByMode(setOfCards.cards, chosenMode)
 
             when (chosenMode.modeType) {
                 EModeType.TESTING -> startTestLoop(mapOfCards, chosenMode.translateToNative!!, setOfCards.id, user.maxPoint)

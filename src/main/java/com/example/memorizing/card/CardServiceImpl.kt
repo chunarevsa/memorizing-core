@@ -12,7 +12,7 @@ class CardServiceImpl (
 
     override fun addCardToSetOfCard(setOfCardId: Int, cardFieldsDto: CardFieldsDto): Card {
         return cards.saveCard(Card().apply {
-            this.setOfCardId = setOfCardId
+            this.cardStockId = setOfCardId
             this.value = cardFieldsDto.value
             this.translate = cardFieldsDto.translate
             this.type = cardFieldsDto.type
