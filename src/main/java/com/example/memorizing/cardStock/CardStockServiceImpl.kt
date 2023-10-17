@@ -13,12 +13,12 @@ class CardStockServiceImpl(
     override fun addCardStockToStorage(storageId: Int, cardStockFieldsDto: CardStockFieldsDto): CardStock {
         return cardStocks.saveCardStock(CardStock(
             name = cardStockFieldsDto.name,
-            discription = cardStockFieldsDto.discription,
+            description = cardStockFieldsDto.description,
             keyType = cardStockFieldsDto.keyType,
             valueType = cardStockFieldsDto.valueType,
             maxPoint = cardStockFieldsDto.maxPoint,
             testModeIsAvailable = cardStockFieldsDto.testModeIsAvailable,
-            onlyForward = cardStockFieldsDto.onlyForward
+            onlyFromKey = cardStockFieldsDto.onlyForward
         ))
     }
 

@@ -1,4 +1,4 @@
-package com.example.memorizing.system.util
+package com.example.memorizing.util
 
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory

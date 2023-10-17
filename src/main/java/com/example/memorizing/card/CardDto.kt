@@ -1,7 +1,5 @@
 package com.example.memorizing.card
 
-import com.example.memorizing.system.entity.ECardStatus
-
 data class CardDto(
     var id: Int? = null,
     var key: String? = null,

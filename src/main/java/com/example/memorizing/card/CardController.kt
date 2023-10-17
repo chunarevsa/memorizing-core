@@ -1,8 +1,8 @@
 package com.example.memorizing.card
 
-import com.example.memorizing.storage.StorageService
 import com.example.memorizing.cardStock.CardStockService
-import com.example.memorizing.system.util.HeaderUtil
+import com.example.memorizing.storage.StorageService
+import com.example.memorizing.util.HeaderUtil
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
@@ -140,6 +140,28 @@ class CardController(
             )
         )
         return ResponseEntity(headers, HttpStatus.NO_CONTENT)
+    }
+
+    override fun checkCard(
+        storageId: Int,
+        cardStockId: Int,
+        cardId: Int,
+        checkCardDto: CheckCardDto
+    ): ResponseEntity<TestResultDto> {
+        val storage = storageService.findStorageById(storageId) ?: return ResponseEntity(HttpStatus.NOT_FOUND)
+        val cardStock = cardStockService.findCardStockById(cardStockId) ?: return ResponseEntity(HttpStatus.NOT_FOUND)
+        if (cardStock.storageId != storage.id) return ResponseEntity(HttpStatus.BAD_REQUEST)
+
+        val card = cardService.findCardById(cardId) ?: return ResponseEntity(HttpStatus.NOT_FOUND)
+        if (!cardStock.cards.contains(card)) return ResponseEntity(HttpStatus.BAD_REQUEST)
+
+        if (!cardStock.getAvailableMods().contains(checkCardDto.mode) ||
+            (checkCardDto.mode != EModeType.TESTING_TO_KEY || checkCardDto.mode != EModeType.TESTING_TO_KEY)
+        ) return ResponseEntity(HttpStatus.BAD_REQUEST)
+
+        val result = cardService.checkCard(card, checkCardDto, cardStock)
+
+        return ResponseEntity(result, HttpStatus.OK)
     }
 
 }

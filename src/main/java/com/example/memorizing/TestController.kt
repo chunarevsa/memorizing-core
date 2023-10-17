@@ -1,4 +1,4 @@
-package com.example.memorizing.system.controller
+package com.example.memorizing
 
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping

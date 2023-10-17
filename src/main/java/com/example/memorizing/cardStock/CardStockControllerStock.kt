@@ -1,7 +1,7 @@
 package com.example.memorizing.cardStock
 
 import com.example.memorizing.storage.StorageService
-import com.example.memorizing.system.util.HeaderUtil
+import com.example.memorizing.util.HeaderUtil
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
@@ -30,12 +30,12 @@ class CardStockControllerStock(
         val result = CardStockDto(
             id = cardStock.id,
             name = cardStock.name,
-            discription = cardStock.discription,
+            description = cardStock.description,
             keyType = cardStock.keyType,
             valueType = cardStock.valueType,
             maxPoint = cardStock.maxPoint,
             testModeIsAvailable = cardStock.testModeIsAvailable,
-            onlyForward = cardStock.onlyForward,
+            onlyFromKey = cardStock.onlyFromKey,
             cards = cardStock.cards
         )
         return ResponseEntity(result, HttpStatus.OK)
@@ -51,12 +51,12 @@ class CardStockControllerStock(
         val result = CardStockDto(
             id = cardStock.id,
             name = cardStock.name,
-            discription = cardStock.discription,
+            description = cardStock.description,
             keyType = cardStock.keyType,
             valueType = cardStock.valueType,
             maxPoint = cardStock.maxPoint,
             testModeIsAvailable = cardStock.testModeIsAvailable,
-            onlyForward = cardStock.onlyForward,
+            onlyFromKey = cardStock.onlyFromKey,
             cards = cardStock.cards
         )
 
@@ -81,23 +81,23 @@ class CardStockControllerStock(
 
         cardStockService.saveCardStock(cardStock.apply {
             this.name = cardStockFieldsDto.name
-            this.discription = cardStockFieldsDto.discription
+            this.description = cardStockFieldsDto.description
             this.keyType = cardStockFieldsDto.keyType
             this.valueType = cardStockFieldsDto.valueType
             this.maxPoint = cardStockFieldsDto.maxPoint
-            this.testModeIsAvailable = cardStockFieldsDto.testModeIsAvailable
-            this.onlyForward = cardStockFieldsDto.onlyForward
+            this.testModeIsAvailable = cardStockFieldsDto.testModeIsAvailable!!
+            this.onlyFromKey = cardStockFieldsDto.onlyFromKey!!
         })
 
         val result = CardStockDto(
             id = cardStock.id,
             name = cardStock.name,
-            discription = cardStock.discription,
+            description = cardStock.description,
             keyType = cardStock.keyType,
             valueType = cardStock.valueType,
             maxPoint = cardStock.maxPoint,
             testModeIsAvailable = cardStock.testModeIsAvailable,
-            onlyForward = cardStock.onlyForward,
+            onlyFromKey = cardStock.onlyFromKey,
             cards = cardStock.cards
         )
 

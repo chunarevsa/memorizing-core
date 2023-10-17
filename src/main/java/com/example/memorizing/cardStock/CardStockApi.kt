@@ -49,4 +49,5 @@ interface CardStockApi {
         @PathVariable("storageId") storageId: Int,
         @PathVariable("cardStockId") cardStockId: Int
     ): ResponseEntity<Void>
+
 }

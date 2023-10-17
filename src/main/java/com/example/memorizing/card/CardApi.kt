@@ -53,4 +53,17 @@ interface CardApi {
         @PathVariable("cardStockId") cardStockId: Int,
         @PathVariable("cardId") cardId: Int,
     ): ResponseEntity<Void>
+
+    @RequestMapping(
+        method = [RequestMethod.POST],
+        value = ["/storage/{storageId}/cardStock/{cardStockId}/card/{cardId}"],
+        produces = ["application/json"]
+    )
+    fun checkCard(
+        @PathVariable("storageId") storageId: Int,
+        @PathVariable("cardStockId") cardStockId: Int,
+        @PathVariable("cardId") cardId: Int,
+        @RequestBody checkCardDto: CheckCardDto,
+    ): ResponseEntity<TestResultDto>
+
 }

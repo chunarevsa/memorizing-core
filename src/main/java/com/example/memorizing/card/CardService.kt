@@ -1,5 +1,6 @@
 package com.example.memorizing.card
 
+import com.example.memorizing.cardStock.CardStock
 import org.springframework.transaction.annotation.Transactional
 
 interface CardService {
@@ -14,4 +15,6 @@ interface CardService {
     fun saveCard(card: Card): Card
     @Transactional
     fun deleteCard(card: Card)
+    @Transactional
+    fun checkCard(card: Card, checkCardDto: CheckCardDto, cardStock: CardStock): TestResultDto
 }

@@ -1,6 +1,5 @@
 package com.example.memorizing.card
 
-import com.example.memorizing.system.entity.ECardStatus
 import org.springframework.data.annotation.Id
 import org.springframework.data.relational.core.mapping.Column
 
@@ -16,7 +15,6 @@ data class Card(
     var pointToKey: Int = 0
     var statusFromKey: ECardStatus = ECardStatus.NORMAL
     var statusToKey: ECardStatus = ECardStatus.NORMAL
-
 
     fun increasePoint(toNative: Boolean, userMaxPoint: Int) {
         var status: ECardStatus = if (toNative) statusFromKey else statusToKey

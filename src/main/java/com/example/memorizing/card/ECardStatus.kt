@@ -1,4 +1,4 @@
-package com.example.memorizing.system.entity
+package com.example.memorizing.card
 
 enum class ECardStatus {
     NORMAL,

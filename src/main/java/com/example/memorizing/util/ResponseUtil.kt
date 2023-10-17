@@ -1,4 +1,4 @@
-package com.example.memorizing.system.util
+package com.example.memorizing.util
 
 import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus

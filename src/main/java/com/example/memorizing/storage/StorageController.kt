@@ -1,6 +1,6 @@
 package com.example.memorizing.storage
 
-import com.example.memorizing.system.util.HeaderUtil
+import com.example.memorizing.util.HeaderUtil
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
