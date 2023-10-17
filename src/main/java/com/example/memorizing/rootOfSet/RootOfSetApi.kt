@@ -10,7 +10,7 @@ interface RootOfSetApi {
     @RequestMapping(
         method = [RequestMethod.GET], value = ["/rootOfSet/{rootOfSetId}"], produces = ["application/json"]
     )
-    fun findRootOfSetById(@PathVariable("rootOfSetId") rootOfSetId: Int): ResponseEntity<RootOfSetDto>
+    fun getRootOfSetById(@PathVariable("rootOfSetId") rootOfSetId: Int): ResponseEntity<RootOfSetDto>
 
     @RequestMapping(
         method = [RequestMethod.POST],
@@ -18,7 +18,7 @@ interface RootOfSetApi {
         produces = ["application/json"],
         consumes = ["application/json"]
     )
-    fun findRootOfSetByUserId(@RequestBody rootOfSetDto: RootOfSetDto): ResponseEntity<RootOfSetDto>
+    fun getRootOfSetByUserId(@RequestBody rootOfSetDto: RootOfSetDto): ResponseEntity<RootOfSetDto>
 
     @RequestMapping(
         method = [RequestMethod.POST],
@@ -47,17 +47,5 @@ interface RootOfSetApi {
     fun deleteRootOfSet(
         @PathVariable("rootOfSetId") rootOfSetId: Int
     ): ResponseEntity<Void>
-
-
-    @RequestMapping(
-        method = [RequestMethod.POST],
-        value = ["/rootOfSet/{rootOfSetId}/setOfCard"],
-        produces = ["application/json"],
-        consumes = ["application/json"]
-    )
-//    fun addSetOfCardToRootOfSet(
-//        @PathVariable("rootOfSetId") rootOfSetId: Int,
-//        @RequestBody setOfCardFieldsDto: SetOfCardFieldsDto
-//    ): ResponseEntity<SetOfCardDto>
 
 }

@@ -1,9 +1,6 @@
 package com.example.memorizing.rootOfSet
 
 import com.example.memorizing.card.CardService
-import com.example.memorizing.card.CardServiceImpl
-import com.example.memorizing.setOfCard.SetOfCardDto
-import com.example.memorizing.setOfCard.SetOfCardFieldsDto
 import com.example.memorizing.setOfCard.SetOfCardService
 import com.example.memorizing.system.util.HeaderUtil
 import org.springframework.beans.factory.annotation.Value
@@ -19,23 +16,14 @@ class RootOfSetController(
     @Value("\${spring.application.name}")
     private val applicationName: String,
     private val rootOfSetService: RootOfSetService,
-    private val setOfCardService: SetOfCardService,
-    private val cardService: CardService,
 ) : RootOfSetApi {
     companion object {
         const val ENTITY_NAME = "rootOfSet"
     }
 
-    override fun findRootOfSetById(rootOfSetId: Int): ResponseEntity<RootOfSetDto> {
+    override fun getRootOfSetById(rootOfSetId: Int): ResponseEntity<RootOfSetDto> {
         val rootOfSet = rootOfSetService.findRootOfSetById(rootOfSetId) ?: return ResponseEntity(HttpStatus.NOT_FOUND)
-        rootOfSet.listSetOfCard = setOfCardService.findListSetOfCardByRootOfSetId(rootOfSetId)
-        rootOfSet.listSetOfCard.forEach { setOfCard ->
-            setOfCard.listOfCards.addAll(
-                cardService.findListBySetOfCardId(
-                    setOfCard.id!!
-                )
-            )
-        }
+
         val result = RootOfSetDto().apply {
             this.id = rootOfSet.id
             this.userId = rootOfSet.userId
@@ -45,19 +33,12 @@ class RootOfSetController(
         return ResponseEntity(result, HttpStatus.OK)
     }
 
-    override fun findRootOfSetByUserId(rootOfSetDto: RootOfSetDto): ResponseEntity<RootOfSetDto> {
+    override fun getRootOfSetByUserId(rootOfSetDto: RootOfSetDto): ResponseEntity<RootOfSetDto> {
         rootOfSetDto.userId ?: return ResponseEntity(HttpStatus.BAD_REQUEST)
 
         val rootOfSet =
             rootOfSetService.findRootOfSetByUserId(rootOfSetDto.userId!!) ?: return ResponseEntity(HttpStatus.NOT_FOUND)
-        rootOfSet.listSetOfCard = setOfCardService.findListSetOfCardByRootOfSetId(rootOfSet.id!!)
-        rootOfSet.listSetOfCard.forEach { setOfCard ->
-            setOfCard.listOfCards.addAll(
-                cardService.findListBySetOfCardId(
-                    setOfCard.id!!
-                )
-            )
-        }
+
         val result = RootOfSetDto().apply {
             this.id = rootOfSet.id
             this.userId = rootOfSet.userId
@@ -70,7 +51,8 @@ class RootOfSetController(
     override fun createRootOfSet(rootOfSetFieldsDto: RootOfSetFieldsDto): ResponseEntity<RootOfSetDto> {
         rootOfSetFieldsDto.userId ?: return ResponseEntity(HttpStatus.BAD_REQUEST)
 
-        val rootOfSet = rootOfSetService.create(rootOfSetFieldsDto.userId!!) ?: return ResponseEntity(HttpStatus.NOT_FOUND)
+        val rootOfSet =
+            rootOfSetService.create(rootOfSetFieldsDto.userId!!) ?: return ResponseEntity(HttpStatus.NOT_FOUND)
 
         val result = RootOfSetDto().apply {
             this.id = rootOfSet.id
@@ -90,7 +72,10 @@ class RootOfSetController(
         return ResponseEntity(result, headers, HttpStatus.CREATED)
     }
 
-    override fun updateRootOfSet(rootOfSetId: Int, rootOfSetFieldsDto: RootOfSetFieldsDto): ResponseEntity<RootOfSetDto> {
+    override fun updateRootOfSet(
+        rootOfSetId: Int,
+        rootOfSetFieldsDto: RootOfSetFieldsDto
+    ): ResponseEntity<RootOfSetDto> {
         rootOfSetFieldsDto.listSetOfCard ?: return ResponseEntity(HttpStatus.BAD_REQUEST)
 
         val rootOfSet = rootOfSetService.findRootOfSetById(rootOfSetId) ?: return ResponseEntity(HttpStatus.NOT_FOUND)
