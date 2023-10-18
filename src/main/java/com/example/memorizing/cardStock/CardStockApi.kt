@@ -9,44 +9,40 @@ import org.springframework.web.bind.annotation.RequestMethod
 interface CardStockApi {
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = ["/storage/{storageId}/cardStock/{cardStockId}"],
+        value = ["/cardStock/{cardStockId}"],
         produces = ["application/json"]
     )
     fun getCardStockById(
-        @PathVariable("storageId") storageId: Int,
         @PathVariable("cardStockId") cardStockId: Int
     ): ResponseEntity<CardStockDto>
 
     @RequestMapping(
         method = [RequestMethod.POST],
-        value = ["/storage/{storageId}/cardStock"],
+        value = ["/cardStock"],
         produces = ["application/json"],
         consumes = ["application/json"]
     )
     fun addCardStockToStorage(
-        @PathVariable("storageId") storageId: Int,
         @RequestBody cardStockFieldsDto: CardStockFieldsDto
     ): ResponseEntity<CardStockDto>
 
     @RequestMapping(
         method = [RequestMethod.POST],
-        value = ["/storage/{storageId}/cardStock/{cardStockId}"],
+        value = ["/cardStock/{cardStockId}"],
         produces = ["application/json"],
         consumes = ["application/json"]
     )
     fun updateCardStock(
-        @PathVariable("storageId") storageId: Int,
         @PathVariable("cardStockId") cardStockId: Int,
         @RequestBody cardStockFieldsDto: CardStockFieldsDto
     ): ResponseEntity<CardStockDto>
 
     @RequestMapping(
         method = [RequestMethod.DELETE],
-        value = ["/storage/{storageId}/cardStock/{cardStockId}"],
+        value = ["/cardStock/{cardStockId}"],
         produces = ["application/json"]
     )
     fun deleteCardStock(
-        @PathVariable("storageId") storageId: Int,
         @PathVariable("cardStockId") cardStockId: Int
     ): ResponseEntity<Void>
 

@@ -12,10 +12,11 @@ open class StorageServiceImpl(
 
     override fun create(userId: Int): Storage? {
         if (storages.existsByUserId(userId)) return null
-        return storages.saveStorage(Storage(userId))
+        storages.save(Storage(userId))
+        return storages.findByUserId(userId)
     }
 
-    override fun saveStorage(storage: Storage) = storages.saveStorage(storage)
+    override fun saveStorage(storage: Storage) = storages.save(storage)
     override fun deleteStorage(storage: Storage) = storages.delete(storage)
 
 }

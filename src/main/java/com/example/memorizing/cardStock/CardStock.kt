@@ -1,15 +1,14 @@
 package com.example.memorizing.cardStock
 
-import com.example.memorizing.card.Card
 import com.example.memorizing.card.EModeType
 import org.springframework.data.annotation.Id
 import org.springframework.data.relational.core.mapping.Column
-import org.springframework.data.relational.core.mapping.MappedCollection
 import java.util.*
 
 data class CardStock(
+    @Column("storage_id")
     var storageId: Int? = null,
-    var name: String? = null,
+    var cardStockName: String? = null,
     var description: String? = null,
     var keyType: String? = null,
     var valueType: String? = null,
@@ -19,19 +18,18 @@ data class CardStock(
 ) {
     @Id
     var id: Int? = null
-    @Column("storage_id")
 
-    @MappedCollection(idColumn = "id", keyColumn = "id")
-    val cards: MutableList<Card> = mutableListOf()
+//    @MappedCollection(idColumn = "id", keyColumn = "id")
+//    val cards: MutableList<Card> = mutableListOf()
 
-    fun getAvailableMods(): MutableList<EModeType> {
+    var availableMods: MutableList<EModeType> = run{
         val mods = EModeType.values().toMutableList()
         if (!testModeIsAvailable) {
             mods.remove(EModeType.TESTING_TO_KEY)
             mods.remove(EModeType.TESTING_FROM_KEY)
         }
         if (onlyFromKey) mods.remove(EModeType.TESTING_TO_KEY)
-        return mods
+        return@run mods
     }
 }
 

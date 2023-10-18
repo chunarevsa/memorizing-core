@@ -14,7 +14,7 @@ interface StorageRepository : Repository<Storage, Int> {
     @Query("select * from storage where user_id = :userId")
     fun findByUserId(@Param("userId") userId: Int): Storage?
 
-    fun saveStorage(storage: Storage): Storage
+    fun save(storage: Storage)
 
     fun existsByUserId(userId: Int): Boolean
     fun delete(storage: Storage)
