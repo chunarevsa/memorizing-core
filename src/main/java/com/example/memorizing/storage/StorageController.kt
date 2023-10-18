@@ -25,7 +25,7 @@ class StorageController(
         val result = StorageDto().apply {
             this.id = storage.id
             this.userId = storage.userId
-            this.cardStocks = storage.cardStocks
+            this.storageName = storage.storageName
         }
 
         return ResponseEntity(result, HttpStatus.OK)
@@ -40,7 +40,7 @@ class StorageController(
         val result = StorageDto().apply {
             this.id = storage.id
             this.userId = storage.userId
-            this.cardStocks = storage.cardStocks
+            this.storageName = storage.storageName
         }
 
         return ResponseEntity(result, HttpStatus.OK)
@@ -55,7 +55,7 @@ class StorageController(
         val result = StorageDto().apply {
             this.id = storage.id
             this.userId = storage.userId
-            this.cardStocks = storage.cardStocks
+            this.storageName = storage.storageName
         }
 
         val headers = HttpHeaders(
@@ -74,19 +74,19 @@ class StorageController(
         storageId: Int,
         storageFieldsDto: StorageFieldsDto
     ): ResponseEntity<StorageDto> {
-        storageFieldsDto.cardStocks ?: return ResponseEntity(HttpStatus.BAD_REQUEST)
+        storageFieldsDto.storageName ?: return ResponseEntity(HttpStatus.BAD_REQUEST)
 
         val storage = storageService.findStorageById(storageId) ?: return ResponseEntity(HttpStatus.NOT_FOUND)
         storage.apply {
-            this.cardStocks = storageFieldsDto.cardStocks!!
+            this.storageName = storageFieldsDto.storageName
         }
 
-        val newStorage = storageService.saveStorage(storage)
+        storageService.saveStorage(storage)
 
         val result = StorageDto().apply {
-            this.id = newStorage.id
-            this.userId = newStorage.userId
-            this.cardStocks = newStorage.cardStocks
+            this.id = storage.id
+            this.userId = storage.userId
+            this.storageName = storage.storageName
         }
 
         val headers = HttpHeaders(

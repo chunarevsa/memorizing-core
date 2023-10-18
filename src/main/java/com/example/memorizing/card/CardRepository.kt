@@ -5,13 +5,13 @@ import org.springframework.data.repository.Repository
 import org.springframework.transaction.annotation.Transactional
 
 interface CardRepository : Repository<Card, Int> {
-    @Transactional(readOnly = true)
+//    @Transactional(readOnly = true)
     fun findCardById(cardId: Int): Card?
-    @Transactional(readOnly = true)
+//    @Transactional(readOnly = true)
     @Query("select * from card where card_stock_id = :cardStockId")
     fun findAllByCardStockId(cardStockId: Int): MutableList<Card>
-    @Transactional
-    fun saveCard(card: Card): Card
-    @Transactional
-    fun deleteCard(card: Card)
+//    @Transactional
+    fun save(card: Card): Card
+//    @Transactional
+    fun delete(card: Card)
 }

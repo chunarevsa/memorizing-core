@@ -1,6 +1,5 @@
 package com.example.memorizing.cardStock
 
-import com.example.memorizing.storage.StorageService
 import com.example.memorizing.util.HeaderUtil
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.HttpHeaders
@@ -10,11 +9,10 @@ import org.springframework.web.bind.annotation.*
 import org.springframework.web.util.UriComponentsBuilder
 
 @RestController
-@RequestMapping("/storage/{storageId}")
-class CardStockControllerStock(
+@RequestMapping
+class CardStockController(
     @Value("\${spring.application.name}")
     private val applicationName: String,
-    private val storageService: StorageService,
     private val cardStockService: CardStockService,
 ) : CardStockApi {
 
@@ -22,42 +20,34 @@ class CardStockControllerStock(
         const val ENTITY_NAME = "cardStock"
     }
 
-    override fun getCardStockById(storageId: Int, cardStockId: Int): ResponseEntity<CardStockDto> {
-        val storage = storageService.findStorageById(storageId) ?: return ResponseEntity(HttpStatus.NOT_FOUND)
+    override fun getCardStockById(cardStockId: Int): ResponseEntity<CardStockDto> {
         val cardStock = cardStockService.findCardStockById(cardStockId) ?: return ResponseEntity(HttpStatus.NOT_FOUND)
-        if (cardStock.storageId != storage.id) return ResponseEntity(HttpStatus.BAD_REQUEST)
 
         val result = CardStockDto(
             id = cardStock.id,
-            name = cardStock.name,
+            name = cardStock.cardStockName,
             description = cardStock.description,
             keyType = cardStock.keyType,
             valueType = cardStock.valueType,
             maxPoint = cardStock.maxPoint,
             testModeIsAvailable = cardStock.testModeIsAvailable,
-            onlyFromKey = cardStock.onlyFromKey,
-            cards = cardStock.cards
+            onlyFromKey = cardStock.onlyFromKey
         )
         return ResponseEntity(result, HttpStatus.OK)
     }
 
-    override fun addCardStockToStorage(
-        storageId: Int,
-        cardStockFieldsDto: CardStockFieldsDto
-    ): ResponseEntity<CardStockDto> {
-        storageService.findStorageById(storageId) ?: return ResponseEntity(HttpStatus.NOT_FOUND)
-        val cardStock = cardStockService.addCardStockToStorage(storageId, cardStockFieldsDto)
+    override fun addCardStockToStorage(cardStockFieldsDto: CardStockFieldsDto): ResponseEntity<CardStockDto> {
+        val cardStock = cardStockService.addCardStockToStorage(cardStockFieldsDto)
 
         val result = CardStockDto(
             id = cardStock.id,
-            name = cardStock.name,
+            name = cardStock.cardStockName,
             description = cardStock.description,
             keyType = cardStock.keyType,
             valueType = cardStock.valueType,
             maxPoint = cardStock.maxPoint,
             testModeIsAvailable = cardStock.testModeIsAvailable,
             onlyFromKey = cardStock.onlyFromKey,
-            cards = cardStock.cards
         )
 
         val headers = HttpHeaders(
@@ -66,21 +56,19 @@ class CardStockControllerStock(
             )
         )
         headers.location =
-            UriComponentsBuilder.newInstance().path("/storage/{$storageId}/cardStock/{id}").buildAndExpand(cardStock.id).toUri()
+            UriComponentsBuilder.newInstance().path("/cardStock/{id}").buildAndExpand(cardStock.id).toUri()
 
         return ResponseEntity(result, headers, HttpStatus.CREATED)
     }
 
     override fun updateCardStock(
-        storageId: Int,
         cardStockId: Int,
         cardStockFieldsDto: CardStockFieldsDto
     ): ResponseEntity<CardStockDto> {
-        storageService.findStorageById(storageId) ?: return ResponseEntity(HttpStatus.NOT_FOUND)
         val cardStock = cardStockService.findCardStockById(cardStockId) ?: return ResponseEntity(HttpStatus.NOT_FOUND)
 
         cardStockService.saveCardStock(cardStock.apply {
-            this.name = cardStockFieldsDto.name
+            this.cardStockName = cardStockFieldsDto.cardStockName
             this.description = cardStockFieldsDto.description
             this.keyType = cardStockFieldsDto.keyType
             this.valueType = cardStockFieldsDto.valueType
@@ -91,14 +79,13 @@ class CardStockControllerStock(
 
         val result = CardStockDto(
             id = cardStock.id,
-            name = cardStock.name,
+            name = cardStock.cardStockName,
             description = cardStock.description,
             keyType = cardStock.keyType,
             valueType = cardStock.valueType,
             maxPoint = cardStock.maxPoint,
             testModeIsAvailable = cardStock.testModeIsAvailable,
             onlyFromKey = cardStock.onlyFromKey,
-            cards = cardStock.cards
         )
 
         val headers = HttpHeaders(
@@ -109,11 +96,7 @@ class CardStockControllerStock(
         return ResponseEntity(result, headers, HttpStatus.NO_CONTENT)
     }
 
-    override fun deleteCardStock(
-        storageId: Int,
-        cardStockId: Int
-    ): ResponseEntity<Void> {
-        storageService.findStorageById(storageId) ?: return ResponseEntity(HttpStatus.NOT_FOUND)
+    override fun deleteCardStock(cardStockId: Int): ResponseEntity<Void> {
         val cardStock = cardStockService.findCardStockById(cardStockId) ?: return ResponseEntity(HttpStatus.NOT_FOUND)
 
         cardStockService.deleteCardStock(cardStock)

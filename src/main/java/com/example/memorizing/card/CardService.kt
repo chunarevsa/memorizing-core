@@ -5,16 +5,16 @@ import org.springframework.transaction.annotation.Transactional
 
 interface CardService {
 
-    @Transactional(readOnly = true)
+//    @Transactional(readOnly = true)
     fun findListByCardStockId(cardStockId: Int): MutableList<Card>
-    @Transactional(readOnly = true)
+//    @Transactional(readOnly = true)
     fun findCardById(cardId: Int): Card?
-    @Transactional
-    fun addCardToCardStock(cardStockId: Int, cardFieldsDto: CardFieldsDto): Card
-    @Transactional
+//    @Transactional
+    fun addCardToCardStock(cardFieldsDto: CardFieldsDto): Card
+//    @Transactional
     fun saveCard(card: Card): Card
-    @Transactional
+//    @Transactional
     fun deleteCard(card: Card)
-    @Transactional
-    fun checkCard(card: Card, checkCardDto: CheckCardDto, cardStock: CardStock): TestResultDto
+//    @Transactional
+    fun checkCard(card: Card, checkCardDto: CheckCardDto): TestResultDto
 }

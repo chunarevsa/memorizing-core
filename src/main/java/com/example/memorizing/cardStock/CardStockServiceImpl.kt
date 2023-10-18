@@ -10,19 +10,22 @@ class CardStockServiceImpl(
     override fun findCardStockById(cardStockId: Int): CardStock? = cardStocks.findById(cardStockId)
     override fun findListCardStockByStorageId(storageId: Int) = cardStocks.findAllByStorageId(storageId)
 
-    override fun addCardStockToStorage(storageId: Int, cardStockFieldsDto: CardStockFieldsDto): CardStock {
-        return cardStocks.saveCardStock(CardStock(
-            name = cardStockFieldsDto.name,
-            description = cardStockFieldsDto.description,
-            keyType = cardStockFieldsDto.keyType,
-            valueType = cardStockFieldsDto.valueType,
-            maxPoint = cardStockFieldsDto.maxPoint,
-            testModeIsAvailable = cardStockFieldsDto.testModeIsAvailable,
-            onlyFromKey = cardStockFieldsDto.onlyForward
-        ))
+    override fun addCardStockToStorage(cardStockFieldsDto: CardStockFieldsDto): CardStock {
+        return cardStocks.save(
+            CardStock(
+                storageId = cardStockFieldsDto.storageId,
+                cardStockName = cardStockFieldsDto.cardStockName,
+                description = cardStockFieldsDto.description,
+                keyType = cardStockFieldsDto.keyType,
+                valueType = cardStockFieldsDto.valueType,
+                maxPoint = cardStockFieldsDto.maxPoint,
+                testModeIsAvailable = cardStockFieldsDto.testModeIsAvailable!!,
+                onlyFromKey = cardStockFieldsDto.onlyFromKey!!
+            )
+        )
     }
 
-    override fun saveCardStock(cardStock: CardStock) = cardStocks.saveCardStock(cardStock)
-    override fun deleteCardStock(cardStock: CardStock) = cardStocks.deleteCardStock(cardStock)
+    override fun saveCardStock(cardStock: CardStock) = cardStocks.save(cardStock)
+    override fun deleteCardStock(cardStock: CardStock) = cardStocks.delete(cardStock)
 
 }

@@ -6,8 +6,8 @@ import org.springframework.data.relational.core.mapping.Column
 data class Card(
     @Column("card_stock_id")
     var cardStockId: Int? = null,
-    var key9: String? = null,
-    var value9: String? = null,
+    var cardKey: String? = null,
+    var cardValue: String? = null,
 ) {
     @Id
     var id: Int? = null

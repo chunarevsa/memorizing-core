@@ -1,7 +1,8 @@
 package com.example.memorizing.cardStock
 
 data class CardStockFieldsDto(
-    var name: String? = null,
+    var storageId: Int? = null,
+    var cardStockName: String? = null,
     var description: String? = null,
     var keyType: String? = null,
     var valueType: String? = null,
