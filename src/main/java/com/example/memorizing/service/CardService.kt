@@ -30,12 +30,16 @@ class CardService(
         } else {
             if (card.value.contains(userValue)) true else {
                 // We need check out in the other cards
-                val listTranslatesByCard = card.translate.split(',').map { it.trim() }
+                val listTranslatesByCard = card.translate.removePrefix("[").removeSuffix("]")
+                    .split(',').map { it.trim() }.toMutableList()
                 val map = setOfCard.mapOfCards.keys.filter { it.contains(userValue) }
                 val newKeyOfCard: String? = map.find { key ->
                     val card1 = setOfCard.mapOfCards[key]
-                    val listTranslatesByUserValue = card1?.translate!!.split(',')
-                    Collections.disjoint(listTranslatesByCard, listTranslatesByUserValue)
+                    val listTranslatesByUserValue = card1?.translate!!.removePrefix("[").removeSuffix("]")
+                        .split(',')
+
+                    listTranslatesByCard.retainAll(listTranslatesByUserValue)
+                    listTranslatesByCard.isNotEmpty()
                 }
 
                 if (newKeyOfCard != null) {

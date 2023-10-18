@@ -213,7 +213,7 @@ class LocalController(
             } else {
                 println("Correct answer:${it.first}:${it.second}")
                 countMistake++
-            } // in conclusion in WORD
+            }
 
         }
 
