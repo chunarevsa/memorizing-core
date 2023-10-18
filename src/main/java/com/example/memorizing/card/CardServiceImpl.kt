@@ -42,13 +42,16 @@ class CardServiceImpl(
                 // We need check out in the other cards
                 val cards = findListByCardStockId(card.cardStockId!!)
 
-                val cardValues = card.value9!!.split(',').map { it.trim() }
+                val cardValues = card.value9!!.removePrefix("[").removeSuffix("]")
+                    .split(',').map { it.trim() }.toMutableList()
 
                 val cardsContainingUserValue = cards.filter { it.key9!!.contains(userValue) }
                 val newCard: Card? = cardsContainingUserValue.find { newCard ->
-                    val cardValuesByUserValue = newCard.value9!!.split(',')
-                    val disjoint = Collections.disjoint(cardValues, cardValuesByUserValue)
-                    disjoint
+                    val cardValuesByUserValue = newCard.value9!!.removePrefix("[").removeSuffix("]")
+                        .split(',').map { it.trim() }
+
+                    cardValues.retainAll(cardValuesByUserValue)
+                    cardValues.isNotEmpty()
                 }
 
                 if (newCard != null) {
