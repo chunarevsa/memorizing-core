@@ -58,7 +58,7 @@ class LocalController(
 
             when (chosenMode.modeType) {
                 EModeType.TESTING -> startTestLoop(mapOfCards, chosenMode.translateToNative!!, setOfCards.id, user.maxPoint)
-                EModeType.STUDYING -> startStudyingLoop(mapOfCards, chosenMode.translateToNative!!)
+                EModeType.STUDYING -> startStudyingLoop(mapOfCards, chosenMode.translateToNative ?: true)
                 EModeType.SHOW_STATISTICS -> showObjectsStatistic(mapOfCards)
             }
             // self-reliant add самостоятельный
