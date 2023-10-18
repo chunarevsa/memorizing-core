@@ -50,7 +50,9 @@ class StorageController(
         storageFieldsDto.userId ?: return ResponseEntity(HttpStatus.BAD_REQUEST)
 
         val storage =
-            storageService.create(storageFieldsDto.userId!!) ?: return ResponseEntity(HttpStatus.NOT_FOUND)
+            storageService.createStorage(storageFieldsDto.userId!!, storageFieldsDto.storageName!!) ?: return ResponseEntity(
+                HttpStatus.NOT_FOUND
+            )
 
         val result = StorageDto().apply {
             this.id = storage.id
@@ -78,7 +80,7 @@ class StorageController(
 
         val storage = storageService.findStorageById(storageId) ?: return ResponseEntity(HttpStatus.NOT_FOUND)
         storage.apply {
-            this.storageName = storageFieldsDto.storageName
+            storageFieldsDto.storageName.let { this.storageName = it }
         }
 
         storageService.saveStorage(storage)

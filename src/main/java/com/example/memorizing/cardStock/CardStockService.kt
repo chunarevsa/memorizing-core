@@ -10,7 +10,7 @@ interface CardStockService {
     fun findListCardStockByStorageId(storageId: Int): MutableList<CardStock>
 
 //    @Transactional
-    fun addCardStockToStorage(cardStockFieldsDto: CardStockFieldsDto): CardStock
+    fun createCardStock(cardStockFieldsDto: CardStockFieldsDto): CardStock
 
 //    @Transactional
     fun saveCardStock(cardStock: CardStock): CardStock

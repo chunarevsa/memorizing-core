@@ -55,5 +55,4 @@ interface StorageApi {
     fun deleteStorage(
         @PathVariable("storageId") storageId: Int
     ): ResponseEntity<Void>
-
 }

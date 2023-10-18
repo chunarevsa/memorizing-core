@@ -1,6 +1,5 @@
 package com.example.memorizing.card
 
-import com.example.memorizing.cardStock.CardStockService
 import com.example.memorizing.util.HeaderUtil
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.HttpHeaders
@@ -11,8 +10,7 @@ import org.springframework.web.bind.annotation.RestController
 import org.springframework.web.util.UriComponentsBuilder
 
 @RestController
-//@RequestMapping("/storage/{storageId}/cardStock/{cardStockId}")
-@RequestMapping()
+@RequestMapping
 class CardController(
     @Value("\${spring.application.name}")
     private val applicationName: String,
@@ -20,7 +18,7 @@ class CardController(
 ) : CardApi {
 
     companion object {
-        const val ENTITY_NAME = "card"
+        const val ENTITY_NAME = "com/example/memorizing/card"
     }
 
     override fun getCardById(
@@ -30,8 +28,8 @@ class CardController(
 
         val result = CardDto(
             id = card.id,
-            key = card.cardKey,
-            value = card.cardValue,
+            cardKey = card.cardKey,
+            cardValue = card.cardValue,
             pointFromKey = card.pointFromKey,
             pointToKey = card.pointToKey,
             statusFromKey = card.statusFromKey,
@@ -41,15 +39,15 @@ class CardController(
         return ResponseEntity(result, HttpStatus.OK)
     }
 
-    override fun addCardToCardStock(
+    override fun createCard(
         cardFieldsDto: CardFieldsDto
     ): ResponseEntity<CardDto> {
-        val card = cardService.addCardToCardStock(cardFieldsDto)
+        val card = cardService.createCard(cardFieldsDto)
 
         val result = CardDto(
             id = card.id,
-            key = card.cardKey,
-            value = card.cardValue,
+            cardKey = card.cardKey,
+            cardValue = card.cardValue,
             pointFromKey = card.pointFromKey,
             pointToKey = card.pointToKey,
             statusFromKey = card.statusFromKey,
@@ -62,7 +60,7 @@ class CardController(
             )
         )
         headers.location =
-            UriComponentsBuilder.newInstance().path("/card/{id}")
+            UriComponentsBuilder.newInstance().path("/com/example/memorizing/card/{id}")
                 .buildAndExpand(card.id).toUri()
 
         return ResponseEntity(result, headers, HttpStatus.CREATED)
@@ -75,15 +73,14 @@ class CardController(
         val card = cardService.findCardById(cardId) ?: return ResponseEntity(HttpStatus.NOT_FOUND)
 
         cardService.saveCard(card.apply {
-            this.cardStockId = cardFieldsDto.cardStockId
-            this.cardKey = cardFieldsDto.key
-            this.cardValue = cardFieldsDto.value
+            cardFieldsDto.cardKey.let { this.cardKey = it }
+            cardFieldsDto.cardValue.let { this.cardValue = it }
         })
 
         val result = CardDto(
             id = card.id,
-            key = card.cardKey,
-            value = card.cardValue,
+            cardKey = card.cardKey,
+            cardValue = card.cardValue,
             pointFromKey = card.pointFromKey,
             pointToKey = card.pointToKey,
             statusFromKey = card.statusFromKey,

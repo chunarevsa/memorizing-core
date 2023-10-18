@@ -1,8 +1,5 @@
 package com.example.memorizing.card
 
-import com.example.memorizing.cardStock.CardStock
-import org.springframework.transaction.annotation.Transactional
-
 interface CardService {
 
 //    @Transactional(readOnly = true)
@@ -10,7 +7,7 @@ interface CardService {
 //    @Transactional(readOnly = true)
     fun findCardById(cardId: Int): Card?
 //    @Transactional
-    fun addCardToCardStock(cardFieldsDto: CardFieldsDto): Card
+    fun createCard(cardFieldsDto: CardFieldsDto): Card
 //    @Transactional
     fun saveCard(card: Card): Card
 //    @Transactional

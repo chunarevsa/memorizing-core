@@ -22,7 +22,7 @@ interface CardStockApi {
         produces = ["application/json"],
         consumes = ["application/json"]
     )
-    fun addCardStockToStorage(
+    fun createCardStock(
         @RequestBody cardStockFieldsDto: CardStockFieldsDto
     ): ResponseEntity<CardStockDto>
 

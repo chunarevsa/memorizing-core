@@ -10,7 +10,7 @@ interface StorageService {
 //    @Transactional(readOnly = true)
     fun findStorageByUserId(userId: Int): Storage?
 //    @Transactional
-    fun create(userId: Int): Storage?
+    fun createStorage(userId: Int, storageName: String): Storage?
 //    @Transactional
     fun saveStorage(storage: Storage)
 

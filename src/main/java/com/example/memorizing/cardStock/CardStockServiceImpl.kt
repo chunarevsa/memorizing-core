@@ -10,7 +10,7 @@ class CardStockServiceImpl(
     override fun findCardStockById(cardStockId: Int): CardStock? = cardStocks.findById(cardStockId)
     override fun findListCardStockByStorageId(storageId: Int) = cardStocks.findAllByStorageId(storageId)
 
-    override fun addCardStockToStorage(cardStockFieldsDto: CardStockFieldsDto): CardStock {
+    override fun createCardStock(cardStockFieldsDto: CardStockFieldsDto): CardStock {
         return cardStocks.save(
             CardStock(
                 storageId = cardStockFieldsDto.storageId,

@@ -36,8 +36,8 @@ class CardStockController(
         return ResponseEntity(result, HttpStatus.OK)
     }
 
-    override fun addCardStockToStorage(cardStockFieldsDto: CardStockFieldsDto): ResponseEntity<CardStockDto> {
-        val cardStock = cardStockService.addCardStockToStorage(cardStockFieldsDto)
+    override fun createCardStock(cardStockFieldsDto: CardStockFieldsDto): ResponseEntity<CardStockDto> {
+        val cardStock = cardStockService.createCardStock(cardStockFieldsDto)
 
         val result = CardStockDto(
             id = cardStock.id,
@@ -68,13 +68,13 @@ class CardStockController(
         val cardStock = cardStockService.findCardStockById(cardStockId) ?: return ResponseEntity(HttpStatus.NOT_FOUND)
 
         cardStockService.saveCardStock(cardStock.apply {
-            this.cardStockName = cardStockFieldsDto.cardStockName
-            this.description = cardStockFieldsDto.description
-            this.keyType = cardStockFieldsDto.keyType
-            this.valueType = cardStockFieldsDto.valueType
-            this.maxPoint = cardStockFieldsDto.maxPoint
-            this.testModeIsAvailable = cardStockFieldsDto.testModeIsAvailable!!
-            this.onlyFromKey = cardStockFieldsDto.onlyFromKey!!
+            cardStockFieldsDto.cardStockName.let { this.cardStockName = it }
+            cardStockFieldsDto.description.let { this.description = it }
+            cardStockFieldsDto.keyType.let { this.keyType = it }
+            cardStockFieldsDto.valueType.let { this.valueType = it }
+            cardStockFieldsDto.maxPoint.let { this.maxPoint = it }
+            cardStockFieldsDto.testModeIsAvailable.let { this.testModeIsAvailable = it!! }
+            cardStockFieldsDto.onlyFromKey.let { this.onlyFromKey = it!! }
         })
 
         val result = CardStockDto(

@@ -1,6 +1,5 @@
 package com.example.memorizing.card
 
-import com.example.memorizing.cardStock.CardStock
 import org.springframework.stereotype.Service
 
 @Service
@@ -11,10 +10,11 @@ class CardServiceImpl(
     override fun findCardById(cardId: Int) = cards.findCardById(cardId)
     override fun findListByCardStockId(cardStockId: Int) = cards.findAllByCardStockId(cardStockId)
 
-    override fun addCardToCardStock(cardFieldsDto: CardFieldsDto): Card {
+    override fun createCard(cardFieldsDto: CardFieldsDto): Card {
         return cards.save(Card().apply {
-            this.cardKey = cardFieldsDto.key
-            this.cardValue = cardFieldsDto.value
+            this.cardStockId = cardFieldsDto.cardStockId
+            this.cardKey = cardFieldsDto.cardKey
+            this.cardValue = cardFieldsDto.cardValue
         })
     }
 
