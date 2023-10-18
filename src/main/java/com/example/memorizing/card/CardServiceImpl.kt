@@ -32,7 +32,7 @@ class CardServiceImpl(
         var isAnswerToOtherCard: Boolean = false
 
         // translateToNative -> isFromKey == true
-        val isCorrect: Boolean = if (isFromKey) {
+        val isCorrect: Boolean = if (!isFromKey) {
             card.cardValue!!.contains(userValue)
         } else {
             if (cardKey.contains(userValue)) true else {
@@ -62,7 +62,7 @@ class CardServiceImpl(
         if (isCorrect) {
             card.increasePoint(isFromKey, checkCardDto.maxPoint!!)
         } else card.decreasePoint(isFromKey)
-
+        cards.save(card)
 
         return TestResultDto(
             isRightAnswer = isCorrect,
