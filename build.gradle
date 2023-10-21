@@ -18,8 +18,6 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    implementation 'org.apache.logging.log4j:log4j-api:2.20.0'
-    implementation 'org.apache.logging.log4j:log4j-core:2.20.0'
 
 //    implementation 'org.mapstruct:mapstruct:1.5.3.Final'
 
@@ -29,6 +27,11 @@ dependencies {
 
     // DB
     implementation 'org.postgresql:postgresql:42.5.4'
+
+    // Logging
+//    implementation 'org.apache.logging.log4j:log4j-api:2.20.0'
+//    implementation 'org.apache.logging.log4j:log4j-core:2.20.0'
+    implementation 'log4j:log4j:1.2.17'
 }
 
 tasks.named('test') {
@@ -36,11 +39,11 @@ tasks.named('test') {
 }
 compileKotlin {
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"
     }
 }
 compileTestKotlin {
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"
     }
 }

@@ -1,6 +1,7 @@
 package com.example.memorizing.storage
 
 import com.example.memorizing.util.HeaderUtil
+import org.apache.log4j.Logger
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
@@ -15,11 +16,14 @@ class StorageController(
     private val applicationName: String,
     private val storageService: StorageService,
 ) : StorageApi {
+    private val log = Logger.getLogger (StorageController::class.java)
+
     companion object {
         const val ENTITY_NAME = "storage"
     }
 
     override fun getStorageById(storageId: Int): ResponseEntity<StorageDto> {
+        log.debug("getStorageById with req: storageId = $storageId")
         val storage = storageService.findStorageById(storageId) ?: return ResponseEntity(HttpStatus.NOT_FOUND)
 
         val result = StorageDto().apply {
@@ -32,6 +36,7 @@ class StorageController(
     }
 
     override fun getStorageByUserId(storageDto: StorageDto): ResponseEntity<StorageDto> {
+        log.debug("getStorageByUserId with req: $storageDto")
         storageDto.userId ?: return ResponseEntity(HttpStatus.BAD_REQUEST)
 
         val storage =
@@ -47,6 +52,7 @@ class StorageController(
     }
 
     override fun createStorage(storageFieldsDto: StorageFieldsDto): ResponseEntity<StorageDto> {
+        log.debug("createStorage with req: $storageFieldsDto")
         storageFieldsDto.userId ?: return ResponseEntity(HttpStatus.BAD_REQUEST)
 
         val storage =
@@ -76,6 +82,7 @@ class StorageController(
         storageId: Int,
         storageFieldsDto: StorageFieldsDto
     ): ResponseEntity<StorageDto> {
+        log.debug("updateStorage with path variable $storageId and req: $storageFieldsDto")
         storageFieldsDto.storageName ?: return ResponseEntity(HttpStatus.BAD_REQUEST)
 
         val storage = storageService.findStorageById(storageId) ?: return ResponseEntity(HttpStatus.NOT_FOUND)
@@ -101,6 +108,7 @@ class StorageController(
     }
 
     override fun deleteStorage(storageId: Int): ResponseEntity<Void> {
+        log.debug("deleteStorage with path variable $storageId ")
         val storage =
             storageService.findStorageById(storageId) ?: return ResponseEntity(HttpStatus.NOT_FOUND)
 
