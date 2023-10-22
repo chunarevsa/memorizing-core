@@ -23,8 +23,8 @@ class CardServiceImpl(
     override fun deleteCard(card: Card) = cards.delete(card)
     override fun checkCard(card: Card, checkCardDto: CheckCardDto): TestResultDto {
         val isFromKey: Boolean = when (checkCardDto.mode) {
-            EModeType.TESTING_TO_KEY -> false
-            EModeType.TESTING_FROM_KEY -> true
+            ETestingType.TO_KEY -> false
+            ETestingType.FROM_KEY -> true
             else -> throw Exception("bad type")
         }
         val userValue = checkCardDto.userValue!!
