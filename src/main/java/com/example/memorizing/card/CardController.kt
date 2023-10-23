@@ -39,6 +39,23 @@ class CardController(
         return ResponseEntity(result, HttpStatus.OK)
     }
 
+    override fun getCardsByCardStockId(cardStockId: Int): ResponseEntity<List<CardDto>> {
+        val cards = cardService.findListByCardStockId(cardStockId)
+
+        val result = cards.map {
+            CardDto(
+                id = it.id,
+                cardKey = it.cardKey,
+                cardValue = it.cardValue,
+                pointFromKey = it.pointFromKey,
+                pointToKey = it.pointToKey,
+                statusFromKey = it.statusFromKey,
+                statusToKey = it.statusToKey
+            )
+        }
+        return ResponseEntity(result, HttpStatus.OK)
+    }
+
     override fun createCard(
         cardFieldsDto: CardFieldsDto
     ): ResponseEntity<CardDto> {
