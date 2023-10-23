@@ -18,6 +18,16 @@ interface CardStockApi {
 
     @RequestMapping(
         method = [RequestMethod.POST],
+        value = ["/cardStocks"],
+        produces = ["application/json"],
+        consumes = ["application/json"]
+    )
+    fun getCardStocksByStorageId(
+        @RequestBody storageId: Int
+    ): ResponseEntity<List<CardStockDto>>
+
+    @RequestMapping(
+        method = [RequestMethod.POST],
         value = ["/cardStock"],
         produces = ["application/json"],
         consumes = ["application/json"]

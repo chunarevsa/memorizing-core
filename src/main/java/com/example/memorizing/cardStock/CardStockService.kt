@@ -1,13 +1,11 @@
 package com.example.memorizing.cardStock
 
-import org.springframework.transaction.annotation.Transactional
-
 interface CardStockService {
 
 //    @Transactional(readOnly = true)
     fun findCardStockById(cardStockId: Int): CardStock?
 //    @Transactional(readOnly = true)
-    fun findListCardStockByStorageId(storageId: Int): MutableList<CardStock>
+    fun findAllCardStockByStorageId(storageId: Int): MutableList<CardStock>
 
 //    @Transactional
     fun createCardStock(cardStockFieldsDto: CardStockFieldsDto): CardStock

@@ -36,6 +36,24 @@ class CardStockController(
         return ResponseEntity(result, HttpStatus.OK)
     }
 
+    override fun getCardStocksByStorageId(storageId: Int): ResponseEntity<List<CardStockDto>> {
+        val cardStocks = cardStockService.findAllCardStockByStorageId(storageId)
+
+        val result = cardStocks.map {
+            CardStockDto(
+                id = it.id,
+                name = it.cardStockName,
+                description = it.description,
+                keyType = it.keyType,
+                valueType = it.valueType,
+                maxPoint = it.maxPoint,
+                testModeIsAvailable = it.testModeIsAvailable,
+                onlyFromKey = it.onlyFromKey
+            )
+        }
+        return ResponseEntity(result, HttpStatus.OK)
+    }
+
     override fun createCardStock(cardStockFieldsDto: CardStockFieldsDto): ResponseEntity<CardStockDto> {
         val cardStock = cardStockService.createCardStock(cardStockFieldsDto)
 
