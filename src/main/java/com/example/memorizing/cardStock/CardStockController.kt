@@ -86,7 +86,7 @@ class CardStockController(
         val cardStock = cardStockService.findCardStockById(cardStockId) ?: return ResponseEntity(HttpStatus.NOT_FOUND)
 
         cardStockService.saveCardStock(cardStock.apply {
-            cardStockFieldsDto.cardStockName.let { this.cardStockName = it }
+            cardStockFieldsDto.name.let { this.cardStockName = it }
             cardStockFieldsDto.description.let { this.description = it }
             cardStockFieldsDto.keyType.let { this.keyType = it }
             cardStockFieldsDto.valueType.let { this.valueType = it }

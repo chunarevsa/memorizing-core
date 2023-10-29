@@ -14,7 +14,7 @@ class CardStockServiceImpl(
         return cardStocks.save(
             CardStock(
                 storageId = cardStockFieldsDto.storageId,
-                cardStockName = cardStockFieldsDto.cardStockName,
+                cardStockName = cardStockFieldsDto.name,
                 description = cardStockFieldsDto.description,
                 keyType = cardStockFieldsDto.keyType,
                 valueType = cardStockFieldsDto.valueType,
