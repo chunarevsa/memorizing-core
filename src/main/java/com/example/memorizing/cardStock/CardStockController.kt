@@ -25,7 +25,7 @@ class CardStockController(
 
         val result = CardStockDto(
             id = cardStock.id,
-            name = cardStock.cardStockName,
+            cardStockName = cardStock.cardStockName,
             description = cardStock.description,
             keyType = cardStock.keyType,
             valueType = cardStock.valueType,
@@ -42,7 +42,7 @@ class CardStockController(
         val result = cardStocks.map {
             CardStockDto(
                 id = it.id,
-                name = it.cardStockName,
+                cardStockName = it.cardStockName,
                 description = it.description,
                 keyType = it.keyType,
                 valueType = it.valueType,
@@ -59,7 +59,7 @@ class CardStockController(
 
         val result = CardStockDto(
             id = cardStock.id,
-            name = cardStock.cardStockName,
+            cardStockName = cardStock.cardStockName,
             description = cardStock.description,
             keyType = cardStock.keyType,
             valueType = cardStock.valueType,
@@ -86,7 +86,7 @@ class CardStockController(
         val cardStock = cardStockService.findCardStockById(cardStockId) ?: return ResponseEntity(HttpStatus.NOT_FOUND)
 
         cardStockService.saveCardStock(cardStock.apply {
-            cardStockFieldsDto.name.let { this.cardStockName = it }
+            cardStockFieldsDto.cardStockName.let { this.cardStockName = it }
             cardStockFieldsDto.description.let { this.description = it }
             cardStockFieldsDto.keyType.let { this.keyType = it }
             cardStockFieldsDto.valueType.let { this.valueType = it }
@@ -97,7 +97,7 @@ class CardStockController(
 
         val result = CardStockDto(
             id = cardStock.id,
-            name = cardStock.cardStockName,
+            cardStockName = cardStock.cardStockName,
             description = cardStock.description,
             keyType = cardStock.keyType,
             valueType = cardStock.valueType,

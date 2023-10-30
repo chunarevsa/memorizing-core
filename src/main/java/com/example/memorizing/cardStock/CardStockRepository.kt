@@ -17,5 +17,6 @@ interface CardStockRepository : Repository<CardStock, Int> {
 //    @Transactional
     fun save(cardStock: CardStock): CardStock
 //    @Transactional
+
     fun delete(cardStock: CardStock)
 }
