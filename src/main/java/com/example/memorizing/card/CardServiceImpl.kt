@@ -11,11 +11,14 @@ class CardServiceImpl(
     override fun findListByCardStockId(cardStockId: Int) = cards.findAllByCardStockId(cardStockId)
 
     override fun createCard(cardFieldsDto: CardFieldsDto): Card {
-        return cards.save(Card().apply {
-            this.cardStockId = cardFieldsDto.cardStockId
-            this.cardKey = cardFieldsDto.cardKey
-            this.cardValue = cardFieldsDto.cardValue
-        })
+        val card = Card(
+            cardFieldsDto.cardStockId,
+            cardFieldsDto.cardKey,
+            cardFieldsDto.cardValue,
+            statusToKey = if (cardFieldsDto.onlyFromKey == true) ECardStatus.NOT_SUPPORTED else ECardStatus.NORMAL
+        )
+
+        return cards.save(card)
     }
 
     override fun saveCard(card: Card) = cards.save(card)

@@ -4,5 +4,6 @@ enum class ECardStatus {
     NORMAL,
     HARD,
     COMPLETED,
-    UNKNOWN
+    UNKNOWN,
+    NOT_SUPPORTED,
 }
