@@ -12,11 +12,11 @@ interface StorageRepository : Repository<Storage, Int> {
 
     @Transactional(readOnly = true)
     @Query("select * from storage where user_id = :userId")
-    fun findByUserId(@Param("userId") userId: Int): Storage?
+    fun findByUserId(@Param("userId") userId: Long): Storage?
 
     fun save(storage: Storage)
 
-    fun existsByUserId(userId: Int): Boolean
+    fun existsByUserId(userId: Long): Boolean
     fun delete(storage: Storage)
 
 

@@ -25,29 +25,27 @@ class CardServiceImpl(
 
     override fun deleteCard(card: Card) = cards.delete(card)
     override fun checkCard(card: Card, checkCardDto: CheckCardDto): TestResultDto {
-        val isFromKey: Boolean = when (checkCardDto.mode) {
-            ETestingType.TO_KEY -> false
-            ETestingType.FROM_KEY -> true
-            else -> throw Exception("bad type")
-        }
-        val userValue = checkCardDto.userValue!!
-        var cardKey: String = card.cardKey!!
-        var isAnswerToOtherCard: Boolean = false
+        val userValue = checkCardDto.userValue!!.lowercase();
+        val cardKey: String = card.cardKey!!.lowercase()
+        val cardValue: String = card.cardValue!!.lowercase()
+
+        val isFromKey: Boolean = checkCardDto.fromKey!!
+        var isAnswerToOtherCard = false
 
         // translateToNative -> isFromKey == true
-        val isCorrect: Boolean = if (!isFromKey) {
-            card.cardValue!!.contains(userValue)
+        val isCorrect: Boolean = if (isFromKey) {
+            cardValue.contains(userValue)
         } else {
             if (cardKey.contains(userValue)) true else {
                 // We need check out in the other cards
                 val cards = findListByCardStockId(card.cardStockId!!)
 
-                val cardValues = card.cardValue!!.removePrefix("[").removeSuffix("]")
+                val cardValues = cardValue.removePrefix("[").removeSuffix("]")
                     .split(',').map { it.trim() }.toMutableList()
 
-                val cardsContainingUserValue = cards.filter { it.cardKey!!.contains(userValue) }
+                val cardsContainingUserValue = cards.filter { it.cardKey!!.lowercase().contains(userValue) }
                 val newCard: Card? = cardsContainingUserValue.find { newCard ->
-                    val cardValuesByUserValue = newCard.cardValue!!.removePrefix("[").removeSuffix("]")
+                    val cardValuesByUserValue = newCard.cardValue!!.lowercase().removePrefix("[").removeSuffix("]")
                         .split(',').map { it.trim() }
 
                     cardValues.retainAll(cardValuesByUserValue)
@@ -55,7 +53,6 @@ class CardServiceImpl(
                 }
 
                 if (newCard != null) {
-                    cardKey = newCard.cardKey!!
                     isAnswerToOtherCard = true
                     true
                 } else false
@@ -68,9 +65,17 @@ class CardServiceImpl(
         cards.save(card)
 
         return TestResultDto(
-            isRightAnswer = isCorrect,
-            isAnswerToOtherCard = isAnswerToOtherCard,
-            cardKey = cardKey
+            rightAnswer = isCorrect,
+            answerToOtherCard = isAnswerToOtherCard,
+            CardDto(
+                id = card.id,
+                cardKey = card.cardKey,
+                cardValue = card.cardValue,
+                pointFromKey = card.pointFromKey,
+                pointToKey = card.pointToKey,
+                statusFromKey = card.statusFromKey,
+                statusToKey = card.statusToKey
+            )
         )
     }
 

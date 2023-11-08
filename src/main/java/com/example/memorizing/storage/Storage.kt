@@ -5,7 +5,7 @@ import javax.validation.constraints.NotEmpty
 
 data class Storage(
     @NotEmpty
-    val userId: Int? = null,
+    val userId: Long? = null,
     var storageName: String? = null
 ) {
     @Id

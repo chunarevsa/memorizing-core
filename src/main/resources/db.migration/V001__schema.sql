@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS storage
 (
     id           SERIAL PRIMARY KEY,
-    user_id      INT NOT NULL,
+    user_id      BIGINT NOT NULL,
     storage_name VARCHAR(255)
 );
 

@@ -132,9 +132,6 @@ class CardController(
     ): ResponseEntity<TestResultDto> {
         val card = cardService.findCardById(cardId) ?: return ResponseEntity(HttpStatus.NOT_FOUND)
 
-        if (checkCardDto.mode != ETestingType.TO_KEY || checkCardDto.mode != ETestingType.TO_KEY)
-            return ResponseEntity(HttpStatus.BAD_REQUEST)
-
         val result = cardService.checkCard(card, checkCardDto)
 
         return ResponseEntity(result, HttpStatus.OK)
