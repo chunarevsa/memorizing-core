@@ -10,7 +10,4 @@ data class Storage(
 ) {
     @Id
     var id: Int? = null
-
-//    @MappedCollection(idColumn = "id", keyColumn = "id")
-//    var cardStocks: MutableList<CardStock> = mutableListOf()
 }

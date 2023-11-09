@@ -15,8 +15,9 @@ class StorageController(
     @Value("\${spring.application.name}")
     private val applicationName: String,
     private val storageService: StorageService,
+    private val storageMapper: StorageMapper
 ) : StorageApi {
-    private val log = Logger.getLogger (StorageController::class.java)
+    private val log = Logger.getLogger(StorageController::class.java)
 
     companion object {
         const val ENTITY_NAME = "storage"
@@ -26,13 +27,7 @@ class StorageController(
         log.debug("getStorageById with req: storageId = $storageId")
         val storage = storageService.findStorageById(storageId) ?: return ResponseEntity(HttpStatus.NOT_FOUND)
 
-        val result = StorageDto().apply {
-            this.id = storage.id
-            this.userId = storage.userId
-            this.storageName = storage.storageName
-        }
-
-        return ResponseEntity(result, HttpStatus.OK)
+        return ResponseEntity(storageMapper.toStorageDto(storage), HttpStatus.OK)
     }
 
     override fun getStorageByUserId(storageDto: StorageDto): ResponseEntity<StorageDto> {
@@ -42,13 +37,7 @@ class StorageController(
         val storage =
             storageService.findStorageByUserId(storageDto.userId!!) ?: return ResponseEntity(HttpStatus.NOT_FOUND)
 
-        val result = StorageDto().apply {
-            this.id = storage.id
-            this.userId = storage.userId
-            this.storageName = storage.storageName
-        }
-
-        return ResponseEntity(result, HttpStatus.OK)
+        return ResponseEntity(storageMapper.toStorageDto(storage), HttpStatus.OK)
     }
 
     override fun createStorage(storageFieldsDto: StorageFieldsDto): ResponseEntity<StorageDto> {
@@ -59,12 +48,6 @@ class StorageController(
             storageService.createStorage(storageFieldsDto.userId!!, storageFieldsDto.storageName!!)
                 ?: return ResponseEntity(HttpStatus.NOT_FOUND)
 
-        val result = StorageDto().apply {
-            this.id = storage.id
-            this.userId = storage.userId
-            this.storageName = storage.storageName
-        }
-
         val headers = HttpHeaders(
             HeaderUtil.createEntityDeleteAlert(
                 applicationName, false, ENTITY_NAME, storage.id.toString()
@@ -74,7 +57,7 @@ class StorageController(
         headers.location = UriComponentsBuilder.newInstance()
             .path("/storage/{id}").buildAndExpand(storage.id).toUri()
 
-        return ResponseEntity(result, headers, HttpStatus.CREATED)
+        return ResponseEntity(storageMapper.toStorageDto(storage), headers, HttpStatus.CREATED)
     }
 
     override fun updateStorage(
@@ -91,19 +74,13 @@ class StorageController(
 
         storageService.saveStorage(storage)
 
-        val result = StorageDto().apply {
-            this.id = storage.id
-            this.userId = storage.userId
-            this.storageName = storage.storageName
-        }
-
         val headers = HttpHeaders(
             HeaderUtil.createEntityUpdateAlert(
                 applicationName, false, ENTITY_NAME, storage.id.toString()
             )
         )
 
-        return ResponseEntity(result, headers, HttpStatus.NO_CONTENT)
+        return ResponseEntity(storageMapper.toStorageDto(storage), headers, HttpStatus.NO_CONTENT)
     }
 
     override fun deleteStorage(storageId: Int): ResponseEntity<Void> {
@@ -112,6 +89,7 @@ class StorageController(
             storageService.findStorageById(storageId) ?: return ResponseEntity(HttpStatus.NOT_FOUND)
 
         storageService.deleteStorage(storage)
+
         val headers = HttpHeaders(
             HeaderUtil.createEntityDeleteAlert(
                 applicationName, false, ENTITY_NAME, storage.id.toString()
