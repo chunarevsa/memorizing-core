@@ -19,24 +19,22 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
-//    implementation 'org.mapstruct:mapstruct:1.5.3.Final'
-
     // Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
     implementation 'com.fasterxml.jackson.module:jackson-module-kotlin:2.14.2'
 
     // DB
     implementation 'org.postgresql:postgresql:42.5.4'
+    implementation 'org.flywaydb:flyway-core'
 
     // Logging
-//    implementation 'org.apache.logging.log4j:log4j-api:2.20.0'
-//    implementation 'org.apache.logging.log4j:log4j-core:2.20.0'
     implementation 'log4j:log4j:1.2.17'
 }
 
 tasks.named('test') {
     useJUnitPlatform()
 }
+
 compileKotlin {
     kotlinOptions {
         jvmTarget = "11"
