@@ -1,5 +1,7 @@
 package com.example.memorizing.repository
 
+import com.example.memorizing.controller.CardDto
+import com.example.memorizing.controller.CardFieldsDto
 import com.example.memorizing.entity.Card
 import com.example.memorizing.entity.ECardType
 import com.example.memorizing.entity.ELanguage
@@ -7,6 +9,7 @@ import com.example.memorizing.entity.SetOfCards
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
 import org.springframework.stereotype.Repository
+import org.springframework.web.reactive.function.client.WebClient
 import java.io.File
 import java.io.FileInputStream
 
@@ -74,15 +77,38 @@ class CardFileRepositoryImpl : AFileRepository(), CardRepository {
             FileInputStream(fileForNewObject).bufferedReader().forEachLine { str -> strings.add(str) }
 
             var amountOfAddingCard = 0
+            val cards = mutableListOf<CardFieldsDto>()
+
             strings.forEach { str ->
                 val split2 = str.split("\t")
                 setOfCards.mapOfCards[split2[0].lowercase()] = Card().apply {
                     this.value = split2[0].lowercase()
                     this.translate = split2.drop(1).toString().lowercase()
                     this.type = cardType
+                    cards.add(CardFieldsDto(1, value, translate.replace("[", "").replace("]", ""), false))
                 }
                 amountOfAddingCard++
             }
+
+            var currentCard: CardFieldsDto? = null
+            try {
+
+                cards.forEach {card ->
+                    currentCard = card
+                    WebClient.create("http://localhost:8095/")
+                        .post()
+                        .uri("/card")
+                        .bodyValue(card)
+                        .retrieve()
+                        .bodyToFlux(CardDto::class.java)
+                        .blockFirst()
+                }
+
+            } catch (e: Exception) {
+                logger.info(currentCard)
+                e.printStackTrace()
+            }
+
 
             saveSetOfCards(setOfCards)
             fileForNewObject.delete()
