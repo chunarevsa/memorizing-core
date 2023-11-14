@@ -1,0 +1,25 @@
+version: '3'
+  docker build -t your-application-name .
+services:
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: card-service
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8095:8095"
+    volumes:
+      - db_data:/var/lib/postgres
+      - db_config:/etc/postgres/conf.d
+    depends_on:
+      - postgres
+
+volumes:
+  db_data:
+  db_config:

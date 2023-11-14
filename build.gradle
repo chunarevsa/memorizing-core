@@ -29,6 +29,9 @@ dependencies {
 
     // Logging
     implementation 'log4j:log4j:1.2.17'
+
+    // Doker
+    implementation 'com.github.docker-java:docker-java'
 }
 
 tasks.named('test') {
