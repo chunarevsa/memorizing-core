@@ -1,12 +1,17 @@
 version: '3'
-  docker build -t your-application-name .
+
 services:
+
   postgres:
     image: postgres:latest
+    ports:
+      - "5400:5432"
     environment:
       POSTGRES_DB: card-service
       POSTGRES_USER: root
       POSTGRES_PASSWORD: root
+    networks:
+        - postgres-db
 
   app:
     build:
@@ -15,11 +20,17 @@ services:
     ports:
       - "8095:8095"
     volumes:
-      - db_data:/var/lib/postgres
-      - db_config:/etc/postgres/conf.d
+      - card_service_db_data:/var/lib/postgres
+      - card_service_db_config:/etc/postgres/conf.d
     depends_on:
       - postgres
+    networks:
+      - postgres-db
 
 volumes:
-  db_data:
-  db_config:
+  card_service_db_data:
+  card_service_db_config:
+
+networks:
+  postgres-db:
+    driver: bridge

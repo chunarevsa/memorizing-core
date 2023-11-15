@@ -10,7 +10,7 @@ COPY settings.gradle .
 COPY src src
 
 # Собираем проект
-RUN gradle build --no-daemon
+RUN gradle build --no-daemon --exclude-task test
 
 # Используем минимальный образ с JRE
 FROM openjdk:11-jre-slim
@@ -19,7 +19,7 @@ FROM openjdk:11-jre-slim
 WORKDIR /app
 
 # Копируем JAR файл из предыдущего этапа сборки
-COPY --from=builder /app/build/libs/memorizing.jar .
+COPY --from=builder /app/build/libs/memorizing-0.0.1-SNAPSHOT.jar .
 
 # Задаем команду для запуска приложения
-CMD ["java", "-jar", "your-application-name.jar"]
+CMD ["java", "-jar", "memorizing-0.0.1-SNAPSHOT.jar"]
