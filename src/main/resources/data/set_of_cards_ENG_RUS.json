@@ -832,7 +832,7 @@
     },
     "launch" : {
       "value" : "launch",
-      "translate" : "[запускать]",
+      "translate" : "[запустить]",
       "type" : "WORD",
       "pointToNative" : 0,
       "pointFromNative" : 0,
@@ -3596,6 +3596,69 @@
     "broad" : {
       "value" : "broad",
       "translate" : "[широкий]",
+      "type" : "WORD",
+      "pointToNative" : 0,
+      "pointFromNative" : 0,
+      "statusToNative" : "NORMAL",
+      "statusFromNative" : "NORMAL"
+    },
+    "expand" : {
+      "value" : "expand",
+      "translate" : "[расширить]",
+      "type" : "WORD",
+      "pointToNative" : 0,
+      "pointFromNative" : 0,
+      "statusToNative" : "NORMAL",
+      "statusFromNative" : "NORMAL"
+    },
+    "equivalent" : {
+      "value" : "equivalent",
+      "translate" : "[эквивалент, аналогичный]",
+      "type" : "WORD",
+      "pointToNative" : 0,
+      "pointFromNative" : 0,
+      "statusToNative" : "NORMAL",
+      "statusFromNative" : "NORMAL"
+    },
+    "just" : {
+      "value" : "just",
+      "translate" : "[просто]",
+      "type" : "WORD",
+      "pointToNative" : 0,
+      "pointFromNative" : 0,
+      "statusToNative" : "NORMAL",
+      "statusFromNative" : "NORMAL"
+    },
+    "star" : {
+      "value" : "star",
+      "translate" : "[*]",
+      "type" : "WORD",
+      "pointToNative" : 0,
+      "pointFromNative" : 0,
+      "statusToNative" : "NORMAL",
+      "statusFromNative" : "NORMAL"
+    },
+    "wrapper" : {
+      "value" : "wrapper",
+      "translate" : "[обёртка]",
+      "type" : "WORD",
+      "pointToNative" : 0,
+      "pointFromNative" : 0,
+      "statusToNative" : "NORMAL",
+      "statusFromNative" : "NORMAL"
+    },
+    "pursuit" : {
+      "value" : "pursuit",
+      "translate" : "[стремление]",
+      "type" : "WORD",
+      "pointToNative" : 0,
+      "pointFromNative" : 0,
+      "statusToNative" : "NORMAL",
+      "statusFromNative" : "NORMAL"
+    },
+    "square brackets" : {
+      "value" : "square brackets",
+      "translate" : "[[]]",
       "type" : "WORD",
       "pointToNative" : 0,
       "pointFromNative" : 0,
