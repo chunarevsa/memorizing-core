@@ -18,9 +18,9 @@ data class Card(
     var statusFromKey: ECardStatus = ECardStatus.NORMAL
 
     fun increasePoint(isFromKey: Boolean, userMaxPoint: Int) {
-        if (isFromKey && (statusToKey == ECardStatus.NOT_SUPPORTED || statusToKey == null)) return
+        if (isFromKey && (statusToKey == ECardStatus.NOT_SUPPORTED)) return
 
-        var status: ECardStatus = if (isFromKey) statusFromKey else statusToKey!!
+        var status: ECardStatus = if (isFromKey) statusFromKey else statusToKey
         var point: Int = if (isFromKey) pointFromKey else pointToKey
 
         if (status == ECardStatus.HARD) {
@@ -44,9 +44,9 @@ data class Card(
     }
 
     fun decreasePoint(isFromKey: Boolean) {
-        if (isFromKey && (statusToKey == ECardStatus.NOT_SUPPORTED || statusToKey == null)) return
+        if (isFromKey && (statusToKey == ECardStatus.NOT_SUPPORTED)) return
 
-        var status: ECardStatus = if (isFromKey) statusFromKey else statusToKey!!
+        var status: ECardStatus = if (isFromKey) statusFromKey else statusToKey
         var point: Int = if (isFromKey) pointFromKey else pointToKey
 
         if (status == ECardStatus.HARD) point -= 1 else point = -1
