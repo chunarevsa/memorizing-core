@@ -79,21 +79,25 @@ class CardFileRepositoryImpl : AFileRepository(), CardRepository {
             var amountOfAddingCard = 0
             val cards = mutableListOf<CardFieldsDto>()
 
+            val cardStockId = 1
+
             strings.forEach { str ->
                 val split2 = str.split("\t")
                 setOfCards.mapOfCards[split2[0].lowercase()] = Card().apply {
                     this.value = split2[0].lowercase()
                     this.translate = split2.drop(1).toString().lowercase()
                     this.type = cardType
-                    cards.add(CardFieldsDto(1, value, translate.replace("[", "").replace("]", ""), false))
+                    cards.add(CardFieldsDto(cardStockId, value, translate.replace("[", "").replace("]", ""), false))
                 }
                 amountOfAddingCard++
             }
 
             var currentCard: CardFieldsDto? = null
-            try {
+
 
                 cards.forEach {card ->
+                    try {
+
                     currentCard = card
                     WebClient.create("http://localhost:8095/")
                         .post()
@@ -102,13 +106,12 @@ class CardFileRepositoryImpl : AFileRepository(), CardRepository {
                         .retrieve()
                         .bodyToFlux(CardDto::class.java)
                         .blockFirst()
+
+                    } catch (e: Exception) {
+                        logger.error("--- EXCEPTION: currant card $currentCard")
+                        e.printStackTrace()
+                    }
                 }
-
-            } catch (e: Exception) {
-                logger.info(currentCard)
-                e.printStackTrace()
-            }
-
 
             saveSetOfCards(setOfCards)
             fileForNewObject.delete()
