@@ -20,16 +20,14 @@ services:
     ports:
       - "8095:8095"
     volumes:
-      - card_service_db_data:/var/lib/postgres
-      - card_service_db_config:/etc/postgres/conf.d
+      - card-service-db-data:/var/lib/postgresql/data
     depends_on:
       - postgres
     networks:
       - postgres-db
 
 volumes:
-  card_service_db_data:
-  card_service_db_config:
+  card-service-db-data:
 
 networks:
   postgres-db:
