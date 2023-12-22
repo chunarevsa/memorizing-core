@@ -1,0 +1,4 @@
+docker exec -it desktop-postgres-to-1 /bin/bash
+
+pg_dump -U root -E UTF-8 -c card-service -f backup.sql
+psql -U root -d card-service < backup.sql
