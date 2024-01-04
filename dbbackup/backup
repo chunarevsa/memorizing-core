@@ -1,4 +1,8 @@
-docker exec -it desktop-postgres-to-1 /bin/bash
+# Creating backup
+docker exec -t memorizing-core-postgres-1 pg_dump -U root -E UTF-8 -c card-service -f backup_03_01_2024.sql
+docker cp memorizing-core-postgres-1:backup_03_01_2024.sql ./dbbackup/
 
-pg_dump -U root -E UTF-8 -c card-service -f backup.sql
-psql -U root -d card-service < backup.sql
+# Executing backup file
+docker cp ./dbbackup/backup_03_01_2024.sql memorizing-core-postgres-1:/
+docker exec -it memorizing-core-postgres-1 /bin/bash
+psql -U root -d card-service < backup_03_01_2024.sql
