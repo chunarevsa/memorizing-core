@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://${POSTGRES_URL:postgres}/${spring.application.name}
+    url: jdbc:postgresql://${POSTGRES_URL:core-db}/${spring.application.name}
     username: root
     password: root
   jpa:

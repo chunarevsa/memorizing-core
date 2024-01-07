@@ -19,7 +19,7 @@ FROM openjdk:11-jre-slim
 WORKDIR /app
 
 # Копируем JAR файл из предыдущего этапа сборки
-COPY --from=builder /app/build/libs/memorizing-0.0.1-SNAPSHOT.jar .
+COPY --from=builder /app/build/libs/memorizing-core-0.0.1-SNAPSHOT.jar .
 
 # Задаем команду для запуска приложения
-CMD ["java", "-jar", "memorizing-0.0.1-SNAPSHOT.jar"]
+CMD ["java", "-Dspring.profiles.active=prod", "-jar", "memorizing-core-0.0.1-SNAPSHOT.jar"]
