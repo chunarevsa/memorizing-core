@@ -37,5 +37,4 @@ out/
 .vscode/
 
 ### Custom ###
-src/main/resources/notion.txt
 logs
