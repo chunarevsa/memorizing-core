@@ -3,4 +3,12 @@ server:
 
 spring:
   application:
-    name: card-service
+    name: memorizing-core
+
+  cloud:
+    inetutils:
+      preferred-networks: true
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${random.uuid}
