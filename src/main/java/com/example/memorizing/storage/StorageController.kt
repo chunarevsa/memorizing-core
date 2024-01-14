@@ -46,7 +46,7 @@ class StorageController(
 
         val storage =
             storageService.createStorage(storageFieldsDto.userId!!, storageFieldsDto.storageName!!)
-                ?: return ResponseEntity(HttpStatus.NOT_FOUND)
+                ?: return ResponseEntity(HttpStatus.BAD_REQUEST)
 
         val headers = HttpHeaders(
             HeaderUtil.createEntityDeleteAlert(
