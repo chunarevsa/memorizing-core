@@ -1,13 +1,22 @@
+server:
+  port: 0
 
 spring:
+  application:
+    name: memorizing-core
+
   config:
-    import: configserver:http://localhost:8888
+    import: optional:configserver:http://localhost:8888
+  cloud:
+    inetutils:
+      preferred-networks: true
   datasource:
     url: jdbc:postgresql://localhost:5400/${spring.application.name}
     username: root
     password: root
   jpa:
     show-sql: true
+
 
 eureka:
   client:
