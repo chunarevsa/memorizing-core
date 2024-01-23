@@ -15,7 +15,6 @@ class StorageController(
     @Value("\${spring.application.name}")
     private val applicationName: String,
     private val storageService: StorageService,
-    private val storageMapper: StorageMapper
 ) : StorageApi {
     private val log = Logger.getLogger(StorageController::class.java)
 
@@ -27,7 +26,7 @@ class StorageController(
         log.debug("getStorageById with req: storageId = $storageId")
         val storage = storageService.findStorageById(storageId) ?: return ResponseEntity(HttpStatus.NOT_FOUND)
 
-        return ResponseEntity(storageMapper.toStorageDto(storage), HttpStatus.OK)
+        return ResponseEntity(StorageMapper.toStorageDto(storage), HttpStatus.OK)
     }
 
     override fun getStorageByUserId(storageDto: StorageDto): ResponseEntity<StorageDto> {
@@ -37,7 +36,7 @@ class StorageController(
         val storage =
             storageService.findStorageByUserId(storageDto.userId!!) ?: return ResponseEntity(HttpStatus.NOT_FOUND)
 
-        return ResponseEntity(storageMapper.toStorageDto(storage), HttpStatus.OK)
+        return ResponseEntity(StorageMapper.toStorageDto(storage), HttpStatus.OK)
     }
 
     override fun createStorage(storageFieldsDto: StorageFieldsDto): ResponseEntity<StorageDto> {
@@ -57,7 +56,7 @@ class StorageController(
         headers.location = UriComponentsBuilder.newInstance()
             .path("/storage/{id}").buildAndExpand(storage.id).toUri()
 
-        return ResponseEntity(storageMapper.toStorageDto(storage), headers, HttpStatus.CREATED)
+        return ResponseEntity(StorageMapper.toStorageDto(storage), headers, HttpStatus.CREATED)
     }
 
     override fun updateStorage(
@@ -80,7 +79,7 @@ class StorageController(
             )
         )
 
-        return ResponseEntity(storageMapper.toStorageDto(storage), headers, HttpStatus.NO_CONTENT)
+        return ResponseEntity(StorageMapper.toStorageDto(storage), headers, HttpStatus.NO_CONTENT)
     }
 
     override fun deleteStorage(storageId: Int): ResponseEntity<Void> {
