@@ -1,17 +1,22 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
     id 'java'
-    id 'org.springframework.boot' version '2.7.12'
-    id 'io.spring.dependency-management' version '1.0.15.RELEASE'
-    id 'org.jetbrains.kotlin.jvm' version '1.6.10'
+    id 'org.springframework.boot' version '3.0.1'
+    id 'io.spring.dependency-management' version '1.1.4'
+    id 'org.jetbrains.kotlin.jvm' version '1.9.22'
+    id 'org.jetbrains.kotlin.plugin.spring' version '1.9.22'
 }
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11'
-targetCompatibility = '11'
+
+java {
+    sourceCompatibility = '17'
+}
 
 ext {
-    set('springCloudVersion', "2021.0.7")
+    set('springCloudVersion', "2022.0.0")
 }
 
 dependencyManagement {
@@ -36,7 +41,7 @@ dependencies {
     implementation 'org.springframework.cloud:spring-cloud-starter-config'
 
     // Kotlin
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+    implementation 'org.jetbrains.kotlin:kotlin-reflect'
     implementation 'com.fasterxml.jackson.module:jackson-module-kotlin:2.14.2'
 
     // DB
@@ -52,13 +57,21 @@ tasks.named('test') {
     useJUnitPlatform()
 }
 
-compileKotlin {
+tasks.withType(KotlinCompile) {
     kotlinOptions {
-        jvmTarget = "11"
+        freeCompilerArgs += '-Xjsr305=strict'
+        jvmTarget = '17'
     }
 }
+
+compileKotlin {
+    kotlinOptions {
+        jvmTarget = "17"
+    }
+}
+
 compileTestKotlin {
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = "17"
     }
 }
