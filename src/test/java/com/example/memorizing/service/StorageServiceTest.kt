@@ -1,6 +1,9 @@
-package com.example.memorizing.storage
+package com.example.memorizing.service
 
 import com.example.memorizing.config.ApplicationTestConfig
+import com.example.memorizing.storage.StorageRepository
+import com.example.memorizing.storage.StorageService
+import com.example.memorizing.storage.StorageServiceImpl
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
