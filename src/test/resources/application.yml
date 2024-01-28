@@ -6,12 +6,12 @@ spring:
     name: memorizing-core
 
   config:
-    import: optional:configserver:http://localhost:8888
+    import: optional:configserver:http://${LOCALHOST}:8888
   cloud:
     inetutils:
       preferred-networks: true
   datasource:
-    url: jdbc:postgresql://localhost:5400/${spring.application.name}
+    url: jdbc:postgresql://${LOCALHOST}:5400/${spring.application.name}
     username: root
     password: root
   jpa:
@@ -21,4 +21,4 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka
+      defaultZone: http://${LOCALHOST}:8761/eureka
