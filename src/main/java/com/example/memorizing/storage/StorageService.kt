@@ -1,19 +1,10 @@
 package com.example.memorizing.storage
 
 interface StorageService {
-
-    //    @Transactional(readOnly = true)
-    fun findStorageById(storageId: Int): Storage?
-
-    //    @Transactional(readOnly = true)
-    fun findStorageByUserId(userId: Long): Storage?
-
-    //    @Transactional
-    fun createStorage(userId: Long, storageName: String): Storage?
-
-    //    @Transactional
-    fun saveStorage(storage: Storage)
-
-    //    @Transactional
-    fun deleteStorage(storage: Storage)
+    fun findById(storageId: Int): Storage
+    fun findByUserId(userId: Long): Storage
+    fun create(userId: Long, storageName: String): Storage
+    fun save(storage: Storage): Storage
+    fun delete(storage: Storage)
+    fun deleteById(storageId: Int)
 }

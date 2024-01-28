@@ -6,17 +6,23 @@ import org.springframework.stereotype.Service
 open class StorageServiceImpl(
     private val storages: StorageRepository,
 ) : StorageService {
-    override fun findStorageById(storageId: Int): Storage? = storages.findById(storageId)
 
-    override fun findStorageByUserId(userId: Long): Storage? = storages.findByUserId(userId)
-
-    override fun createStorage(userId: Long, storageName: String): Storage? {
-        if (storages.existsByUserId(userId)) return null
-        storages.save(Storage(userId, storageName))
-        return storages.findByUserId(userId)
+    companion object {
+        const val ENTITY_NAME = "storage"
     }
 
-    override fun saveStorage(storage: Storage) = storages.save(storage)
-    override fun deleteStorage(storage: Storage) = storages.delete(storage)
+    override fun findById(storageId: Int): Storage =
+        storages.findById(storageId).orElseThrow { NotFoundException(ENTITY_NAME) }
+
+    override fun findByUserId(userId: Long): Storage =
+        storages.findByUserId(userId).orElseThrow { NotFoundException(ENTITY_NAME) }
+
+    override fun create(userId: Long, storageName: String): Storage =
+        storages.save(Storage(userId, storageName))
+
+    override fun save(storage: Storage): Storage = storages.save(storage)
+    override fun delete(storage: Storage) = storages.delete(storage)
+
+    override fun deleteById(storageId: Int) = storages.deleteById(storageId)
 
 }

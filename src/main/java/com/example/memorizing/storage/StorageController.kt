@@ -24,7 +24,7 @@ class StorageController(
 
     override fun getStorageById(storageId: Int): ResponseEntity<StorageDto> {
         log.debug("getStorageById with req: storageId = $storageId")
-        val storage = storageService.findStorageById(storageId) ?: return ResponseEntity(HttpStatus.NOT_FOUND)
+        val storage = storageService.findById(storageId)
 
         return ResponseEntity(StorageMapper.toStorageDto(storage), HttpStatus.OK)
     }
@@ -33,30 +33,18 @@ class StorageController(
         log.debug("getStorageByUserId with req: $storageDto")
         storageDto.userId ?: return ResponseEntity(HttpStatus.BAD_REQUEST)
 
-        val storage =
-            storageService.findStorageByUserId(storageDto.userId!!) ?: return ResponseEntity(HttpStatus.NOT_FOUND)
+        val storage = storageService.findByUserId(storageDto.userId!!)
 
         return ResponseEntity(StorageMapper.toStorageDto(storage), HttpStatus.OK)
     }
 
     override fun createStorage(storageFieldsDto: StorageFieldsDto): ResponseEntity<StorageDto> {
         log.debug("createStorage with req: $storageFieldsDto")
-        storageFieldsDto.userId ?: return ResponseEntity(HttpStatus.BAD_REQUEST)
+        if (storageFieldsDto.userId == null || storageFieldsDto.storageName == null) return ResponseEntity(HttpStatus.BAD_REQUEST)
 
-        val storage =
-            storageService.createStorage(storageFieldsDto.userId!!, storageFieldsDto.storageName!!)
-                ?: return ResponseEntity(HttpStatus.BAD_REQUEST)
+        val storage = storageService.create(storageFieldsDto.userId!!, storageFieldsDto.storageName!!)
 
-        val headers = HttpHeaders(
-            HeaderUtil.createEntityDeleteAlert(
-                applicationName, false, ENTITY_NAME, storage.id.toString()
-            )
-        )
-
-        headers.location = UriComponentsBuilder.newInstance()
-            .path("/storage/{id}").buildAndExpand(storage.id).toUri()
-
-        return ResponseEntity(StorageMapper.toStorageDto(storage), headers, HttpStatus.CREATED)
+        return ResponseEntity(StorageMapper.toStorageDto(storage), createHeadersWithLocation(storage.id!!), HttpStatus.CREATED)
     }
 
     override fun updateStorage(
@@ -66,36 +54,32 @@ class StorageController(
         log.debug("updateStorage with path variable $storageId and req: $storageFieldsDto")
         storageFieldsDto.storageName ?: return ResponseEntity(HttpStatus.BAD_REQUEST)
 
-        val storage = storageService.findStorageById(storageId) ?: return ResponseEntity(HttpStatus.NOT_FOUND)
-        storage.apply {
-            storageFieldsDto.storageName.let { this.storageName = it }
+        val storage = storageService.findById(storageId).apply {
+            storageFieldsDto.storageName.let {
+                this.storageName = it }
         }
+        storageService.save(storage)
 
-        storageService.saveStorage(storage)
-
-        val headers = HttpHeaders(
-            HeaderUtil.createEntityUpdateAlert(
-                applicationName, false, ENTITY_NAME, storage.id.toString()
-            )
-        )
-
-        return ResponseEntity(StorageMapper.toStorageDto(storage), headers, HttpStatus.NO_CONTENT)
+        return ResponseEntity(StorageMapper.toStorageDto(storage), createHeaders(storageId), HttpStatus.NO_CONTENT)
     }
 
     override fun deleteStorage(storageId: Int): ResponseEntity<Void> {
         log.debug("deleteStorage with path variable $storageId ")
-        val storage =
-            storageService.findStorageById(storageId) ?: return ResponseEntity(HttpStatus.NOT_FOUND)
+        storageService.deleteById(storageId)
 
-        storageService.deleteStorage(storage)
-
-        val headers = HttpHeaders(
-            HeaderUtil.createEntityDeleteAlert(
-                applicationName, false, ENTITY_NAME, storage.id.toString()
-            )
-        )
-
-        return ResponseEntity(headers, HttpStatus.NO_CONTENT)
+        return ResponseEntity(createHeaders(storageId), HttpStatus.NO_CONTENT)
     }
+
+    private fun createHeaders(id: Int): HttpHeaders {
+        return HeaderUtil.createEntityDeleteAlert(
+            applicationName, false, ENTITY_NAME, id.toString()
+        )
+    }
+
+    private fun createHeadersWithLocation(id: Int): HttpHeaders =
+        createHeaders(id).apply {
+            this.location = UriComponentsBuilder.newInstance()
+                .path("/${ENTITY_NAME}/{id}").buildAndExpand(id).toUri()
+        }
 
 }

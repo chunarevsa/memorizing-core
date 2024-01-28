@@ -63,7 +63,7 @@ class StorageControllerTests {
 
     @Test
     fun testGetStorageSuccess() {
-        given(service.findStorageById(TEST_STORAGE_ID)).willReturn(testStorages[0])
+        given(service.findById(TEST_STORAGE_ID)).willReturn(testStorages[0])
 
         this.mockMvc.perform(
             get("/storage/$TEST_STORAGE_ID")
@@ -74,17 +74,17 @@ class StorageControllerTests {
             .andExpect(jsonPath("$.id").value(TEST_STORAGE_ID))
             .andExpect(jsonPath("$.storageName").value(testStorages[0].storageName))
     }
-//
-//    @Test
-//    fun testGetStorageNotFound() {
-//        given(storageService.findStorageById(TEST_STORAGE_ID + 1)).willReturn(null)
-//
-//        this.mockMvc.perform(
-//            get("/storage/$TEST_STORAGE_ID")
-//                .accept(MediaType.APPLICATION_JSON_VALUE)
-//        )
-//            .andExpect(status().isNotFound)
-//    }
+
+    @Test
+    fun testGetStorageNotFound() {
+        given(service.findById(TEST_STORAGE_ID + 1)).willReturn(null)
+
+        this.mockMvc.perform(
+            get("/storage/$TEST_STORAGE_ID")
+                .accept(MediaType.APPLICATION_JSON_VALUE)
+        )
+            .andExpect(status().isNotFound)
+    }
 //
 //
 //    @Test
@@ -92,7 +92,7 @@ class StorageControllerTests {
 //        val oldStorage = testStorages.last()
 //        val storageFieldsDto = StorageFieldsDto(userId = oldStorage.userId!! + 1, storageName = "some name")
 //
-//        given(storageService.createStorage(storageFieldsDto.userId!!, storageFieldsDto.storageName!!))
+//        given(service.createStorage(storageFieldsDto.userId!!, storageFieldsDto.storageName!!))
 //            .willReturn(storageMapper.toStorage(storageFieldsDto).apply { this!!.id = oldStorage.id!! + 1})
 //
 //        val storageAsJSON: String = mapper.writeValueAsString(storageFieldsDto)
@@ -110,7 +110,7 @@ class StorageControllerTests {
 //
 //
 //
-//        val storageDto = storageMapper.toStorageDto(storageService.findStorageById(TEST_STORAGE_ID))
+//        val storageDto = storageMapper.toStorageDto(service.findStorageById(TEST_STORAGE_ID))
 //        storageDto?.id = null
 //        val storageAsJSON: String = mapper.writeValueAsString(storageDto)
 //
