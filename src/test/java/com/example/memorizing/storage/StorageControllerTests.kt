@@ -1,8 +1,8 @@
 package com.example.memorizing.storage
 
 import com.example.memorizing.config.ApplicationTestConfig
+import com.example.memorizing.exception.NotFoundException
 import com.fasterxml.jackson.databind.ObjectMapper
-import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
@@ -15,6 +15,7 @@ import org.springframework.test.context.ContextConfiguration
 import org.springframework.test.context.junit.jupiter.SpringExtension
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.*
 import org.springframework.test.web.servlet.setup.MockMvcBuilders
 
@@ -27,8 +28,6 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders
 @ExtendWith(SpringExtension::class)
 @WebMvcTest(StorageController::class)
 @ContextConfiguration(classes = [ApplicationTestConfig::class])
-//@WebAppConfiguration
-//@ActiveProfiles("test")
 class StorageControllerTests {
     @Autowired
     private lateinit var controller: StorageController
@@ -40,70 +39,99 @@ class StorageControllerTests {
     private lateinit var service: StorageService
 
     private val mapper: ObjectMapper = ObjectMapper()
-    private val testStorages: MutableList<Storage> = mutableListOf()
-
-    companion object {
-        private const val TEST_STORAGE_ID = 1
-    }
-
-    @Test
-    fun startFirstTest() {
-        assertThat(controller).isNotNull
-    }
-
+    private val storages = listOf(
+        Storage(1, "Test name 1").apply { this.id = 1 },
+        Storage(2, "Test name 2").apply { this.id = 2 },
+        Storage(3, "Test name 3").apply { this.id = 3 },
+    )
 
     @BeforeEach
-    fun initStorages() {
+    fun init() {
         this.mockMvc = MockMvcBuilders.standaloneSetup(controller).build()
-
-        testStorages.add(Storage(1, "Test name 1").apply {
-            this.id = TEST_STORAGE_ID
-        })
     }
 
     @Test
-    fun testGetStorageSuccess() {
-        given(service.findById(TEST_STORAGE_ID)).willReturn(testStorages[0])
+    fun getStorageById_Success() {
+        val storage: Storage = storages.last()
+        given(service.findById(storage.id!!)).willReturn(storage)
 
         this.mockMvc.perform(
-            get("/storage/$TEST_STORAGE_ID")
-                .accept(MediaType.APPLICATION_JSON_VALUE)
+            get("/storage/${storage.id}")
         )
             .andExpect(status().isOk)
             .andExpect(content().contentType("application/json"))
-            .andExpect(jsonPath("$.id").value(TEST_STORAGE_ID))
-            .andExpect(jsonPath("$.storageName").value(testStorages[0].storageName))
+            .andExpect(jsonPath("$.id").value(storage.id))
+            .andExpect(jsonPath("$.userId").value(storage.userId))
+            .andExpect(jsonPath("$.storageName").value(storage.storageName))
     }
 
     @Test
-    fun testGetStorageNotFound() {
-        given(service.findById(TEST_STORAGE_ID + 1)).willReturn(null)
+    fun getStorageById_NotFound() {
+        val storageId: Int = -1
+        given(service.findById(storageId)).willThrow(NotFoundException("storage", "storageId", storageId))
 
         this.mockMvc.perform(
-            get("/storage/$TEST_STORAGE_ID")
-                .accept(MediaType.APPLICATION_JSON_VALUE)
+            get("/storage/$storageId")
         )
             .andExpect(status().isNotFound)
     }
-//
-//
-//    @Test
-//    fun testCreateStorageSuccess() {
-//        val oldStorage = testStorages.last()
-//        val storageFieldsDto = StorageFieldsDto(userId = oldStorage.userId!! + 1, storageName = "some name")
-//
-//        given(service.createStorage(storageFieldsDto.userId!!, storageFieldsDto.storageName!!))
-//            .willReturn(storageMapper.toStorage(storageFieldsDto).apply { this!!.id = oldStorage.id!! + 1})
-//
-//        val storageAsJSON: String = mapper.writeValueAsString(storageFieldsDto)
-//
-//        this.mockMvc.perform(
-//            post("/storage")
-//                .content(storageAsJSON).accept(MediaType.APPLICATION_JSON_VALUE)
-//                .contentType(MediaType.APPLICATION_JSON_VALUE)
-//        )
-//            .andExpect(status().isCreated)
-//    }
+
+    @Test
+    fun getStorageByUserId_Success() {
+        val storage: Storage = storages.last()
+        val storageFields = StorageFieldsDto(storage.userId, storage.storageName)
+
+        given(service.findByUserId(storageFields.userId!!)).willReturn(storage)
+
+        val storageFieldsAsJSON: String = mapper.writeValueAsString(storageFields)
+        this.mockMvc.perform(
+            post("/storage/getByUserId")
+                .content(storageFieldsAsJSON).accept(MediaType.APPLICATION_JSON_VALUE)
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+        )
+            .andExpect(status().isOk)
+            .andExpect(content().contentType("application/json"))
+            .andExpect(jsonPath("$.id").value(storage.id))
+            .andExpect(jsonPath("$.userId").value(storage.userId))
+            .andExpect(jsonPath("$.storageName").value(storage.storageName))
+    }
+
+    @Test
+    fun getStorageByUserId_NotFound() {
+        val userId: Long = -1
+        val storageFields = StorageFieldsDto(userId, storages.last().storageName)
+        given(service.findByUserId(userId)).willThrow(NotFoundException("storage", "userId", userId))
+
+        val storageFieldsAsJSON: String = mapper.writeValueAsString(storageFields)
+        this.mockMvc.perform(
+            post("/storage/getByUserId")
+                .content(storageFieldsAsJSON).accept(MediaType.APPLICATION_JSON_VALUE)
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+        )
+            .andExpect(status().isNotFound)
+    }
+
+    @Test
+    fun createStorage_Success() {
+        val storage = storages.last()
+        val storageFields = StorageFieldsDto(storage.userId!!, storage.storageName)
+
+        given(service.create(storageFields.userId!!, storageFields.storageName!!))
+            .willReturn(storage)
+
+        val storageFieldsAsJSON: String = mapper.writeValueAsString(storageFields)
+
+        this.mockMvc.perform(
+            post("/storage")
+                .content(storageFieldsAsJSON).accept(MediaType.APPLICATION_JSON_VALUE)
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+        )
+            .andExpect(status().isCreated)
+            .andExpect(content().contentType("application/json"))
+            .andExpect(jsonPath("$.id").value(storage.id))
+            .andExpect(jsonPath("$.userId").value(storage.userId))
+            .andExpect(jsonPath("$.storageName").value(storage.storageName))
+    }
 //
 //    @Test
 //    fun testCreateStorageBabRequestByExistingStorage() {
