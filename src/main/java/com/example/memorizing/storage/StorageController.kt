@@ -1,5 +1,6 @@
 package com.example.memorizing.storage
 
+import com.example.memorizing.exception.BadRequestException
 import com.example.memorizing.util.HeaderUtil
 import org.apache.log4j.Logger
 import org.springframework.beans.factory.annotation.Value
@@ -29,22 +30,27 @@ class StorageController(
         return ResponseEntity(StorageMapper.toStorageDto(storage), HttpStatus.OK)
     }
 
-    override fun getStorageByUserId(storageDto: StorageDto): ResponseEntity<StorageDto> {
-        log.debug("getStorageByUserId with req: $storageDto")
-        storageDto.userId ?: return ResponseEntity(HttpStatus.BAD_REQUEST)
+    override fun getStorageByUserId(storageFieldsDto: StorageFieldsDto): ResponseEntity<StorageDto> {
+        log.debug("getStorageByUserId with req: $storageFieldsDto")
+        storageFieldsDto.userId ?: throw BadRequestException(ENTITY_NAME, "userId", "null")
 
-        val storage = storageService.findByUserId(storageDto.userId!!)
+        val storage = storageService.findByUserId(storageFieldsDto.userId!!)
 
         return ResponseEntity(StorageMapper.toStorageDto(storage), HttpStatus.OK)
     }
 
     override fun createStorage(storageFieldsDto: StorageFieldsDto): ResponseEntity<StorageDto> {
         log.debug("createStorage with req: $storageFieldsDto")
-        if (storageFieldsDto.userId == null || storageFieldsDto.storageName == null) return ResponseEntity(HttpStatus.BAD_REQUEST)
+        storageFieldsDto.userId ?: throw BadRequestException(ENTITY_NAME, "userId", "null")
+        storageFieldsDto.storageName ?: throw BadRequestException(ENTITY_NAME, "storageName", "null")
 
         val storage = storageService.create(storageFieldsDto.userId!!, storageFieldsDto.storageName!!)
 
-        return ResponseEntity(StorageMapper.toStorageDto(storage), createHeadersWithLocation(storage.id!!), HttpStatus.CREATED)
+        return ResponseEntity(
+            StorageMapper.toStorageDto(storage),
+            createHeadersWithLocation(storage.id!!),
+            HttpStatus.CREATED
+        )
     }
 
     override fun updateStorage(
@@ -56,7 +62,8 @@ class StorageController(
 
         val storage = storageService.findById(storageId).apply {
             storageFieldsDto.storageName.let {
-                this.storageName = it }
+                this.storageName = it
+            }
         }
         storageService.save(storage)
 

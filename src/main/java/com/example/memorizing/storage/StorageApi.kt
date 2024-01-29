@@ -20,7 +20,7 @@ interface StorageApi {
         consumes = ["application/json"]
     )
     fun getStorageByUserId(
-        @RequestBody storageDto: StorageDto
+        @RequestBody storageFieldsDto: StorageFieldsDto
     ): ResponseEntity<StorageDto>
 
 

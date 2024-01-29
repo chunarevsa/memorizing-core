@@ -1,5 +1,6 @@
 package com.example.memorizing.storage
 
+import com.example.memorizing.exception.NotFoundException
 import org.springframework.stereotype.Service
 
 @Service
@@ -12,10 +13,10 @@ open class StorageServiceImpl(
     }
 
     override fun findById(storageId: Int): Storage =
-        storages.findById(storageId).orElseThrow { NotFoundException(ENTITY_NAME) }
+        storages.findById(storageId).orElseThrow { NotFoundException(ENTITY_NAME, "storageId", storageId) }
 
     override fun findByUserId(userId: Long): Storage =
-        storages.findByUserId(userId).orElseThrow { NotFoundException(ENTITY_NAME) }
+        storages.findByUserId(userId).orElseThrow { NotFoundException(ENTITY_NAME, "userId", userId) }
 
     override fun create(userId: Long, storageName: String): Storage =
         storages.save(Storage(userId, storageName))
