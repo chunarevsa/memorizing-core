@@ -58,7 +58,8 @@ class StorageController(
         storageFieldsDto: StorageFieldsDto
     ): ResponseEntity<StorageDto> {
         log.debug("updateStorage with path variable $storageId and req: $storageFieldsDto")
-        storageFieldsDto.storageName ?: return ResponseEntity(HttpStatus.BAD_REQUEST)
+        if (storageFieldsDto.userId != null) throw BadRequestException("userId should be null")
+        storageFieldsDto.storageName ?: throw BadRequestException(ENTITY_NAME, "storageName", "null")
 
         val storage = storageService.findById(storageId).apply {
             storageFieldsDto.storageName.let {
