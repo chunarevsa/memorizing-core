@@ -1,22 +1,18 @@
 package com.example.memorizing.exception
 
+import org.springframework.data.relational.core.conversion.DbActionExecutionException
 import org.springframework.http.HttpStatus
-import org.springframework.web.bind.MethodArgumentNotValidException
-import org.springframework.web.bind.annotation.ExceptionHandler
-import org.springframework.web.bind.annotation.ResponseBody
-import org.springframework.web.bind.annotation.ResponseStatus
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 import org.springframework.web.context.request.ServletWebRequest
 import org.springframework.web.context.request.WebRequest
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler
 
-
-@RestController
+@RestControllerAdvice
 class ExceptionRestControllerAdvice : ResponseEntityExceptionHandler() {
 
     private fun resolvePathFromWebRequest(request: WebRequest): String? {
         return try {
-            (request as ServletWebRequest).request.getAttribute("javax.servlet.forward.request_uri").toString()
+            (request as ServletWebRequest).request.requestURI
         } catch (ex: Exception) {
             null
         }
@@ -24,8 +20,15 @@ class ExceptionRestControllerAdvice : ResponseEntityExceptionHandler() {
 
     @ResponseBody
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ExceptionHandler(MethodArgumentNotValidException::class)
-    fun handleValidationExceptions(ex: MethodArgumentNotValidException, request: WebRequest): ApiResponse {
+    @ExceptionHandler(value = [DbActionExecutionException::class])
+    fun handleDbActionExecutionException(ex: DbActionExecutionException, request: WebRequest): ApiResponse {
+        return ApiResponse(false, ex.cause?.cause?.message, ex.javaClass.name, resolvePathFromWebRequest(request))
+    }
+
+    @ResponseBody
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(value = [BadRequestException::class])
+    fun handleBadRequestException(ex: BadRequestException, request: WebRequest): ApiResponse {
         return ApiResponse(false, ex.message, ex.javaClass.name, resolvePathFromWebRequest(request))
     }
 
@@ -35,6 +38,5 @@ class ExceptionRestControllerAdvice : ResponseEntityExceptionHandler() {
     fun handleResourceNotFoundException(ex: NotFoundException, request: WebRequest): ApiResponse {
         return ApiResponse(false, ex.message, ex.javaClass.name, resolvePathFromWebRequest(request))
     }
-
 
 }
