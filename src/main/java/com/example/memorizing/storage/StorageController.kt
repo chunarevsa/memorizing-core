@@ -4,11 +4,9 @@ import com.example.memorizing.exception.BadRequestException
 import com.example.memorizing.util.HeaderUtil
 import org.apache.log4j.Logger
 import org.springframework.beans.factory.annotation.Value
-import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
-import org.springframework.web.util.UriComponentsBuilder
 
 @RestController
 @RequestMapping
@@ -48,7 +46,9 @@ class StorageController(
 
         return ResponseEntity(
             StorageMapper.toStorageDto(storage),
-            createHeadersWithLocation(storage.id!!),
+            HeaderUtil.createEntityCreationAlert(
+                applicationName, false, ENTITY_NAME, storage.id.toString(), "/${ENTITY_NAME}/${storage.id}"
+            ),
             HttpStatus.CREATED
         )
     }
@@ -68,26 +68,25 @@ class StorageController(
         }
         storageService.save(storage)
 
-        return ResponseEntity(StorageMapper.toStorageDto(storage), createHeaders(storageId), HttpStatus.NO_CONTENT)
+        return ResponseEntity(
+            StorageMapper.toStorageDto(storage),
+            HeaderUtil.createEntityUpdateAlert(
+                applicationName, false, ENTITY_NAME, storage.id.toString(), "/${ENTITY_NAME}/${storage.id}"
+            ),
+            HttpStatus.NO_CONTENT
+        )
     }
 
     override fun deleteStorage(storageId: Int): ResponseEntity<Void> {
         log.debug("deleteStorage with path variable $storageId ")
         storageService.deleteById(storageId)
 
-        return ResponseEntity(createHeaders(storageId), HttpStatus.NO_CONTENT)
-    }
-
-    private fun createHeaders(id: Int): HttpHeaders {
-        return HeaderUtil.createEntityDeleteAlert(
-            applicationName, false, ENTITY_NAME, id.toString()
+        return ResponseEntity(
+            HeaderUtil.createEntityUpdateAlert(
+                applicationName, false, ENTITY_NAME, storageId.toString(), "/${ENTITY_NAME}/$storageId"
+            ),
+            HttpStatus.NO_CONTENT
         )
     }
-
-    private fun createHeadersWithLocation(id: Int): HttpHeaders =
-        createHeaders(id).apply {
-            this.location = UriComponentsBuilder.newInstance()
-                .path("/${ENTITY_NAME}/{id}").buildAndExpand(id).toUri()
-        }
 
 }
