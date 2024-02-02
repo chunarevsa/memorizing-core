@@ -10,7 +10,7 @@ interface StorageApi {
         value = ["/storage/{storageId}"],
         produces = ["application/json"]
     )
-    fun getStorageById(@PathVariable("storageId") storageId: Int): ResponseEntity<StorageDto>
+    fun getStorageById(@PathVariable("storageId") storageId: Int): StorageDto
 
 
     @RequestMapping(
@@ -20,8 +20,8 @@ interface StorageApi {
         consumes = ["application/json"]
     )
     fun getStorageByUserId(
-        @RequestBody storageFieldsDto: StorageFieldsDto
-    ): ResponseEntity<StorageDto>
+        @RequestBody fields: StorageFieldsDto
+    ): StorageDto
 
 
     @RequestMapping(
@@ -31,7 +31,7 @@ interface StorageApi {
         consumes = ["application/json"]
     )
     fun createStorage(
-        @RequestBody storageFieldsDto: StorageFieldsDto
+        @RequestBody fields: StorageFieldsDto
     ): ResponseEntity<StorageDto>
 
 
@@ -43,13 +43,13 @@ interface StorageApi {
     )
     fun updateStorage(
         @PathVariable("storageId") storageId: Int,
-        @RequestBody storageFieldsDto: StorageFieldsDto
+        @RequestBody fields: StorageFieldsDto
     ): ResponseEntity<StorageDto>
 
 
     @RequestMapping(
-        method = [RequestMethod.DELETE],
-        value = ["/storage/{storageId}"],
+        method = [RequestMethod.POST],
+        value = ["/storage/{storageId}/delete"],
         produces = ["application/json"]
     )
     fun deleteStorage(

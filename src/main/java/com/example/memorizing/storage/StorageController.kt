@@ -21,28 +21,26 @@ class StorageController(
         const val ENTITY_NAME = "storage"
     }
 
-    override fun getStorageById(storageId: Int): ResponseEntity<StorageDto> {
+    override fun getStorageById(storageId: Int): StorageDto {
         log.debug("getStorageById with req: storageId = $storageId")
         val storage = storageService.findById(storageId)
-
-        return ResponseEntity(StorageMapper.toStorageDto(storage), HttpStatus.OK)
+        return StorageMapper.toStorageDto(storage)
     }
 
-    override fun getStorageByUserId(storageFieldsDto: StorageFieldsDto): ResponseEntity<StorageDto> {
-        log.debug("getStorageByUserId with req: $storageFieldsDto")
-        storageFieldsDto.userId ?: throw BadRequestException(ENTITY_NAME, "userId", "null")
+    override fun getStorageByUserId(fields: StorageFieldsDto): StorageDto {
+        log.debug("getStorageByUserId with req: $fields")
+        fields.userId ?: throw BadRequestException(ENTITY_NAME, "userId", "null")
 
-        val storage = storageService.findByUserId(storageFieldsDto.userId!!)
-
-        return ResponseEntity(StorageMapper.toStorageDto(storage), HttpStatus.OK)
+        val storage = storageService.findByUserId(fields.userId!!)
+        return StorageMapper.toStorageDto(storage)
     }
 
-    override fun createStorage(storageFieldsDto: StorageFieldsDto): ResponseEntity<StorageDto> {
-        log.debug("createStorage with req: $storageFieldsDto")
-        storageFieldsDto.userId ?: throw BadRequestException(ENTITY_NAME, "userId", "null")
-        storageFieldsDto.storageName ?: throw BadRequestException(ENTITY_NAME, "storageName", "null")
+    override fun createStorage(fields: StorageFieldsDto): ResponseEntity<StorageDto> {
+        log.debug("createStorage with req: $fields")
+        fields.userId ?: throw BadRequestException(ENTITY_NAME, "userId", "null")
+        fields.storageName ?: throw BadRequestException(ENTITY_NAME, "storageName", "null")
 
-        val storage = storageService.create(storageFieldsDto.userId!!, storageFieldsDto.storageName!!)
+        val storage = storageService.create(fields)
 
         return ResponseEntity(
             StorageMapper.toStorageDto(storage),
@@ -55,18 +53,13 @@ class StorageController(
 
     override fun updateStorage(
         storageId: Int,
-        storageFieldsDto: StorageFieldsDto
+        fields: StorageFieldsDto
     ): ResponseEntity<StorageDto> {
-        log.debug("updateStorage with path variable $storageId and req: $storageFieldsDto")
-        if (storageFieldsDto.userId != null) throw BadRequestException("userId should be null")
-        storageFieldsDto.storageName ?: throw BadRequestException(ENTITY_NAME, "storageName", "null")
+        log.debug("updateStorage with path variable $storageId and req: $fields")
+        if (fields.userId != null) throw BadRequestException("userId should be null")
+        fields.storageName ?: throw BadRequestException(ENTITY_NAME, "storageName", "null")
 
-        val storage = storageService.findById(storageId).apply {
-            storageFieldsDto.storageName.let {
-                this.storageName = it
-            }
-        }
-        storageService.save(storage)
+        val storage = storageService.update(storageId, fields)
 
         return ResponseEntity(
             StorageMapper.toStorageDto(storage),
@@ -79,6 +72,7 @@ class StorageController(
 
     override fun deleteStorage(storageId: Int): ResponseEntity<Void> {
         log.debug("deleteStorage with path variable $storageId ")
+
         storageService.deleteById(storageId)
 
         return ResponseEntity(

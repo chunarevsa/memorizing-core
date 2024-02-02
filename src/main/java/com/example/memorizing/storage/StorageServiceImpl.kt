@@ -18,11 +18,19 @@ open class StorageServiceImpl(
     override fun findByUserId(userId: Long): Storage =
         storages.findByUserId(userId).orElseThrow { NotFoundException(ENTITY_NAME, "userId", userId) }
 
-    override fun create(userId: Long, storageName: String): Storage = storages.save(Storage(userId, storageName))
+    override fun create(fields: StorageFieldsDto): Storage {
+        val storage: Storage = StorageMapper.fromFields(fields)
+        return save(storage)
+    }
+    override fun update(storageId: Int, fields: StorageFieldsDto): Storage {
+        val storage = StorageMapper.fromFields(fields, findById(storageId))
+        return save(storage)
+    }
 
-    override fun save(storage: Storage): Storage = storages.save(storage)
     override fun delete(storage: Storage) = storages.delete(storage)
 
     override fun deleteById(storageId: Int) = storages.deleteById(storageId)
+
+    private fun save(storage: Storage): Storage = storages.save(storage)
 
 }

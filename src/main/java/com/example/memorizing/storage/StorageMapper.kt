@@ -2,9 +2,7 @@ package com.example.memorizing.storage
 
 object StorageMapper {
 
-    fun toStorageDto(storage: Storage?): StorageDto? {
-        if (storage == null) return null
-
+    fun toStorageDto(storage: Storage): StorageDto {
         return StorageDto(
             id = storage.id,
             userId = storage.userId,
@@ -12,24 +10,12 @@ object StorageMapper {
         )
     }
 
-    fun toStorage(storageDto: StorageDto?): Storage? {
-        if (storageDto == null) return null
-
-        return Storage(
-            userId = storageDto.userId,
-            storageName = storageDto.storageName
-        ).apply {
-            this.id = storageDto.id
+    fun fromFields(fields: StorageFieldsDto, entity: Storage? = null): Storage {
+        val storage = entity ?: Storage(userId = fields.userId)
+        return storage.apply {
+            fields.storageName?.let { this.storageName = it }
         }
-
     }
 
-    fun toStorage(storageFieldsDto: StorageFieldsDto?): Storage? {
-        if (storageFieldsDto == null) return null
 
-        return Storage(
-            userId = storageFieldsDto.userId,
-            storageName = storageFieldsDto.storageName
-        )
-    }
 }
