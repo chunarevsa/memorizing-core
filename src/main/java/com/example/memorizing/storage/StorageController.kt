@@ -38,7 +38,7 @@ class StorageController(
     override fun createStorage(fields: StorageFieldsDto): ResponseEntity<StorageDto> {
         log.debug("createStorage with req: $fields")
         fields.userId ?: throw BadRequestException(ENTITY_NAME, "userId", "null")
-        fields.storageName ?: throw BadRequestException(ENTITY_NAME, "storageName", "null")
+        if (fields.storageName.isNullOrBlank()) throw BadRequestException(ENTITY_NAME, "storageName", "null")
 
         val storage = storageService.create(fields)
 
@@ -51,13 +51,10 @@ class StorageController(
         )
     }
 
-    override fun updateStorage(
-        storageId: Int,
-        fields: StorageFieldsDto
-    ): ResponseEntity<StorageDto> {
+    override fun updateStorage(storageId: Int, fields: StorageFieldsDto): ResponseEntity<StorageDto> {
         log.debug("updateStorage with path variable $storageId and req: $fields")
         if (fields.userId != null) throw BadRequestException("userId should be null")
-        fields.storageName ?: throw BadRequestException(ENTITY_NAME, "storageName", "null")
+        if (fields.storageName.isNullOrBlank()) throw BadRequestException(ENTITY_NAME, "storageName", "null")
 
         val storage = storageService.update(storageId, fields)
 
@@ -76,7 +73,7 @@ class StorageController(
         storageService.deleteById(storageId)
 
         return ResponseEntity(
-            HeaderUtil.createEntityUpdateAlert(
+            HeaderUtil.createEntityDeleteAlert(
                 applicationName, false, ENTITY_NAME, storageId.toString(), "/${ENTITY_NAME}/$storageId"
             ),
             HttpStatus.NO_CONTENT
