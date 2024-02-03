@@ -1,5 +1,6 @@
 package com.example.memorizing.cardStock
 
+import com.example.memorizing.exception.NotFoundException
 import org.springframework.stereotype.Service
 
 @Service
@@ -7,25 +8,28 @@ class CardStockServiceImpl(
     private val cardStocks: CardStockRepository,
 ) : CardStockService {
 
-    override fun findCardStockById(cardStockId: Int): CardStock? = cardStocks.findById(cardStockId)
-    override fun findAllCardStockByStorageId(storageId: Int) = cardStocks.findAllByStorageId(storageId)
-
-    override fun createCardStock(cardStockFieldsDto: CardStockFieldsDto): CardStock {
-        return cardStocks.save(
-            CardStock(
-                storageId = cardStockFieldsDto.storageId,
-                cardStockName = cardStockFieldsDto.cardStockName,
-                description = cardStockFieldsDto.description,
-                keyType = cardStockFieldsDto.keyType,
-                valueType = cardStockFieldsDto.valueType,
-                maxPoint = cardStockFieldsDto.maxPoint,
-                testModeIsAvailable = cardStockFieldsDto.testModeIsAvailable!!,
-                onlyFromKey = cardStockFieldsDto.onlyFromKey!!
-            )
-        )
+    companion object {
+        const val ENTITY_NAME = "cardStock"
     }
 
-    override fun saveCardStock(cardStock: CardStock) = cardStocks.save(cardStock)
-    override fun deleteCardStock(cardStock: CardStock) = cardStocks.delete(cardStock)
+    override fun findById(cardStockId: Int): CardStock =
+        cardStocks.findById(cardStockId).orElseThrow { NotFoundException(ENTITY_NAME, "cardStockId", cardStockId) }
+
+    override fun findAllByStorageId(storageId: Int) = cardStocks.findAllByStorageId(storageId)
+
+    override fun create(fields: CardStockFieldsDto): CardStock {
+        val cardStock: CardStock = CardStockMapper.fromFields(fields)
+        return save(cardStock)
+    }
+
+    override fun update(cardStockId: Int, fields: CardStockFieldsDto): CardStock {
+        val cardStock: CardStock = CardStockMapper.fromFields(fields, findById(cardStockId))
+        return save(cardStock)
+    }
+
+    override fun delete(cardStock: CardStock) = cardStocks.delete(cardStock)
+    override fun deleteById(cardStockId: Int) = cardStocks.deleteById(cardStockId)
+
+    private fun save(cardStock: CardStock) = cardStocks.save(cardStock)
 
 }

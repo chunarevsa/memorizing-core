@@ -14,7 +14,7 @@ interface CardStockApi {
     )
     fun getCardStockById(
         @PathVariable("cardStockId") cardStockId: Int
-    ): ResponseEntity<CardStockDto>
+    ): CardStockDto
 
     @RequestMapping(
         method = [RequestMethod.POST],
@@ -23,8 +23,8 @@ interface CardStockApi {
         consumes = ["application/json"]
     )
     fun getCardStocksByStorageId(
-        @RequestBody storageId: Int
-    ): ResponseEntity<List<CardStockDto>>
+        @RequestBody fields: CardStockFieldsDto
+    ): List<CardStockDto>
 
     @RequestMapping(
         method = [RequestMethod.POST],
@@ -33,7 +33,7 @@ interface CardStockApi {
         consumes = ["application/json"]
     )
     fun createCardStock(
-        @RequestBody cardStockFieldsDto: CardStockFieldsDto
+        @RequestBody fields: CardStockFieldsDto
     ): ResponseEntity<CardStockDto>
 
     @RequestMapping(
@@ -44,7 +44,7 @@ interface CardStockApi {
     )
     fun updateCardStock(
         @PathVariable("cardStockId") cardStockId: Int,
-        @RequestBody cardStockFieldsDto: CardStockFieldsDto
+        @RequestBody fields: CardStockFieldsDto
     ): ResponseEntity<CardStockDto>
 
     @RequestMapping(
