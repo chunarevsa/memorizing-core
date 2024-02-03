@@ -1,13 +1,13 @@
 package com.example.memorizing.card
 
+import com.example.memorizing.exception.BadRequestException
 import com.example.memorizing.util.HeaderUtil
+import org.apache.log4j.Logger
 import org.springframework.beans.factory.annotation.Value
-import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
-import org.springframework.web.util.UriComponentsBuilder
 
 @RestController
 @RequestMapping
@@ -16,125 +16,81 @@ class CardController(
     private val applicationName: String,
     private val cardService: CardService
 ) : CardApi {
+    private val log = Logger.getLogger(CardController::class.java)
 
     companion object {
-        const val ENTITY_NAME = "com/example/memorizing/card"
+        const val ENTITY_NAME = "card"
     }
 
-    override fun getCardById(
-        cardId: Int
-    ): ResponseEntity<CardDto> {
-        val card = cardService.findCardById(cardId) ?: return ResponseEntity(HttpStatus.NOT_FOUND)
-
-        val result = CardDto(
-            id = card.id,
-            cardKey = card.cardKey,
-            cardValue = card.cardValue,
-            pointFromKey = card.pointFromKey,
-            pointToKey = card.pointToKey,
-            statusFromKey = card.statusFromKey,
-            statusToKey = card.statusToKey
-        )
-
-        return ResponseEntity(result, HttpStatus.OK)
+    override fun getCardById(cardId: Int): CardDto {
+        log.debug("getCardById with req: storageId = $cardId")
+        return CardMapper.toCardDto(cardService.findById(cardId))
     }
 
-    override fun getCardsByCardStockId(cardStockId: Int): ResponseEntity<List<CardDto>> {
-        val cards = cardService.findListByCardStockId(cardStockId)
+    override fun getCardsByCardStockId(fields: CardFieldsDto): List<CardDto> {
+        log.debug("getCardsByCardStockId with req: $fields")
+        fields.cardStockId ?: throw BadRequestException(ENTITY_NAME, "cardStockId", "null")
 
-        val result = cards.map {
-            CardDto(
-                id = it.id,
-                cardKey = it.cardKey,
-                cardValue = it.cardValue,
-                pointFromKey = it.pointFromKey,
-                pointToKey = it.pointToKey,
-                statusFromKey = it.statusFromKey,
-                statusToKey = it.statusToKey
-            )
-        }
-        return ResponseEntity(result, HttpStatus.OK)
+        val cards = cardService.findAllByCardStockId(fields.cardStockId!!)
+        return cards.map { CardMapper.toCardDto(it) }
     }
 
-    override fun createCard(
-        cardFieldsDto: CardFieldsDto
-    ): ResponseEntity<CardDto> {
-        val card = cardService.createCard(cardFieldsDto)
+    override fun createCard(fields: CardFieldsDto): ResponseEntity<CardDto> {
+        log.debug("createCard with req: $fields")
+        fields.cardStockId ?: throw BadRequestException(ENTITY_NAME, "cardStockId", "null")
+        if (fields.cardKey.isNullOrBlank()) throw BadRequestException(ENTITY_NAME, "cardKey", "null")
+        if (fields.cardValue.isNullOrBlank()) throw BadRequestException(ENTITY_NAME, "cardKey", "null")
+        fields.onlyFromKey ?: throw BadRequestException(ENTITY_NAME, "onlyFromKey ", "null")
 
-        val result = CardDto(
-            id = card.id,
-            cardKey = card.cardKey,
-            cardValue = card.cardValue,
-            pointFromKey = card.pointFromKey,
-            pointToKey = card.pointToKey,
-            statusFromKey = card.statusFromKey,
-            statusToKey = card.statusToKey
+        val card = cardService.create(fields)
+
+        return ResponseEntity(
+            CardMapper.toCardDto(card),
+            HeaderUtil.createEntityCreationAlert(
+                applicationName, false,
+                ENTITY_NAME, card.id.toString(), "/${ENTITY_NAME}/${card.id}"
+            ),
+            HttpStatus.CREATED
         )
-
-        val headers = HttpHeaders(
-            HeaderUtil.createEntityDeleteAlert(
-                applicationName, false, ENTITY_NAME, card.id.toString()
-            )
-        )
-        headers.location =
-            UriComponentsBuilder.newInstance().path("/com/example/memorizing/card/{id}")
-                .buildAndExpand(card.id).toUri()
-
-        return ResponseEntity(result, headers, HttpStatus.CREATED)
     }
 
-    override fun updateCard(
-        cardId: Int,
-        cardFieldsDto: CardFieldsDto
-    ): ResponseEntity<CardDto> {
-        val card = cardService.findCardById(cardId) ?: return ResponseEntity(HttpStatus.NOT_FOUND)
+    override fun updateCard(cardId: Int, fields: CardFieldsDto): ResponseEntity<CardDto> {
+        log.debug("updateCard with path variable $cardId and req: $fields")
+        if (fields.cardKey != null) throw BadRequestException("cardKey should be null")
+        if (fields.cardStockId != null) throw BadRequestException("cardStockId should be null")
 
-        cardService.saveCard(card.apply {
-            cardFieldsDto.cardKey.let { this.cardKey = it }
-            cardFieldsDto.cardValue.let { this.cardValue = it }
-        })
+        val card = cardService.update(cardId, fields)
 
-        val result = CardDto(
-            id = card.id,
-            cardKey = card.cardKey,
-            cardValue = card.cardValue,
-            pointFromKey = card.pointFromKey,
-            pointToKey = card.pointToKey,
-            statusFromKey = card.statusFromKey,
-            statusToKey = card.statusToKey
-        )
-
-        val headers = HttpHeaders(
+        return ResponseEntity(
+            CardMapper.toCardDto(card),
             HeaderUtil.createEntityUpdateAlert(
-                applicationName, false, ENTITY_NAME, card.id.toString()
-            )
+                applicationName, false, ENTITY_NAME, card.id.toString(), "/${ENTITY_NAME}/${card.id}"
+            ),
+            HttpStatus.NO_CONTENT
         )
-        return ResponseEntity(result, headers, HttpStatus.NO_CONTENT)
     }
 
-    override fun deleteCard(
-        cardId: Int
-    ): ResponseEntity<Void> {
-        val card = cardService.findCardById(cardId) ?: return ResponseEntity(HttpStatus.NOT_FOUND)
+    override fun deleteCard(cardId: Int): ResponseEntity<Void> {
+        log.debug("deleteCard with path variable $cardId")
 
-        cardService.deleteCard(card)
-        val headers = HttpHeaders(
+        cardService.deleteById(cardId)
+
+        return ResponseEntity(
             HeaderUtil.createEntityDeleteAlert(
-                applicationName, false, ENTITY_NAME, card.id.toString()
-            )
+                applicationName, false, ENTITY_NAME, cardId.toString(), "/${ENTITY_NAME}/$cardId"
+            ),
+            HttpStatus.NO_CONTENT
         )
-        return ResponseEntity(headers, HttpStatus.NO_CONTENT)
     }
 
-    override fun checkCard(
-        cardId: Int,
-        checkCardDto: CheckCardDto
-    ): ResponseEntity<TestResultDto> {
-        val card = cardService.findCardById(cardId) ?: return ResponseEntity(HttpStatus.NOT_FOUND)
+    override fun checkCard(cardId: Int, checkCardDto: CheckCardDto): TestResultDto {
+        log.debug("checkCard with path variable $cardId and req: $checkCardDto")
+        checkCardDto.cardStockId ?: throw BadRequestException(ENTITY_NAME, "cardStockId", "null")
+        if (checkCardDto.userValue.isNullOrBlank()) throw BadRequestException(ENTITY_NAME, "userValue", "null")
+        checkCardDto.fromKey ?: throw BadRequestException(ENTITY_NAME, "fromKey", "null")
+        checkCardDto.maxPoint ?: throw BadRequestException(ENTITY_NAME, "maxPoint", "null")
 
-        val result = cardService.checkCard(card, checkCardDto)
-
-        return ResponseEntity(result, HttpStatus.OK)
+        return cardService.checkCard(cardId, checkCardDto)
     }
 
 }

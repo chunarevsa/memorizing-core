@@ -12,19 +12,15 @@ interface CardApi {
         value = ["/card/{cardId}"],
         produces = ["application/json"]
     )
-    fun getCardById(
-        @PathVariable("cardId") cardId: Int
-    ): ResponseEntity<CardDto>
+    fun getCardById(@PathVariable("cardId") cardId: Int): CardDto
 
     @RequestMapping(
         method = [RequestMethod.POST],
-        value = ["/cards"],
+        value = ["/card/getByCardStockId"],
         produces = ["application/json"],
         consumes = ["application/json"]
     )
-    fun getCardsByCardStockId(
-        @RequestBody cardStockId: Int
-    ): ResponseEntity<List<CardDto>>
+    fun getCardsByCardStockId(@RequestBody fields: CardFieldsDto): List<CardDto>
 
     @RequestMapping(
         method = [RequestMethod.POST],
@@ -32,9 +28,7 @@ interface CardApi {
         produces = ["application/json"],
         consumes = ["application/json"]
     )
-    fun createCard(
-        @RequestBody cardFieldsDto: CardFieldsDto
-    ): ResponseEntity<CardDto>
+    fun createCard(@RequestBody fields: CardFieldsDto): ResponseEntity<CardDto>
 
     @RequestMapping(
         method = [RequestMethod.POST],
@@ -42,28 +36,20 @@ interface CardApi {
         produces = ["application/json"],
         consumes = ["application/json"]
     )
-    fun updateCard(
-        @PathVariable("cardId") cardId: Int,
-        @RequestBody cardFieldsDto: CardFieldsDto
-    ): ResponseEntity<CardDto>
+    fun updateCard(@PathVariable("cardId") cardId: Int, @RequestBody fields: CardFieldsDto): ResponseEntity<CardDto>
 
     @RequestMapping(
         method = [RequestMethod.DELETE],
         value = ["/card/{cardId}"],
         produces = ["application/json"]
     )
-    fun deleteCard(
-        @PathVariable("cardId") cardId: Int,
-    ): ResponseEntity<Void>
+    fun deleteCard(@PathVariable("cardId") cardId: Int): ResponseEntity<Void>
 
     @RequestMapping(
         method = [RequestMethod.POST],
         value = ["/card/{cardId}/check"],
         produces = ["application/json"]
     )
-    fun checkCard(
-        @PathVariable("cardId") cardId: Int,
-        @RequestBody checkCardDto: CheckCardDto,
-    ): ResponseEntity<TestResultDto>
+    fun checkCard(@PathVariable("cardId") cardId: Int, @RequestBody checkCardDto: CheckCardDto): TestResultDto
 
 }

@@ -6,8 +6,8 @@ import org.springframework.data.relational.core.mapping.Column
 
 data class Card(
     @Column("card_stock_id")
-    var cardStockId: Int? = null,
-    var cardKey: String? = null,
+    val cardStockId: Int? = null,
+    val cardKey: String? = null,
     var cardValue: String? = null,
     var statusToKey: ECardStatus = ECardStatus.NOT_SUPPORTED
 ) {

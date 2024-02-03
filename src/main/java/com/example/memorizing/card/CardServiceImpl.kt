@@ -1,5 +1,7 @@
 package com.example.memorizing.card
 
+import com.example.memorizing.card.CardController.Companion.ENTITY_NAME
+import com.example.memorizing.exception.NotFoundException
 import org.springframework.stereotype.Service
 
 @Service
@@ -7,24 +9,18 @@ class CardServiceImpl(
     private val cards: CardRepository
 ) : CardService {
 
-    override fun findCardById(cardId: Int) = cards.findCardById(cardId)
-    override fun findListByCardStockId(cardStockId: Int) = cards.findAllByCardStockId(cardStockId)
+    override fun findById(cardId: Int): Card =
+        cards.findById(cardId).orElseThrow { NotFoundException(ENTITY_NAME, "cardId", cardId) }
+    override fun findAllByCardStockId(cardStockId: Int) = cards.findAllByCardStockId(cardStockId)
+    override fun create(fields: CardFieldsDto): Card = save(CardMapper.fromFields(fields))
+    override fun update(cardId: Int, fields: CardFieldsDto): Card =
+        save(CardMapper.fromFields(fields, findById(cardId)))
 
-    override fun createCard(cardFieldsDto: CardFieldsDto): Card {
-        val card = Card(
-            cardFieldsDto.cardStockId,
-            cardFieldsDto.cardKey,
-            cardFieldsDto.cardValue,
-            statusToKey = if (cardFieldsDto.onlyFromKey == true) ECardStatus.NOT_SUPPORTED else ECardStatus.NORMAL
-        )
+    override fun delete(card: Card) = cards.delete(card)
+    override fun deleteById(cardId: Int) = cards.deleteById(cardId)
+    override fun checkCard(cardId: Int, checkCardDto: CheckCardDto): TestResultDto {
+        val card = findById(cardId)
 
-        return cards.save(card)
-    }
-
-    override fun saveCard(card: Card) = cards.save(card)
-
-    override fun deleteCard(card: Card) = cards.delete(card)
-    override fun checkCard(card: Card, checkCardDto: CheckCardDto): TestResultDto {
         val userValue = checkCardDto.userValue!!.lowercase();
         val cardKey: String = card.cardKey!!.lowercase()
         val cardValue: String = card.cardValue!!.lowercase()
@@ -38,15 +34,15 @@ class CardServiceImpl(
         } else {
             if (cardKey.contains(userValue)) true else {
                 // We need check out in the other cards
-                val cards = findListByCardStockId(card.cardStockId!!)
+                val cards = findAllByCardStockId(card.cardStockId!!)
 
-                val cardValues = cardValue.removePrefix("[").removeSuffix("]")
-                    .split(',').map { it.trim() }.toMutableList()
+                val cardValues =
+                    cardValue.removePrefix("[").removeSuffix("]").split(',').map { it.trim() }.toMutableList()
 
                 val cardsContainingUserValue = cards.filter { it.cardKey!!.lowercase().contains(userValue) }
                 val newCard: Card? = cardsContainingUserValue.find { newCard ->
-                    val cardValuesByUserValue = newCard.cardValue!!.lowercase().removePrefix("[").removeSuffix("]")
-                        .split(',').map { it.trim() }
+                    val cardValuesByUserValue =
+                        newCard.cardValue!!.lowercase().removePrefix("[").removeSuffix("]").split(',').map { it.trim() }
 
                     cardValues.retainAll(cardValuesByUserValue)
                     cardValues.isNotEmpty()
@@ -62,12 +58,10 @@ class CardServiceImpl(
         if (isCorrect) {
             card.increasePoint(isFromKey, checkCardDto.maxPoint!!)
         } else card.decreasePoint(isFromKey)
-        cards.save(card)
+        save(card)
 
         return TestResultDto(
-            rightAnswer = isCorrect,
-            answerToOtherCard = isAnswerToOtherCard,
-            CardDto(
+            rightAnswer = isCorrect, answerToOtherCard = isAnswerToOtherCard, CardDto(
                 id = card.id,
                 cardKey = card.cardKey,
                 cardValue = card.cardValue,
@@ -79,5 +73,6 @@ class CardServiceImpl(
         )
     }
 
+    private fun save(card: Card) = cards.save(card)
 
 }

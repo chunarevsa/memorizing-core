@@ -1,17 +1,11 @@
 package com.example.memorizing.card
 
 interface CardService {
-
-//    @Transactional(readOnly = true)
-    fun findListByCardStockId(cardStockId: Int): MutableList<Card>
-//    @Transactional(readOnly = true)
-    fun findCardById(cardId: Int): Card?
-//    @Transactional
-    fun createCard(cardFieldsDto: CardFieldsDto): Card
-//    @Transactional
-    fun saveCard(card: Card): Card
-//    @Transactional
-    fun deleteCard(card: Card)
-//    @Transactional
-    fun checkCard(card: Card, checkCardDto: CheckCardDto): TestResultDto
+    fun findAllByCardStockId(cardStockId: Int): List<Card>
+    fun findById(cardId: Int): Card
+    fun create(fields: CardFieldsDto): Card
+    fun update(cardId: Int, fields: CardFieldsDto): Card
+    fun delete(card: Card)
+    fun deleteById(cardId: Int)
+    fun checkCard(cardId: Int, checkCardDto: CheckCardDto): TestResultDto
 }
