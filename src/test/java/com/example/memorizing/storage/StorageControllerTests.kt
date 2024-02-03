@@ -117,7 +117,7 @@ class StorageControllerTests {
         val storage = storages.last()
         val storageFields = StorageFieldsDto(storage.userId!!, storage.storageName)
 
-        given(service.create(storageFields.userId!!, storageFields.storageName!!))
+        given(service.create(storageFields))
             .willReturn(storage)
 
         val storageFieldsAsJSON: String = mapper.writeValueAsString(storageFields)
@@ -139,7 +139,7 @@ class StorageControllerTests {
         val storage = storages.last()
         val storageFields = StorageFieldsDto(storage.userId!!, storage.storageName)
 
-        given(service.create(storageFields.userId!!, storageFields.storageName!!))
+        given(service.create(storageFields))
             .willThrow(BadRequestException(""))
 
         val storageFieldsAsJSON: String = mapper.writeValueAsString(storageFields)
@@ -158,13 +158,8 @@ class StorageControllerTests {
         val storage = storages.last()
         val storageFields = StorageFieldsDto(null, storage.storageName)
 
-        given(service.findById(storage.id!!))
-            .willReturn(storage)
-
-        storage.storageName = storageFields.storageName
-
-        given(service.save(storage))
-            .willReturn(storage)
+        given(service.update(storage.id!!, storageFields))
+            .willReturn(StorageMapper.fromFields(storageFields, storage))
 
         val storageFieldsAsJSON: String = mapper.writeValueAsString(storageFields)
 
@@ -177,7 +172,7 @@ class StorageControllerTests {
             .andExpect(content().contentType("application/json"))
             .andExpect(jsonPath("$.id").value(storage.id))
             .andExpect(jsonPath("$.userId").value(storage.userId))
-            .andExpect(jsonPath("$.storageName").value(storage.storageName))
+            .andExpect(jsonPath("$.storageName").value(storageFields.storageName))
     }
 
     @Test
@@ -224,6 +219,31 @@ class StorageControllerTests {
             post("/storage/${storage.id!!}")
                 .content(storageFieldsAsJSON).accept(MediaType.APPLICATION_JSON_VALUE)
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
+        )
+            .andExpect(status().isNotFound)
+    }
+
+    @Test
+    fun deleteStorage_Success() {
+        val storage = storages.last()
+
+        given(service.deleteById(storage.id!!)).willReturn(null)
+
+        this.mockMvc.perform(
+            post("/storage/${storage.id!!}/delete")
+        )
+            .andExpect(status().isNoContent)
+    }
+
+    @Test
+    fun deleteStorage_NotFound() {
+        val storage = storages.last()
+
+        given(service.deleteById(storage.id!!))
+            .willThrow(NotFoundException("storage", "storageId", storage.id))
+
+        this.mockMvc.perform(
+            post("/storage/${storage.id!!}/delete")
         )
             .andExpect(status().isNotFound)
     }
