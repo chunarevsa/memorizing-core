@@ -1,5 +1,6 @@
 package com.example.memorizing.card
 
+import com.example.memorizing.card.api.*
 import com.example.memorizing.exception.BadRequestException
 import com.example.memorizing.util.HeaderUtil
 import org.apache.log4j.Logger
@@ -58,6 +59,7 @@ class CardController(
         log.debug("updateCard with path variable $cardId and req: $fields")
         if (fields.cardKey != null) throw BadRequestException("cardKey should be null")
         if (fields.cardStockId != null) throw BadRequestException("cardStockId should be null")
+        if (fields.cardValue.isNullOrBlank()) throw BadRequestException(ENTITY_NAME, "cardKey", "null")
 
         val card = cardService.update(cardId, fields)
 

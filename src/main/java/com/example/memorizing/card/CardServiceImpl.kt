@@ -1,6 +1,7 @@
 package com.example.memorizing.card
 
 import com.example.memorizing.card.CardController.Companion.ENTITY_NAME
+import com.example.memorizing.card.api.*
 import com.example.memorizing.exception.NotFoundException
 import org.springframework.stereotype.Service
 
@@ -11,6 +12,7 @@ class CardServiceImpl(
 
     override fun findById(cardId: Int): Card =
         cards.findById(cardId).orElseThrow { NotFoundException(ENTITY_NAME, "cardId", cardId) }
+
     override fun findAllByCardStockId(cardStockId: Int) = cards.findAllByCardStockId(cardStockId)
     override fun create(fields: CardFieldsDto): Card = save(CardMapper.fromFields(fields))
     override fun update(cardId: Int, fields: CardFieldsDto): Card =
@@ -67,8 +69,8 @@ class CardServiceImpl(
                 cardValue = card.cardValue,
                 pointFromKey = card.pointFromKey,
                 pointToKey = card.pointToKey,
-                statusFromKey = card.statusFromKey,
-                statusToKey = card.statusToKey
+                statusFromKey = card.statusFromKey.name,
+                statusToKey = card.statusToKey.name
             )
         )
     }

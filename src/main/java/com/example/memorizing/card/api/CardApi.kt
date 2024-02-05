@@ -1,4 +1,4 @@
-package com.example.memorizing.card
+package com.example.memorizing.card.api
 
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.PathVariable
@@ -16,7 +16,7 @@ interface CardApi {
 
     @RequestMapping(
         method = [RequestMethod.POST],
-        value = ["/card/getByCardStockId"],
+        value = ["/card/getAllByCardStockId"],
         produces = ["application/json"],
         consumes = ["application/json"]
     )
@@ -24,7 +24,7 @@ interface CardApi {
 
     @RequestMapping(
         method = [RequestMethod.POST],
-        value = ["/card"],
+        value = ["/card/create"],
         produces = ["application/json"],
         consumes = ["application/json"]
     )
@@ -39,8 +39,8 @@ interface CardApi {
     fun updateCard(@PathVariable("cardId") cardId: Int, @RequestBody fields: CardFieldsDto): ResponseEntity<CardDto>
 
     @RequestMapping(
-        method = [RequestMethod.DELETE],
-        value = ["/card/{cardId}"],
+        method = [RequestMethod.POST],
+        value = ["/card/{cardId}/delete"],
         produces = ["application/json"]
     )
     fun deleteCard(@PathVariable("cardId") cardId: Int): ResponseEntity<Void>

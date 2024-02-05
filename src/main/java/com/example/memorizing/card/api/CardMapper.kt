@@ -1,16 +1,20 @@
-package com.example.memorizing.card
+package com.example.memorizing.card.api
+
+import com.example.memorizing.card.Card
+import com.example.memorizing.card.ECardStatus
 
 object CardMapper {
 
     fun toCardDto(card: Card): CardDto {
         return CardDto().apply {
             this.id = card.id
+            this.cardStockId = cardStockId
             this.cardKey = card.cardKey
             this.cardValue = card.cardValue
             this.pointToKey = card.pointToKey
             this.pointFromKey = card.pointFromKey
-            this.statusToKey = card.statusToKey
-            this.statusFromKey = card.statusFromKey
+            this.statusToKey = card.statusToKey.name
+            this.statusFromKey = card.statusFromKey.name
         }
     }
 
