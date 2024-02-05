@@ -1,6 +1,7 @@
-package com.example.memorizing.cardStock
+package com.example.memorizing.cardStock.api
 
-data class CardStockFieldsDto(
+data class CardStockDto(
+    var id: Int? = null,
     var storageId: Int? = null,
     var cardStockName: String? = null,
     var description: String? = null,
@@ -8,5 +9,5 @@ data class CardStockFieldsDto(
     var valueType: String? = null,
     var maxPoint: Int? = null,
     var testModeIsAvailable: Boolean? = null,
-    var onlyFromKey: Boolean? = null
+    var onlyFromKey: Boolean? = null,
 )

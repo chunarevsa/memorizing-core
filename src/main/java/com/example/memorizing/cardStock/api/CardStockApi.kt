@@ -1,4 +1,4 @@
-package com.example.memorizing.cardStock
+package com.example.memorizing.cardStock.api
 
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.PathVariable
@@ -12,33 +12,27 @@ interface CardStockApi {
         value = ["/cardStock/{cardStockId}"],
         produces = ["application/json"]
     )
-    fun getCardStockById(
-        @PathVariable("cardStockId") cardStockId: Int
-    ): CardStockDto
+    fun getCardStockById(@PathVariable("cardStockId") cardStockId: Int): CardStockDto
 
     @RequestMapping(
         method = [RequestMethod.POST],
-        value = ["/cardStocks"],
+        value = ["/cardStock/getAllByStorageId"],
         produces = ["application/json"],
         consumes = ["application/json"]
     )
-    fun getCardStocksByStorageId(
-        @RequestBody fields: CardStockFieldsDto
-    ): List<CardStockDto>
+    fun getCardStocksByStorageId(@RequestBody fields: CardStockFieldsDto): List<CardStockDto>
 
     @RequestMapping(
         method = [RequestMethod.POST],
-        value = ["/cardStock"],
+        value = ["/cardStock/create"],
         produces = ["application/json"],
         consumes = ["application/json"]
     )
-    fun createCardStock(
-        @RequestBody fields: CardStockFieldsDto
-    ): ResponseEntity<CardStockDto>
+    fun createCardStock(@RequestBody fields: CardStockFieldsDto): ResponseEntity<CardStockDto>
 
     @RequestMapping(
         method = [RequestMethod.POST],
-        value = ["/cardStock/{cardStockId}"],
+        value = ["/cardStock/{cardStockId}/update"],
         produces = ["application/json"],
         consumes = ["application/json"]
     )
@@ -48,8 +42,8 @@ interface CardStockApi {
     ): ResponseEntity<CardStockDto>
 
     @RequestMapping(
-        method = [RequestMethod.DELETE],
-        value = ["/cardStock/{cardStockId}"],
+        method = [RequestMethod.POST],
+        value = ["/cardStock/{cardStockId}/delete"],
         produces = ["application/json"]
     )
     fun deleteCardStock(

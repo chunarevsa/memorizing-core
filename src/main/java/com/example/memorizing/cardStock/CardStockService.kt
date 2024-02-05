@@ -1,5 +1,7 @@
 package com.example.memorizing.cardStock
 
+import com.example.memorizing.cardStock.api.CardStockFieldsDto
+
 interface CardStockService {
     fun findById(cardStockId: Int): CardStock
     fun findAllByStorageId(storageId: Int): List<CardStock>

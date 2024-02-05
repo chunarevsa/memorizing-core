@@ -1,5 +1,9 @@
 package com.example.memorizing.cardStock
 
+import com.example.memorizing.cardStock.api.CardStockApi
+import com.example.memorizing.cardStock.api.CardStockDto
+import com.example.memorizing.cardStock.api.CardStockFieldsDto
+import com.example.memorizing.cardStock.api.CardStockMapper
 import com.example.memorizing.exception.BadRequestException
 import com.example.memorizing.util.HeaderUtil
 import org.apache.log4j.Logger

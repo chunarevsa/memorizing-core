@@ -1,10 +1,13 @@
-package com.example.memorizing.cardStock
+package com.example.memorizing.cardStock.api
+
+import com.example.memorizing.cardStock.CardStock
 
 object CardStockMapper {
 
     fun toCardStockDto(cardStock: CardStock): CardStockDto {
         return CardStockDto(
             id = cardStock.id,
+            storageId = cardStock.storageId,
             cardStockName = cardStock.cardStockName,
             description = cardStock.description,
             keyType = cardStock.keyType,
