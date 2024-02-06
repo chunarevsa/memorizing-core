@@ -1,4 +1,6 @@
-package com.example.memorizing.storage
+package com.example.memorizing.storage.api
+
+import com.example.memorizing.storage.Storage
 
 object StorageMapper {
 

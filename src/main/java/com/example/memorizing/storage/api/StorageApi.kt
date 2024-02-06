@@ -1,4 +1,4 @@
-package com.example.memorizing.storage
+package com.example.memorizing.storage.api
 
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -24,7 +24,7 @@ interface StorageApi {
 
     @RequestMapping(
         method = [RequestMethod.POST],
-        value = ["/storage"],
+        value = ["/storage/create"],
         produces = ["application/json"],
         consumes = ["application/json"]
     )
@@ -33,11 +33,14 @@ interface StorageApi {
 
     @RequestMapping(
         method = [RequestMethod.POST],
-        value = ["/storage/{storageId}"],
+        value = ["/storage/{storageId}/update"],
         produces = ["application/json"],
         consumes = ["application/json"]
     )
-    fun updateStorage(@PathVariable("storageId") storageId: Int, @RequestBody fields: StorageFieldsDto): ResponseEntity<StorageDto>
+    fun updateStorage(
+        @PathVariable("storageId") storageId: Int,
+        @RequestBody fields: StorageFieldsDto
+    ): ResponseEntity<StorageDto>
 
 
     @RequestMapping(

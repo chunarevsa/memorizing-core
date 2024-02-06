@@ -2,6 +2,8 @@ package com.example.memorizing.storage
 
 import com.example.memorizing.exception.NotFoundException
 import com.example.memorizing.storage.StorageController.Companion.ENTITY_NAME
+import com.example.memorizing.storage.api.StorageFieldsDto
+import com.example.memorizing.storage.api.StorageMapper
 import org.springframework.stereotype.Service
 
 @Service
