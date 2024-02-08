@@ -1,4 +1,4 @@
-package com.example.memorizing.card.api
+package com.example.memorizing.card.rest.api
 
 import com.example.memorizing.card.Card
 import com.example.memorizing.card.ECardStatus

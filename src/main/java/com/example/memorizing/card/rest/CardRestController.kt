@@ -1,6 +1,8 @@
-package com.example.memorizing.card
+package com.example.memorizing.card.rest
 
-import com.example.memorizing.card.api.*
+import com.example.memorizing.card.CardService
+import com.example.memorizing.card.rest.*
+import com.example.memorizing.card.rest.api.*
 import com.example.memorizing.exception.BadRequestException
 import com.example.memorizing.util.HeaderUtil
 import org.apache.log4j.Logger
@@ -49,7 +51,7 @@ class CardController(
             CardMapper.toCardDto(card),
             HeaderUtil.createEntityCreationAlert(
                 applicationName, false,
-                ENTITY_NAME, card.id.toString(), "/${ENTITY_NAME}/${card.id}"
+                ENTITY_NAME, card.id.toString(), "/$ENTITY_NAME/${card.id}"
             ),
             HttpStatus.CREATED
         )
@@ -66,7 +68,7 @@ class CardController(
         return ResponseEntity(
             CardMapper.toCardDto(card),
             HeaderUtil.createEntityUpdateAlert(
-                applicationName, false, ENTITY_NAME, card.id.toString(), "/${ENTITY_NAME}/${card.id}"
+                applicationName, false, ENTITY_NAME, card.id.toString(), "/$ENTITY_NAME/${card.id}"
             ),
             HttpStatus.NO_CONTENT
         )
@@ -79,7 +81,7 @@ class CardController(
 
         return ResponseEntity(
             HeaderUtil.createEntityDeleteAlert(
-                applicationName, false, ENTITY_NAME, cardId.toString(), "/${ENTITY_NAME}/$cardId"
+                applicationName, false, ENTITY_NAME, cardId.toString(), "/$ENTITY_NAME/$cardId"
             ),
             HttpStatus.NO_CONTENT
         )

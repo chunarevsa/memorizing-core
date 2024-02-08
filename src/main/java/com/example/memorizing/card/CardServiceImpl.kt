@@ -1,7 +1,7 @@
 package com.example.memorizing.card
 
-import com.example.memorizing.card.CardController.Companion.ENTITY_NAME
-import com.example.memorizing.card.api.*
+import com.example.memorizing.card.rest.CardController.Companion.ENTITY_NAME
+import com.example.memorizing.card.rest.api.*
 import com.example.memorizing.exception.NotFoundException
 import org.springframework.stereotype.Service
 

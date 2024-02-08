@@ -1,4 +1,4 @@
-package com.example.memorizing.card.api
+package com.example.memorizing.card.rest.api
 
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.PathVariable
@@ -32,7 +32,7 @@ interface CardApi {
 
     @RequestMapping(
         method = [RequestMethod.POST],
-        value = ["/card/{cardId}"],
+        value = ["/card/{cardId}/update"],
         produces = ["application/json"],
         consumes = ["application/json"]
     )
