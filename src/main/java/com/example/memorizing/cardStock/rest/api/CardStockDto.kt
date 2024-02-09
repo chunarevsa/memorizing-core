@@ -1,4 +1,4 @@
-package com.example.memorizing.cardStock.api
+package com.example.memorizing.cardStock.rest.api
 
 data class CardStockDto(
     var id: Int? = null,

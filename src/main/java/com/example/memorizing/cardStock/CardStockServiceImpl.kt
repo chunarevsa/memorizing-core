@@ -1,8 +1,8 @@
 package com.example.memorizing.cardStock
 
-import com.example.memorizing.cardStock.CardStockController.Companion.ENTITY_NAME
-import com.example.memorizing.cardStock.api.CardStockFieldsDto
-import com.example.memorizing.cardStock.api.CardStockMapper
+import com.example.memorizing.cardStock.rest.CardStockController.Companion.ENTITY_NAME
+import com.example.memorizing.cardStock.rest.api.CardStockFieldsDto
+import com.example.memorizing.cardStock.rest.api.CardStockMapper
 import com.example.memorizing.exception.NotFoundException
 import org.springframework.stereotype.Service
 

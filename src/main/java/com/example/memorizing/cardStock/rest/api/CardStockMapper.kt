@@ -1,4 +1,4 @@
-package com.example.memorizing.cardStock.api
+package com.example.memorizing.cardStock.rest.api
 
 import com.example.memorizing.cardStock.CardStock
 

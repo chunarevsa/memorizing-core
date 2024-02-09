@@ -1,9 +1,10 @@
-package com.example.memorizing.cardStock
+package com.example.memorizing.cardStock.rest
 
-import com.example.memorizing.cardStock.api.CardStockApi
-import com.example.memorizing.cardStock.api.CardStockDto
-import com.example.memorizing.cardStock.api.CardStockFieldsDto
-import com.example.memorizing.cardStock.api.CardStockMapper
+import com.example.memorizing.cardStock.CardStockService
+import com.example.memorizing.cardStock.rest.api.CardStockApi
+import com.example.memorizing.cardStock.rest.api.CardStockDto
+import com.example.memorizing.cardStock.rest.api.CardStockFieldsDto
+import com.example.memorizing.cardStock.rest.api.CardStockMapper
 import com.example.memorizing.exception.BadRequestException
 import com.example.memorizing.util.HeaderUtil
 import org.apache.log4j.Logger
@@ -51,7 +52,7 @@ class CardStockController(
         return ResponseEntity(
             CardStockMapper.toCardStockDto(cardStock),
             HeaderUtil.createEntityCreationAlert(
-                applicationName, false, ENTITY_NAME, cardStock.id.toString(), "/${ENTITY_NAME}/${cardStock.id}"
+                applicationName, false, ENTITY_NAME, cardStock.id.toString(), "/$ENTITY_NAME/${cardStock.id}"
             ),
             HttpStatus.CREATED
         )
@@ -66,7 +67,7 @@ class CardStockController(
         return ResponseEntity(
             CardStockMapper.toCardStockDto(cardStock),
             HeaderUtil.createEntityUpdateAlert(
-                applicationName, false, ENTITY_NAME, cardStock.id.toString(), "/${ENTITY_NAME}/${cardStock.id}"
+                applicationName, false, ENTITY_NAME, cardStock.id.toString(), "/$ENTITY_NAME/${cardStock.id}"
             ),
             HttpStatus.NO_CONTENT
         )
@@ -79,7 +80,7 @@ class CardStockController(
 
         return ResponseEntity(
             HeaderUtil.createEntityDeleteAlert(
-                applicationName, false, ENTITY_NAME, cardStockId.toString(), "/${ENTITY_NAME}/$cardStockId"
+                applicationName, false, ENTITY_NAME, cardStockId.toString(), "/$ENTITY_NAME/$cardStockId"
             ),
             HttpStatus.NO_CONTENT
         )
