@@ -3,11 +3,16 @@ package com.example.memorizing.storage
 import com.example.memorizing.config.ApplicationTestConfig
 import com.example.memorizing.exception.BadRequestException
 import com.example.memorizing.exception.NotFoundException
+import com.example.memorizing.storage.api.StorageFieldsDto
+import com.example.memorizing.storage.api.StorageMapper
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
+import org.mockito.BDDMockito
 import org.mockito.BDDMockito.given
+import org.mockito.BDDMockito.mock
+import org.mockito.Mockito.doNothing
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.boot.test.mock.mockito.MockBean
@@ -123,7 +128,7 @@ class StorageControllerTests {
         val storageFieldsAsJSON: String = mapper.writeValueAsString(storageFields)
 
         this.mockMvc.perform(
-            post("/storage")
+            post("/storage/create")
                 .content(storageFieldsAsJSON).accept(MediaType.APPLICATION_JSON_VALUE)
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
         )
@@ -145,7 +150,7 @@ class StorageControllerTests {
         val storageFieldsAsJSON: String = mapper.writeValueAsString(storageFields)
 
         this.mockMvc.perform(
-            post("/storage")
+            post("/storage/create")
                 .content(storageFieldsAsJSON).accept(MediaType.APPLICATION_JSON_VALUE)
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
         )
@@ -164,7 +169,7 @@ class StorageControllerTests {
         val storageFieldsAsJSON: String = mapper.writeValueAsString(storageFields)
 
         this.mockMvc.perform(
-            post("/storage/${storage.id}")
+            post("/storage/${storage.id}/update")
                 .content(storageFieldsAsJSON).accept(MediaType.APPLICATION_JSON_VALUE)
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
         )
@@ -183,7 +188,7 @@ class StorageControllerTests {
         val storageFieldsAsJSON: String = mapper.writeValueAsString(storageFields)
 
         this.mockMvc.perform(
-            post("/storage/${storage.id}")
+            post("/storage/${storage.id}/update")
                 .content(storageFieldsAsJSON).accept(MediaType.APPLICATION_JSON_VALUE)
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
         )
@@ -198,7 +203,7 @@ class StorageControllerTests {
         val storageFieldsAsJSON: String = mapper.writeValueAsString(storageFields)
 
         this.mockMvc.perform(
-            post("/storage/${storage.id}")
+            post("/storage/${storage.id}/update")
                 .content(storageFieldsAsJSON).accept(MediaType.APPLICATION_JSON_VALUE)
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
         )
@@ -210,13 +215,13 @@ class StorageControllerTests {
         val storage = storages.last()
         val storageFields = StorageFieldsDto(null, storage.storageName)
 
-        given(service.findById(storage.id!!))
+        given(service.update(storage.id!!, storageFields))
             .willThrow(NotFoundException("storage", "storageId", storage.id))
 
         val storageFieldsAsJSON: String = mapper.writeValueAsString(storageFields)
 
         this.mockMvc.perform(
-            post("/storage/${storage.id!!}")
+            post("/storage/${storage.id!!}/update")
                 .content(storageFieldsAsJSON).accept(MediaType.APPLICATION_JSON_VALUE)
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
         )
@@ -227,7 +232,7 @@ class StorageControllerTests {
     fun deleteStorage_Success() {
         val storage = storages.last()
 
-        given(service.deleteById(storage.id!!)).willReturn(null)
+        doNothing().`when`(service).deleteById(storage.id!!)
 
         this.mockMvc.perform(
             post("/storage/${storage.id!!}/delete")
