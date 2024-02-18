@@ -22,4 +22,4 @@ WORKDIR /app
 COPY --from=builder /app/build/libs/memorizing-core-0.0.1-SNAPSHOT.jar .
 
 # Задаем команду для запуска приложения
-CMD ["java", "-Dspring.profiles.active=prod", "-jar", "memorizing-core-0.0.1-SNAPSHOT.jar"]
+CMD ["java", "-jar", "memorizing-core-0.0.1-SNAPSHOT.jar"]
