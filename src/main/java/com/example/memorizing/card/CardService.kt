@@ -1,8 +1,8 @@
 package com.example.memorizing.card
 
 import com.example.memorizing.card.rest.api.CardFieldsDto
-import com.example.memorizing.card.rest.api.CheckCardDto
 import com.example.memorizing.card.rest.api.TestResultDto
+import com.memorizing.commonapi.model.CheckCardDto
 
 interface CardService {
     fun findAllByCardStockId(cardStockId: Int): List<Card>

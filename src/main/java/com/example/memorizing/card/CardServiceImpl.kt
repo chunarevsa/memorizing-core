@@ -3,6 +3,7 @@ package com.example.memorizing.card
 import com.example.memorizing.card.rest.CardController.Companion.ENTITY_NAME
 import com.example.memorizing.card.rest.api.*
 import com.example.memorizing.exception.NotFoundException
+import com.memorizing.commonapi.model.CheckCardDto
 import org.springframework.stereotype.Service
 
 @Service

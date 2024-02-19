@@ -5,6 +5,7 @@ import com.example.memorizing.card.rest.*
 import com.example.memorizing.card.rest.api.*
 import com.example.memorizing.exception.BadRequestException
 import com.example.memorizing.util.HeaderUtil
+import com.memorizing.commonapi.model.CheckCardDto
 import org.apache.log4j.Logger
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.HttpStatus

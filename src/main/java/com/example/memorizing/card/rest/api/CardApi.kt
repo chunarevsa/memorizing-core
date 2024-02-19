@@ -1,5 +1,6 @@
 package com.example.memorizing.card.rest.api
 
+import com.memorizing.commonapi.model.CheckCardDto
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestBody

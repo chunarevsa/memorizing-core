@@ -1,1 +1,3 @@
 rootProject.name = 'memorizing-core'
+
+includeBuild "../memorizing-common-api"
