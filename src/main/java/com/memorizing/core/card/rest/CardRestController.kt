@@ -1,10 +1,10 @@
-package com.example.memorizing.card.rest
+package com.memorizing.core.card.rest
 
-import com.example.memorizing.card.CardService
-import com.example.memorizing.card.rest.*
-import com.example.memorizing.card.rest.api.*
-import com.example.memorizing.exception.BadRequestException
-import com.example.memorizing.util.HeaderUtil
+import com.memorizing.core.card.CardService
+import com.memorizing.core.card.rest.*
+import com.memorizing.core.card.rest.api.*
+import com.memorizing.core.exception.BadRequestException
+import com.memorizing.core.util.HeaderUtil
 import com.memorizing.commonapi.model.CheckCardDto
 import org.apache.log4j.Logger
 import org.springframework.beans.factory.annotation.Value

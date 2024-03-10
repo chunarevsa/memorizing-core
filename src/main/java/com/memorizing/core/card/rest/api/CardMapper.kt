@@ -1,7 +1,7 @@
-package com.example.memorizing.card.rest.api
+package com.memorizing.core.card.rest.api
 
-import com.example.memorizing.card.Card
-import com.example.memorizing.card.ECardStatus
+import com.memorizing.core.card.Card
+import com.memorizing.core.card.ECardStatus
 
 object CardMapper {
 

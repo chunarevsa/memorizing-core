@@ -1,4 +1,4 @@
-package com.example.memorizing.card
+package com.memorizing.core.card
 
 import org.springframework.data.annotation.Id
 import org.springframework.data.relational.core.mapping.Column

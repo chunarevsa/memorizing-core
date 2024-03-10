@@ -1,7 +1,7 @@
-package com.example.memorizing.card
+package com.memorizing.core.card
 
-import com.example.memorizing.card.rest.api.CardFieldsDto
-import com.example.memorizing.card.rest.api.TestResultDto
+import com.memorizing.core.card.rest.api.CardFieldsDto
+import com.memorizing.core.card.rest.api.TestResultDto
 import com.memorizing.commonapi.model.CheckCardDto
 
 interface CardService {

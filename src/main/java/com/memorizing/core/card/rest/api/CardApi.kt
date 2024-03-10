@@ -1,4 +1,4 @@
-package com.example.memorizing.card.rest.api
+package com.memorizing.core.card.rest.api
 
 import com.memorizing.commonapi.model.CheckCardDto
 import org.springframework.http.ResponseEntity

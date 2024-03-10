@@ -1,4 +1,4 @@
-package com.example.memorizing.card
+package com.memorizing.core.card
 
 import org.springframework.data.repository.CrudRepository
 
