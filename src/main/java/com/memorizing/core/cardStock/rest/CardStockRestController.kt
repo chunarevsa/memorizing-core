@@ -1,12 +1,12 @@
-package com.example.memorizing.cardStock.rest
+package com.memorizing.core.cardStock.rest
 
-import com.example.memorizing.cardStock.CardStockService
-import com.example.memorizing.cardStock.rest.api.CardStockApi
-import com.example.memorizing.cardStock.rest.api.CardStockDto
-import com.example.memorizing.cardStock.rest.api.CardStockFieldsDto
-import com.example.memorizing.cardStock.rest.api.CardStockMapper
-import com.example.memorizing.exception.BadRequestException
-import com.example.memorizing.util.HeaderUtil
+import com.memorizing.core.cardStock.CardStockService
+import com.memorizing.core.cardStock.rest.api.CardStockApi
+import com.memorizing.core.cardStock.rest.api.CardStockDto
+import com.memorizing.core.cardStock.rest.api.CardStockFieldsDto
+import com.memorizing.core.cardStock.rest.api.CardStockMapper
+import com.memorizing.core.exception.BadRequestException
+import com.memorizing.core.util.HeaderUtil
 import org.apache.log4j.Logger
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.HttpStatus

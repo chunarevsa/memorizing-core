@@ -1,6 +1,6 @@
-package com.example.memorizing.cardStock.rest.api
+package com.memorizing.core.cardStock.rest.api
 
-import com.example.memorizing.cardStock.CardStock
+import com.memorizing.core.cardStock.CardStock
 
 object CardStockMapper {
 

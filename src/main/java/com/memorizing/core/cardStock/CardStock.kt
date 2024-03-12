@@ -1,4 +1,4 @@
-package com.example.memorizing.cardStock
+package com.memorizing.core.cardStock
 
 import org.springframework.data.annotation.Id
 import org.springframework.data.relational.core.mapping.Column

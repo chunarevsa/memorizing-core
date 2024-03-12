@@ -1,6 +1,6 @@
-package com.example.memorizing.cardStock
+package com.memorizing.core.cardStock
 
-import com.example.memorizing.cardStock.rest.api.CardStockFieldsDto
+import com.memorizing.core.cardStock.rest.api.CardStockFieldsDto
 
 interface CardStockService {
     fun findById(cardStockId: Int): CardStock
