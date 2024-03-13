@@ -1,4 +1,4 @@
-package com.example.memorizing.storage.api
+package com.memorizing.core.storage.api
 
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*

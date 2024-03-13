@@ -1,4 +1,4 @@
-package com.example.memorizing.storage.api
+package com.memorizing.core.storage.api
 
 data class StorageDto(
     var id: Int? = null,

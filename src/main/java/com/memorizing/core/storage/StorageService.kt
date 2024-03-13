@@ -1,6 +1,6 @@
-package com.example.memorizing.storage
+package com.memorizing.core.storage
 
-import com.example.memorizing.storage.api.StorageFieldsDto
+import com.memorizing.core.storage.api.StorageFieldsDto
 
 interface StorageService {
     fun findById(storageId: Int): Storage

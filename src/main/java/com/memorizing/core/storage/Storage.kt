@@ -1,4 +1,4 @@
-package com.example.memorizing.storage
+package com.memorizing.core.storage
 
 import org.springframework.data.annotation.Id
 import javax.validation.constraints.NotBlank

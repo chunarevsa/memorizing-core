@@ -1,17 +1,15 @@
-package com.example.memorizing.storage
+package com.memorizing.core.storage
 
 import com.example.memorizing.config.ApplicationTestConfig
-import com.example.memorizing.exception.BadRequestException
-import com.example.memorizing.exception.NotFoundException
-import com.example.memorizing.storage.api.StorageFieldsDto
-import com.example.memorizing.storage.api.StorageMapper
+import com.memorizing.core.exception.BadRequestException
+import com.memorizing.core.exception.NotFoundException
+import com.memorizing.core.storage.api.StorageFieldsDto
+import com.memorizing.core.storage.api.StorageMapper
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
-import org.mockito.BDDMockito
 import org.mockito.BDDMockito.given
-import org.mockito.BDDMockito.mock
 import org.mockito.Mockito.doNothing
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest

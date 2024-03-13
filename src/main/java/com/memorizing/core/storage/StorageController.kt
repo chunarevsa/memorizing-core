@@ -1,11 +1,11 @@
-package com.example.memorizing.storage
+package com.memorizing.core.storage
 
-import com.example.memorizing.exception.BadRequestException
-import com.example.memorizing.storage.api.StorageApi
-import com.example.memorizing.storage.api.StorageDto
-import com.example.memorizing.storage.api.StorageFieldsDto
-import com.example.memorizing.storage.api.StorageMapper
-import com.example.memorizing.util.HeaderUtil
+import com.memorizing.core.exception.BadRequestException
+import com.memorizing.core.storage.api.StorageApi
+import com.memorizing.core.storage.api.StorageDto
+import com.memorizing.core.storage.api.StorageFieldsDto
+import com.memorizing.core.storage.api.StorageMapper
+import com.memorizing.core.util.HeaderUtil
 import org.apache.log4j.Logger
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.HttpStatus

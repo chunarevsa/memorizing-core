@@ -1,9 +1,9 @@
-package com.example.memorizing.storage
+package com.memorizing.core.storage
 
-import com.example.memorizing.exception.NotFoundException
-import com.example.memorizing.storage.StorageController.Companion.ENTITY_NAME
-import com.example.memorizing.storage.api.StorageFieldsDto
-import com.example.memorizing.storage.api.StorageMapper
+import com.memorizing.core.exception.NotFoundException
+import com.memorizing.core.storage.StorageController.Companion.ENTITY_NAME
+import com.memorizing.core.storage.api.StorageFieldsDto
+import com.memorizing.core.storage.api.StorageMapper
 import org.springframework.stereotype.Service
 
 @Service
