@@ -1,4 +1,4 @@
-package com.example.memorizing.util
+package com.memorizing.core.util
 
 import org.springframework.http.HttpHeaders
 import org.springframework.web.util.UriComponentsBuilder
