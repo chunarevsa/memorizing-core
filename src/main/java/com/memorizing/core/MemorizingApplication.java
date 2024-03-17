@@ -1,4 +1,4 @@
-package com.example.memorizing;
+package com.memorizing.core;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

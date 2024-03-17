@@ -1,4 +1,4 @@
-package com.example.memorizing.exception
+package com.memorizing.core.exception
 
 import org.springframework.data.relational.core.conversion.DbActionExecutionException
 import org.springframework.http.HttpStatus

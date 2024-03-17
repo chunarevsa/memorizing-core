@@ -1,4 +1,4 @@
-package com.example.memorizing.exception
+package com.memorizing.core.exception
 
 import com.fasterxml.jackson.annotation.JsonInclude
 import java.time.Instant
